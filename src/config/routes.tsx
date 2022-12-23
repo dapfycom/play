@@ -1,7 +1,9 @@
 import { FireIcon, PlayIcon, SwapIcon } from "components/icons/ui-icons";
 import Layout from "components/Layout/Layout";
+import React from "react";
 import { RouteObject } from "react-router-dom";
-import SwapView from "views/SwapView";
+
+const SwapView = React.lazy(() => import("views/SwapView"));
 
 export const routeNames = {
   swap: "/",

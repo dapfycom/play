@@ -9,11 +9,6 @@ import beskarLogo from "assets/images/logo/beskar.svg";
 import MyContainer from "../Container/Container";
 import Menu from "./commons/Menu/Menu";
 import NavButtons from "./commons/NavButtons/NavButtons";
-interface IProps {
-  isInMenuMovile?: boolean;
-  large?: boolean;
-  closeMobileNav?: () => void;
-}
 
 const Navbar = () => {
   return (

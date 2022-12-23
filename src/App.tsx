@@ -8,7 +8,9 @@ import {
   AxiosInterceptorContext,
   DappProvider,
 } from "@elrondnetwork/dapp-core/wrappers";
+import LoadingPage from "components/LoadingPage";
 import { routes } from "config/routes";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "styles/globals.css";
 const router = createBrowserRouter(routes);
@@ -33,7 +35,9 @@ function App() {
             <TransactionsToastList />
             <NotificationModal />
             <SignTransactionsModals className="custom-class-for-modals" />
-            <RouterProvider router={router} />
+            <React.Suspense fallback={<LoadingPage />}>
+              <RouterProvider router={router} />
+            </React.Suspense>
           </>
         </DappProvider>
       </AxiosInterceptorContext.Interceptor>

@@ -4,7 +4,7 @@ import { useGetAccountInfo } from "@elrondnetwork/dapp-core/hooks/account/useGet
 import Login from "components/Login/Login";
 
 import { useAppSelector } from "hooks/useRedux";
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import {
@@ -13,9 +13,6 @@ import {
   setUserAddress,
 } from "redux/dapp/dapp-slice";
 import Navbar from "../Navbar/Navbar";
-interface IProps {
-  children: ReactNode | undefined;
-}
 
 const Layout = () => {
   const dispatch = useDispatch();

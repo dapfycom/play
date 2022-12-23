@@ -6,9 +6,9 @@ import {
   TabListProps,
   TabPanel,
   TabPanels,
+  TabProps,
   Tabs,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
 
 interface IProps {
@@ -19,43 +19,39 @@ interface IProps {
 
   tabListProps?: TabListProps;
   tabListWarapperProps?: BoxProps;
+  tabsProps?: any;
+  tabProps?: TabProps;
 }
 
-const MyTab = ({ tabData, tabListProps, tabListWarapperProps }: IProps) => {
-  const bgTab = useColorModeValue(
-    "rgba(91, 192, 245, 0.05)",
-    "darkGray.darker"
-  );
-  const secodary = useColorModeValue("black.100", "white.400");
+const MyTabs = ({
+  tabData,
+  tabListProps,
+  tabsProps,
+  tabProps,
+  tabListWarapperProps,
+}: IProps) => {
   return (
-    <Tabs variant={"unstyled"} isLazy>
+    <Tabs variant={"unstyled"} isLazy {...tabsProps}>
       <Box overflow={"auto"} {...tabListWarapperProps}>
         <TabList
-          border={"0.5px solid"}
-          borderColor={secodary}
+          bg="secondary"
           w="fit-content"
-          borderRadius={"7px"}
+          borderRadius={"full"}
           {...tabListProps}
         >
           {tabData.map((e) => (
             <Tab
               key={e.tabText}
               _selected={{
-                bg: bgTab,
-                fontWeight: "bold",
-                "&[aria-selected=true]": {
-                  p: {
-                    bg: "main",
-                    bgClip: "text",
-                  },
-                },
+                bg: "main",
+                color: "black.dark",
               }}
               fontSize={{ xs: "sm", md: "md", xl: "lg" }}
               py={"10px"}
               px={{ xs: "20px", md: "30px", xl: "40px" }}
-              borderRadius={"10px"}
+              borderRadius={"full"}
               fontWeight="500"
-              m="5px"
+              {...tabProps}
             >
               <Text>{e.tabText}</Text>
             </Tab>
@@ -73,4 +69,4 @@ const MyTab = ({ tabData, tabListProps, tabListWarapperProps }: IProps) => {
   );
 };
 
-export default MyTab;
+export default MyTabs;
