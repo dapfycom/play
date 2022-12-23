@@ -28,7 +28,7 @@ const PlayCard = ({
       <Heading as="h2" color="white" mb="30px">
         {title}
       </Heading>
-      <Text mb="30px" fontSize={"sm"}>
+      <Text mb="30px" fontSize={"sm"} textAlign="center">
         {description}
       </Text>
       <ActionButton color="secondary" fontSize={"lsm"}>
