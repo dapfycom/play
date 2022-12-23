@@ -109,7 +109,7 @@ const Login = ({ isLoginOpen }: IProps) => {
         backdropFilter: "blur(6px)",
         background: "transparent",
       }}
-      background={"black.200"}
+      background={"blackT.200"}
       borderRadius={"20px"}
       px={0}
       isCentered={false}

@@ -1,7 +1,8 @@
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
-import { ArrowDownIcon, SettingsIcon } from "components/icons/ui-icons";
+import { ArrowDownIcon } from "components/icons/ui-icons";
 import InputBox from "./commons/InputBox";
+import Settings from "./commons/Settings";
 const SwapCard = () => {
   return (
     <Box
@@ -24,7 +25,7 @@ const SwapCard = () => {
         >
           Swap
         </Heading>
-        <SettingsIcon fontSize={"32px"} />
+        <Settings />
       </Flex>
       <Flex position={"relative"} flexDir="column" gap="10px" mb="30px">
         <Box
