@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Rexton';
+  src: url('../assets/fonts/rexton/Light.otf');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap
+}
+@font-face {
+  font-family: 'Rexton';
+  src: url('../assets/fonts/rexton/Regular.otf');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
+}
+@font-face {
+  font-family: 'Rexton';
+  src: url('../assets/fonts/rexton//Medium.otf');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap
+}
+
+
+@font-face {
+  font-family: 'Rexton';
+  src: url('../assets/fonts/rexton//Bold.otf');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
+}
+@font-face {
+  font-family: 'Rexton';
+  src: url('../assets/fonts/rexton/Extra\ Bold.otf');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Rexton';
+  src: url('../assets/fonts/rexton//Black.otf');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dapp-core-component__dappModalStyles__dappModal{
+  z-index: 9999;
+}
+
+.dapp-core-component__dappModalStyles__dappModalHeader{
+padding-top: 15px;
+}
+.dapp-core-component__dappModalStyles__dappModalCloseButton{
+  top: 5px;
+  right: 10px;
+}
