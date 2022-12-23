@@ -4,7 +4,8 @@ import React from "react";
 import { RouteObject } from "react-router-dom";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
-
+const PlayView = React.lazy(() => import("views/PlayView"));
+const TheForgeView = React.lazy(() => import("views/TheForgeView"));
 export const routeNames = {
   swap: "/",
   play: "/play",
@@ -23,14 +24,14 @@ export const mainSiteRoutes = [
   },
   {
     path: routeNames.play,
-    element: <div>Play</div>,
+    element: <PlayView />,
     title: "Play",
     icon: <PlayIcon fontSize={"25px"} />,
     // loader: teamLoader,
   },
   {
     path: routeNames.forge,
-    element: <div>Page</div>,
+    element: <TheForgeView />,
     title: "The forge",
     icon: <FireIcon fontSize={"20px"} />,
     // loader: teamLoader,

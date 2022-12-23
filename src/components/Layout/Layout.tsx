@@ -37,7 +37,9 @@ const Layout = () => {
     <Box pb="20">
       <Navbar />
       <Login isLoginOpen={isLoginModal} />
-      <Outlet />
+      <Box pt={"70px"}>
+        <Outlet />
+      </Box>
     </Box>
   );
 };

@@ -34,21 +34,22 @@ const MyTabs = ({
     <Tabs variant={"unstyled"} isLazy {...tabsProps}>
       <Box overflow={"auto"} {...tabListWarapperProps}>
         <TabList
-          bg="secondary"
+          bg="dark.500"
           w="fit-content"
           borderRadius={"full"}
+          p="9px"
           {...tabListProps}
         >
           {tabData.map((e) => (
             <Tab
               key={e.tabText}
               _selected={{
-                bg: "main",
+                bg: "dark.400",
                 color: "black.dark",
               }}
-              fontSize={{ xs: "sm", md: "md", xl: "lg" }}
+              fontSize={{ xs: "sm", md: "md" }}
               py={"10px"}
-              px={{ xs: "20px", md: "30px", xl: "40px" }}
+              px={{ xs: "20px", md: "30px" }}
               borderRadius={"full"}
               fontWeight="500"
               {...tabProps}
