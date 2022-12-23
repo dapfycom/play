@@ -170,6 +170,7 @@ const customTheme = extendTheme({
       500: "#21222D",
       600: "#1E2124",
       700: "#1B1C25",
+      800: "#1A1A1A",
     },
     light: {
       100: "#F9F9F9",

@@ -25,7 +25,7 @@ const Footer = () => {
       <MyContainer>
         <Flex w="full" justifyContent={"space-between"} mb="40px">
           <Flex gap="15px" alignItems={"center"}>
-            <ChkImage src={beskarLogo} alt="logo" width={"65px"} mr="15px" />
+            <ChkImage src={beskarLogo} alt="logo" width={"80px"} mr="15px" />
             <Heading as="h6" fontSize={"40px"} color="primary">
               Beskar{" "}
               <Box as="span" color="secondary">

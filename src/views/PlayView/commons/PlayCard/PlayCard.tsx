@@ -31,7 +31,13 @@ const PlayCard = ({
       <Text mb="30px" fontSize={"sm"} textAlign="center">
         {description}
       </Text>
-      <ActionButton color="secondary" fontSize={"lsm"}>
+      <ActionButton
+        color="secondary"
+        fontSize={"lsm"}
+        py="20px"
+        px="26px"
+        h="auto"
+      >
         Play on chain <RightArrowLargeIcon ml="13px" fontSize={"xl"} />
       </ActionButton>
     </Center>

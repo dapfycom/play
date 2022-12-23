@@ -8,6 +8,9 @@ const Disclaimer1 = () => {
         fontWeight="500"
         maxW={"463.5px"}
         lineHeight="20px"
+        sx={{
+          wordSpacing: "3px",
+        }}
       >
         Disclaimer: This website is maintained by BeskarDAO. The contents and
         opinions of the website are those of BeskarDAO. Please note that legal
@@ -23,6 +26,7 @@ const Disclaimer1 = () => {
 };
 
 export default Disclaimer1;
+
 export const Disclaimer2 = () => {
   return (
     <Box>
@@ -31,12 +35,17 @@ export const Disclaimer2 = () => {
         fontWeight="500"
         maxW={"463.5px"}
         lineHeight="20px"
+        sx={{
+          wordSpacing: "3px",
+        }}
       >
         Beskar Play does not promote or endorse any form of wagering or gambling
         to users under the age of 18. This site encourages responsible gambling
         and provides advice for anyone who believes they, or someone they know,
         may have a gambling addiction. If you believe you have a gambling
         problem, please visit BeGambleAware or GAMCARE for information and help.
+        <br />
+        <br />
         Learn more about gambling addiction here.
       </Text>
     </Box>
