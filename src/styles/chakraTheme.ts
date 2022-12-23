@@ -161,7 +161,7 @@ const customTheme = extendTheme({
     green2: " #83CF48",
     grayText: "#818284",
     gradientBlue:
-      "linear-gradient(180deg, #1A1E25 0%, #212339 0.01%, #000000 100%)",
+      "linear-gradient(180deg, #080B2C 0%, #080916 100%)",
     dark: {
       100: "#41424B",
       200: "#373842",
