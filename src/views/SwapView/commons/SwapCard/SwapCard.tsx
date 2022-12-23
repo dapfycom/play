@@ -18,7 +18,7 @@ const SwapCard = () => {
       <Flex w="full" justifyContent="space-between" mb="30px">
         <Heading
           as="h2"
-          fontFamily={"Inter Variable"}
+          // fontFamily={"Inter Variable"}
           fontSize="3xl"
           fontWeight={700}
           color="white"

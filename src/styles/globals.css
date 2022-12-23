@@ -43,13 +43,13 @@
 
 
 /* Inter font family */
-@font-face {
+/* @font-face {
   font-family: 'Inter Variable';
   src: url('../assets/fonts/inter/Inter.var.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 body{
   -webkit-font-smoothing: antialiased;
