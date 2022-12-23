@@ -64,14 +64,3 @@ a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.dapp-core-component__dappModalStyles__dappModal{
-  z-index: 9999;
-}
-
-.dapp-core-component__dappModalStyles__dappModalHeader{
-padding-top: 15px;
-}
-.dapp-core-component__dappModalStyles__dappModalCloseButton{
-  top: 5px;
-  right: 10px;
-}

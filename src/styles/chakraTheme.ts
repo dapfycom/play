@@ -139,6 +139,16 @@ const customTheme = extendTheme({
         scrollbarWidth: "auto",
         scrollbarColor: "light.baseLight dark.baseDark",
       },
+      "&.dapp-core-component__dappModalStyles__dappModal": {
+        zIndex: "9999 !important"
+      },
+      "&.dapp-core-component__dappModalStyles__dappModalHeader": {
+        paddingTop: "15px !important"
+      },
+      "&.dapp-core-component__dappModalStyles__dappModalCloseButton": {
+        top: "5px !important",
+        right: "10px !important"
+      }
     }),
   },
 

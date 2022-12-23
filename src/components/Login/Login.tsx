@@ -204,6 +204,9 @@ const LoginMethod = ({ children, ...props }: LoginMethodProps) => {
       color="black"
       border={"none"}
       margin={0}
+      _hover={{
+        borderRadius: "0px",
+      }}
       {...props}
     >
       {children}
