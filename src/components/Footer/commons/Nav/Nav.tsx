@@ -13,7 +13,14 @@ const Nav = () => {
         {mainSiteRoutes.map((route) => {
           return (
             <Link to={route.path} key={route.path}>
-              <Text fontSize={"lg"}>{route.title}</Text>
+              <Text
+                _hover={{
+                  color: "primary",
+                }}
+                fontSize={"lg"}
+              >
+                {route.title}
+              </Text>
             </Link>
           );
         })}
