@@ -11,7 +11,7 @@ const MyContainer = ({ children, large, ...props }: IProps) => {
       maxW={{
         sm: "100%",
       }}
-      px={"30px"}
+      px={{ xs: "15px", md: "30px" }}
       {...props}
     >
       {children}

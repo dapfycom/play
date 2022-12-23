@@ -6,7 +6,6 @@ import { EgldIcon } from "components/icons/coin-icons";
 import { DotIcon, ZapIcon } from "components/icons/ui-icons";
 import { useAppDispatch } from "hooks/useRedux";
 import { openLogin } from "redux/dapp/dapp-slice";
-import MoreOptions from "./commons/MoreOptions/MoreOptions";
 const NavButtons = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
@@ -19,18 +18,31 @@ const NavButtons = () => {
   };
 
   return (
-    <Flex flex={1} justifyContent={"flex-end"} gap="20px" alignItems={"center"}>
-      <ActionButton variant={"secondary"} fontSize="lg" h={"46px"}>
-        <Flex gap="10px" alignItems={"center"}>
-          <EgldIcon fontSize={"24px"} />{" "}
+    <Flex
+      flex={1}
+      justifyContent={"flex-end"}
+      gap={{ xs: "10px", md: "20px" }}
+      alignItems={"center"}
+    >
+      <ActionButton
+        variant={"secondary"}
+        fontSize="lg"
+        h={{ xs: "40px", md: "46px" }}
+      >
+        <Flex
+          gap={{ xs: "5px", md: "10px" }}
+          alignItems={"center"}
+          fontSize={{ xs: "sm", "2xl": "md" }}
+        >
+          <EgldIcon fontSize={{ xs: "20px", "2xl": "24px" }} />{" "}
           <DotIcon fontSize={"5px"} color="green2" /> ELROND
         </Flex>
       </ActionButton>
       {isLoggedIn ? (
         <ActionButton
-          fontSize={"lsm"}
-          h={"46px"}
-          px="42px"
+          fontSize={{ xs: "sm", "2xl": "lsm" }}
+          h={{ xs: "40px", md: "46px" }}
+          px={{ xs: "10px", md: "42px" }}
           onClick={handleDisconnect}
         >
           {" "}
@@ -40,9 +52,9 @@ const NavButtons = () => {
         </ActionButton>
       ) : (
         <ActionButton
-          fontSize={"lsm"}
-          h={"46px"}
-          px="42px"
+          fontSize={{ xs: "sm", "2xl": "lsm" }}
+          h={{ xs: "40px", md: "46px" }}
+          px={{ xs: "10px", md: "42px" }}
           onClick={handleConnect}
         >
           {" "}
@@ -51,7 +63,7 @@ const NavButtons = () => {
           </Flex>{" "}
         </ActionButton>
       )}
-      <MoreOptions />
+      {/* <MoreOptions /> */}
     </Flex>
   );
 };

@@ -18,6 +18,7 @@ const Menu = () => {
               borderColor={isActive ? "primary" : "transparent"}
               height="full"
               pt="31px"
+              fontSize={{ xs: "lsm", "2xl": "md" }}
             >
               <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box>
               <Text color={isActive ? "secondary" : "grayText"}>

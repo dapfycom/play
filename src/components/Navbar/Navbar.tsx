@@ -17,12 +17,20 @@ const Navbar = () => {
         <Flex>
           <Flex gap="25px" alignItems="center" height={"85px"}>
             <Flex alignItems={"center"}>
-              <ChkImage src={beskarLogo} alt="logo" width={"65px"} mr="15px" />
+              <ChkImage
+                src={beskarLogo}
+                alt="logo"
+                width={"65px"}
+                mr="15px"
+                minW={"35px"}
+              />
+
               <Heading
                 as="h3"
                 textTransform={"uppercase"}
                 color="primary"
                 fontSize={"md"}
+                display={{ xs: "none", lg: "block" }}
               >
                 Beskar{" "}
                 <Box as="span" color="secondary">
@@ -35,8 +43,9 @@ const Navbar = () => {
               borderColor="dark.300"
               maxH={"45px"}
               mt="10px !important"
+              display={{ xs: "none", lg: "block" }}
             />
-            <Flex h={"full"}>
+            <Flex h={"full"} display={{ xs: "none", "1.5xl": "flex" }}>
               <Menu />
             </Flex>
           </Flex>

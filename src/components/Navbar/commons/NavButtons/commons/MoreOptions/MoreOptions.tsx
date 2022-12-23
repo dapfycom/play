@@ -19,7 +19,7 @@ const MoreOptions = () => {
       <ActionButton
         variant={"secondary"}
         px="10px"
-        h={"46px"}
+        h={{ xs: "40px", md: "46px" }}
         onClick={handleOpenMoreOptionsModal}
       >
         <ThreeDotsIcon fontSize={"25px"} />
