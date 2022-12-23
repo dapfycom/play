@@ -28,7 +28,7 @@ const components: ThemeComponents = {
           opacity: "0.8",
         },
       },
-      seconday: {
+      secondary: {
         bg: "dark.500",
         color: "white",
         border: "1px solid",

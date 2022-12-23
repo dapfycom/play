@@ -3,9 +3,10 @@ import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account";
 import { logout } from "@elrondnetwork/dapp-core/utils";
 import ActionButton from "components/ActionButton/ActionButton";
 import { EgldIcon } from "components/icons/coin-icons";
-import { DotIcon, ThreeDotsIcon, ZapIcon } from "components/icons/ui-icons";
+import { DotIcon, ZapIcon } from "components/icons/ui-icons";
 import { useAppDispatch } from "hooks/useRedux";
 import { openLogin } from "redux/dapp/dapp-slice";
+import MoreOptions from "./commons/MoreOptions/MoreOptions";
 const NavButtons = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
@@ -19,7 +20,7 @@ const NavButtons = () => {
 
   return (
     <Flex flex={1} justifyContent={"flex-end"} gap="20px" alignItems={"center"}>
-      <ActionButton variant={"seconday"} fontSize="lg" h={"46px"}>
+      <ActionButton variant={"secondary"} fontSize="lg" h={"46px"}>
         <Flex gap="10px" alignItems={"center"}>
           <EgldIcon fontSize={"24px"} />{" "}
           <DotIcon fontSize={"5px"} color="green2" /> ELROND
@@ -50,9 +51,7 @@ const NavButtons = () => {
           </Flex>{" "}
         </ActionButton>
       )}
-      <ActionButton variant={"seconday"} px="10px" h={"46px"}>
-        <ThreeDotsIcon fontSize={"25px"} />
-      </ActionButton>
+      <MoreOptions />
     </Flex>
   );
 };
