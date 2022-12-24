@@ -161,7 +161,6 @@ const TheForgeView = () => {
             >
               <Center
                 flexDir={"column"}
-                gap="30px"
                 px="25px"
                 py="30px"
                 bg="dark.800"
