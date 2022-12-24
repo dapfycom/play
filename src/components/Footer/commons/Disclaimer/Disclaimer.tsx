@@ -2,11 +2,11 @@ import { Box, Text } from "@chakra-ui/react";
 
 const Disclaimer1 = () => {
   return (
-    <Box>
+    <Box display={"flex"} justifyContent={{ xs: "center", lg: "flex-start" }}>
       <Text
         fontSize={"lsm"}
         fontWeight="500"
-        maxW={"463.5px"}
+        maxW={{ xs: "full", lg: "463.5px" }}
         lineHeight="20px"
         sx={{
           wordSpacing: "3px",
@@ -29,11 +29,11 @@ export default Disclaimer1;
 
 export const Disclaimer2 = () => {
   return (
-    <Box>
+    <Box display={"flex"} justifyContent={{ xs: "center", lg: "flex-start" }}>
       <Text
         fontSize={"lsm"}
         fontWeight="500"
-        maxW={"463.5px"}
+        maxW={{ xs: "full", lg: "463.5px" }}
         lineHeight="20px"
         sx={{
           wordSpacing: "3px",

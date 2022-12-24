@@ -23,10 +23,29 @@ const Footer = () => {
   return (
     <Box as="footer">
       <MyContainer>
-        <Flex w="full" justifyContent={"space-between"} mb="40px">
-          <Flex gap="15px" alignItems={"center"}>
-            <ChkImage src={beskarLogo} alt="logo" width={"80px"} mr="15px" />
-            <Heading as="h6" fontSize={"40px"} color="primary">
+        <Flex
+          w="full"
+          justifyContent={"space-between"}
+          mb="40px"
+          flexDir={{ xs: "column", md: "row" }}
+        >
+          <Flex
+            gap="15px"
+            alignItems={"center"}
+            mb={{ xs: "70px", md: "0" }}
+            justifyContent="center"
+          >
+            <ChkImage
+              src={beskarLogo}
+              alt="logo"
+              width={{ xs: "50px", "2xl": "80px" }}
+              mr="15px"
+            />
+            <Heading
+              as="h6"
+              fontSize={{ xs: "25px", "2xl": "40px" }}
+              color="primary"
+            >
               Beskar{" "}
               <Box as="span" color="secondary">
                 play
@@ -35,10 +54,16 @@ const Footer = () => {
           </Flex>
 
           <Flex flexDir={"column"}>
-            <Heading as="h6" mb="30px" fontSize={"md"} color="white">
+            <Heading
+              as="h6"
+              mb="30px"
+              fontSize={{ xs: "lsm", lg: "md" }}
+              color="white"
+              textAlign="center"
+            >
               Social Networks
             </Heading>
-            <Flex gap="20px">
+            <Flex gap="20px" justifyContent={"center"}>
               <SocialButton
                 ariaLabel="twitter"
                 icon={<TwitterIcon fontSize={"24px"} />}
@@ -57,20 +82,36 @@ const Footer = () => {
 
         <Line mb={"57px"} />
 
-        <Flex mb="20px">
-          <Box mr="50px">
+        <Flex mb="20px" flexDir={{ xs: "column", "2xl": "row" }}>
+          <Box
+            mr={{ xs: "0", lg: "50px" }}
+            mb={{ xs: "50px", "2xl": "0" }}
+            w="full"
+            maxW={{ xs: "full", lg: "180px" }}
+          >
             <Nav />
           </Box>
+          <Box flex={1} display={{ xs: "block", lg: "none" }} mb={"30px"}>
+            <JoinTelegram />
+          </Box>
 
-          <Flex gap="22px" mr="43px">
+          <Flex
+            gap={{ xs: "30px", lg: "22px" }}
+            mr={{ xs: "0", lg: "43px" }}
+            mb={{ xs: "30px", "2xl": "0" }}
+            flexDir={{ xs: "column", lg: "row" }}
+            textAlign={{ xs: "center", lg: "initial" }}
+            justifyContent="center"
+          >
             <Disclaimer1 />
             <Disclaimer2 />
           </Flex>
 
-          <Box flex={1}>
+          <Box flex={1} display={{ xs: "none", lg: "block" }}>
             <JoinTelegram />
           </Box>
         </Flex>
+
         <Center mb="30px">
           <Text fontSize={"lsm"} textAlign="center" maxW="463.5px">
             BeskarDAO © 2022. All rights reserved.

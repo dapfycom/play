@@ -15,14 +15,15 @@ const JoinTelegram = () => {
       w="full"
       h="full"
       px={2}
+      py={"64px"}
     >
       <ActionButton
         borderRadius={"full"}
-        py="30px"
+        py={{ xs: "20px", lg: "30px" }}
         h="auto"
         w="full"
         maxW={"520px"}
-        fontSize={"lg"}
+        fontSize={{ xs: "sm", md: "lsm", lg: "lg" }}
       >
         Join Telegram group <ArrowForwardIcon ml="21px" fontSize={"25px"} />
       </ActionButton>
