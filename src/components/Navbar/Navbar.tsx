@@ -16,7 +16,9 @@ const Navbar = () => {
       <MyContainer>
         <Flex>
           <Flex gap="25px" alignItems="center" height={"85px"}>
-            <MoreOptionsV2 />
+            <Box>
+              <MoreOptionsV2 />
+            </Box>
             <Flex alignItems={"center"}>
               <ChkImage
                 src={beskarLogo}

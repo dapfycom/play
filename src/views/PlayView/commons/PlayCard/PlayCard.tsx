@@ -25,16 +25,21 @@ const PlayCard = ({
       flexDir="column"
     >
       {icon}
-      <Heading as="h2" color="white" mb="30px">
+      <Heading
+        as="h2"
+        color="white"
+        mb="30px"
+        fontSize={{ xs: "lg", md: "28px" }}
+      >
         {title}
       </Heading>
-      <Text mb="30px" fontSize={"sm"} textAlign="center">
+      <Text mb="30px" fontSize={{ xs: "xs", md: "sm" }} textAlign="center">
         {description}
       </Text>
       <ActionButton
         color="secondary"
-        fontSize={"lsm"}
-        py="20px"
+        fontSize={{ xs: "xs", md: "lsm" }}
+        py={{ xs: "15px", md: "20px" }}
         px="26px"
         h="auto"
       >

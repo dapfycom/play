@@ -15,7 +15,7 @@ const MoreOptions = () => {
     setOpenMoreOptionsModal(false);
   };
   return (
-    <Box position={"relative"}>
+    <Box position={"relative"} display={{ xs: "none", md: "block" }}>
       <ActionButton
         variant={"secondary"}
         px="10px"
@@ -48,7 +48,7 @@ export const MoreOptionsV2 = ({
     setOpenMoreOptionsModal(false);
   };
   return (
-    <Box position={"relative"}>
+    <Box position={"relative"} display={{ xs: "block", md: "none" }}>
       <ActionButton
         w="auto"
         px="0"

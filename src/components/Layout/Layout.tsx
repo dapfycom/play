@@ -7,6 +7,7 @@ import Login from "components/Login/Login";
 import { useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
 import {
   openLogin,
   selectIsLoginModal,
@@ -37,7 +38,9 @@ const Layout = () => {
     <Box pb="20">
       <Navbar />
       <Login isLoginOpen={isLoginModal} />
-      <Box pt={"70px"}>{/* <Outlet /> */}</Box>
+      <Box pt={"70px"}>
+        <Outlet />
+      </Box>
       <Footer />
     </Box>
   );

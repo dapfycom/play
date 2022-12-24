@@ -1,8 +1,8 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import ActionButton from "components/ActionButton/ActionButton";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { ArrowDownIcon } from "components/icons/ui-icons";
 import InputBox from "./commons/InputBox";
 import Settings from "./commons/Settings";
+import SubmitButton from "./commons/SubmitButton";
 const SwapCard = () => {
   return (
     <Box
@@ -44,22 +44,7 @@ const SwapCard = () => {
         <InputBox />
         <InputBox />
       </Flex>
-      <ActionButton
-        width={"full"}
-        h="auto"
-        py="46px"
-        bgColor="rgba(216, 185,25, 0.3)"
-        _disabled={{
-          "& p": {
-            color: "dark.100 !important",
-          },
-          bg: "dark.400",
-        }}
-      >
-        <Text color="primary" opacity={1}>
-          Enter an amount
-        </Text>
-      </ActionButton>
+      <SubmitButton />
     </Box>
   );
 };

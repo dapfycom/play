@@ -19,6 +19,14 @@ const Menu = () => {
               height="full"
               pt="31px"
               fontSize={{ xs: "lsm", "2xl": "md" }}
+              _hover={{
+                "& p": {
+                  color: "white",
+                },
+                "& div": {
+                  color: "white",
+                },
+              }}
             >
               <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box>
               <Text color={isActive ? "secondary" : "grayText"}>

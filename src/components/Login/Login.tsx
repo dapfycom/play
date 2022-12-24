@@ -96,7 +96,7 @@ const Login = ({ isLoginOpen }: IProps) => {
     dispatch(openLogin(false));
   };
   const commonProps = {
-    callbackRoute: routeNames.play,
+    callbackRoute: routeNames.swap,
     nativeAuth: true, // optional
   };
 

@@ -15,7 +15,7 @@ const Nav = () => {
             <Link to={route.path} key={route.path}>
               <Text
                 _hover={{
-                  color: "primary",
+                  color: "white",
                 }}
                 fontSize={"lg"}
               >

@@ -52,6 +52,7 @@ const MyTabs = ({
               px={{ xs: "20px", md: "30px" }}
               borderRadius={"full"}
               fontWeight="500"
+              color="white"
               {...tabProps}
             >
               <Text>{e.tabText}</Text>
