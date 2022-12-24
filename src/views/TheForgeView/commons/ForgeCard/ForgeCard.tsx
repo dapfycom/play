@@ -5,7 +5,8 @@ const ForgeCard = ({ children, ...props }: PropsWithChildren<CenterProps>) => {
   return (
     <Center
       borderRadius={"xl"}
-      p="50px"
+      px={{ xs: "14px", lg: "50px" }}
+      py={{ xs: "40px", lg: "50px" }}
       flexDir={"column"}
       bg="dark.600"
       textAlign={"center"}

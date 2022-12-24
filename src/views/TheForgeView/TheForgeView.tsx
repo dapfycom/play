@@ -23,11 +23,20 @@ const TheForgeView = () => {
       <MyContainer mb="150px">
         <Center flexDir={"column"} w="full" gap="30px">
           <ForgeCard>
-            <Heading as="h2" color="white" mb="20px" fontSize={"28px"}>
+            <Heading
+              as="h2"
+              color="white"
+              mb="20px"
+              fontSize={{ xs: "lg", lg: "28px" }}
+            >
               Beskar Forge
             </Heading>
-            <Stack spacing={"30px"} mb="50px" fontSize={"lg"}>
-              <Text fontSize={"28px"}>
+            <Stack
+              spacing={"30px"}
+              mb="50px"
+              fontSize={{ xs: "lsm", lg: "lg" }}
+            >
+              <Text fontSize={{ xs: "lg", lg: "28px" }}>
                 Sell your $BSK with NO PRICE IMPACT and make the DAO stronger
                 while doing so!
               </Text>
@@ -65,21 +74,21 @@ const TheForgeView = () => {
               learn More
             </Text>
           </ForgeCard>
-          <ForgeCard gap="30px">
+          <ForgeCard gap={{ xs: "20px", lg: "30px" }}>
             <Center
               bg="#292C2F"
               borderRadius={"lg"}
               border={"1px"}
               borderColor="dark.300"
-              px="50px"
+              px={{ xs: "20px", lg: "50px" }}
               w="full"
             >
               <Stack
                 divider={<StackDivider borderColor="dark.300" />}
                 width="full"
               >
-                <Center py="25px">
-                  <Text fontSize={"lg"}>
+                <Center py={{ xs: "14px", lg: "25px" }}>
+                  <Text fontSize={{ xs: "lsm", lg: "lg" }}>
                     Total burnt:{" "}
                     <Box as="span" color="white">
                       {" "}
@@ -87,8 +96,8 @@ const TheForgeView = () => {
                     </Box>
                   </Text>
                 </Center>
-                <Center py="25px">
-                  <Text fontSize={"lg"}>
+                <Center py={{ xs: "14px", lg: "25px" }}>
+                  <Text fontSize={{ xs: "lsm", lg: "lg" }}>
                     you burnt:
                     <Box as="span" color="white">
                       {" "}
@@ -97,9 +106,14 @@ const TheForgeView = () => {
                   </Text>
                 </Center>
                 <Center pb="25px" pt="20px">
-                  <Text fontSize={"lg"}>
+                  <Text fontSize={{ xs: "lsm", lg: "lg" }}>
                     you own:
-                    <Box as="span" color="white" fontSize={"3xl"}>
+                    <Box
+                      as="span"
+                      color="white"
+                      fontSize={{ xs: "2xl", lg: "3xl" }}
+                      display={{ xs: "block", lg: "inline" }}
+                    >
                       {" "}
                       0.00%
                     </Box>{" "}
@@ -113,16 +127,23 @@ const TheForgeView = () => {
               borderRadius={"lg"}
               border={"1px"}
               borderColor="dark.300"
-              px="50px"
               w="full"
               flexDir={"column"}
-              gap="30px"
-              p="30px"
+              gap={{ xs: "20px", lg: "30px" }}
+              px={{ xs: "20px", lg: "50px" }}
+              py="30px"
             >
-              <Text fontSize={"lg"}>Collectable Egld</Text>
-              <RingIcon fontSize={"36px"} />
-              <Text fontSize={"13px"}>collected till now: 0 egld</Text>
-              <ActionButton fontSize={"24px"} h="auto" py="15px" px="42px">
+              <Text fontSize={{ xs: "lsm", lg: "lg" }}>Collectable Egld</Text>
+              <RingIcon fontSize={{ xs: "28px", lg: "36px" }} />
+              <Text fontSize={{ xs: "xs", lg: "13px" }} color="#2F5019">
+                collected till now: 0 egld
+              </Text>
+              <ActionButton
+                fontSize={{ xs: "lg", lg: "24px" }}
+                h="auto"
+                py="15px"
+                px="42px"
+              >
                 Claim
               </ActionButton>
             </Center>
@@ -147,12 +168,16 @@ const TheForgeView = () => {
                 borderRadius={"lg"}
                 boxShadow="0px 4px 14px 10px rgba(0, 0, 0, 0.25)"
               >
-                <Text fontSize={"lg"} mb="30px" color="white">
+                <Text
+                  fontSize={{ xs: "15px", lg: "lg" }}
+                  mb={{ xs: "20px", lg: "30px" }}
+                  color="white"
+                >
                   it looks like your $bsk balance is zero!
                 </Text>
                 <Text
                   color="primary"
-                  fontSize={"lsm"}
+                  fontSize={{ xs: "xs", lg: "lsm" }}
                   textDecoration="underline"
                 >
                   Click here to buy and burn $bsk

@@ -18,7 +18,7 @@ const Settings = () => {
   return (
     <Box position={"relative"}>
       <ActionButton bg="transparent" onClick={handleOpenSettings}>
-        <SettingsIcon fontSize={"32px"} />
+        <SettingsIcon fontSize={{ xs: "23px", lg: "32px" }} />
       </ActionButton>
       {openSettings && (
         <Box position={"absolute"} right={0} zIndex={2} top={"52px"}>

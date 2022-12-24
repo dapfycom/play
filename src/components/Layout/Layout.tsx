@@ -37,7 +37,7 @@ const Layout = () => {
   return (
     <Box pb="20">
       <Navbar />
-      <Login isLoginOpen={isLoginModal} />
+      {isLoginModal && <Login isLoginOpen={isLoginModal} />}
       <Box pt={"70px"}>
         <Outlet />
       </Box>

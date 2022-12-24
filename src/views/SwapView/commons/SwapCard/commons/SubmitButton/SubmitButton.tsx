@@ -20,7 +20,7 @@ const SubmitButton = () => {
     <ActionButton
       width={"full"}
       h="auto"
-      py="46px"
+      py={{ xs: "29px", lg: "46px" }}
       bgColor="rgba(216, 185,25, 0.3)"
       _disabled={{
         "& p": {
@@ -30,7 +30,7 @@ const SubmitButton = () => {
       }}
       onClick={handleSwap}
     >
-      <Text color="primary" opacity={1} fontSize="30px">
+      <Text color="primary" opacity={1} fontSize={{ xs: "lsm", lg: "30px" }}>
         {buttonText}
       </Text>
     </ActionButton>

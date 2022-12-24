@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading } from "@chakra-ui/react";
 import { ArrowDownIcon } from "components/icons/ui-icons";
 import InputBox from "./commons/InputBox";
 import Settings from "./commons/Settings";
@@ -10,16 +10,19 @@ const SwapCard = () => {
       bg="dark.500"
       maxW={"913px"}
       w="full"
-      px="50px"
+      px={{ xs: "30px", lg: "50px" }}
       py="60px"
       border="1px"
       borderColor={"primary"}
     >
-      <Flex w="full" justifyContent="space-between" mb="30px">
+      <Flex
+        w="full"
+        justifyContent="space-between"
+        mb={{ xs: "20px", lg: "30px" }}
+      >
         <Heading
           as="h2"
-          // fontFamily={"Inter Variable"}
-          fontSize="3xl"
+          fontSize={{ xs: "2xl", lg: "3xl" }}
           fontWeight={700}
           color="white"
         >
@@ -27,19 +30,28 @@ const SwapCard = () => {
         </Heading>
         <Settings />
       </Flex>
-      <Flex position={"relative"} flexDir="column" gap="10px" mb="30px">
+      <Flex
+        position={"relative"}
+        flexDir="column"
+        gap={{ xs: "5px", lg: "10px" }}
+        mb="30px"
+      >
         <Box
           position={"absolute"}
-          top="43%"
-          left="45%"
+          top={{ xs: "44%", lg: "43%" }}
+          left={{ xs: "44%", lg: "45%" }}
           borderRadius={"full"}
           bg="dark.500"
-          p="7px"
+          p={{ xs: "3px", lg: "7px" }}
           cursor={"pointer"}
         >
-          <Box borderRadius={"full"} bg="dark.400" p="12px">
-            <ArrowDownIcon fontSize={"22px"} />
-          </Box>
+          <Center
+            borderRadius={"full"}
+            bg="dark.400"
+            boxSize={{ xs: "25px", lg: "45px" }}
+          >
+            <ArrowDownIcon fontSize={{ xs: "11px", lg: "22px" }} />
+          </Center>
         </Box>
         <InputBox />
         <InputBox />

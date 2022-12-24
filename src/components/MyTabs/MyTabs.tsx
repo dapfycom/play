@@ -47,9 +47,9 @@ const MyTabs = ({
                 bg: "dark.400",
                 color: "black.dark",
               }}
-              fontSize={{ xs: "sm", md: "md" }}
+              fontSize={{ xs: "xs", tablet: "sm", lg: "md" }}
               py={"10px"}
-              px={{ xs: "20px", md: "30px" }}
+              px={0}
               borderRadius={"full"}
               fontWeight="500"
               color="white"

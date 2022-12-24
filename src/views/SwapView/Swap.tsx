@@ -7,7 +7,7 @@ const SwapLpTab = lazy(() => import("./commons/SwapLpTab"));
 
 const Swap = () => {
   return (
-    <MyContainer>
+    <MyContainer mb={10}>
       <Center>
         <MyTabs
           tabsProps={{
@@ -21,7 +21,7 @@ const Swap = () => {
             mb: "60px ",
           }}
           tabProps={{
-            width: "246px",
+            width: { xs: "150px", tablet: "170px", lg: "246px" },
           }}
           tabData={[
             {

@@ -18,16 +18,16 @@ const InputBox = () => {
 
   return (
     <>
-      <Box bg="dark.400" borderRadius={"lg"} p="40px">
+      <Box bg="dark.400" borderRadius={"lg"} p={{ xs: "20px", lg: "40px" }}>
         <Flex w="full" mb="20px" gap="15px">
           <Input
             variant={"unstyled"}
             flex={1}
             placeholder="0.0"
-            fontSize={"4xl"}
+            fontSize={{ xs: "2xl", lg: "4xl" }}
           />
           <ActionButton
-            borderRadius={"20px"}
+            borderRadius={{ xs: "10px", lg: "20px" }}
             px="20px"
             py="15px"
             bg="dark.100"
@@ -37,13 +37,13 @@ const InputBox = () => {
             h="auto"
             onClick={handleOpen}
           >
-            <EgldIcon fontSize={"40px"} />
-            <Text fontSize={"2xl"}>EGLD</Text>
-            <AngleDownIcon fontSize={"17px"} />
+            <EgldIcon fontSize={{ xs: "18px", lg: "40px" }} />
+            <Text fontSize={{ xs: "lsm", lg: "2xl" }}>EGLD</Text>
+            <AngleDownIcon fontSize={{ xs: "13px", lg: "17px" }} />
           </ActionButton>
         </Flex>
         <Flex justifyContent={"flex-end"}>
-          <Text fontSize={"lg"}>Balance: 124,154.83</Text>
+          <Text fontSize={{ xs: "xs", lg: "lg" }}>Balance: 124,154.83</Text>
         </Flex>
       </Box>
 
