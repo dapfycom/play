@@ -477,3 +477,107 @@ export const RingIcon = createIcon({
     </svg>
   ),
 });
+export const QuestionIcon = createIcon({
+  displayName: "QuestionIcon",
+  viewBox: "0 0 12 12",
+  path: (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="6" cy="6" r="5.5" stroke="currentColor" />
+      <path
+        d="M4.5 4.5V4.30902C4.5 3.8132 4.78013 3.35993 5.22361 3.1382V3.1382C5.40537 3.04731 5.6058 3 5.80902 3H6.23814C6.71411 3 7.15858 3.23788 7.4226 3.6339V3.6339C7.76647 4.14971 7.737 4.82874 7.34974 5.31282L6 7"
+        stroke="currentColor"
+        stroke-linecap="round"
+      />
+      <circle cx="6" cy="9" r="0.5" fill="currentColor" />
+    </svg>
+  ),
+});
+export const MoonIcon = createIcon({
+  displayName: "MoonIcon",
+  viewBox: "0 0 13 13",
+  path: (
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 13 13"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 6.9955C11.9037 8.03794 11.5124 9.0314 10.8721 9.85961C10.2317 10.6878 9.36877 11.3165 8.38415 11.6722C7.39952 12.0278 6.33397 12.0957 5.31217 11.8679C4.29038 11.6401 3.3546 11.1259 2.61434 10.3857C1.87408 9.6454 1.35995 8.70962 1.13211 7.68783C0.904275 6.66603 0.972155 5.60048 1.32781 4.61585C1.68346 3.63123 2.31218 2.76825 3.14039 2.12791C3.9686 1.48756 4.96206 1.09634 6.0045 1C5.39418 1.82569 5.10049 2.84302 5.17685 3.86695C5.25321 4.89087 5.69454 5.85339 6.42058 6.57942C7.14661 7.30546 8.10913 7.74679 9.13305 7.82315C10.157 7.89951 11.1743 7.60582 12 6.9955Z"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+});
+export const BookIcon = createIcon({
+  displayName: "BookIcon",
+  viewBox: "0 0 15 14",
+  path: (
+    <svg
+      width="15"
+      height="14"
+      viewBox="0 0 15 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 1H4.9C5.58956 1 6.25088 1.27393 6.73848 1.76152C7.22607 2.24912 7.5 2.91044 7.5 3.6V12.7C7.5 12.1828 7.29455 11.6868 6.92886 11.3211C6.56316 10.9554 6.06717 10.75 5.55 10.75H1V1Z"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M14 1H10.1C9.41044 1 8.74912 1.27393 8.26152 1.76152C7.77393 2.24912 7.5 2.91044 7.5 3.6V12.7C7.5 12.1828 7.70545 11.6868 8.07114 11.3211C8.43684 10.9554 8.93283 10.75 9.45 10.75H14V1Z"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+});
+export const ChatIcon = createIcon({
+  displayName: "ChatIcon",
+  viewBox: "0 0 14 14",
+  path: (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 6.66668C13.0023 7.54659 12.7967 8.4146 12.4 9.20001C11.9296 10.1412 11.2065 10.9328 10.3116 11.4862C9.41675 12.0396 8.38548 12.3329 7.33332 12.3333C6.45341 12.3356 5.5854 12.13 4.79999 11.7333L1 13L2.26666 9.20001C1.86995 8.4146 1.66437 7.54659 1.66667 6.66668C1.66707 5.61452 1.96041 4.58325 2.51381 3.68838C3.06721 2.79352 3.85883 2.0704 4.79999 1.60002C5.5854 1.20331 6.45341 0.997725 7.33332 1.00002H7.66666C9.05622 1.07668 10.3687 1.66319 11.3527 2.64726C12.3368 3.63132 12.9233 4.94378 13 6.33334V6.66668Z"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  ),
+});
+export const ThreDotsVericalIcon = createIcon({
+  displayName: "ThreDotsVericalIcon",
+  viewBox: "0 0 7 31",
+  path: (
+    <svg
+      width="7"
+      height="31"
+      viewBox="0 0 7 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="3.5" cy="3.5" r="2.5" stroke="#34383C" stroke-width="2" />
+      <circle cx="3.5" cy="15.5" r="2.5" stroke="#34383C" stroke-width="2" />
+      <circle cx="3.5" cy="27.5" r="2.5" stroke="#34383C" stroke-width="2" />
+    </svg>
+  ),
+});

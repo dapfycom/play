@@ -8,21 +8,21 @@ import {
 import beskarLogo from "assets/images/logo/beskar.svg";
 import MyContainer from "../Container/Container";
 import Menu from "./commons/Menu/Menu";
+import { MoreOptionsV2 } from "./commons/NavButtons/commons/MoreOptions/MoreOptions";
 import NavButtons from "./commons/NavButtons/NavButtons";
-
 const Navbar = () => {
   return (
     <Box bg="dark.600" borderTop={"3px solid"} borderColor="primary">
       <MyContainer>
         <Flex>
           <Flex gap="25px" alignItems="center" height={"85px"}>
+            <MoreOptionsV2 />
             <Flex alignItems={"center"}>
               <ChkImage
                 src={beskarLogo}
                 alt="logo"
-                width={"65px"}
+                width={{ xs: "38px", md: "65px" }}
                 mr="15px"
-                minW={"35px"}
               />
 
               <Heading
