@@ -111,6 +111,3 @@ const OptionModal = ({
     </Flex>
   );
 };
-function dispatch(arg0: { payload: boolean; type: "dapp/openLogin" }) {
-  throw new Error("Function not implemented.");
-}
