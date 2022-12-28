@@ -16,6 +16,16 @@ const networkConfig = {
       walletConnectBridgeAddresses: ["https://bridge.walletconnect.org"],
     },
     ChainID: "1",
+    tokensID: {
+      egld: "EGLD",
+      wegld: "WEGLD-bd4d79",
+      bsk: "BSK-baa025",
+    },
+
+    scAddress: {
+      maiarBskSwap:
+        "erd1qqqqqqqqqqqqqpgqzmjm474k89alpve4gp7x4gz25wfj4xzv2jpsy2my02",
+    },
   },
   devnet: {
     network: {
@@ -32,6 +42,8 @@ const networkConfig = {
       walletConnectBridgeAddresses: ["https://bridge.walletconnect.org"],
     },
     ChainID: "D",
+    tokensID: {},
+    scAddress: {},
   },
   testnet: {
     network: {
@@ -48,6 +60,8 @@ const networkConfig = {
       walletConnectBridgeAddresses: ["https://bridge.walletconnect.org"],
     },
     ChainID: "T",
+    tokensID: {},
+    scAddress: {},
   },
 };
 export const ENVIROMENT: ENVIROMENTTYPE = "mainnet";

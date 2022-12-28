@@ -1,10 +1,12 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import dappReducer from "redux/dapp/dapp-slice";
+import swapReducer from "views/SwapView/lib/swap-slice";
 export function makeStore() {
   return configureStore({
     reducer: {
       dapp: dappReducer,
+      swap: swapReducer,
     },
   });
 }

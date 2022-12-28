@@ -31,6 +31,7 @@ export const dapp = createSlice({
 });
 
 export const selectIsLoginModal = (state: AppState) => state.dapp.isLoginModal;
+export const selectUserAddress = (state: AppState) => state.dapp.userAddress;
 
 export const { openLogin, setUserAddress, setSidebarMenu } = dapp.actions;
 export default dapp.reducer;

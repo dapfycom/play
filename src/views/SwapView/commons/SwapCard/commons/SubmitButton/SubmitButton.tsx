@@ -1,21 +1,32 @@
 import { Text } from "@chakra-ui/react";
 import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account/useGetLoginInfo";
 import ActionButton from "components/ActionButton/ActionButton";
-import { useAppDispatch } from "hooks/useRedux";
+import useGetElrondToken from "hooks/useGetElrondToken";
+import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { openLogin } from "redux/dapp/dapp-slice";
+import { submitSwap } from "views/SwapView/lib/calls";
+import { selectFromField } from "views/SwapView/lib/swap-slice";
 
 const SubmitButton = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
-
+  const fromField = useAppSelector(selectFromField);
+  const { elrondToken } = useGetElrondToken(fromField.selectedToken);
   const handleSwap = () => {
     if (!isLoggedIn) {
       dispatch(openLogin(true));
     } else {
+      if (elrondToken) {
+        submitSwap(elrondToken, fromField.value);
+      }
     }
   };
 
-  let buttonText = isLoggedIn ? "Enter an amount" : "Connect wallet";
+  let buttonText = isLoggedIn
+    ? fromField.value !== ""
+      ? "confirm"
+      : "Enter an amount"
+    : "Connect wallet";
   return (
     <ActionButton
       width={"full"}

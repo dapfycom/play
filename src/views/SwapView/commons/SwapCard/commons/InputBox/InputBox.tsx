@@ -1,13 +1,24 @@
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Input, Spinner, Text } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
-import { EgldIcon } from "components/icons/coin-icons";
 import { AngleDownIcon } from "components/icons/ui-icons";
-import { lazy, useState } from "react";
-
+import useGetAccountToken from "hooks/useGetAccountToken";
+import useGetElrondToken from "hooks/useGetElrondToken";
+import React, { lazy, useState } from "react";
+import { formatBalance } from "utils/functions/formatBalance";
+import { preventExponetialNotation } from "utils/functions/numbers";
 const SelectTokenModal = lazy(() => import("../SelectTokenModal"));
 
-const InputBox = () => {
+interface IProps {
+  selectedTokenI: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
   const [openTokensListModal, setOpenTokensListModal] = useState(false);
+
+  const { elrondToken, isLoading } = useGetElrondToken(selectedTokenI);
+  const { accountToken } = useGetAccountToken(selectedTokenI);
 
   const handleClose = () => {
     setOpenTokensListModal(false);
@@ -25,7 +36,10 @@ const InputBox = () => {
             flex={1}
             placeholder="0.0"
             fontSize={{ xs: "2xl", lg: "4xl" }}
+            value={preventExponetialNotation(value)}
+            onChange={(e) => onChange(e)}
           />
+
           <ActionButton
             borderRadius={{ xs: "10px", lg: "20px" }}
             px="20px"
@@ -37,14 +51,30 @@ const InputBox = () => {
             h="auto"
             onClick={handleOpen}
           >
-            <EgldIcon fontSize={{ xs: "18px", lg: "40px" }} />
-            <Text fontSize={{ xs: "lsm", lg: "2xl" }}>EGLD</Text>
-            <AngleDownIcon fontSize={{ xs: "13px", lg: "17px" }} />
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <>
+                <Image
+                  src={elrondToken?.assets.svgUrl}
+                  alt={elrondToken?.ticker}
+                  w={{ xs: "18px", lg: "40px" }}
+                />
+                <Text fontSize={{ xs: "lsm", lg: "2xl" }}>
+                  {elrondToken?.ticker}
+                </Text>
+                <AngleDownIcon fontSize={{ xs: "13px", lg: "17px" }} />
+              </>
+            )}
           </ActionButton>
         </Flex>
-        <Flex justifyContent={"flex-end"}>
-          <Text fontSize={{ xs: "xs", lg: "lg" }}>Balance: 124,154.83</Text>
-        </Flex>
+        {accountToken && (
+          <Flex justifyContent={"flex-end"}>
+            <Text fontSize={{ xs: "xs", lg: "lg" }}>
+              Balance: {formatBalance(accountToken)}
+            </Text>
+          </Flex>
+        )}
       </Box>
 
       {openTokensListModal && (

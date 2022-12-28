@@ -1,0 +1,15 @@
+import axios from "axios";
+import { selectedNetwork } from "config/network";
+const BASE_URL =
+  process.env.REACT_APP_ELROND_CUSTOM_API || selectedNetwork.network.apiAddress;
+
+const axiosElrond = axios.create({
+  baseURL: BASE_URL,
+});
+
+export default axiosElrond;
+
+export const fetchElrondData = async <T>(req: string): Promise<T> => {
+  const res = await axiosElrond.get<T>(req);
+  return res.data;
+};

@@ -1,9 +1,28 @@
 import { Box, Center, Flex, Heading } from "@chakra-ui/react";
 import { ArrowDownIcon } from "components/icons/ui-icons";
+import { useAppDispatch, useAppSelector } from "hooks/useRedux";
+import { useGetSwapRate } from "views/SwapView/lib/hooks";
+import {
+  onChageFromFieldValue,
+  onChangeToField,
+  selectFromField,
+  selectToField,
+} from "views/SwapView/lib/swap-slice";
 import InputBox from "./commons/InputBox";
 import Settings from "./commons/Settings";
 import SubmitButton from "./commons/SubmitButton";
 const SwapCard = () => {
+  const fromField = useAppSelector(selectFromField);
+  const toField = useAppSelector(selectToField);
+  useGetSwapRate(toField.selectedToken, fromField.selectedToken);
+  const dispatch = useAppDispatch();
+  const handleChangeFromField = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(onChageFromFieldValue(e.target.value));
+  };
+  const handleChangeToField = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(onChangeToField(e.target.value));
+  };
+
   return (
     <Box
       borderRadius={"2xl"}
@@ -53,8 +72,16 @@ const SwapCard = () => {
             <ArrowDownIcon fontSize={{ xs: "11px", lg: "22px" }} />
           </Center>
         </Box>
-        <InputBox />
-        <InputBox />
+        <InputBox
+          selectedTokenI={fromField.selectedToken}
+          value={fromField.value}
+          onChange={handleChangeFromField}
+        />
+        <InputBox
+          selectedTokenI={toField.selectedToken}
+          value={toField.value}
+          onChange={handleChangeToField}
+        />
       </Flex>
       <SubmitButton />
     </Box>
