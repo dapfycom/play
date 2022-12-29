@@ -5,19 +5,36 @@ import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { openLogin } from "redux/dapp/dapp-slice";
 import { submitSwap } from "views/SwapView/lib/calls";
-import { selectFromField } from "views/SwapView/lib/swap-slice";
+import {
+  selectFromField,
+  selectSlippage,
+  selectToField,
+} from "views/SwapView/lib/swap-slice";
 
 const SubmitButton = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
   const fromField = useAppSelector(selectFromField);
-  const { elrondToken } = useGetElrondToken(fromField.selectedToken);
+  const toField = useAppSelector(selectToField);
+  const slippage = useAppSelector(selectSlippage);
+  const { elrondToken: elrondFromToken } = useGetElrondToken(
+    fromField.selectedToken
+  );
+  const { elrondToken: elrondToToken } = useGetElrondToken(
+    toField.selectedToken
+  );
   const handleSwap = () => {
     if (!isLoggedIn) {
       dispatch(openLogin(true));
     } else {
-      if (elrondToken) {
-        submitSwap(elrondToken, fromField.value);
+      if (elrondFromToken || elrondToToken) {
+        submitSwap(
+          elrondFromToken,
+          elrondToToken,
+          fromField.value,
+          toField.value,
+          slippage
+        );
       }
     }
   };

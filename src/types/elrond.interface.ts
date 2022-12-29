@@ -257,3 +257,28 @@ export interface IElrondAccountToken {
   valueUsd: number;
   attributes: string;
 }
+
+export interface IElrondUserAccount {
+  address: string;
+  balance: string;
+  nonce: number;
+  shard: number;
+  assets?: any;
+  code?: string;
+  codeHash?: string;
+  rootHash?: string;
+  txCount: number;
+  scrCount: number;
+  username?: string;
+  developerReward?: string;
+  ownerAddress?: string;
+  deployedAt?: number;
+  isUpgradeable?: boolean;
+  isReadable?: boolean;
+  isPayable?: boolean;
+  isPayableBySmartContract?: boolean;
+  scamInfo?: {
+    type: number;
+    info: string;
+  };
+}

@@ -1,7 +1,7 @@
 export const handleSwap = (value: string, rate: number) => {
   let value1 = "";
   let value2 = "";
-  if (value === "" || value === "0" || value === "0.") {
+  if (value === "") {
     value1 = "";
     value2 = "";
   } else {

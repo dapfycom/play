@@ -25,6 +25,8 @@ const networkConfig = {
     scAddress: {
       maiarBskSwap:
         "erd1qqqqqqqqqqqqqpgqzmjm474k89alpve4gp7x4gz25wfj4xzv2jpsy2my02",
+      wrapEgld:
+        "erd1qqqqqqqqqqqqqpgqmuk0q2saj0mgutxm4teywre6dl8wqf58xamqdrukln",
     },
   },
   devnet: {

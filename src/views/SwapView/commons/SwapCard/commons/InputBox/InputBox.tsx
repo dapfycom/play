@@ -5,7 +5,6 @@ import useGetAccountToken from "hooks/useGetAccountToken";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import React, { lazy, useState } from "react";
 import { formatBalance } from "utils/functions/formatBalance";
-import { preventExponetialNotation } from "utils/functions/numbers";
 const SelectTokenModal = lazy(() => import("../SelectTokenModal"));
 
 interface IProps {
@@ -15,7 +14,7 @@ interface IProps {
 }
 
 const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
-  const [openTokensListModal, setOpenTokensListModal] = useState(true);
+  const [openTokensListModal, setOpenTokensListModal] = useState(false);
 
   const { elrondToken, isLoading } = useGetElrondToken(selectedTokenI);
   const { accountToken } = useGetAccountToken(selectedTokenI);
@@ -36,7 +35,7 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
             flex={1}
             placeholder="0.0"
             fontSize={{ xs: "2xl", lg: "4xl" }}
-            value={preventExponetialNotation(value)}
+            value={value}
             onChange={(e) => onChange(e)}
           />
 

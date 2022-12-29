@@ -184,3 +184,58 @@ export const EGLDPayment = async (
 
   return await sendTransaction(transactionData);
 };
+
+export const wrapEgldAndEsdtTranfer = async (
+  egldAmount: number | string,
+  funcName: string,
+  args: any[] = [],
+  scAddress: string
+) => {
+  const sender = store.getState().dapp.userAddress;
+  const value = new BigNumber(egldAmount).multipliedBy(EGLD_VAL).toFixed(0);
+
+  console.log("value", value);
+  console.log("EGLD_VAL", EGLD_VAL);
+
+  //wrap egld
+  let { simpleAddress } = getInterface("wrapEgldWsp");
+
+  const payload = TransactionPayload.contractCall()
+    .setFunction(new ContractFunction("wrapEgld"))
+    .setArgs([])
+    .build();
+
+  const tx1 = new Transaction({
+    sender: new Address(sender),
+    value: value,
+    receiver: new Address(simpleAddress),
+    data: payload,
+    gasLimit: 40000000,
+    chainID: selectedNetwork.ChainID,
+  });
+
+  //esdt transfer
+
+  const tokenIdentifier = selectedNetwork.tokensID.wegld;
+
+  const payload2 = TransactionPayload.contractCall()
+    .setFunction(new ContractFunction("ESDTTransfer"))
+    .setArgs([
+      BytesValue.fromUTF8(tokenIdentifier),
+      new BigUIntValue(new BigNumber(value)),
+      BytesValue.fromUTF8(funcName),
+      ...args,
+    ])
+    .build();
+
+  const tx2 = new Transaction({
+    sender: new Address(sender),
+    value: value,
+    receiver: new Address(scAddress),
+    data: payload2,
+    gasLimit: 100000000,
+    chainID: selectedNetwork.ChainID,
+  });
+
+  sendMultipleTransactions({ txs: [tx1, tx2] });
+};

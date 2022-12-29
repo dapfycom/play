@@ -13,18 +13,20 @@ export interface SwapState {
     selectedToken: string;
   };
   rate: number;
+  slipage: number;
 }
 
 const initialState: SwapState = {
   fromField: {
     value: "",
-    selectedToken: selectedNetwork.tokensID.egld,
+    selectedToken: selectedNetwork.tokensID.wegld,
   },
   toField: {
     value: "",
     selectedToken: selectedNetwork.tokensID.bsk,
   },
   rate: 0,
+  slipage: 1,
 };
 
 export const swap = createSlice({
@@ -57,6 +59,7 @@ export const selectToFieldSelectedToken = (state: AppState) =>
 
 export const selectFromField = (state: AppState) => state.swap.fromField;
 export const selectToField = (state: AppState) => state.swap.toField;
+export const selectSlippage = (state: AppState) => state.swap.slipage;
 
 export const { onChageFromFieldValue, onChangeToField, setRate } = swap.actions;
 export default swap.reducer;

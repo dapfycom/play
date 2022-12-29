@@ -1,9 +1,9 @@
 import { Address } from "@elrondnetwork/erdjs/out";
 import { selectedNetwork } from "config/network";
 
-export const EGLD_VAL = 10 ^ 18;
+export const EGLD_VAL = Math.pow(10, 18);
 
-export type WspTypes = "maiarBskExchangeWsp";
+export type WspTypes = "maiarBskExchangeWsp" | "wrapEgldWsp";
 export const getInterface = (workspace: WspTypes) => {
   let address = null;
   let abiUrl = "";
@@ -13,6 +13,10 @@ export const getInterface = (workspace: WspTypes) => {
   switch (workspace) {
     case "maiarBskExchangeWsp":
       simpleAddress = selectedNetwork.scAddress.maiarBskSwap;
+      address = new Address(simpleAddress);
+      break;
+    case "wrapEgldWsp":
+      simpleAddress = selectedNetwork.scAddress.wrapEgld;
       address = new Address(simpleAddress);
       break;
 

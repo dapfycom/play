@@ -6,7 +6,19 @@ import { egldStaticData } from "utils/constants/egldData";
 const useGetElrondToken = (tokenI: string) => {
   const { data: elrondToken, isLoading: isLoadingElrondToken } = useSWR(
     tokenI === "EGLD" ? null : tokenI,
-    fetchTokenById
+    fetchTokenById,
+    {
+      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+        // Never retry on 404.
+        if (error.status === 404) return;
+
+        // Only retry up to 10 times.
+        if (retryCount >= 10) return;
+
+        // Retry after 5 seconds.
+        setTimeout(() => revalidate({ retryCount }), 5000);
+      },
+    }
   );
 
   const { data: economics, isLoading: isLoadingEconomics } = useSWR(
