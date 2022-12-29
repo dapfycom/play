@@ -7,7 +7,7 @@ import Login from "components/Login/Login";
 import { useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import {
   openLogin,
   selectIsLoginModal,
@@ -17,9 +17,9 @@ import Navbar from "../Navbar/Navbar";
 
 const Layout = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const isLoginModal: boolean = useAppSelector(selectIsLoginModal);
   const { address } = useGetAccountInfo();
-
   const { isLoggedIn } = useGetLoginInfo();
 
   useEffect(() => {
@@ -34,6 +34,7 @@ const Layout = () => {
     );
   }, [address, dispatch]);
 
+  const showFooter = location.pathname !== "/";
   return (
     <Box pb="20">
       <Navbar />
@@ -41,7 +42,7 @@ const Layout = () => {
       <Box pt={"70px"}>
         <Outlet />
       </Box>
-      <Footer />
+      {showFooter && <Footer />}
     </Box>
   );
 };

@@ -70,7 +70,7 @@ const TheForgeView = () => {
               </Text>
             </Stack>
 
-            <Text color="primary" textDecor={"underline"}>
+            <Text color="primary" textDecor={"underline"} fontSize="lg">
               learn More
             </Text>
           </ForgeCard>
