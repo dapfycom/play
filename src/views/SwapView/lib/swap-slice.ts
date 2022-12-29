@@ -18,7 +18,7 @@ export interface SwapState {
 const initialState: SwapState = {
   fromField: {
     value: "",
-    selectedToken: selectedNetwork.tokensID.wegld,
+    selectedToken: selectedNetwork.tokensID.egld,
   },
   toField: {
     value: "",

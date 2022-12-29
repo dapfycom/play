@@ -24,7 +24,7 @@ const TokenRow = () => {
           EGLD
         </Text>
       </Flex>
-      <Text>0.234121</Text>
+      <Text fontSize={"lsm"}>0.234121</Text>
     </Flex>
   );
 };

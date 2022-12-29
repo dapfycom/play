@@ -23,7 +23,7 @@ const SelectTokenModal = ({ isOpen, onClose }: IProps) => {
       isOpen={isOpen}
       onClose={onClose}
       background="dark.500"
-      py="45px"
+      py="50px"
       borderRadius={"xl"}
       size="xl"
       isCentered={false}

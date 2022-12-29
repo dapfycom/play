@@ -12,7 +12,7 @@ const TokenBox = () => {
       borderRadius={"md"}
       cursor="pointer"
     >
-      <EgldIcon />{" "}
+      <EgldIcon fontSize={"25px"} />{" "}
       <Text fontSize={"lsm"} fontWeight={500}>
         EGLD
       </Text>

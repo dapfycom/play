@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
-  const [openTokensListModal, setOpenTokensListModal] = useState(false);
+  const [openTokensListModal, setOpenTokensListModal] = useState(true);
 
   const { elrondToken, isLoading } = useGetElrondToken(selectedTokenI);
   const { accountToken } = useGetAccountToken(selectedTokenI);
