@@ -23,7 +23,8 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
     setOpenTokensListModal(false);
   };
   const handleOpen = () => {
-    setOpenTokensListModal(true);
+    // set to true to allow the modal to open
+    setOpenTokensListModal(false);
   };
 
   return (
