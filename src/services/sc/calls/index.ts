@@ -230,7 +230,7 @@ export const wrapEgldAndEsdtTranfer = async (
 
   const tx2 = new Transaction({
     sender: new Address(sender),
-    value: value,
+    value: 0,
     receiver: new Address(scAddress),
     data: payload2,
     gasLimit: 100000000,

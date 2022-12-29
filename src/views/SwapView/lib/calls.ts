@@ -28,7 +28,12 @@ export const submitSwap = async (
     wrapEgldAndEsdtTranfer(
       sendAmount,
       "swapTokensFixedInput",
-      [],
+      [
+        BytesValue.fromUTF8(selectedNetwork.tokensID.bsk),
+        new BigUIntValue(
+          new BigNumber(minReceiveAmount).multipliedBy(10 ** toToken.decimals)
+        ),
+      ],
       selectedNetwork.scAddress.maiarBskSwap
     );
   } else {
