@@ -44,8 +44,17 @@ const networkConfig = {
       walletConnectBridgeAddresses: ["https://bridge.walletconnect.org"],
     },
     ChainID: "D",
-    tokensID: {},
-    scAddress: {},
+    tokensID: {
+      egld: "EGLD",
+      wegld: "WEGLD-d7c6bb",
+      bsk: "USDC-8d4068", // this is wrong, because we don't have a BSK token on devnet
+    },
+    scAddress: {
+      maiarBskSwap:
+        "erd1qqqqqqqqqqqqqpgqzmjm474k89alpve4gp7x4gz25wfj4xzv2jpsy2my02",
+      wrapEgld:
+        "erd1qqqqqqqqqqqqqpgqmuk0q2saj0mgutxm4teywre6dl8wqf58xamqdrukln",
+    },
   },
   testnet: {
     network: {

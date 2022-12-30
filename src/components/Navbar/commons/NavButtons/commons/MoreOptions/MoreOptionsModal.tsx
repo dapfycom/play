@@ -57,7 +57,7 @@ const MoreOptionsModal = ({ onClose, placement = "right" }: IProps) => {
       w="209px"
       {...containerProps}
     >
-      <Box display={{ xs: "bloack", tablet: "none" }}>
+      <Box display={{ xs: "bloack", lsm: "none" }}>
         {isLoggedIn ? (
           <OptionModal
             title="Disconnect"

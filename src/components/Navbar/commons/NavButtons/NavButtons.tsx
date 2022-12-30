@@ -27,41 +27,41 @@ const NavButtons = () => {
     >
       <ActionButton
         variant={"secondary"}
-        fontSize="lg"
-        h={{ xs: "40px", md: "46px" }}
+        h={{ xs: "36px", md: "46px" }}
+        px={{ xs: "8px", md: "42px" }}
       >
         <Flex
           gap={{ xs: "5px", md: "10px" }}
           alignItems={"center"}
-          fontSize={{ xs: "sm", "2xl": "md" }}
+          fontSize={{ xs: "xs", "2xl": "md" }}
         >
-          <EgldIcon fontSize={{ xs: "20px", "2xl": "24px" }} />{" "}
-          <DotIcon fontSize={"5px"} color="green2" /> ELROND
+          <EgldIcon fontSize={{ xs: "15px", "2xl": "24px" }} />{" "}
+          <DotIcon fontSize={"5px"} color="green2" /> MultiversX
         </Flex>
       </ActionButton>
 
-      <Box display={{ xs: "none", tablet: "block" }}>
+      <Box display={{ xs: "none", lsm: "block" }}>
         {isLoggedIn ? (
           <ActionButton
-            fontSize={{ xs: "sm", "2xl": "lsm" }}
-            h={{ xs: "40px", md: "46px" }}
-            px={{ xs: "10px", md: "42px" }}
+            fontSize={{ xs: "xs", "2xl": "lsm" }}
+            h={{ xs: "36px", md: "46px" }}
+            px={{ xs: "8px", md: "42px" }}
             onClick={handleDisconnect}
           >
             {" "}
-            <Flex gap="10px" alignItems={"center"}>
+            <Flex gap={{ xs: "6px", md: "10px" }} alignItems={"center"}>
               Disconnect <ZapIcon fontSize={"20px"} />
             </Flex>{" "}
           </ActionButton>
         ) : (
           <ActionButton
-            fontSize={{ xs: "sm", "2xl": "lsm" }}
-            h={{ xs: "40px", md: "46px" }}
-            px={{ xs: "10px", md: "42px" }}
+            fontSize={{ xs: "xs", "2xl": "lsm" }}
+            h={{ xs: "36px", md: "46px" }}
+            px={{ xs: "8px", md: "42px" }}
             onClick={handleConnect}
           >
             {" "}
-            <Flex gap="10px" alignItems={"center"}>
+            <Flex gap={{ xs: "6px", md: "10px" }} alignItems={"center"}>
               Connect <ZapIcon fontSize={"20px"} />
             </Flex>{" "}
           </ActionButton>

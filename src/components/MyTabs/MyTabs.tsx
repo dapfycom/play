@@ -37,7 +37,7 @@ const MyTabs = ({
           bg="dark.500"
           w="fit-content"
           borderRadius={"full"}
-          p="9px"
+          p={{ xs: "5px", md: "9px" }}
           {...tabListProps}
         >
           {tabData.map((e) => (

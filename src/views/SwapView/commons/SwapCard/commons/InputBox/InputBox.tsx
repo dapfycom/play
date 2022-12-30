@@ -29,7 +29,13 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
 
   return (
     <>
-      <Box bg="dark.400" borderRadius={"lg"} p={{ xs: "20px", lg: "40px" }}>
+      <Box
+        bg="whiteT.50"
+        borderRadius={{ xs: "md", md: "lg" }}
+        p={{ xs: "20px", lg: "40px" }}
+        border={"1px"}
+        borderColor="whiteT.100"
+      >
         <Flex w="full" mb="20px" gap="15px">
           <Input
             variant={"unstyled"}
@@ -38,16 +44,18 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
             fontSize={{ xs: "2xl", lg: "4xl" }}
             value={value}
             onChange={(e) => onChange(e)}
+            color="white"
           />
 
           <ActionButton
             borderRadius={{ xs: "10px", lg: "20px" }}
-            px="20px"
+            px={{ xs: "10px", md: "20px" }}
+            w={{ xs: "130px", md: "220px" }}
             py="15px"
             bg="dark.100"
             display={"flex"}
-            justifyContent="center"
-            gap="15px"
+            justifyContent="space-between"
+            alignItems={"center"}
             h="auto"
             onClick={handleOpen}
           >
@@ -55,14 +63,16 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
               <Spinner />
             ) : (
               <>
-                <Image
-                  src={elrondToken?.assets.svgUrl}
-                  alt={elrondToken?.ticker}
-                  w={{ xs: "18px", lg: "40px" }}
-                />
-                <Text fontSize={{ xs: "lsm", lg: "2xl" }}>
-                  {elrondToken?.ticker}
-                </Text>
+                <Flex gap={{ xs: "5px", md: "15px" }} alignItems="center">
+                  <Image
+                    src={elrondToken?.assets.svgUrl}
+                    alt={elrondToken?.ticker}
+                    w={{ xs: "18px", lg: "40px" }}
+                  />
+                  <Text fontSize={{ xs: "lsm", lg: "2xl" }}>
+                    {elrondToken?.ticker}
+                  </Text>
+                </Flex>
                 <AngleDownIcon fontSize={{ xs: "13px", lg: "17px" }} />
               </>
             )}

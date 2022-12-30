@@ -1,4 +1,3 @@
-import { EnvironmentsEnum } from "@elrondnetwork/dapp-core/types";
 import {
   NotificationModal,
   SignTransactionsModals,
@@ -9,6 +8,7 @@ import {
   DappProvider,
 } from "@elrondnetwork/dapp-core/wrappers";
 import LoadingPage from "components/LoadingPage";
+import { ENVIROMENT } from "config/network";
 import { routes } from "config/routes";
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -23,7 +23,7 @@ function App() {
         authenticatedDomanis={["https://tools.elrond.com"]}
       >
         <DappProvider
-          environment={EnvironmentsEnum.mainnet}
+          environment={ENVIROMENT}
           customNetworkConfig={{
             name: "customConfig",
             apiTimeout: 10000,

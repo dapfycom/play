@@ -11,6 +11,7 @@ const Disclaimer1 = () => {
         sx={{
           wordSpacing: "3px",
         }}
+        textAlign="start"
       >
         Disclaimer: This website is maintained by BeskarDAO. The contents and
         opinions of the website are those of BeskarDAO. Please note that legal
@@ -38,6 +39,7 @@ export const Disclaimer2 = () => {
         sx={{
           wordSpacing: "3px",
         }}
+        textAlign="start"
       >
         Beskar Play does not promote or endorse any form of wagering or gambling
         to users under the age of 18. This site encourages responsible gambling

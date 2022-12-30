@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-ignore
 import { createIcon } from "@chakra-ui/icons";
 
 export const EgldIcon = createIcon({

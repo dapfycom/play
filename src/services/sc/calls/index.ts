@@ -189,13 +189,11 @@ export const wrapEgldAndEsdtTranfer = async (
   egldAmount: number | string,
   funcName: string,
   args: any[] = [],
-  scAddress: string
+  scAddress: string,
+  gasL: number = 30000000
 ) => {
   const sender = store.getState().dapp.userAddress;
   const value = new BigNumber(egldAmount).multipliedBy(EGLD_VAL).toFixed(0);
-
-  console.log("value", value);
-  console.log("EGLD_VAL", EGLD_VAL);
 
   //wrap egld
   let { simpleAddress } = getInterface("wrapEgldWsp");
@@ -210,7 +208,7 @@ export const wrapEgldAndEsdtTranfer = async (
     value: value,
     receiver: new Address(simpleAddress),
     data: payload,
-    gasLimit: 40000000,
+    gasLimit: 8000000,
     chainID: selectedNetwork.ChainID,
   });
 
@@ -233,9 +231,9 @@ export const wrapEgldAndEsdtTranfer = async (
     value: 0,
     receiver: new Address(scAddress),
     data: payload2,
-    gasLimit: 100000000,
+    gasLimit: gasL,
     chainID: selectedNetwork.ChainID,
   });
 
-  sendMultipleTransactions({ txs: [tx1, tx2] });
+  return await sendMultipleTransactions({ txs: [tx1, tx2] });
 };

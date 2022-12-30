@@ -2,11 +2,16 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import { mainSiteRoutes } from "config/routes";
 import { Link, useLocation } from "react-router-dom";
 import { isActiveRoute } from "utils/functions/urls";
-const Menu = () => {
+
+interface IProps {
+  noBorder?: boolean;
+}
+
+const Menu = ({ noBorder }: IProps) => {
   let location = useLocation();
 
   return (
-    <Flex as="nav" gap="50px">
+    <Flex as="nav" gap={{ xs: "28px", md: "50px" }}>
       {mainSiteRoutes.map((route) => {
         const isActive = isActiveRoute(route.path, location.pathname);
 
@@ -15,9 +20,11 @@ const Menu = () => {
             <Flex
               gap="10px"
               borderBottom={"1px solid"}
-              borderColor={isActive ? "primary" : "transparent"}
+              borderColor={
+                noBorder ? "transparent" : isActive ? "primary" : "transparent"
+              }
               height="full"
-              pt="31px"
+              pt={{ xs: "22.5px", md: "31px" }}
               fontSize={{ xs: "lsm", "2xl": "md" }}
               _hover={{
                 "& p": {
@@ -27,6 +34,7 @@ const Menu = () => {
                   color: "white",
                 },
               }}
+              whiteSpace="nowrap"
             >
               <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box>
               <Text color={isActive ? "secondary" : "grayText"}>

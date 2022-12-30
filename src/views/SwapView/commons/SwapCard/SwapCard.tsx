@@ -37,7 +37,8 @@ const SwapCard = () => {
       <Flex
         w="full"
         justifyContent="space-between"
-        mb={{ xs: "20px", lg: "30px" }}
+        alignItems={"center"}
+        mb={{ xs: "10px", lg: "20px" }}
       >
         <Heading
           as="h2"

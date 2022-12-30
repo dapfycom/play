@@ -21,11 +21,9 @@ export const submitSwap = async (
     .minus(amountToReceiveBn.multipliedBy(slippage).dividedBy(100))
     .toFixed(0);
 
-  console.log("minReceiveAmount", minReceiveAmount);
-
   // new BigNumber(value).multipliedBy(slipage).dividedBy(100)
   if (fromToken.identifier === selectedNetwork.tokensID.egld) {
-    wrapEgldAndEsdtTranfer(
+    return await wrapEgldAndEsdtTranfer(
       sendAmount,
       "swapTokensFixedInput",
       [
@@ -37,7 +35,7 @@ export const submitSwap = async (
       selectedNetwork.scAddress.maiarBskSwap
     );
   } else {
-    ESDTTransfer({
+    return await ESDTTransfer({
       funcName: "swapTokensFixedInput",
       contractAddr: selectedNetwork.scAddress.maiarBskSwap,
       token: fromToken,
