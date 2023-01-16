@@ -11,7 +11,7 @@ import FarmInfo from "./common/FarmInfo/FarmInfo";
 import FarmMainButtons from "./common/FarmMainButtons/FarmMainButtons";
 import StakedInfo from "./common/StakedInfo/StakedInfo";
 const FarmComponent = () => {
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure();
   return (
     <Center my={20}>
       <Box maxW="1300px" w="full" borderRadius="md" overflow={"hidden"}>
