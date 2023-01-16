@@ -28,7 +28,7 @@ const NavButtons = () => {
       <ActionButton
         variant={"secondary"}
         h={{ xs: "36px", md: "46px" }}
-        px={{ xs: "8px", md: "42px" }}
+        px={{ xs: "8px", md: "20px" }}
       >
         <Flex
           gap={{ xs: "5px", md: "10px" }}

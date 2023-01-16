@@ -1,7 +1,13 @@
-import { FireIcon, PlayIcon, SwapIcon } from "components/icons/ui-icons";
+import {
+  FarmIcon,
+  FireIcon,
+  PlayIcon,
+  SwapIcon,
+} from "components/icons/ui-icons";
 import Layout from "components/Layout/Layout";
 import React from "react";
 import { RouteObject } from "react-router-dom";
+import FarmView from "views/FarmView";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 const PlayView = React.lazy(() => import("views/PlayView"));
@@ -23,12 +29,20 @@ export const mainSiteRoutes = [
     // loader: teamLoader,
   },
   {
+    path: routeNames.farm,
+    element: <FarmView />,
+    title: "Farm",
+    icon: <FarmIcon fontSize={"25px"} />,
+    // loader: teamLoader,
+  },
+  {
     path: routeNames.play,
     element: <PlayView />,
     title: "Play",
     icon: <PlayIcon fontSize={"25px"} />,
     // loader: teamLoader,
   },
+
   {
     path: routeNames.forge,
     element: <TheForgeView />,
