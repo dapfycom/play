@@ -4,7 +4,7 @@ import FarmHeading from "./commons/FarmHeading/FarmHeading";
 
 const FarmView = () => {
   return (
-    <MyContainer>
+    <MyContainer my={"100px"}>
       <FarmHeading />
       <FarmComponent />
     </MyContainer>

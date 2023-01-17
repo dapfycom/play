@@ -30,7 +30,7 @@ const SwapCard = () => {
       maxW={"913px"}
       w="full"
       px={{ xs: "30px", lg: "50px" }}
-      py="60px"
+      py="35px"
       border="1px"
       borderColor={"primary"}
     >

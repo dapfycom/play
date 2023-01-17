@@ -12,8 +12,11 @@ import FarmView from "views/FarmView";
 const SwapView = React.lazy(() => import("views/SwapView"));
 const PlayView = React.lazy(() => import("views/PlayView"));
 const TheForgeView = React.lazy(() => import("views/TheForgeView"));
+const SwapLpTab = React.lazy(() => import("views/SwapView/commons/SwapLpTab"));
+
 export const routeNames = {
   swap: "/",
+  swapLp: "/swapLp",
   play: "/play",
   forge: "/the-forge",
   farm: "/farm",
@@ -26,6 +29,16 @@ export const mainSiteRoutes = [
     element: <SwapView />,
     title: "Swap",
     icon: <SwapIcon fontSize={"23px"} />,
+    children: [
+      {
+        path: "/",
+        element: <SwapLpTab />,
+      },
+      {
+        path: "/swapLp",
+        element: <SwapLpTab />,
+      },
+    ],
     // loader: teamLoader,
   },
   {

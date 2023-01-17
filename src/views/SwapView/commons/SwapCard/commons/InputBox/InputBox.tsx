@@ -32,7 +32,7 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
       <Box
         bg="whiteT.50"
         borderRadius={{ xs: "md", md: "lg" }}
-        p={{ xs: "20px", lg: "40px" }}
+        p={{ xs: "20px", lg: "30px" }}
         border={"1px"}
         borderColor="whiteT.100"
       >

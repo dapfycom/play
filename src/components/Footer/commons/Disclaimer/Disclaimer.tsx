@@ -53,3 +53,38 @@ export const Disclaimer2 = () => {
     </Box>
   );
 };
+
+export const JoinedDisclaimer = () => {
+  return (
+    <Box display={"flex"} justifyContent={{ xs: "center", lg: "flex-start" }}>
+      <Text
+        fontSize={"lsm"}
+        fontWeight="500"
+        lineHeight="20px"
+        sx={{
+          wordSpacing: "3px",
+        }}
+        textAlign="start"
+      >
+        Disclaimer: This website is maintained by BeskarDAO. The contents and
+        opinions of the website are those of BeskarDAO. Please note that legal
+        information, including legal templates and legal policies, is not legal
+        advice. Please read our legal disclaimer. The reproduction,
+        distribution, display, or transmission of the content is strictly
+        prohibited, unless authorized by BeskarDAO. All other company & product
+        names may be trademarks of the respective companies with which they are
+        associated.
+        <br />
+        <br />
+        Beskar Play does not promote or endorse any form of wagering or gambling
+        to users under the age of 18. This site encourages responsible gambling
+        and provides advice for anyone who believes they, or someone they know,
+        may have a gambling addiction. If you believe you have a gambling
+        problem, please visit BeGambleAware or GAMCARE for information and help.
+        <br />
+        <br />
+        Learn more about gambling addiction here.
+      </Text>
+    </Box>
+  );
+};

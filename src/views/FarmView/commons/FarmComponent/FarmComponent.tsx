@@ -7,13 +7,15 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import beskarImg from "assets/images/coins/egld.svg";
+import { routeNames } from "config/routes";
+import { Link } from "react-router-dom";
 import FarmInfo from "./common/FarmInfo/FarmInfo";
 import FarmMainButtons from "./common/FarmMainButtons/FarmMainButtons";
 import StakedInfo from "./common/StakedInfo/StakedInfo";
 const FarmComponent = () => {
   const { isOpen, onToggle } = useDisclosure();
   return (
-    <Center my={20}>
+    <Center my={20} flexDir="column">
       <Box maxW="1300px" w="full" borderRadius="md" overflow={"hidden"}>
         <Flex
           gap={10}
@@ -40,6 +42,13 @@ const FarmComponent = () => {
         </Flex>
         {isOpen && <StakedInfo />}
       </Box>
+
+      <Text mt={20}>
+        Don't have any LP tokens? Buy LP{" "}
+        <Box as={Link} to={routeNames.swapLp} color="primary">
+          here
+        </Box>
+      </Text>
     </Center>
   );
 };

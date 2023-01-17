@@ -10,12 +10,17 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 interface IProps {
   tabData: {
     tabText: string;
-    tabPanel: JSX.Element;
+    tabPanel?: JSX.Element;
+    routerLink?: {
+      path: string;
+    };
   }[];
+  isForRouter?: boolean;
 
   tabListProps?: TabListProps;
   tabListWarapperProps?: BoxProps;
@@ -29,9 +34,21 @@ const MyTabs = ({
   tabsProps,
   tabProps,
   tabListWarapperProps,
+  isForRouter,
 }: IProps) => {
+  // get the current path with hook of react-router-dom
+  const currentPath = useLocation().pathname;
+
+  // get the index of the tab that matches the current path
+  const index = tabData.findIndex((e) => e.routerLink?.path === currentPath);
+
   return (
-    <Tabs variant={"unstyled"} isLazy {...tabsProps}>
+    <Tabs
+      variant={"unstyled"}
+      isLazy
+      {...tabsProps}
+      index={isForRouter ? index : undefined}
+    >
       <Box overflow={"auto"} {...tabListWarapperProps}>
         <TabList
           bg="dark.500"
@@ -55,17 +72,29 @@ const MyTabs = ({
               color="white"
               {...tabProps}
             >
-              <Text>{e.tabText}</Text>
+              {e.routerLink ? (
+                <Link to={e.routerLink.path}>
+                  <Text>{e.tabText}</Text>
+                </Link>
+              ) : (
+                <Text>{e.tabText}</Text>
+              )}
             </Tab>
           ))}
         </TabList>
       </Box>
       <TabPanels>
-        {tabData.map((e) => (
-          <TabPanel key={e.tabText} px={0}>
-            {e.tabPanel}
-          </TabPanel>
-        ))}
+        {isForRouter ? (
+          <Outlet />
+        ) : (
+          <>
+            {tabData.map((e) => (
+              <TabPanel key={e.tabText} px={0}>
+                {e.tabPanel}
+              </TabPanel>
+            ))}
+          </>
+        )}
       </TabPanels>
     </Tabs>
   );

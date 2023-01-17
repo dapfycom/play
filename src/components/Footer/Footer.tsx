@@ -15,7 +15,10 @@ import {
   TwitterIcon,
 } from "components/icons/ui-icons";
 import SocialButton from "components/SocialButton/SocialButton";
-import Disclaimer1, { Disclaimer2 } from "./commons/Disclaimer/Disclaimer";
+import Disclaimer1, {
+  Disclaimer2,
+  JoinedDisclaimer,
+} from "./commons/Disclaimer/Disclaimer";
 import JoinTelegram from "./commons/JoinTelegram";
 import Nav from "./commons/Nav";
 
@@ -83,28 +86,36 @@ const Footer = () => {
         <Line mb={"57px"} />
 
         <Flex mb="20px" flexDir={{ xs: "column", "2xl": "row" }}>
-          <Box
-            mr={{ xs: "0", lg: "50px" }}
-            mb={{ xs: "50px", "2xl": "0" }}
-            w="full"
-            maxW={{ xs: "full", lg: "180px" }}
-          >
-            <Nav />
-          </Box>
-          <Box flex={1} display={{ xs: "block", lg: "none" }} mb={"30px"}>
-            <JoinTelegram />
-          </Box>
+          <Flex flexDir={{ xs: "column", lg: "row" }}>
+            <Box
+              mr={{ xs: "0", lg: "50px" }}
+              mb={{ xs: "50px", "2xl": "0" }}
+              w="full"
+              maxW={{ xs: "full", lg: "180px" }}
+            >
+              <Nav />
+            </Box>
+            <Box flex={1} display={{ xs: "block", lg: "none" }} mb={"30px"}>
+              <JoinTelegram />
+            </Box>
 
-          <Flex
-            gap={{ xs: "30px", lg: "22px" }}
-            mr={{ xs: "0", lg: "43px" }}
-            mb={{ xs: "30px", "2xl": "0" }}
-            flexDir={{ xs: "column", lg: "row" }}
-            textAlign={{ xs: "center", lg: "initial" }}
-            justifyContent="center"
-          >
-            <Disclaimer1 />
-            <Disclaimer2 />
+            <Flex
+              gap={{ xs: "30px", lg: "22px" }}
+              mr={{ xs: "0", lg: "43px" }}
+              mb={{ xs: "30px", "2xl": "0" }}
+              flexDir={{ xs: "column", lg: "row" }}
+              textAlign={{ xs: "center", lg: "initial" }}
+              justifyContent="center"
+            >
+              <Box display={{ xs: "block", "2xl": "none" }}>
+                <JoinedDisclaimer />
+              </Box>
+
+              <Flex display={{ xs: "none", "2xl": "flex" }}>
+                <Disclaimer1 />
+                <Disclaimer2 />
+              </Flex>
+            </Flex>
           </Flex>
 
           <Box flex={1} display={{ xs: "none", lg: "block" }}>
