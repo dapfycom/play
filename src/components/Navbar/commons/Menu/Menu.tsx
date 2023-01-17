@@ -13,7 +13,7 @@ const Menu = ({ noBorder }: IProps) => {
   return (
     <Flex as="nav" gap={{ xs: "28px", md: "50px" }}>
       {mainSiteRoutes.map((route) => {
-        const isActive = isActiveRoute(route.path, location.pathname);
+        let isActive = isActiveRoute(route.path, location.pathname);
 
         return (
           <Link to={route.path} key={route.path}>

@@ -3,6 +3,7 @@ import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account";
 import { useGetAccountInfo } from "@elrondnetwork/dapp-core/hooks/account/useGetAccountInfo";
 import Footer from "components/Footer";
 import Login from "components/Login/Login";
+import { routeNames } from "config/routes";
 
 import { useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
@@ -34,7 +35,9 @@ const Layout = () => {
     );
   }, [address, dispatch]);
 
-  const showFooter = location.pathname !== "/";
+  const showFooter =
+    location.pathname !== routeNames.swap &&
+    location.pathname !== routeNames.swapLp;
   return (
     <Box pb="20">
       <Navbar />
