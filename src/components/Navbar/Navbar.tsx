@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import beskarLogo from "assets/images/logo/beskar.svg";
+import { Link } from "react-router-dom";
 import { checkNestedRoute } from "utils/functions/urls";
 import MyContainer from "../Container/Container";
 import Menu from "./commons/Menu/Menu";
@@ -27,27 +28,29 @@ const Navbar = () => {
               <Box>
                 <MoreOptionsV2 />
               </Box>
-              <Flex alignItems={"center"}>
-                <ChkImage
-                  src={beskarLogo}
-                  alt="logo"
-                  width={{ xs: "38px", md: "65px" }}
-                  mr="15px"
-                />
+              <Link to="/">
+                <Flex alignItems={"center"}>
+                  <ChkImage
+                    src={beskarLogo}
+                    alt="logo"
+                    width={{ xs: "38px", md: "65px" }}
+                    mr="15px"
+                  />
 
-                <Heading
-                  as="h3"
-                  textTransform={"uppercase"}
-                  color="primary"
-                  fontSize={"md"}
-                  display={{ xs: "none", tablet: "block" }}
-                >
-                  Beskar{" "}
-                  <Box as="span" color="secondary">
-                    play
-                  </Box>
-                </Heading>
-              </Flex>
+                  <Heading
+                    as="h3"
+                    textTransform={"uppercase"}
+                    color="primary"
+                    fontSize={"md"}
+                    display={{ xs: "none", tablet: "block" }}
+                  >
+                    Beskar{" "}
+                    <Box as="span" color="secondary">
+                      play
+                    </Box>
+                  </Heading>
+                </Flex>
+              </Link>
             </Flex>
             <Divider
               orientation="vertical"

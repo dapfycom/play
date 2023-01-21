@@ -1,5 +1,5 @@
 import { Center, Image } from "@chakra-ui/react";
-import CoinImg from "views/CoinFlipView/assets/coin.png";
+import CoinImg from "assets/images/logo/beskar.svg";
 const Coin = () => {
   return (
     <Center
