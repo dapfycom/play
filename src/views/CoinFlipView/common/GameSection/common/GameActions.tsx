@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 
 const GameActions = () => {
@@ -22,12 +22,12 @@ const GameActions = () => {
             Select side of coin
           </Text>
           <Flex w="full" gap={3}>
-            <ActionButton variant={"outline"} flex={1} fontSize="xs">
+            <Button variant={"outline"} flex={1} fontSize="xs">
               Heads
-            </ActionButton>
-            <ActionButton variant={"outline"} flex={1} fontSize="xs">
+            </Button>
+            <Button variant={"outline"} flex={1} fontSize="xs">
               Tail
-            </ActionButton>
+            </Button>
           </Flex>
         </Flex>
       </Flex>

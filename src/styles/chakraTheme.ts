@@ -46,14 +46,14 @@ const components: ThemeComponents = {
       outline: {
         bg: "primary",
         bgClip: "text",
-        borderColor: "#74c0f4",
+        borderColor: "primary",
         _hover: {
           bg: "primary",
-          color: "light.lighter",
+          color: "white",
         },
         _active: {
           bg: "primary",
-          color: "light.lighter",
+          color: "white",
         },
       },
     },
