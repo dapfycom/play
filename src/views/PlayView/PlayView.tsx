@@ -1,6 +1,8 @@
 import { Center } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
 import { ChainIcon, ServersIcon } from "components/icons/ui-icons";
+import { routeNames } from "config/routes";
+import { Outlet } from "react-router-dom";
 import PlayCard from "./commons/PlayCard";
 
 const PlayView = () => {
@@ -17,13 +19,16 @@ const PlayView = () => {
           description="Utmost security and provably fair on chain games."
           title="ON CHAIN"
           icon={<ChainIcon mb="33px" fontSize={"58px"} />}
+          gamesPath={routeNames.coinFlip}
         />
         <PlayCard
           description="5 user friendly games accompanied by great music."
           title="OFF CHAIN"
           icon={<ServersIcon mb="33px" fontSize={"58px"} />}
+          gamesPath={routeNames.coinFlip}
         />
       </Center>
+      <Outlet />
     </MyContainer>
   );
 };

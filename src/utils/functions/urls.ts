@@ -10,3 +10,9 @@ export const isActiveRoute = (routeName: string, location: string) => {
   }
   return location.includes(routeName);
 };
+
+export function checkNestedRoute(passedRoute: string): boolean {
+  const currentRoute = window.location.pathname;
+  if (passedRoute === currentRoute) return false;
+  return currentRoute.startsWith(passedRoute);
+}

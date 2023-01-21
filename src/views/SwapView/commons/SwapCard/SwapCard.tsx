@@ -27,7 +27,7 @@ const SwapCard = () => {
     <Box
       borderRadius={"2xl"}
       bg="dark.500"
-      maxW={"913px"}
+      maxW={"850px"}
       w="full"
       px={{ xs: "30px", lg: "50px" }}
       py="35px"

@@ -11,7 +11,7 @@ export const breakpoints = {
   xl: "1200px",
   "1.5xl": "1400px",
   "2xl": "1600px",
-  "3xl": "2000px",
+  "3xl": "1900px",
 };
 
 const components: ThemeComponents = {

@@ -7,10 +7,12 @@ import {
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import beskarLogo from "assets/images/logo/beskar.svg";
+import { checkNestedRoute } from "utils/functions/urls";
 import MyContainer from "../Container/Container";
 import Menu from "./commons/Menu/Menu";
 import { MoreOptionsV2 } from "./commons/NavButtons/commons/MoreOptions/MoreOptions";
 import NavButtons from "./commons/NavButtons/NavButtons";
+import PlayMenuBar from "./commons/PlayMenuBar/PlayMenuBar";
 const Navbar = () => {
   return (
     <Box bg="dark.600" borderTop={"3px solid"} borderColor="primary">
@@ -61,6 +63,20 @@ const Navbar = () => {
           <NavButtons />
         </Flex>
       </MyContainer>
+
+      {checkNestedRoute("/play") && (
+        <MyContainer
+          borderBottom="1px"
+          borderColor={"dark.300"}
+          display={{ xs: "none", "1.5xl": "block" }}
+        >
+          <Flex alignItems="center" height={{ xs: "65px", md: "85px" }}>
+            <NoScroll h={"full"} overflowX="auto">
+              <PlayMenuBar noBorder />
+            </NoScroll>
+          </Flex>
+        </MyContainer>
+      )}
       <MyContainer
         borderBottom="1px"
         borderColor={"dark.300"}
@@ -68,7 +84,11 @@ const Navbar = () => {
       >
         <Flex alignItems="center" height={{ xs: "65px", md: "85px" }}>
           <NoScroll h={"full"} overflowX="auto">
-            <Menu noBorder />
+            {checkNestedRoute("/play") ? (
+              <PlayMenuBar noBorder />
+            ) : (
+              <Menu noBorder />
+            )}
           </NoScroll>
         </Flex>
       </MyContainer>
