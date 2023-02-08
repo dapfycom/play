@@ -1,13 +1,20 @@
+import { CalendarIcon, HamburgerIcon, RepeatClockIcon } from "@chakra-ui/icons";
 import {
   CoinsIcon,
   FarmIcon,
   FireIcon,
+  GiveawaysIcon,
+  MultipleMessageIcon,
   PlayIcon,
+  SendMessageIcon,
   SwapIcon,
+  TwitterIcon,
 } from "components/icons/ui-icons";
-import Layout from "components/Layout/Layout";
+import FreeBirdLayOut from "components/Layout/FreeBirdLayOut";
+import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { Outlet, RouteObject } from "react-router-dom";
+import WelcomeMessage from "views/FreeBird/WelcomeMessage/WelcomeMessage";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 const PlayView = React.lazy(() => import("views/PlayView"));
@@ -25,6 +32,13 @@ export const routeNames = {
   forge: "/the-forge",
   farm: "/farm",
   stake: "/stake",
+  freebird: "/freebird",
+  freebirdWelcomeMessage: "/freebird/welcome",
+  freebirdBulkDms: "/freebird/bulk-dms",
+  freebirdSchedule: "/freebird/schedule",
+  freebirdGiveaways: "/freebird/giveaways",
+  freebirdFollow: "/freebird/follow",
+  freebirdLeads: "/freebird/leads",
 };
 
 export const mainSiteRoutes = [
@@ -86,6 +100,51 @@ export const mainSiteRoutes = [
     element: <TheForgeView />,
     title: "The forge",
     icon: <FireIcon fontSize={"20px"} />,
+  },
+  {
+    path: routeNames.freebird,
+    element: <FreeBirdLayOut />,
+    title: "Free Bird App",
+    icon: <TwitterIcon fontSize={"25px"} />,
+
+    children: [
+      {
+        path: routeNames.freebirdWelcomeMessage,
+        title: "Welcome message",
+        element: <WelcomeMessage />,
+        icon: SendMessageIcon,
+      },
+      {
+        path: routeNames.freebirdBulkDms,
+        element: <CoinFlipView />,
+        title: "Bulk DMs",
+        icon: MultipleMessageIcon,
+      },
+      {
+        path: routeNames.freebirdSchedule,
+        element: <SwapLpTab />,
+        title: "Write / Schedule",
+        icon: CalendarIcon,
+      },
+      {
+        path: routeNames.freebirdGiveaways,
+        element: <SwapLpTab />,
+        title: "Giveaways",
+        icon: GiveawaysIcon,
+      },
+      {
+        path: routeNames.freebirdFollow,
+        element: <SwapLpTab />,
+        title: "Follow / Unfollow",
+        icon: RepeatClockIcon,
+      },
+      {
+        path: routeNames.freebirdLeads,
+        element: <SwapLpTab />,
+        title: "Leads",
+        icon: HamburgerIcon,
+      },
+    ],
   },
 ];
 
