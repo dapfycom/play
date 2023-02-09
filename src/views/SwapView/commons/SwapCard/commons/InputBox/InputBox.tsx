@@ -11,9 +11,15 @@ interface IProps {
   selectedTokenI: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeToken: (t: string) => void;
 }
 
-const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
+const InputBox = ({
+  selectedTokenI,
+  value,
+  onChange,
+  onChangeToken,
+}: IProps) => {
   const [openTokensListModal, setOpenTokensListModal] = useState(false);
 
   const { elrondToken, isLoading } = useGetElrondToken(selectedTokenI);
@@ -24,7 +30,7 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
   };
   const handleOpen = () => {
     // set to true to allow the modal to open
-    setOpenTokensListModal(false);
+    setOpenTokensListModal(true);
   };
 
   return (
@@ -88,7 +94,14 @@ const InputBox = ({ selectedTokenI, value, onChange }: IProps) => {
       </Box>
 
       {openTokensListModal && (
-        <SelectTokenModal isOpen={openTokensListModal} onClose={handleClose} />
+        <SelectTokenModal
+          isOpen={openTokensListModal}
+          onClose={handleClose}
+          selectToken={(t) => {
+            handleClose();
+            onChangeToken(t);
+          }}
+        />
       )}
     </>
   );

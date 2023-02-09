@@ -20,12 +20,21 @@ const networkConfig = {
       egld: "EGLD",
       wegld: "WEGLD-bd4d79",
       bsk: "BSK-baa025",
+      ride: "RIDE-7d18e9",
+      hodl: "HODL-d7f4b5",
+      usdc: "USDC-c76f1f",
     },
 
     scAddress: {
+      maiarRouter:
+        "erd1qqqqqqqqqqqqqpgqq66xk9gfr4esuhem3jru86wg5hvp33a62jps2fy57p",
       maiarBskSwap:
         "erd1qqqqqqqqqqqqqpgqzmjm474k89alpve4gp7x4gz25wfj4xzv2jpsy2my02",
       wrapEgld:
+        "erd1qqqqqqqqqqqqqpgqvc7gdl0p4s97guh498wgz75k8sav6sjfjlwqh679jy",
+      wrapEgldShar1:
+        "erd1qqqqqqqqqqqqqpgqhe8t5jewej70zupmh44jurgn29psua5l2jps3ntjj3",
+      wrapEgldShar2:
         "erd1qqqqqqqqqqqqqpgqmuk0q2saj0mgutxm4teywre6dl8wqf58xamqdrukln",
     },
   },

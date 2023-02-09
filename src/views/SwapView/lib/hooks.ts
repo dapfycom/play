@@ -1,25 +1,32 @@
-import { selectedNetwork } from "config/network";
-import { useAppDispatch } from "hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
-import { fetchSwapRate } from "services/rest/elrond/maiar";
 import useSWR from "swr";
-import { setRate } from "./swap-slice";
-export const useGetSwapRate = (baseId: string, quoteId: string) => {
+import { smartSwapRoutes } from "./functions";
+import {
+  onChangeToField,
+  selectFromFieldSelectedToken,
+  selectFromFieldValue,
+  selectToFieldSelectedToken,
+} from "./swap-slice";
+export const useGetSwapRate = () => {
+  const token1 = useAppSelector(selectFromFieldSelectedToken);
+  const token2 = useAppSelector(selectToFieldSelectedToken);
+  const token1Value = useAppSelector(selectFromFieldValue);
   const dispatch = useAppDispatch();
   const { data, isLoading, error } = useSWR(
-    [baseId, quoteId === "EGLD" ? selectedNetwork.tokensID.wegld : quoteId],
-    fetchSwapRate
+    token1 && token2 && token1Value ? [token1, token2, token1Value] : null,
+    smartSwapRoutes
   );
-  const rate = data ? data?.quotePrice / data?.basePrice : 1;
 
   useEffect(() => {
-    if (rate && !isLoading && !error) {
-      dispatch(setRate(rate));
+    if (data) {
+      console.log("data", data);
+      dispatch(onChangeToField(data[data.length - 1].token2Amount.toString()));
     }
-  }, [dispatch, error, isLoading, rate]);
+  }, [data, dispatch]);
 
   return {
-    rate,
+    data,
     isLoading,
     error,
   };

@@ -3,6 +3,8 @@ import { ArrowDownIcon } from "components/icons/ui-icons";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { useGetSwapRate } from "views/SwapView/lib/hooks";
 import {
+  changeFromFieldToken,
+  changeToFieldToken,
   onChageFromFieldValue,
   onChangeToField,
   selectFromField,
@@ -14,13 +16,20 @@ import SubmitButton from "./commons/SubmitButton";
 const SwapCard = () => {
   const fromField = useAppSelector(selectFromField);
   const toField = useAppSelector(selectToField);
-  useGetSwapRate(toField.selectedToken, fromField.selectedToken);
+  useGetSwapRate();
   const dispatch = useAppDispatch();
   const handleChangeFromField = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(onChageFromFieldValue(e.target.value));
   };
   const handleChangeToField = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(onChangeToField(e.target.value));
+  };
+
+  const handleChangeFromToken = (token: string) => {
+    dispatch(changeFromFieldToken(token));
+  };
+  const handleChangeToToken = (token: string) => {
+    dispatch(changeToFieldToken(token));
   };
 
   return (
@@ -77,11 +86,13 @@ const SwapCard = () => {
           selectedTokenI={fromField.selectedToken}
           value={fromField.value}
           onChange={handleChangeFromField}
+          onChangeToken={handleChangeFromToken}
         />
         <InputBox
           selectedTokenI={toField.selectedToken}
           value={toField.value}
           onChange={handleChangeToField}
+          onChangeToken={handleChangeToToken}
         />
       </Flex>
       <SubmitButton />

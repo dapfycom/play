@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import React from "react";
 import { openLogin } from "redux/dapp/dapp-slice";
 import { submitSwap } from "views/SwapView/lib/calls";
+import { useGetSwapRate } from "views/SwapView/lib/hooks";
 import {
   selectFromField,
   selectSlippage,
@@ -18,14 +19,11 @@ const SubmitButton = () => {
   const fromField = useAppSelector(selectFromField);
   const toField = useAppSelector(selectToField);
   const slippage = useAppSelector(selectSlippage);
-  const { elrondToken: elrondFromToken } = useGetElrondToken(
+  const { data: swapRoutes } = useGetSwapRate();
+  const [sessionId, setSessionId] = React.useState("");
+  const { elrondToken: fromElrondToken } = useGetElrondToken(
     fromField.selectedToken
   );
-  const { elrondToken: elrondToToken } = useGetElrondToken(
-    toField.selectedToken
-  );
-  const [sessionId, setSessionId] = React.useState("");
-
   const onSuccess = React.useCallback(() => {
     window.location.reload();
   }, []);
@@ -44,17 +42,21 @@ const SubmitButton = () => {
     if (!isLoggedIn) {
       dispatch(openLogin(true));
     } else {
-      if (elrondFromToken || elrondToToken) {
-        const res = await submitSwap(
-          elrondFromToken,
-          elrondToToken,
-          fromField.value,
-          toField.value,
-          slippage
-        );
+      const res = await submitSwap(
+        swapRoutes,
+        slippage,
+        {
+          token: fromField.selectedToken,
+          value: Number(fromField.value),
+        },
+        {
+          token: toField.selectedToken,
+          value: Number(toField.value),
+        },
+        fromElrondToken
+      );
 
-        setSessionId(res.sessionId);
-      }
+      setSessionId(res.sessionId);
     }
   };
 

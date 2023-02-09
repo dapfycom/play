@@ -179,16 +179,20 @@ export interface IElrondToken {
   identifier: string;
   name: string;
   ticker: string;
-  owner: string;
+  owner?: string;
   decimals: number;
-  isPaused: boolean;
+  isPaused?: boolean;
   assets: {
-    website: string;
-    description: string;
-    status: string;
-    pngUrl: string;
+    website?: string;
+    description?: string;
+    status?: string;
+    pngUrl?: string;
     svgUrl: string;
-    social: {
+    img?: string;
+    static?: {
+      src: string;
+    };
+    social?: {
       email: string;
       twitter: string;
       whitepaper: string;
@@ -197,19 +201,19 @@ export interface IElrondToken {
       telegram: string;
     };
   };
-  transactions: number;
-  accounts: number;
-  canUpgrade: boolean;
-  canMint: boolean;
-  canBurn: boolean;
-  canChangeOwner: boolean;
-  canPause: boolean;
-  canFreeze: boolean;
-  canWipe: boolean;
+  transactions?: number;
+  accounts?: number;
+  canUpgrade?: boolean;
+  canMint?: boolean;
+  canBurn?: boolean;
+  canChangeOwner?: boolean;
+  canPause?: boolean;
+  canFreeze?: boolean;
+  canWipe?: boolean;
   price: number;
-  marketCap: number;
-  supply: string;
-  circulatingSupply: string;
+  marketCap?: number;
+  supply: string | number;
+  circulatingSupply: string | number;
 }
 export interface IElrondAccountToken {
   type: ElrondType;

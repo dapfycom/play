@@ -1,7 +1,12 @@
 import { Center, Text } from "@chakra-ui/react";
-import { EgldIcon } from "components/icons/coin-icons";
+import { ReactNode } from "react";
 
-const TokenBox = () => {
+interface IProps {
+  ticker: string;
+  image: ReactNode;
+}
+
+const TokenBox = ({ ticker, image }: IProps) => {
   return (
     <Center
       px="15px"
@@ -12,9 +17,9 @@ const TokenBox = () => {
       borderRadius={"md"}
       cursor="pointer"
     >
-      <EgldIcon fontSize={"25px"} />{" "}
+      {image}
       <Text fontSize={"lsm"} fontWeight={500}>
-        EGLD
+        {ticker}
       </Text>
     </Center>
   );

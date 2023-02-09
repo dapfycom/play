@@ -10,3 +10,8 @@ export const fetchSwapRate = async ([baseId, quoteId]: [
   );
   return data;
 };
+
+export const fetchMaiarPairs = async (): Promise<IMexPair[]> => {
+  const data = await fetchElrondData<IMexPair[]>(`mex/pairs`);
+  return data;
+};

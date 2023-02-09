@@ -196,7 +196,7 @@ export const wrapEgldAndEsdtTranfer = async (
   const value = new BigNumber(egldAmount).multipliedBy(EGLD_VAL).toFixed(0);
 
   //wrap egld
-  let { simpleAddress } = getInterface("wrapEgldWsp");
+  let { simpleAddress } = getInterface("wrapEgldpWsp");
 
   const payload = TransactionPayload.contractCall()
     .setFunction(new ContractFunction("wrapEgld"))
@@ -236,4 +236,50 @@ export const wrapEgldAndEsdtTranfer = async (
   });
 
   return await sendMultipleTransactions({ txs: [tx1, tx2] });
+};
+export const MultiESDTNFTTransfer = async (
+  wsp: WspTypes,
+  funcName: string,
+  tokens: {
+    collection: string;
+    nonce: number;
+    value: number;
+  }[],
+  args: any[] = [],
+  gasL: number = 100000000
+) => {
+  try {
+    const userAddress = store.getState().dapp.userAddress;
+    let { simpleAddress } = getInterface(wsp);
+
+    const data = tokens.flatMap((nft) => {
+      const nftData = [
+        BytesValue.fromUTF8(nft.collection), // <token identifier in hexadecimal encoding>
+        new BigUIntValue(new BigNumber(nft.nonce)), // <token nonce in hexadecimal encoding>
+        new BigUIntValue(new BigNumber(nft.value)), //<token quantity to transfer in hexadecimal encoding>
+      ];
+      return nftData;
+    });
+
+    const payload = TransactionPayload.contractCall()
+      .setFunction(new ContractFunction("MultiESDTNFTTransfer"))
+      .setArgs([
+        new AddressValue(new Address(simpleAddress)), // <receiver bytes in hexadecimal encoding>
+        new BigUIntValue(new BigNumber(tokens.length)), //<number of tokens to transfer in hexadecimal encoding>
+        ...data,
+        BytesValue.fromUTF8(funcName),
+        ...args,
+      ])
+      .build();
+
+    const transactionData: any = {
+      addr: userAddress,
+      payload: payload,
+      gasL: gasL,
+    };
+
+    return await sendTransaction(transactionData);
+  } catch (error) {
+    console.log("error", error);
+  }
 };

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { selectedNetwork } from "config/network";
 import { AppState } from "redux/store";
-import { handleSwap } from "./functions";
 
 export interface SwapState {
   fromField: {
@@ -36,15 +35,17 @@ export const swap = createSlice({
     setRate: (state, action: PayloadAction<number>) => {
       state.rate = action.payload;
     },
+    changeFromFieldToken: (state, action: PayloadAction<string>) => {
+      state.fromField.selectedToken = action.payload;
+    },
+    changeToFieldToken: (state, action: PayloadAction<string>) => {
+      state.toField.selectedToken = action.payload;
+    },
     onChageFromFieldValue: (state, action: PayloadAction<string>) => {
-      const { value1, value2 } = handleSwap(action.payload, state.rate);
-      state.fromField.value = value1;
-      state.toField.value = value2;
+      state.fromField.value = action.payload;
     },
     onChangeToField: (state, action: PayloadAction<string>) => {
-      const { value1, value2 } = handleSwap(action.payload, 1 / state.rate);
-      state.toField.value = value1;
-      state.fromField.value = value2;
+      state.toField.value = action.payload;
     },
   },
 });
@@ -61,5 +62,11 @@ export const selectFromField = (state: AppState) => state.swap.fromField;
 export const selectToField = (state: AppState) => state.swap.toField;
 export const selectSlippage = (state: AppState) => state.swap.slipage;
 
-export const { onChageFromFieldValue, onChangeToField, setRate } = swap.actions;
+export const {
+  onChageFromFieldValue,
+  onChangeToField,
+  changeFromFieldToken,
+  changeToFieldToken,
+  setRate,
+} = swap.actions;
 export default swap.reducer;

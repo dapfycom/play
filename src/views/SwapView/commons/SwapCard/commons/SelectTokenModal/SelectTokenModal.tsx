@@ -9,15 +9,19 @@ import {
 } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 import MyModal from "components/Modal/Modal";
-import TokenBox from "./commons/TokenBox/TokenBox";
+import { useGetAllMaiarListedTokens } from "hooks/useGetAllTokensListed";
+import useGetMultipleElrondTokens from "hooks/useGetMultipleElrondTokens";
 import TokenList from "./commons/TokenList/TokenList";
 
 interface IProps {
   onClose: () => void;
   isOpen: boolean;
+  selectToken: (t: string) => void;
 }
 
-const SelectTokenModal = ({ isOpen, onClose }: IProps) => {
+const SelectTokenModal = ({ isOpen, onClose, selectToken }: IProps) => {
+  const { maiarTokens } = useGetAllMaiarListedTokens();
+  const { tokens } = useGetMultipleElrondTokens(maiarTokens);
   return (
     <MyModal
       isOpen={isOpen}
@@ -58,18 +62,22 @@ const SelectTokenModal = ({ isOpen, onClose }: IProps) => {
             mb={"22px"}
           />
 
-          <Flex w="full" flexWrap={"wrap"} gap="15px">
-            <TokenBox />
-            <TokenBox />
-            <TokenBox />
-            <TokenBox />
-            <TokenBox />
-          </Flex>
+          {/* <Flex w="full" flexWrap={"wrap"} gap="15px">
+            {tokens.map((t) => {
+              return (
+                <TokenBox
+                  key={t.identifier}
+                  image={<EgldIcon fontSize={"35px"} />}
+                  ticker={t.ticker}
+                />
+              );
+            })}
+          </Flex> */}
         </Box>
 
         <Divider borderColor={"whiteT.100"} mb="30px" />
 
-        <TokenList />
+        <TokenList tokens={tokens} selectToken={selectToken} />
       </ModalBody>
     </MyModal>
   );

@@ -7,3 +7,24 @@ export const fetchTokenById = async (
   const res = await axiosElrond.get<IElrondToken>(`/tokens/${identifier}`);
   return res.data;
 };
+
+export const getFromAllTokens = async ([
+  key,
+  {
+    size = 10000,
+    name = undefined,
+    identifier = undefined,
+    identifiers = undefined,
+    search = undefined,
+  },
+]) => {
+  return await axiosElrond.get<IElrondToken[]>("/tokens", {
+    params: {
+      identifier,
+      identifiers,
+      name,
+      size,
+      search,
+    },
+  });
+};
