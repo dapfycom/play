@@ -1,16 +1,20 @@
 import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Center,
   Divider,
   Flex,
   Heading,
   Input,
   ModalBody,
+  Spinner,
 } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 import MyModal from "components/Modal/Modal";
 import { useGetAllMaiarListedTokens } from "hooks/useGetAllTokensListed";
 import useGetMultipleElrondTokens from "hooks/useGetMultipleElrondTokens";
+import { useState } from "react";
+import { useSearchToken } from "views/SwapView/lib/hooks";
 import TokenList from "./commons/TokenList/TokenList";
 
 interface IProps {
@@ -21,7 +25,14 @@ interface IProps {
 
 const SelectTokenModal = ({ isOpen, onClose, selectToken }: IProps) => {
   const { maiarTokens } = useGetAllMaiarListedTokens();
-  const { tokens } = useGetMultipleElrondTokens(maiarTokens);
+  const { tokens, isLoading } = useGetMultipleElrondTokens(maiarTokens);
+  const [search, setSearch] = useState("");
+  const filterdTokens = useSearchToken(tokens, search);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+  console.log("render");
   return (
     <MyModal
       isOpen={isOpen}
@@ -60,6 +71,7 @@ const SelectTokenModal = ({ isOpen, onClose, selectToken }: IProps) => {
               color: "whiteT.200",
             }}
             mb={"22px"}
+            onChange={handleSearch}
           />
 
           {/* <Flex w="full" flexWrap={"wrap"} gap="15px">
@@ -76,8 +88,13 @@ const SelectTokenModal = ({ isOpen, onClose, selectToken }: IProps) => {
         </Box>
 
         <Divider borderColor={"whiteT.100"} mb="30px" />
-
-        <TokenList tokens={tokens} selectToken={selectToken} />
+        {isLoading ? (
+          <Center>
+            <Spinner />
+          </Center>
+        ) : (
+          <TokenList tokens={filterdTokens} selectToken={selectToken} />
+        )}
       </ModalBody>
     </MyModal>
   );

@@ -2,6 +2,7 @@ import useGetMaiarPairs from "hooks/useGetMaiarPairs";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
 import useSWR from "swr";
+import { IElrondToken } from "types/elrond.interface";
 import { smartSwapRoutes } from "./functions";
 import {
   onChangeToField,
@@ -34,4 +35,22 @@ export const useGetSwapRate = () => {
     isLoading,
     error,
   };
+};
+
+export const useSearchToken = (tokens: IElrondToken[], searchKey: string) => {
+  let filteredTokens: IElrondToken[] = [];
+
+  if (searchKey === "") {
+    filteredTokens = tokens;
+  } else {
+    filteredTokens = tokens.filter((token) => {
+      return (
+        token.ticker
+          .toString()
+          .toLowerCase()
+          .indexOf(searchKey.toLowerCase()) > -1
+      );
+    });
+  }
+  return filteredTokens;
 };
