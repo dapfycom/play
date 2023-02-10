@@ -6,9 +6,14 @@ import {
 } from "@elrondnetwork/erdjs/out";
 import BigNumber from "bignumber.js";
 import { selectedNetwork } from "config/network";
-import { EGLDPayment, ESDTTransfer } from "services/sc/calls";
+import {
+  EGLDPayment,
+  ESDTTransfer,
+  MultiESDTNFTTransfer,
+} from "services/sc/calls";
 import { IElrondToken } from "types/elrond.interface";
 import { IRoute } from "types/swap.interface";
+import { setElrondBalance } from "utils/functions/formatBalance";
 
 export const submitSwap = async (
   swapInfo: IRoute[],
@@ -81,49 +86,50 @@ export const submitSwap = async (
     }
   }
 };
-// export const submitSwap = async (
-//   fromToken: {
-//     identifier: string;
-//     decimals: number;
-//   },
-//   toToken: {
-//     identifier: string;
-//     decimals: number;
-//   },
-//   sendAmount: string,
-//   receiveAmount: string,
-//   slippage: number
-// ) => {
-//   const amountToReceiveBn = new BigNumber(receiveAmount);
-//   const minReceiveAmount = amountToReceiveBn
-//     .minus(amountToReceiveBn.multipliedBy(slippage).dividedBy(100))
-//     .toFixed(0);
 
-//   // new BigNumber(value).multipliedBy(slipage).dividedBy(100)
-//   if (fromToken.identifier === selectedNetwork.tokensID.egld) {
-//     return await wrapEgldAndEsdtTranfer(
-//       sendAmount,
-//       "swapTokensFixedInput",
-//       [
-//         BytesValue.fromUTF8(selectedNetwork.tokensID.bsk),
-//         new BigUIntValue(
-//           new BigNumber(minReceiveAmount).multipliedBy(10 ** toToken.decimals)
-//         ),
-//       ],
-//       selectedNetwork.scAddress.maiarBskSwap
-//     );
-//   } else {
-//     return await ESDTTransfer({
-//       funcName: "swapTokensFixedInput",
-//       contractAddr: selectedNetwork.scAddress.maiarBskSwap,
-//       token: fromToken,
-//       val: Number(sendAmount),
-//       args: [
-//         BytesValue.fromUTF8(selectedNetwork.tokensID.bsk),
-//         new BigUIntValue(
-//           new BigNumber(minReceiveAmount).multipliedBy(10 ** toToken.decimals)
-//         ),
-//       ],
-//     });
-//   }
-// };
+export const lpSwap = async () => {
+  const slipapge = 1;
+
+  const amount1 = setElrondBalance(102985, 16);
+  const amount2 = setElrondBalance(0.01);
+  const token1SlippagePercent = new BigNumber(amount1)
+    .multipliedBy(slipapge)
+    .dividedBy(100)
+    .toNumber();
+  const finalToken1Amount = new BigNumber(amount1)
+    .minus(token1SlippagePercent)
+    .toFixed(0);
+
+  //token2_amount_min
+  const token2SlippagePercent = new BigNumber(amount2)
+    .multipliedBy(slipapge)
+    .dividedBy(100)
+    .toNumber();
+  const finalToken2Amount = new BigNumber(amount2)
+    .minus(token2SlippagePercent)
+    .toFixed(0);
+
+  const lpSwapArg = [
+    new BigUIntValue(new BigNumber(finalToken1Amount)),
+    new BigUIntValue(new BigNumber(finalToken2Amount)),
+  ];
+
+  MultiESDTNFTTransfer(
+    "maiarBskExchangeWsp",
+    "addLiquidity",
+    [
+      {
+        collection: selectedNetwork.tokensID.bsk,
+        nonce: 0,
+        value: amount1,
+      },
+      {
+        collection: selectedNetwork.tokensID.wegld,
+        nonce: 0,
+        value: amount2,
+      },
+    ],
+    lpSwapArg,
+    100000000
+  );
+};
