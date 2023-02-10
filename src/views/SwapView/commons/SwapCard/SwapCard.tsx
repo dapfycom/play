@@ -16,7 +16,7 @@ import SubmitButton from "./commons/SubmitButton";
 const SwapCard = () => {
   const fromField = useAppSelector(selectFromField);
   const toField = useAppSelector(selectToField);
-  useGetSwapRate();
+  const { isLoading: loadingRoutes } = useGetSwapRate();
   const dispatch = useAppDispatch();
   const handleChangeFromField = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(onChageFromFieldValue(e.target.value));
@@ -93,6 +93,7 @@ const SwapCard = () => {
           value={toField.value}
           onChange={handleChangeToField}
           onChangeToken={handleChangeToToken}
+          isLoadingInput={loadingRoutes}
         />
       </Flex>
       <SubmitButton />

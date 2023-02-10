@@ -23,6 +23,7 @@ const networkConfig = {
       ride: "RIDE-7d18e9",
       hodl: "HODL-d7f4b5",
       usdc: "USDC-c76f1f",
+      rare: "RARE-99e8b0",
     },
 
     scAddress: {

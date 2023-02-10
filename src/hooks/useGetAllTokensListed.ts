@@ -1,12 +1,17 @@
-import { fetchElrondData } from "services/rest/elrond";
-import useSwr from "swr";
+import { selectedNetwork } from "config/network";
+import useGetMaiarPairs from "./useGetMaiarPairs";
 export const useGetAllMaiarListedTokens = () => {
-  const { data, error, isLoading } = useSwr<{ id: string }[]>(
-    "/mex/tokens?size=1000&fields=id",
-    fetchElrondData
-  );
+  const { pairs, error, isLoading } = useGetMaiarPairs();
+  const maiarTokens: string[] = pairs.map((pair) => {
+    if (pair.baseId === "USDC-c76f1f") {
+      return pair.quoteId;
+    } else {
+      return pair.baseId;
+    }
+  });
+  maiarTokens.push(selectedNetwork.tokensID.usdc);
   return {
-    maiarTokens: data?.map((t) => t.id) || [],
+    maiarTokens: maiarTokens || [],
     error,
     isLoading,
   };

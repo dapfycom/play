@@ -1,6 +1,6 @@
 import BigNumber from "bignumber.js";
+import { selectedNetwork } from "config/network";
 import { fetchElrondData } from "services/rest/elrond";
-import { fetchMaiarPairs } from "services/rest/elrond/maiar";
 import { IRoute } from "types/swap.interface";
 import { setElrondBalance } from "utils/functions/formatBalance";
 import { IMexPair } from "../../../types/elrond.interface";
@@ -19,9 +19,13 @@ export const handleSwap = (value: string, rate: number) => {
   return { value1, value2 };
 };
 
-export const getSwapPairs = async (token1: string, token2: string) => {
+export const getSwapPairs = async (
+  token1: string,
+  token2: string,
+  pairs: IMexPair[]
+) => {
   const swapPairs: IMexPair[] = [];
-  const pairs: IMexPair[] = await fetchMaiarPairs();
+
   let firstSwapPair: {
     pair: IMexPair;
     type: "wegld" | "usdc" | "wegld-usdc";
@@ -58,19 +62,32 @@ export const getSwapPairs = async (token1: string, token2: string) => {
         };
       }
     } else {
+      // firstSwapPair = {
+      //   pair: usdcWegldPair,
+      //   type: "wegld-usdc",
+      // };
+      // the token1 is wegld (pure) or usdc (pure)
       if (pair.quoteId === "WEGLD-bd4d79") {
-        if (pair.baseId === token2) {
+        // wegld(pure) - wegld(token)
+        if (pair.baseId === token2 && pair.quoteId === token1) {
           firstSwapPair = {
             pair: pair,
             type: "wegld",
           };
         }
-      }
-      if (pair.baseId === "USDC-c76f1f") {
-        if (pair.quoteId === token2) {
+      } else {
+        if (pair.baseId === "USDC-c76f1f") {
+          // usdc(pure) - usdc(token)
+          if (pair.quoteId === token2 && pair.baseId === token1) {
+            firstSwapPair = {
+              pair: pair,
+              type: "usdc",
+            };
+          }
+        } else {
           firstSwapPair = {
-            pair: pair,
-            type: "usdc",
+            pair: usdcWegldPair,
+            type: "wegld-usdc",
           };
         }
       }
@@ -96,7 +113,11 @@ export const getSwapPairs = async (token1: string, token2: string) => {
     token1 === "USDC-c76f1f" ||
     token2 === "USDC-c76f1f"
   ) {
-    return [firstSwapPair.pair];
+    if (firstSwapPair.type === "wegld-usdc" && lastSwapPair) {
+      return [firstSwapPair.pair, lastSwapPair];
+    } else {
+      return [firstSwapPair.pair];
+    }
   }
 
   if (firstSwapPair && lastSwapPair) {
@@ -139,58 +160,94 @@ export const getSwapPairs = async (token1: string, token2: string) => {
   return swapPairs;
 };
 
-export const smartSwapRoutes = async ([token1, token2, token1Amount]: [
-  string,
-  string,
-  number
-]): Promise<IRoute[]> => {
-  const pairs = await getSwapPairs(token1, token2);
+export const smartSwapRoutes = async ([
+  token1,
+  token2,
+  token1Amount,
+  mexPairs,
+]: [string, string, number, IMexPair[]]): Promise<IRoute[]> => {
+  const pairs = await getSwapPairs(token1, token2, mexPairs);
+  console.log("\n\npairs", pairs);
+
   let token1Before = token1;
   let amount1Before = token1Amount;
-  const routes: IRoute[] = await Promise.all(
-    pairs.map(async (pair) => {
-      let t1: string = null;
-      let t2: string = null;
-      let rate = 0;
+  const tokensDeciamals = await fetchElrondData<
+    {
+      decimals: number;
+      identifier: string;
+    }[]
+  >(
+    `/tokens?identifiers=${pairs
+      .map((p) => {
+        if (p.quoteId === "WEGLD-bd4d79") {
+          return p.baseId;
+        } else {
+          return p.quoteId;
+        }
+      })
+      .join(",")}?fields=decimals,identifier`
+  );
+  const routes: IRoute[] = [];
+  for (let index = 0; index < pairs.length; index++) {
+    const pair = pairs[index];
+    let t1: string = null;
+    let t2: string = null;
+    let rate = 0;
 
-      if (token1Before === pair.baseId) {
+    if (token1Before === pair.baseId) {
+      //wegld route
+      t1 = pair.baseId;
+      t2 = pair.quoteId;
+      console.log("first if");
+
+      rate = new BigNumber(pair.basePrice).div(pair.quotePrice).toNumber();
+    } else {
+      if (
+        pair.baseId === selectedNetwork.tokensID.wegld &&
+        pair.quoteId === selectedNetwork.tokensID.usdc
+      ) {
+        console.log("second if");
+
         //wegld route
         t1 = pair.baseId;
         t2 = pair.quoteId;
-        rate = new BigNumber(pair.basePrice).div(pair.quotePrice).toNumber();
+
+        rate = new BigNumber(pair.quotePrice).div(pair.basePrice).toNumber();
       } else {
+        console.log("third if");
         //usdc route
         t1 = pair.quoteId;
         t2 = pair.baseId;
         rate = new BigNumber(pair.quotePrice).div(pair.basePrice).toNumber();
       }
+    }
 
-      const { decimals: token1Decimals } = await fetchElrondData<{
-        decimals: number;
-      }>(`/tokens/${t1}?fields=decimals`);
-      const { decimals: token2Decimals } = await fetchElrondData<{
-        decimals: number;
-      }>(`/tokens/${t2}?fields=decimals`);
+    const { decimals: token1Decimals } = tokensDeciamals.find(
+      (t) => t.identifier === t1
+    ) || { decimals: 18 };
+    const { decimals: token2Decimals } = tokensDeciamals.find(
+      (t) => t.identifier === t2
+    ) || { decimals: 18 };
+    const finalAmount1 = amount1Before;
 
-      const finalAmount1 = amount1Before;
-      const finalAmount2 = new BigNumber(finalAmount1)
-        .multipliedBy(rate)
-        .toNumber();
-      const data: IRoute = {
-        token1: t1,
-        token2: t2,
-        token1Amount: finalAmount1,
-        token2Amount: finalAmount2,
-        token1AmountDecimals: setElrondBalance(finalAmount1, token1Decimals),
-        token2AmountDecimals: setElrondBalance(finalAmount2, token2Decimals),
-        sc: pair.address,
-      };
+    const finalAmount2 = new BigNumber(finalAmount1)
+      .multipliedBy(rate)
+      .toNumber();
+    const data: IRoute = {
+      token1: t1,
+      token2: t2,
+      token1Amount: finalAmount1,
+      token2Amount: finalAmount2,
+      token1AmountDecimals: setElrondBalance(finalAmount1, token1Decimals),
+      token2AmountDecimals: setElrondBalance(finalAmount2, token2Decimals),
+      sc: pair.address,
+    };
 
-      token1Before = t2;
-      amount1Before = finalAmount2;
-      return data;
-    })
-  );
+    token1Before = t2;
+    amount1Before = finalAmount2;
+    routes.push(data);
+  }
+  console.log("routes", routes);
 
   return routes;
 };

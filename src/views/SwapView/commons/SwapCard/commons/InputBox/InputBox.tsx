@@ -12,6 +12,7 @@ interface IProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeToken: (t: string) => void;
+  isLoadingInput?: boolean;
 }
 
 const InputBox = ({
@@ -19,6 +20,7 @@ const InputBox = ({
   value,
   onChange,
   onChangeToken,
+  isLoadingInput,
 }: IProps) => {
   const [openTokensListModal, setOpenTokensListModal] = useState(false);
 
@@ -43,15 +45,21 @@ const InputBox = ({
         borderColor="whiteT.100"
       >
         <Flex w="full" mb="20px" gap="15px">
-          <Input
-            variant={"unstyled"}
-            flex={1}
-            placeholder="0.0"
-            fontSize={{ xs: "2xl", lg: "4xl" }}
-            value={value}
-            onChange={(e) => onChange(e)}
-            color="white"
-          />
+          {isLoadingInput ? (
+            <Flex flex={1}>
+              <Spinner />
+            </Flex>
+          ) : (
+            <Input
+              variant={"unstyled"}
+              flex={1}
+              placeholder="0.0"
+              fontSize={{ xs: "2xl", lg: "4xl" }}
+              value={value}
+              onChange={(e) => onChange(e)}
+              color="white"
+            />
+          )}
 
           <ActionButton
             borderRadius={{ xs: "10px", lg: "20px" }}

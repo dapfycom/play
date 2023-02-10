@@ -74,6 +74,7 @@ export const submitSwap = async (
             realValue: swapInfo[0].token1AmountDecimals,
             token: fromElrondToken,
             args: dataToSend,
+            gasL: 60000000,
           });
         }
       }
