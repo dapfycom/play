@@ -11,13 +11,12 @@ import { useSwapLpRate } from "views/SwapView/lib/hooks";
 import {
   selectFromField,
   selectSlippage,
-  selectToField,
 } from "views/SwapView/lib/swapLp-slice";
 const SubmitButton = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
   const fromField = useAppSelector(selectFromField);
-  const toField = useAppSelector(selectToField);
+  // const toField = useAppSelector(selectToField);
   const slippage = useAppSelector(selectSlippage);
   const { data: swapRoutes } = useSwapLpRate();
   const [sessionId, setSessionId] = React.useState("");
