@@ -236,7 +236,7 @@ export const lpSwap = async (
       value: 0,
       receiver: new Address(sender),
       data: payload,
-      gasLimit: 100000000,
+      gasLimit: 120000000,
       chainID: ChainId,
     });
 

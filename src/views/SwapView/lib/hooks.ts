@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
 import useSWR from "swr";
 import { IElrondToken } from "types/elrond.interface";
+import { formatBalanceDolar } from "utils/functions/formatBalance";
 import { smartSwapRoutes } from "./functions";
 import {
   onChangeToField,
@@ -86,10 +87,21 @@ export const useSwapLpRate = () => {
   const pair = pairs?.find((p) => p.id === toField.selectedToken);
 
   useEffect(() => {
-    if (pair) {
-      dispatch(onChangeSwapLpToField("40"));
+    if (pair && data) {
+      const swapInfo = data[0];
+      const token1TokenDollarAmount = new BigNumber(
+        formatBalanceDolar(
+          { balance: swapInfo.token1Amount, decimals: 0 },
+          pair.baseId === swapInfo.token1 ? pair.basePrice : pair.quotePrice,
+          false
+        )
+      ).toNumber();
+      const lpAmount = new BigNumber(token1TokenDollarAmount)
+        .div(pair.price)
+        .toNumber();
+      dispatch(onChangeSwapLpToField(lpAmount.toString()));
     }
-  }, [dispatch, pair]);
+  }, [data, dispatch, pair]);
 
   return {
     data: data || [],

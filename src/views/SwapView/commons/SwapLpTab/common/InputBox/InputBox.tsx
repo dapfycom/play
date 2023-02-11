@@ -29,6 +29,7 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
   const { elrondToken } = useGetElrondToken(tokenI);
   const { accountToken } = useGetAccountToken(tokenI);
   const [tokenPrice] = useGetTokenPrice(tokenI);
+  console.log("tokenPrice", tokenPrice);
 
   const handleMax = () => {
     // @ts-ignore
@@ -67,7 +68,7 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
             value={inputValue}
             onChange={(e) => handleChange(e.target.value)}
           />
-          {elrondToken && tokenPrice && (
+          {type === "from" && elrondToken && tokenPrice && (
             <Text>
               ≈ $
               {formatBalanceDolar(
