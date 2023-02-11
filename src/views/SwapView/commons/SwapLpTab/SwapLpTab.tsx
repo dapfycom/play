@@ -1,10 +1,10 @@
 import { Center } from "@chakra-ui/react";
-import SwapCard from "../SwapCard";
+import SwapLpCard from "./common/SwapLpCard/SwapLpCard";
 
 const SwapLpTab = () => {
   return (
     <Center w="full">
-      <SwapCard />
+      <SwapLpCard />
     </Center>
   );
 };

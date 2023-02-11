@@ -33,71 +33,73 @@ const SwapCard = () => {
   };
 
   return (
-    <Box
-      borderRadius={"2xl"}
-      bg="dark.500"
-      maxW={"850px"}
-      w="full"
-      px={{ xs: "30px", lg: "50px" }}
-      py="35px"
-      border="1px"
-      borderColor={"primary"}
-    >
-      <Flex
+    <Center w="full">
+      <Box
+        borderRadius={"2xl"}
+        bg="dark.500"
+        maxW={"850px"}
         w="full"
-        justifyContent="space-between"
-        alignItems={"center"}
-        mb={{ xs: "10px", lg: "20px" }}
+        px={{ xs: "30px", lg: "50px" }}
+        py="35px"
+        border="1px"
+        borderColor={"primary"}
       >
-        <Heading
-          as="h2"
-          fontSize={{ xs: "2xl", lg: "3xl" }}
-          fontWeight={700}
-          color="white"
+        <Flex
+          w="full"
+          justifyContent="space-between"
+          alignItems={"center"}
+          mb={{ xs: "10px", lg: "20px" }}
         >
-          Swap
-        </Heading>
-        <Settings />
-      </Flex>
-      <Flex
-        position={"relative"}
-        flexDir="column"
-        gap={{ xs: "5px", lg: "10px" }}
-        mb="30px"
-      >
-        <Box
-          position={"absolute"}
-          top={{ xs: "44%", lg: "43%" }}
-          left={{ xs: "44%", lg: "45%" }}
-          borderRadius={"full"}
-          bg="dark.500"
-          p={{ xs: "3px", lg: "7px" }}
-          cursor={"pointer"}
-        >
-          <Center
-            borderRadius={"full"}
-            bg="dark.400"
-            boxSize={{ xs: "25px", lg: "45px" }}
+          <Heading
+            as="h2"
+            fontSize={{ xs: "2xl", lg: "3xl" }}
+            fontWeight={700}
+            color="white"
           >
-            <ArrowDownIcon fontSize={{ xs: "11px", lg: "22px" }} />
-          </Center>
-        </Box>
-        <InputBox
-          selectedTokenI={fromField.selectedToken}
-          value={fromField.value}
-          onChange={handleChangeFromField}
-          onChangeToken={handleChangeFromToken}
-        />
-        <InputBox
-          selectedTokenI={toField.selectedToken}
-          value={toField.value}
-          onChange={handleChangeToField}
-          onChangeToken={handleChangeToToken}
-          isLoadingInput={loadingRoutes}
-        />
-      </Flex>
-      <SubmitButton />
-    </Box>
+            Swap
+          </Heading>
+          <Settings />
+        </Flex>
+        <Flex
+          position={"relative"}
+          flexDir="column"
+          gap={{ xs: "5px", lg: "10px" }}
+          mb="30px"
+        >
+          <Box
+            position={"absolute"}
+            top={{ xs: "44%", lg: "43%" }}
+            left={{ xs: "44%", lg: "45%" }}
+            borderRadius={"full"}
+            bg="dark.500"
+            p={{ xs: "3px", lg: "7px" }}
+            cursor={"pointer"}
+          >
+            <Center
+              borderRadius={"full"}
+              bg="dark.400"
+              boxSize={{ xs: "25px", lg: "45px" }}
+            >
+              <ArrowDownIcon fontSize={{ xs: "11px", lg: "22px" }} />
+            </Center>
+          </Box>
+          <InputBox
+            selectedTokenI={fromField.selectedToken}
+            value={fromField.value}
+            onChange={handleChangeFromField}
+            onChangeToken={handleChangeFromToken}
+          />
+          <InputBox
+            selectedTokenI={toField.selectedToken}
+            value={toField.value}
+            onChange={handleChangeToField}
+            onChangeToken={handleChangeToToken}
+            isLoadingInput={loadingRoutes}
+          />
+        </Flex>
+        <SubmitButton />
+      </Box>
+    </Center>
   );
 };
 

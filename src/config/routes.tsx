@@ -22,6 +22,7 @@ const TheForgeView = React.lazy(() => import("views/TheForgeView"));
 const SwapLpTab = React.lazy(() => import("views/SwapView/commons/SwapLpTab"));
 const FarmView = React.lazy(() => import("views/FarmView"));
 const CoinFlipView = React.lazy(() => import("views/CoinFlipView"));
+const SwapTab = React.lazy(() => import("views/SwapView/commons/SwapCard"));
 
 export const routeNames = {
   swap: "/",
@@ -50,7 +51,7 @@ export const mainSiteRoutes = [
     children: [
       {
         path: "/",
-        element: <SwapLpTab />,
+        element: <SwapTab />,
       },
       {
         path: "/swapLp",

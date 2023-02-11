@@ -161,11 +161,20 @@ export const getSwapPairs = async (
 };
 
 export const smartSwapRoutes = async ([
-  token1,
-  token2,
+  tokenParam1,
+  tokenParam2,
   token1Amount,
   mexPairs,
 ]: [string, string, number, IMexPair[]]): Promise<IRoute[]> => {
+  let token1 = tokenParam1;
+  let token2 = tokenParam2;
+  if (token1 === selectedNetwork.tokensID.egld) {
+    token1 = selectedNetwork.tokensID.wegld;
+  }
+  if (token2 === selectedNetwork.tokensID.egld) {
+    token2 = selectedNetwork.tokensID.wegld;
+  }
+
   const pairs = await getSwapPairs(token1, token2, mexPairs);
   console.log("\n\npairs", pairs);
 
@@ -185,7 +194,7 @@ export const smartSwapRoutes = async ([
           return p.quoteId;
         }
       })
-      .join(",")}?fields=decimals,identifier`
+      .join(",")}`
   );
   const routes: IRoute[] = [];
   for (let index = 0; index < pairs.length; index++) {
@@ -229,6 +238,9 @@ export const smartSwapRoutes = async ([
       (t) => t.identifier === t2
     ) || { decimals: 18 };
     const finalAmount1 = amount1Before;
+    console.log("tokensDeciamals", tokensDeciamals);
+    console.log("t2", t2);
+    console.log("token2Decimals", token2Decimals);
 
     const finalAmount2 = new BigNumber(finalAmount1)
       .multipliedBy(rate)

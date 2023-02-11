@@ -1,6 +1,7 @@
 import { fetchElrondEconomics } from "services/rest/elrond/network";
 import { fetchTokenById } from "services/rest/elrond/tokens";
 import useSWR from "swr";
+import { IElrondToken } from "types/elrond.interface";
 import { egldStaticData } from "utils/constants/egldData";
 
 const useGetElrondToken = (tokenI: string) => {
@@ -35,7 +36,7 @@ const useGetElrondToken = (tokenI: string) => {
   }
 
   return {
-    elrondToken: finalData,
+    elrondToken: finalData as IElrondToken,
     isLoading: isLoadingEconomics || isLoadingElrondToken,
   };
 };

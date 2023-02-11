@@ -24,6 +24,7 @@ const networkConfig = {
       hodl: "HODL-d7f4b5",
       usdc: "USDC-c76f1f",
       rare: "RARE-99e8b0",
+      bskwegld: "BSKWEGLD-7cd373",
     },
 
     scAddress: {

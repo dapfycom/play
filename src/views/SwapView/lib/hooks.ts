@@ -1,4 +1,6 @@
+import BigNumber from "bignumber.js";
 import useGetMaiarPairs from "hooks/useGetMaiarPairs";
+import useGetToken1AndToken2OfLpToken from "hooks/useGetToken1AndToken2OfLpToken";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { useEffect } from "react";
 import useSWR from "swr";
@@ -10,6 +12,11 @@ import {
   selectFromFieldValue,
   selectToFieldSelectedToken,
 } from "./swap-slice";
+import {
+  onChangeToField as onChangeSwapLpToField,
+  selectFromField,
+  selectToField,
+} from "./swapLp-slice";
 export const useGetSwapRate = () => {
   const token1 = useAppSelector(selectFromFieldSelectedToken);
   const token2 = useAppSelector(selectToFieldSelectedToken);
@@ -53,4 +60,40 @@ export const useSearchToken = (tokens: IElrondToken[], searchKey: string) => {
     });
   }
   return filteredTokens;
+};
+
+export const useSwapLpRate = () => {
+  const fromField = useAppSelector(selectFromField);
+  const toField = useAppSelector(selectToField);
+  const dispatch = useAppDispatch();
+  const { pairs } = useGetMaiarPairs();
+  const { token1, token2 } = useGetToken1AndToken2OfLpToken(
+    toField.selectedToken,
+    fromField.selectedToken
+  );
+  const { data, isLoading, error } = useSWR(
+    fromField.selectedToken && toField.selectedToken && fromField.value
+      ? [
+          token1,
+          token2,
+          new BigNumber(fromField.value).div(2).toNumber(),
+          pairs,
+        ]
+      : null,
+    smartSwapRoutes
+  );
+
+  const pair = pairs?.find((p) => p.id === toField.selectedToken);
+
+  useEffect(() => {
+    if (pair) {
+      dispatch(onChangeSwapLpToField("40"));
+    }
+  }, [dispatch, pair]);
+
+  return {
+    data: data || [],
+    isLoading,
+    error,
+  };
 };

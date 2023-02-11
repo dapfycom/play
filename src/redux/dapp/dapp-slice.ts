@@ -5,12 +5,14 @@ export interface GeneralState {
   isLoginModal: boolean;
   userAddress: string;
   sidebarMenu: boolean;
+  shard: number;
 }
 
 const initialState: GeneralState = {
   isLoginModal: false,
   userAddress: "",
   sidebarMenu: false,
+  shard: 1,
 };
 
 export const dapp = createSlice({
@@ -23,6 +25,9 @@ export const dapp = createSlice({
     setUserAddress: (state, action: PayloadAction<string>) => {
       state.userAddress = action.payload;
     },
+    setShard: (state, action: PayloadAction<number>) => {
+      state.shard = action.payload;
+    },
 
     setSidebarMenu: (state, action: PayloadAction<boolean>) => {
       state.sidebarMenu = action.payload;
@@ -33,5 +38,10 @@ export const dapp = createSlice({
 export const selectIsLoginModal = (state: AppState) => state.dapp.isLoginModal;
 export const selectUserAddress = (state: AppState) => state.dapp.userAddress;
 
-export const { openLogin, setUserAddress, setSidebarMenu } = dapp.actions;
+export const {
+  openLogin,
+  setUserAddress,
+  setSidebarMenu,
+  setShard,
+} = dapp.actions;
 export default dapp.reducer;

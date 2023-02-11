@@ -12,6 +12,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import {
   openLogin,
   selectIsLoginModal,
+  setShard,
   setUserAddress,
 } from "redux/dapp/dapp-slice";
 import Navbar from "../Navbar/Navbar";
@@ -20,7 +21,7 @@ const Layout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isLoginModal: boolean = useAppSelector(selectIsLoginModal);
-  const { address } = useGetAccountInfo();
+  const { address, shard } = useGetAccountInfo();
   const { isLoggedIn } = useGetLoginInfo();
 
   useEffect(() => {
@@ -33,7 +34,8 @@ const Layout = () => {
     dispatch(
       setUserAddress(process.env.NEXT_PUBLIC_CONNECTED_ADDRESS || address)
     );
-  }, [address, dispatch]);
+    dispatch(setShard(shard || 1));
+  }, [address, dispatch, shard]);
 
   const showFooter =
     location.pathname !== routeNames.swap &&

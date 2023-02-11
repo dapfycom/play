@@ -14,7 +14,7 @@ const useGetMaiarPairs = () => {
     fetchMaiarPairs
   );
 
-  let pairs = [];
+  let pairs: IMexPair[] = [];
   const rarePrice = dataPrice?.price;
   if (apiPairs && rarePrice) {
     pairs = [
