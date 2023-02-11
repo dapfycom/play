@@ -1,4 +1,4 @@
-import { Center } from "@chakra-ui/react";
+import { Center, Link, Text } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
 import MyTabs from "components/MyTabs/MyTabs";
 import { routeNames } from "config/routes";
@@ -37,6 +37,13 @@ const Swap = () => {
             },
           ]}
         />
+      </Center>
+      <Center mt={12}>
+        <Link isExternal href="https://buy.multiversx.com/gb">
+          <Text align={"center"} fontSize="2xl" color={"secondary"}>
+            Buy EGLD
+          </Text>
+        </Link>
       </Center>
     </MyContainer>
   );
