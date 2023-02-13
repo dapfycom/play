@@ -125,7 +125,7 @@ const Footer = () => {
 
         <Center mb="30px">
           <Text fontSize={"lsm"} textAlign="center" maxW="463.5px">
-            BeskarDAO © 2022. All rights reserved.
+            BeskarDAO © {new Date().getFullYear()}. All rights reserved.
           </Text>
         </Center>
 

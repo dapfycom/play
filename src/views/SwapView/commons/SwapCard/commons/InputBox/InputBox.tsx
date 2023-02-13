@@ -46,27 +46,10 @@ const InputBox = ({
         border={"1px"}
         borderColor="whiteT.100"
       >
-        <Flex w="full" mb="20px" gap="15px">
-          {isLoadingInput ? (
-            <Flex flex={1}>
-              <Spinner />
-            </Flex>
-          ) : (
-            <Input
-              variant={"unstyled"}
-              flex={1}
-              placeholder="0.0"
-              fontSize={{ xs: "2xl", lg: "4xl" }}
-              value={value}
-              onChange={(e) => onChange(e)}
-              color="white"
-            />
-          )}
-
+        <Flex w="full" mb="20px" gap="15px" justifyContent={"flex-end"}>
           <ActionButton
             borderRadius={{ xs: "10px", lg: "20px" }}
             px={{ xs: "10px", md: "20px" }}
-            w={{ xs: "130px", md: "220px" }}
             py="15px"
             bg={disabeledTokenSelection ? "dark.300" : "dark.100"}
             display={"flex"}
@@ -81,13 +64,17 @@ const InputBox = ({
               <Spinner />
             ) : (
               <>
-                <Flex gap={{ xs: "5px", md: "15px" }} alignItems="center">
+                <Flex
+                  gap={{ xs: "5px", md: "10px" }}
+                  alignItems="center"
+                  mr={2}
+                >
                   <Image
                     src={elrondToken?.assets.svgUrl}
                     alt={elrondToken?.ticker}
                     w={{ xs: "18px", lg: "40px" }}
                   />
-                  <Text fontSize={{ xs: "lsm", lg: "2xl" }}>
+                  <Text fontSize={{ xs: "md", lg: "xl" }}>
                     {elrondToken?.ticker}
                   </Text>
                 </Flex>
@@ -104,6 +91,22 @@ const InputBox = ({
               Balance: {formatBalance(accountToken)}
             </Text>
           </Flex>
+        )}
+
+        {isLoadingInput ? (
+          <Flex flex={1}>
+            <Spinner />
+          </Flex>
+        ) : (
+          <Input
+            variant={"unstyled"}
+            flex={1}
+            placeholder="0.0"
+            fontSize={{ xs: "2xl", lg: "4xl" }}
+            value={value}
+            onChange={(e) => onChange(e)}
+            color="white"
+          />
         )}
       </Box>
 

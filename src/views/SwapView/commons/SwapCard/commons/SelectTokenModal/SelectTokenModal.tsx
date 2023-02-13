@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 import MyModal from "components/Modal/Modal";
+import { selectedNetwork } from "config/network";
 import { useGetAllMaiarListedTokens } from "hooks/useGetAllTokensListed";
 import useGetMultipleElrondTokens from "hooks/useGetMultipleElrondTokens";
 import { useState } from "react";
@@ -25,7 +26,11 @@ interface IProps {
 
 const SelectTokenModal = ({ isOpen, onClose, selectToken }: IProps) => {
   const { maiarTokens } = useGetAllMaiarListedTokens();
-  const { tokens, isLoading } = useGetMultipleElrondTokens(maiarTokens);
+  const tokensToSwap = [
+    selectedNetwork.tokensID.egld,
+    ...maiarTokens.filter((t) => t !== selectedNetwork.tokensID.bsk),
+  ];
+  const { tokens, isLoading } = useGetMultipleElrondTokens(tokensToSwap);
   const [search, setSearch] = useState("");
   const filterdTokens = useSearchToken(tokens, search);
 
