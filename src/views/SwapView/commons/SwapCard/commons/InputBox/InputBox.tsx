@@ -13,6 +13,7 @@ interface IProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeToken: (t: string) => void;
   isLoadingInput?: boolean;
+  disabeledTokenSelection?: boolean;
 }
 
 const InputBox = ({
@@ -21,6 +22,7 @@ const InputBox = ({
   onChange,
   onChangeToken,
   isLoadingInput,
+  disabeledTokenSelection,
 }: IProps) => {
   const [openTokensListModal, setOpenTokensListModal] = useState(false);
 
@@ -66,12 +68,14 @@ const InputBox = ({
             px={{ xs: "10px", md: "20px" }}
             w={{ xs: "130px", md: "220px" }}
             py="15px"
-            bg="dark.100"
+            bg={disabeledTokenSelection ? "dark.300" : "dark.100"}
             display={"flex"}
             justifyContent="space-between"
             alignItems={"center"}
             h="auto"
             onClick={handleOpen}
+            noRipple={disabeledTokenSelection}
+            cursor={disabeledTokenSelection ? "default" : "pointer"}
           >
             {isLoading ? (
               <Spinner />
@@ -87,7 +91,9 @@ const InputBox = ({
                     {elrondToken?.ticker}
                   </Text>
                 </Flex>
-                <AngleDownIcon fontSize={{ xs: "13px", lg: "17px" }} />
+                {!disabeledTokenSelection && (
+                  <AngleDownIcon fontSize={{ xs: "13px", lg: "17px" }} />
+                )}
               </>
             )}
           </ActionButton>
@@ -101,7 +107,7 @@ const InputBox = ({
         )}
       </Box>
 
-      {openTokensListModal && (
+      {openTokensListModal && !disabeledTokenSelection && (
         <SelectTokenModal
           isOpen={openTokensListModal}
           onClose={handleClose}

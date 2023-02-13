@@ -2,10 +2,11 @@ import { Button, ButtonProps } from "@chakra-ui/react";
 import Ripple from "components/Ripple/Ripple";
 import { PropsWithChildren } from "react";
 
-const ActionButton = ({
-  children,
-  ...props
-}: PropsWithChildren<ButtonProps>) => {
+interface IProps extends PropsWithChildren<ButtonProps> {
+  noRipple?: boolean;
+}
+
+const ActionButton = ({ children, noRipple, ...props }: IProps) => {
   return (
     <Button
       position={"relative"}
@@ -15,7 +16,7 @@ const ActionButton = ({
       {...props}
     >
       {children}
-      <Ripple radius={props.borderRadius} />
+      {!noRipple && <Ripple radius={props.borderRadius} />}
     </Button>
   );
 };

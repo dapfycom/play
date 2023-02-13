@@ -211,24 +211,11 @@ export const smartSwapRoutes = async ([
 
       rate = new BigNumber(pair.basePrice).div(pair.quotePrice).toNumber();
     } else {
-      if (
-        pair.baseId === selectedNetwork.tokensID.wegld &&
-        pair.quoteId === selectedNetwork.tokensID.usdc
-      ) {
-        console.log("second if");
-
-        //wegld route
-        t1 = pair.baseId;
-        t2 = pair.quoteId;
-
-        rate = new BigNumber(pair.quotePrice).div(pair.basePrice).toNumber();
-      } else {
-        console.log("third if");
-        //usdc route
-        t1 = pair.quoteId;
-        t2 = pair.baseId;
-        rate = new BigNumber(pair.quotePrice).div(pair.basePrice).toNumber();
-      }
+      console.log("third if");
+      //usdc route
+      t1 = pair.quoteId;
+      t2 = pair.baseId;
+      rate = new BigNumber(pair.quotePrice).div(pair.basePrice).toNumber();
     }
 
     const { decimals: token1Decimals } = tokensDeciamals.find(

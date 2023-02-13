@@ -95,6 +95,7 @@ const SwapCard = () => {
             onChange={handleChangeToField}
             onChangeToken={handleChangeToToken}
             isLoadingInput={loadingRoutes}
+            disabeledTokenSelection
           />
         </Flex>
         <SubmitButton />

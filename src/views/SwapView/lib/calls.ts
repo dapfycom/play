@@ -84,7 +84,7 @@ export const submitSwap = async (
             realValue: swapInfo[0].token1AmountDecimals,
             token: fromElrondToken,
             args: dataToSend,
-            gasL: 60000000,
+            gasL: 120000000,
           });
         }
       }
@@ -150,11 +150,9 @@ export const lpSwap = async (
       .setArgs([
         BytesValue.fromUTF8(token1),
         new BigUIntValue(new BigNumber(swapInfo.token1AmountDecimals)),
-        BytesValue.fromUTF8("multiPairSwap"),
+        BytesValue.fromUTF8("swapTokensFixedInput"),
 
         //swap info
-        new AddressValue(new Address(swapInfo.sc)),
-        BytesValue.fromUTF8("swapTokensFixedInput"),
         BytesValue.fromUTF8(swapInfo.token2),
         new BigUIntValue(new BigNumber(finalAmount)),
       ])
@@ -163,7 +161,7 @@ export const lpSwap = async (
     const splitTx = new Transaction({
       sender: new Address(sender),
       value: 0,
-      receiver: new Address(selectedNetwork.scAddress.maiarRouter),
+      receiver: new Address(swapInfo.sc),
       data: payload2,
       gasLimit: 100000000,
       chainID: ChainId,
