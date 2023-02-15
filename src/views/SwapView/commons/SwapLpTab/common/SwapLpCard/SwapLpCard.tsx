@@ -26,14 +26,14 @@ const SwapLpCard = () => {
     <Box
       borderRadius={"2xl"}
       bg="dark.500"
-      maxW={"850px"}
+      maxW={"750px"}
       w="full"
-      px={{ xs: "30px", lg: "50px" }}
+      px={"30px"}
       py="35px"
       border="1px"
       borderColor={"primary"}
     >
-      <Flex flexDir={"column"} gap={8} mb={10}>
+      <Flex flexDir={"column"} gap={4} mb={10}>
         <InputBox
           type="from"
           tokenI={fromField.selectedToken}

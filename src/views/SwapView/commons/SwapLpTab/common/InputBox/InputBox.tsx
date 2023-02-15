@@ -29,11 +29,9 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
   const { elrondToken } = useGetElrondToken(tokenI);
   const { accountToken } = useGetAccountToken(tokenI);
   const [tokenPrice] = useGetTokenPrice(tokenI);
-  console.log("tokenPrice", tokenPrice);
 
   const handleMax = () => {
-    // @ts-ignore
-    handleChange(formatBalance(accountToken), true, 17);
+    handleChange(formatBalance(accountToken, true, 18) as any);
   };
   return (
     <Flex w="full" flexDir={"column"} bg="dark.100" p={4} borderRadius="md">

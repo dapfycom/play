@@ -1,5 +1,4 @@
 import { Box, Center, Flex, Heading } from "@chakra-ui/react";
-import { ArrowDownIcon } from "components/icons/ui-icons";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { IElrondAccountToken } from "types/elrond.interface";
 import { formatBalance } from "utils/functions/formatBalance";
@@ -45,8 +44,7 @@ const SwapCard = () => {
         bg="dark.500"
         maxW={"850px"}
         w="full"
-        px={{ xs: "30px", lg: "50px" }}
-        py="35px"
+        p={"30px"}
         border="1px"
         borderColor={"primary"}
       >
@@ -72,7 +70,7 @@ const SwapCard = () => {
           gap={{ xs: "5px", lg: "10px" }}
           mb="30px"
         >
-          <Box
+          {/* <Box
             position={"absolute"}
             top={{ xs: "44%", lg: "43%" }}
             left={{ xs: "44%", lg: "45%" }}
@@ -88,7 +86,7 @@ const SwapCard = () => {
             >
               <ArrowDownIcon fontSize={{ xs: "11px", lg: "22px" }} />
             </Center>
-          </Box>
+          </Box> */}
           <InputBox
             selectedTokenI={fromField.selectedToken}
             value={fromField.value}
