@@ -1,6 +1,8 @@
 import { Box, Center, Flex, Heading } from "@chakra-ui/react";
 import { ArrowDownIcon } from "components/icons/ui-icons";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
+import { IElrondAccountToken } from "types/elrond.interface";
+import { formatBalance } from "utils/functions/formatBalance";
 import { useGetSwapRate } from "views/SwapView/lib/hooks";
 import {
   changeFromFieldToken,
@@ -30,6 +32,10 @@ const SwapCard = () => {
   };
   const handleChangeToToken = (token: string) => {
     dispatch(changeToFieldToken(token));
+  };
+  const handleMax = (accountToken: IElrondAccountToken) => {
+    const userAmount = formatBalance(accountToken, true, 18);
+    dispatch(onChageFromFieldValue(userAmount.toString()));
   };
 
   return (
@@ -88,6 +94,7 @@ const SwapCard = () => {
             value={fromField.value}
             onChange={handleChangeFromField}
             onChangeToken={handleChangeFromToken}
+            onMax={handleMax}
           />
           <InputBox
             selectedTokenI={toField.selectedToken}

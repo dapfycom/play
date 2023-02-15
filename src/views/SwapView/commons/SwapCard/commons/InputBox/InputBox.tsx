@@ -4,6 +4,7 @@ import { AngleDownIcon } from "components/icons/ui-icons";
 import useGetAccountToken from "hooks/useGetAccountToken";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import React, { lazy, useState } from "react";
+import { IElrondAccountToken } from "types/elrond.interface";
 import { formatBalance } from "utils/functions/formatBalance";
 const SelectTokenModal = lazy(() => import("../SelectTokenModal"));
 
@@ -14,6 +15,7 @@ interface IProps {
   onChangeToken: (t: string) => void;
   isLoadingInput?: boolean;
   disabeledTokenSelection?: boolean;
+  onMax?: (t: IElrondAccountToken) => void;
 }
 
 const InputBox = ({
@@ -23,6 +25,7 @@ const InputBox = ({
   onChangeToken,
   isLoadingInput,
   disabeledTokenSelection,
+  onMax,
 }: IProps) => {
   const [openTokensListModal, setOpenTokensListModal] = useState(false);
 
@@ -47,6 +50,21 @@ const InputBox = ({
         borderColor="whiteT.100"
       >
         <Flex w="full" mb="20px" gap="15px" justifyContent={"flex-end"}>
+          {isLoadingInput ? (
+            <Flex flex={1}>
+              <Spinner />
+            </Flex>
+          ) : (
+            <Input
+              variant={"unstyled"}
+              flex={1}
+              placeholder="0.0"
+              fontSize={{ xs: "2xl", lg: "4xl" }}
+              value={value}
+              onChange={(e) => onChange(e)}
+              color="white"
+            />
+          )}
           <ActionButton
             borderRadius={{ xs: "10px", lg: "20px" }}
             px={{ xs: "10px", md: "20px" }}
@@ -87,26 +105,14 @@ const InputBox = ({
         </Flex>
         {accountToken && (
           <Flex justifyContent={"flex-end"}>
-            <Text fontSize={{ xs: "xs", lg: "lg" }}>
+            <Text
+              fontSize={{ xs: "xs", lg: "lg" }}
+              onClick={() => onMax(accountToken as IElrondAccountToken)}
+              cursor="pointer"
+            >
               Balance: {formatBalance(accountToken)}
             </Text>
           </Flex>
-        )}
-
-        {isLoadingInput ? (
-          <Flex flex={1}>
-            <Spinner />
-          </Flex>
-        ) : (
-          <Input
-            variant={"unstyled"}
-            flex={1}
-            placeholder="0.0"
-            fontSize={{ xs: "2xl", lg: "4xl" }}
-            value={value}
-            onChange={(e) => onChange(e)}
-            color="white"
-          />
         )}
       </Box>
 
