@@ -11,14 +11,14 @@ import BigNumber from "bignumber.js";
 import { selectedNetwork } from "config/network";
 import store from "redux/store";
 import {
-  EGLDPayment,
-  ESDTTransfer,
+  EGLDPaymentOnlyTx,
+  ESDTTransferOnlyTx,
   sendMultipleTransactions,
 } from "services/sc/calls";
 import { IElrondToken } from "types/elrond.interface";
 import { IRoute } from "types/swap.interface";
 import { setElrondBalance } from "utils/functions/formatBalance";
-import { getScOfWrapedEgld } from "utils/functions/sc";
+import { getScOfWrapedEgld, getWspOfWrapedEgld } from "utils/functions/sc";
 
 export const submitSwap = async (
   swapInfo: IRoute[],
@@ -33,7 +33,9 @@ export const submitSwap = async (
   },
   fromElrondToken: IElrondToken
 ) => {
-  const toknesID = selectedNetwork.tokensID;
+  let swapToken = fromToken.token;
+  console.log("swapInfo", swapInfo);
+
   const dataToSend = swapInfo.flatMap((item) => {
     const amountWithSlipage = new BigNumber(item.token2AmountDecimals)
       .multipliedBy(slipapge)
@@ -51,45 +53,30 @@ export const submitSwap = async (
       new BigUIntValue(new BigNumber(finalAmount)),
     ];
   });
-  // if user want EGLD -> WEGLD
-  if (fromToken.token === "EGLD" && toToken.token === toknesID.wegld) {
-    return await EGLDPayment(
-      "wrapEgldpWspShard1",
-      "wrapEgld",
-      Number(fromToken.value),
-      [],
-      60000000
-    );
-  } else {
-    // if user want WEGLD -> EGLD
-    if (fromToken.token === toknesID.wegld && toToken.token === "EGLD") {
-      return await ESDTTransfer({
-        funcName: "unwrapEgld",
-        val: Number(fromToken.value),
-        token: fromElrondToken,
-        contractAddr: selectedNetwork.scAddress.wrapEgldShar1,
-        gasL: 60000000,
-      });
-    } else {
-      // if User want to send EGLD
-      if (fromToken.token === "EGLD") {
-      } else {
-        // if User want to receive EGLD
-        if (toToken.token === "EGLD") {
-        } else {
-          // is user is going to swap 2 tokens
-          return await ESDTTransfer({
-            funcName: "multiPairSwap",
-            contractAddr: selectedNetwork.scAddress.maiarRouter,
-            realValue: swapInfo[0].token1AmountDecimals,
-            token: fromElrondToken,
-            args: dataToSend,
-            gasL: 120000000,
-          });
-        }
-      }
-    }
+
+  const transactions = [];
+
+  if (fromToken.token === selectedNetwork.tokensID.egld) {
+    swapToken = selectedNetwork.tokensID.wegld;
+    const shard = store.getState().dapp.shard;
+    const wrapedWsp = getWspOfWrapedEgld(shard);
+
+    const t0 = await EGLDPaymentOnlyTx(wrapedWsp, "wrapEgld", fromToken.value);
+    transactions.push(t0);
   }
+
+  // is user is going to swap 2 tokens
+  const t1 = await ESDTTransferOnlyTx({
+    funcName: "multiPairSwap",
+    contractAddr: selectedNetwork.scAddress.maiarRouter,
+    realValue: swapInfo[0].token1AmountDecimals,
+    token: { identifier: swapToken, decimals: fromElrondToken.decimals },
+    args: dataToSend,
+    gasL: 120000000,
+  });
+  transactions.push(t1);
+
+  return await sendMultipleTransactions({ txs: transactions });
 };
 
 export const lpSwap = async (

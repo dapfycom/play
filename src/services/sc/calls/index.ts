@@ -69,7 +69,7 @@ export const ESDTNFTTransfer = async (
   funcName = "",
   userAddress = "",
   value = 0,
-  token: { collection: string; nonce: string },
+  token: { collection: string; nonce: string; decimals: number },
   contractAddr = "",
   gasL = 200000000,
   args = [],
@@ -183,6 +183,110 @@ export const EGLDPayment = async (
   };
 
   return await sendTransaction(transactionData);
+};
+
+// tx
+
+export const ESDTTransferOnlyTx = async ({
+  funcName,
+  token,
+  val = 0,
+  contractAddr = "",
+  args = [],
+  gasL = 60000000,
+  realValue = null,
+}) => {
+  const sender = store.getState().dapp.userAddress;
+  const senderAddress = new Address(sender);
+  const receiverAddress = new Address(contractAddr);
+  console.log("receiverAddress", receiverAddress);
+
+  const tokenIdentifier = token.identifier;
+  const multiplyier = Math.pow(10, token.decimals || 18);
+  const finalValue = realValue || Number(val) * multiplyier;
+
+  const bgFinalValue = new BigNumber(finalValue).toFixed(0);
+  const payload = TransactionPayload.contractCall()
+    .setFunction(new ContractFunction("ESDTTransfer"))
+    .setArgs([
+      BytesValue.fromUTF8(tokenIdentifier),
+      new BigUIntValue(new BigNumber(bgFinalValue)),
+      BytesValue.fromUTF8(funcName),
+      ...args,
+    ])
+    .build();
+
+  const tx = new Transaction({
+    sender: senderAddress,
+    value: 0,
+    receiver: receiverAddress,
+    data: payload,
+    gasLimit: gasL || 60000000,
+    chainID: selectedNetwork.ChainID,
+  });
+  return tx;
+};
+export const scCallOnlyTx = async (
+  workspace: WspTypes,
+  funcName: string,
+  args: any = [],
+  gasLimit?: number
+) => {
+  let { simpleAddress } = getInterface(workspace);
+  const sender = store.getState().dapp.userAddress;
+  const senderAddress = new Address(sender);
+
+  const receiverAddress = new Address(simpleAddress);
+
+  if (simpleAddress === "") {
+    simpleAddress = workspace;
+  }
+
+  const payload = TransactionPayload.contractCall()
+    .setFunction(new ContractFunction(funcName))
+    .setArgs(args)
+    .build();
+
+  const tx = new Transaction({
+    sender: senderAddress,
+    value: 0,
+    receiver: receiverAddress,
+    data: payload,
+    gasLimit: gasLimit || 60000000,
+    chainID: selectedNetwork.ChainID,
+  });
+  return tx;
+};
+export const EGLDPaymentOnlyTx = async (
+  workspace: WspTypes,
+  funcName,
+  amount,
+  args = [],
+  gasLimit = 60000000,
+  finalAmount = null
+) => {
+  let { simpleAddress } = getInterface(workspace);
+  const sender = store.getState().dapp.userAddress;
+  const senderAddress = new Address(sender);
+  const receiverAddress = new Address(simpleAddress);
+  if (simpleAddress === "") {
+    simpleAddress = workspace;
+  }
+
+  const payload = TransactionPayload.contractCall()
+    .setFunction(new ContractFunction(funcName))
+    .setArgs(args)
+    .build();
+
+  const tx = new Transaction({
+    sender: senderAddress,
+    value: finalAmount ?? amount * EGLD_VAL,
+    receiver: receiverAddress,
+    data: payload,
+    gasLimit: gasLimit || 60000000,
+    chainID: selectedNetwork.ChainID,
+  });
+  return tx;
 };
 
 export const wrapEgldAndEsdtTranfer = async (

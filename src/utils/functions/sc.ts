@@ -1,4 +1,5 @@
 import { selectedNetwork } from "config/network";
+import { WspTypes } from "services/sc";
 
 export const getScOfWrapedEgld = (shard: number): string => {
   switch (shard) {
@@ -11,5 +12,18 @@ export const getScOfWrapedEgld = (shard: number): string => {
 
     default:
       return selectedNetwork.scAddress.wrapEgldShar1;
+  }
+};
+export const getWspOfWrapedEgld = (shard: number): WspTypes => {
+  switch (shard) {
+    case 0:
+      return "wrapEgldpWsp";
+    case 1:
+      return "wrapEgldpWspShard1";
+    case 2:
+      return "wrapEgldpWspShard2";
+
+    default:
+      return "wrapEgldpWspShard1";
   }
 };
