@@ -716,3 +716,39 @@ export const TipsIcon = createIcon({
     </svg>
   ),
 });
+export const FileIcon = createIcon({
+  displayName: "FileIcon",
+  viewBox: "0 0 24 24",
+  path: (
+    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path>
+    </svg>
+  ),
+});
+
+export const UploadFIleIcon = createIcon({
+  displayName: "UploadFileIcon",
+  viewBox: "0 0 24 24",
+  path: (
+    <svg
+      stroke="currentColor"
+      fill="none"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      height="24px"
+      width="24px"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <desc></desc>
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+      <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+      <path d="M12 11v6"></path>
+      <path d="M9.5 13.5l2.5 -2.5l2.5 2.5"></path>
+    </svg>
+  ),
+});

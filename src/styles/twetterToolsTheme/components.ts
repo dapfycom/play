@@ -62,4 +62,14 @@ export const components: ThemeComponents = {
       },
     },
   },
+  Input: {
+    defaultProps: {
+      size: "sm",
+    },
+  },
+  Select: {
+    defaultProps: {
+      size: "sm",
+    },
+  },
 };

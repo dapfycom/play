@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Heading,
   Radio,
@@ -6,9 +7,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { audienceList } from "../../utils/constants";
 
 const Audience = () => {
+  const [audienceId, setAudience] = useState("0");
+  const handleChangeAudience = (e) => {
+    setAudience(e.target.value);
+  };
   return (
     <Flex flexDir={"column"}>
       <Heading as="h3" fontSize={"md"} mb={2}>
@@ -21,13 +27,22 @@ const Audience = () => {
         <Stack ml={3} spacing={3}>
           {audienceList.map((audience, i) => {
             return (
-              <Radio key={i} size="lg" value={audience.id}>
+              <Radio
+                key={i}
+                size="lg"
+                value={audience.id}
+                onChange={handleChangeAudience}
+              >
                 <Text fontSize={"12px"}> {audience.title}</Text>
               </Radio>
             );
           })}
         </Stack>
       </RadioGroup>
+
+      <Box mt={4}>
+        {audienceList?.find((a) => a.id === audienceId)?.component}
+      </Box>
     </Flex>
   );
 };
