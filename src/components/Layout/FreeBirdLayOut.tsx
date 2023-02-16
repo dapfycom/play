@@ -1,7 +1,8 @@
-import { Box, Flex, Grid, Icon } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex, Grid, Icon } from "@chakra-ui/react";
 import { mainSiteRoutes, routeNames } from "config/routes";
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { freeBirdTheme } from "styles/twetterToolsTheme/theme";
 import { isActiveRoute } from "utils/functions/urls";
 
 const FreeBirdLayOut = () => {
@@ -18,33 +19,35 @@ const FreeBirdLayOut = () => {
     }
   }, [location.pathname, navigate]);
   return (
-    <Box minH="100vh">
-      <Grid w="full" templateColumns={{ xs: "1fr", xl: "30% auto" }}>
-        <Flex flexDir={"column"} display={{ xs: "none", xl: "flex" }}>
-          {twitterRoutes?.map((route) => {
-            const isActive = isActiveRoute(route.path, location.pathname);
+    <ChakraProvider resetCSS theme={freeBirdTheme}>
+      <Box minH="100vh">
+        <Grid w="full" templateColumns={{ xs: "1fr", xl: "30% auto" }}>
+          <Flex flexDir={"column"} display={{ xs: "none", xl: "flex" }}>
+            {twitterRoutes?.map((route) => {
+              const isActive = isActiveRoute(route.path, location.pathname);
 
-            return (
-              <Flex
-                key={route.path}
-                p={4}
-                _hover={{
-                  color: "primary",
-                }}
-                color={isActive ? "primary" : "white"}
-                gap={4}
-              >
-                <Icon as={route.icon} fontSize="30px" />
-                <Link to={route.path}>{route.title}</Link>
-              </Flex>
-            );
-          })}
-        </Flex>
-        <Flex w="full">
-          <Outlet />
-        </Flex>
-      </Grid>
-    </Box>
+              return (
+                <Flex
+                  key={route.path}
+                  p={4}
+                  _hover={{
+                    color: "primary",
+                  }}
+                  color={isActive ? "primary" : "black"}
+                  gap={4}
+                >
+                  <Icon as={route.icon} fontSize="30px" />
+                  <Link to={route.path}>{route.title}</Link>
+                </Flex>
+              );
+            })}
+          </Flex>
+          <Flex w="full">
+            <Outlet />
+          </Flex>
+        </Grid>
+      </Box>
+    </ChakraProvider>
   );
 };
 

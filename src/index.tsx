@@ -1,26 +1,23 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import App from "App";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import store from "redux/store";
-import customTheme from "styles/chakraTheme";
+import { mainTheme } from "styles/mainTheme/theme";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
- 
-    <Provider store={store}>
-      <ChakraProvider resetCSS theme={customTheme}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </ChakraProvider>
-    </Provider>
-  
+  <Provider store={store}>
+    <ChakraProvider resetCSS theme={mainTheme}>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </ChakraProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
