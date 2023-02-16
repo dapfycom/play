@@ -36,6 +36,7 @@ const WelcomeMessage = () => {
             borderRadius="full"
             variant={view === "out" ? "solid" : "ghost"}
             onClick={() => handleChangeView("out")}
+            color="black"
           >
             <SendMessageIcon fontSize={"xl"} mr={1} />
             Outbound Welcome message
@@ -44,6 +45,7 @@ const WelcomeMessage = () => {
             fontSize={{ xs: "xs", md: "sm" }}
             borderRadius="full"
             variant={view === "in" ? "solid" : "ghost"}
+            color="black"
             onClick={() => handleChangeView("in")}
           >
             <AMessageIcon fontSize={"xl"} mr={1} />

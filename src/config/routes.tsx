@@ -14,6 +14,8 @@ import FreeBirdLayOut from "components/Layout/FreeBirdLayOut";
 import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { Outlet, RouteObject } from "react-router-dom";
+import BulkDms from "views/FreeBird/BulkDms/BulkDms";
+import Giveaways from "views/FreeBird/Giveaways/Giveaways";
 import WelcomeMessage from "views/FreeBird/WelcomeMessage/WelcomeMessage";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
@@ -117,7 +119,7 @@ export const mainSiteRoutes = [
       },
       {
         path: routeNames.freebirdBulkDms,
-        element: <CoinFlipView />,
+        element: <BulkDms />,
         title: "Bulk DMs",
         icon: MultipleMessageIcon,
       },
@@ -129,7 +131,7 @@ export const mainSiteRoutes = [
       },
       {
         path: routeNames.freebirdGiveaways,
-        element: <SwapLpTab />,
+        element: <Giveaways />,
         title: "Giveaways",
         icon: GiveawaysIcon,
       },

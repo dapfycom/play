@@ -13,8 +13,8 @@ export const freeBirdTheme = extendTheme({
         overflowX: "hidden",
         bg: "white",
         bgSize: "700px",
-        color: "black",
-        fontSize: "md",
+        color: "#1A202C",
+        fontSize: "sm",
         fontFamily: "Rexton",
       },
       "*": {
@@ -46,7 +46,10 @@ export const freeBirdTheme = extendTheme({
       },
     }),
   },
-
+  config: {
+    initialColorMode: "light",
+    seSystemColorMode: false,
+  },
   components,
   colors,
   breakpoints,

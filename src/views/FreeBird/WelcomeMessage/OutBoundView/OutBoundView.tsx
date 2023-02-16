@@ -77,7 +77,7 @@ const OutBoundView = () => {
   };
   return (
     <Box fontSize={"sm"}>
-      <Text mb={6} fontSize="sm" color="white">
+      <Text mb={6} fontSize="sm" color="blackT.600">
         Send an automatic Direct Message to your new followers
       </Text>
       <FormControl display="flex" alignItems="center" mb={3}>

@@ -7,7 +7,10 @@ import { fontSizes } from "./fontSizes";
 
 export const mainTheme = extendTheme({
   components,
-
+  config: {
+    initialColorMode: "dark",
+    seSystemColorMode: false,
+  },
   styles: {
     global: () => ({
       body: {
