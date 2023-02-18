@@ -110,12 +110,20 @@ export const ESDTTransfer = async ({
   args = [],
   gasL = 200000000,
   realValue = null,
+}: {
+  funcName: string;
+  token: { identifier: string; decimals: number };
+  val?: string | number;
+  contractAddr: string;
+  args?: any[];
+  gasL?: number;
+  realValue?: number | string;
 }) => {
   const tokenIdentifier = token.identifier;
-  const multiplyier = Math.pow(10, token.decimals || 18);
-  const finalValue = realValue || Number(val) * multiplyier;
+  const multiplyier = new BigNumber(10).pow(token.decimals || 18);
+  const finalValue = new BigNumber(val).multipliedBy(multiplyier).toString();
 
-  const bgFinalValue = new BigNumber(finalValue).toFixed(0);
+  const bgFinalValue = new BigNumber(realValue || finalValue).toFixed(0);
   const payload = TransactionPayload.contractCall()
     .setFunction(new ContractFunction("ESDTTransfer"))
     .setArgs([

@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  Collapse,
   Flex,
   Image,
   Text,
@@ -40,7 +41,10 @@ const FarmComponent = () => {
           <FarmInfo />
           <FarmMainButtons isOpen={isOpen} />
         </Flex>
-        {isOpen && <StakedInfo />}
+        <Collapse in={isOpen}>
+        <StakedInfo />
+        </Collapse>
+     
       </Box>
 
       <Text mt={20}>

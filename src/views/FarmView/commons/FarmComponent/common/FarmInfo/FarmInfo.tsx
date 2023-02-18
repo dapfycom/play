@@ -1,6 +1,15 @@
 import { Flex, Text } from "@chakra-ui/react";
+import {
+  useGetFarmsInfo,
+  useGetFarmUserInfo,
+} from "views/FarmView/utils/hooks";
 
 const FarmInfo = () => {
+  const userInfo = useGetFarmUserInfo();
+  const farms = useGetFarmsInfo();
+  console.log("userInfo", userInfo);
+  console.log("farms", farms);
+
   return (
     <Flex gap={7} fontSize="lsm" flexDir={{ xs: "column", lg: "row" }}>
       <FarmDetail title="APR" value="26.99%" />
