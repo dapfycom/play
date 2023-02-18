@@ -46,7 +46,13 @@ const Layout = () => {
       <Box pb="20">
         <Navbar />
         {isLoginModal && <Login isLoginOpen={isLoginModal} />}
-        <Box pt={"70px"}>
+        <Box
+          sx={{
+            "& >div": {
+              pt: "70px",
+            },
+          }}
+        >
           <Outlet />
         </Box>
         {showFooter && <Footer />}

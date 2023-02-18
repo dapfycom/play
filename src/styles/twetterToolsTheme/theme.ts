@@ -15,7 +15,8 @@ export const freeBirdTheme = extendTheme({
         bgSize: "700px",
         color: "#1A202C",
         fontSize: "sm",
-        fontFamily: "Rexton",
+        fontFamily:
+          "-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
       },
       "*": {
         "&::-webkit-scrollbar": {

@@ -24,7 +24,7 @@ import Nav from "./commons/Nav";
 
 const Footer = () => {
   return (
-    <Box as="footer">
+    <Box as="footer" pt={"50px"}>
       <MyContainer>
         <Flex
           w="full"
