@@ -18,6 +18,8 @@ const FreeBirdLayOut = () => {
       navigate(routeNames.freebirdWelcomeMessage);
     }
   }, [location.pathname, navigate]);
+  const id = "section-id-" + Date.now();
+
   return (
     <ChakraProvider resetCSS theme={freeBirdTheme}>
       <Box minH="100vh">

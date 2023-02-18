@@ -13,6 +13,7 @@ import { routes } from "config/routes";
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "styles/globals.css";
+
 const router = createBrowserRouter(routes);
 export const walletConnectV2ProjectId = "9b1a9564f91cb659ffe21b73d5c4e2d8";
 

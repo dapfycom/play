@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account";
 import { useGetAccountInfo } from "@elrondnetwork/dapp-core/hooks/account/useGetAccountInfo";
 import Footer from "components/Footer";
@@ -15,6 +15,7 @@ import {
   setShard,
   setUserAddress,
 } from "redux/dapp/dapp-slice";
+import { mainTheme } from "styles/mainTheme/theme";
 import Navbar from "../Navbar/Navbar";
 
 const Layout = () => {
@@ -41,14 +42,16 @@ const Layout = () => {
     location.pathname !== routeNames.swap &&
     location.pathname !== routeNames.swapLp;
   return (
-    <Box pb="20">
-      <Navbar />
-      {isLoginModal && <Login isLoginOpen={isLoginModal} />}
-      <Box pt={"70px"}>
-        <Outlet />
+    <ChakraProvider resetCSS theme={mainTheme}>
+      <Box pb="20">
+        <Navbar />
+        {isLoginModal && <Login isLoginOpen={isLoginModal} />}
+        <Box pt={"70px"}>
+          <Outlet />
+        </Box>
+        {showFooter && <Footer />}
       </Box>
-      {showFooter && <Footer />}
-    </Box>
+    </ChakraProvider>
   );
 };
 

@@ -1,10 +1,8 @@
-import { ChakraProvider } from "@chakra-ui/react";
 import App from "App";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import store from "redux/store";
-import { mainTheme } from "styles/mainTheme/theme";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
@@ -12,11 +10,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <ChakraProvider resetCSS theme={mainTheme}>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </ChakraProvider>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </Provider>
 );
 
