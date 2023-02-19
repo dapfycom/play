@@ -28,7 +28,7 @@ const FarmMainButtons = ({ isOpen }: IProps) => {
         onClick={handleHarvest}
         w={{ xs: "full", lg: "auto" }}
       >
-        Harvest
+        Stop Farm
       </ActionButton>
       <ActionButton
         bg={"dark.200"}

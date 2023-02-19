@@ -1,10 +1,14 @@
 import {
   AbiRegistry,
   Address,
+  ArgSerializer,
   ContractFunction,
+  EndpointParameterDefinition,
   ResultsParser,
   SmartContract,
   SmartContractAbi,
+  TypeExpressionParser,
+  TypeMapper,
 } from "@elrondnetwork/erdjs/out";
 import { getInterface, provider, WspTypes } from "../index";
 
@@ -63,4 +67,48 @@ export const scSimpleQuery = async (
   } catch (error) {
     console.log(error);
   }
+};
+
+export const scQueryByFieldsDefinitions = async (
+  workspace: WspTypes,
+  funcName = "",
+  args = [],
+  dataFields?: any
+) => {
+  const { address: scAddress, abiUrl, implementsInterfaces } = getInterface(
+    workspace
+  );
+  const abiRegistry = await AbiRegistry.create(abiUrl);
+  const abi = new SmartContractAbi(abiRegistry, [implementsInterfaces]);
+  const contract = new SmartContract({
+    address: scAddress,
+    abi: abi,
+  });
+
+  const query = contract.createQuery({
+    func: new ContractFunction(funcName),
+    args: args,
+  });
+
+  const queryResponse = await provider.queryContract(query);
+
+  const response = queryResponse.returnData
+    .map((item: string) => Buffer.from(item, "base64").toString("hex"))
+    .join("@");
+  const serializer = new ArgSerializer();
+  const typeParser = new TypeExpressionParser();
+  const typeMapper = new TypeMapper();
+
+  const fieldDefinitions = dataFields.map(
+    ([name, expression]) =>
+      new EndpointParameterDefinition(
+        name,
+        "",
+        typeMapper.mapType(typeParser.parse(expression))
+      )
+  );
+
+  const parsed = serializer.stringToValues(response, fieldDefinitions);
+
+  return parsed;
 };

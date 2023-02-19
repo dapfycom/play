@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
+import { withdraw } from "views/FarmView/utils/services";
 import StakedDetails from "./StakedDetails/StakedDetails";
 
 const StakedInfo = () => {
@@ -20,6 +21,7 @@ const StakedInfo = () => {
           bg="dark.200"
           fontSize={"xs"}
           w={{ xs: "full", tablet: "auto" }}
+          onClick={withdraw}
         >
           {" "}
           wiithdraw

@@ -7,8 +7,8 @@ import {
 const FarmInfo = () => {
   const userInfo = useGetFarmUserInfo();
   const farms = useGetFarmsInfo();
-  console.log("userInfo", userInfo);
   console.log("farms", farms);
+  console.log("userInfo", userInfo);
 
   return (
     <Flex gap={7} fontSize="lsm" flexDir={{ xs: "column", lg: "row" }}>
