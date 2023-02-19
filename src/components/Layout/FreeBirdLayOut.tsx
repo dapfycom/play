@@ -1,9 +1,9 @@
-import { Box, Flex, Grid, Icon } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Grid, Icon } from "@chakra-ui/react";
+import beskarLogo from "assets/images/logo/beskar.svg";
 import { mainSiteRoutes, routeNames } from "config/routes";
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { isActiveRoute } from "utils/functions/urls";
-
 const FreeBirdLayOut = () => {
   let location = useLocation();
   const navigate = useNavigate();
@@ -17,11 +17,17 @@ const FreeBirdLayOut = () => {
       navigate(routeNames.freebirdWelcomeMessage);
     }
   }, [location.pathname, navigate]);
-  const id = "section-id-" + Date.now();
 
   return (
-    <Box minH="100vh" bg="white" fontFamily={"mono"}>
-      <Grid w="full" templateColumns={{ xs: "1fr", xl: "350px auto" }}>
+    <Box
+      minH="100vh"
+      bg="white"
+      fontFamily={
+        "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol"
+      }
+      paddingTop={"0px !important"}
+    >
+      <Grid w="full" templateColumns={{ xs: "1fr", xl: "220px auto" }}>
         <Flex
           flexDir={{ xs: "row", xl: "column" }}
           display={"flex"}
@@ -32,9 +38,16 @@ const FreeBirdLayOut = () => {
           borderColor={{ xs: "blackT.200", xl: "transparent" }}
           pb={{ xs: "5px", xl: "0" }}
           w="full"
-          bg={{ xs: "white", xl: "transparent" }}
+          bg={{ xs: "white", xl: "gray.50" }}
           zIndex={1}
         >
+          <Flex w="full" px={4} gap={3} alignItems="center" pt="4" mb={4}>
+            <Avatar size="xs" name="Beskar Dao" src={beskarLogo} />{" "}
+            <Flex color="gray.700" fontSize={"12px"} fontWeight="600">
+              Beskar DAO | Multiversx
+            </Flex>
+          </Flex>
+
           {twitterRoutes?.map((route) => {
             const isActive = isActiveRoute(route.path, location.pathname);
 
@@ -45,20 +58,26 @@ const FreeBirdLayOut = () => {
                 _hover={{
                   color: "primary",
                 }}
-                color={isActive ? "primary" : "blackT.600"}
-                gap={4}
+                color={isActive ? "primary" : "gray.600"}
+                gap={2}
                 as={Link}
                 to={route.path}
+                alignItems="center"
               >
-                <Icon as={route.icon} fontSize={{ xs: "20px", md: "30px" }} />
-                <Box as="span" display={{ xs: "none", xl: "inline" }}>
+                <Icon as={route.icon} fontSize={{ xs: "20px", md: "18px" }} />
+                <Box
+                  as="span"
+                  display={{ xs: "none", xl: "inline" }}
+                  fontSize="14px"
+                  fontWeight={"500"}
+                >
                   {route.title}
                 </Box>
               </Flex>
             );
           })}
         </Flex>
-        <Flex w="full">
+        <Flex w="full" pt="4">
           <Outlet />
         </Flex>
       </Grid>

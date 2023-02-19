@@ -10,8 +10,8 @@ import {
 import ActionButton from "components/ActionButton/ActionButton";
 const InboundView = () => {
   return (
-    <Box fontSize={"sm"}>
-      <Text mb={12} fontSize="sm" color="white">
+    <Box w="full">
+      <Text mb={8}>
         The users will receive this Direct Message when they open your chat.
       </Text>
       <FormControl display="flex" alignItems="center" mb={3}>
@@ -19,7 +19,8 @@ const InboundView = () => {
           htmlFor="disabled"
           mb="0"
           flex={1}
-          fontSize="sm"
+          color="gray.800"
+          fontWeight={"500"}
           cursor={"pointer"}
         >
           Disabled
@@ -28,13 +29,12 @@ const InboundView = () => {
       </FormControl>
 
       <Textarea
-        fontSize={"sm"}
         placeholder="Hello, welcome to my Twitter inbox. I'll try to make my best to get back to you soon. In the meantime you might even find your answer at one of these link!"
         rows={8}
       />
       <Flex justify="flex-end" mt={5} mb={8}>
-        <ActionButton bg="dark.400" fontSize={"sm"}>
-          Save
+        <ActionButton bg="dark.500" fontSize={"14px"}>
+          Save message
         </ActionButton>
       </Flex>
     </Box>

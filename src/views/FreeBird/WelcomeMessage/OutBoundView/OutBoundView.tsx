@@ -76,8 +76,8 @@ const OutBoundView = () => {
     }
   };
   return (
-    <Box fontSize={"sm"}>
-      <Text mb={6} fontSize="sm" color="blackT.600">
+    <Box w="full">
+      <Text mb={3} color="gray.500">
         Send an automatic Direct Message to your new followers
       </Text>
       <FormControl display="flex" alignItems="center" mb={3}>
@@ -85,8 +85,9 @@ const OutBoundView = () => {
           htmlFor="disabled"
           mb="0"
           flex={1}
-          fontSize="sm"
           cursor={"pointer"}
+          color="gray.800"
+          fontWeight={"500"}
         >
           Disabled
         </FormLabel>
@@ -94,10 +95,9 @@ const OutBoundView = () => {
       </FormControl>
       <Alert status="error" borderRadius={"md"} mb={5}>
         <AlertIcon />
-        There was an error processing your request
+        Your auto-DM is not enabled yet
       </Alert>
       <Select
-        fontSize={"sm"}
         placeholder="Choose message from a template"
         mb={3}
         value={0}
@@ -112,18 +112,17 @@ const OutBoundView = () => {
         })}
       </Select>
       <Textarea
-        fontSize={"sm"}
         placeholder="Hey, thanks for following me! How can I help you?"
         value={selectedTempalte.message}
         rows={8}
       />
       <Flex justify="flex-end" mt={5} mb={8}>
-        <ActionButton bg="dark.400" fontSize={"sm"}>
-          Save
+        <ActionButton bg="dark.500" fontSize="14px">
+          Update message
         </ActionButton>
       </Flex>
 
-      <Alert status="warning" borderRadius={"md"} mb={12}>
+      <Alert status="warning" borderRadius={"md"} mb={12} fontSize="14px">
         <AlertIcon />
         By sending a welcome message, you'll start new engaging conversations
         with your followers 🤝
@@ -131,22 +130,22 @@ const OutBoundView = () => {
       <Card variant="elevated">
         <CardBody>
           <Flex gap={2} alignItems="center" mb={2}>
-            <TipsIcon fontSize={"2xl"} />
-            <Heading size="sm">Tips</Heading>
+            <TipsIcon fontSize={"2xl"} color="blue.200" />
+            <Heading size="md">Tips</Heading>
           </Flex>
           <Flex gap={8}>
             <Box></Box>
-            <List spacing={3} fontSize="xs">
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
+            <List spacing={3} fontSize="14px">
+              <ListItem display={"flex"} alignItems={"center"}>
+                <ListIcon as={StarIcon} color="blue.200" fontSize={"sm"} />
                 Don't be spammy — avoid sending links or promoting your website
               </ListItem>
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
+              <ListItem display={"flex"} alignItems={"center"}>
+                <ListIcon as={StarIcon} color="blue.200" fontSize={"sm"} />
                 Be kind and helpful
               </ListItem>
-              <ListItem>
-                <ListIcon as={StarIcon} color="green.500" />
+              <ListItem display={"flex"} alignItems={"center"}>
+                <ListIcon as={StarIcon} color="blue.200" fontSize={"sm"} />
                 Close the message with a question
               </ListItem>
             </List>

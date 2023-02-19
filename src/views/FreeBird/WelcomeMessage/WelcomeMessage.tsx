@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Center, Flex } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 import { AMessageIcon, SendMessageIcon } from "components/icons/ui-icons";
 import { useState } from "react";
@@ -28,24 +28,29 @@ const WelcomeMessage = () => {
   }
 
   return (
-    <Flex w="full" px={{ xs: 4, md: 10 }}>
-      <Flex flexDir={"column"} align={{ xs: "center", xl: "flex-start" }}>
-        <Flex gap={2} mb={14} flexDir={{ xs: "column", lg: "row" }}>
+    <Center w="full" px={{ xs: 4, md: 10 }}>
+      <Flex
+        flexDir={"column"}
+        align={{ xs: "center", xl: "flex-start" }}
+        w="full"
+        maxW={"700px"}
+      >
+        <Flex gap={2} mb={10} flexDir={{ xs: "column", lg: "row" }}>
           <ActionButton
-            fontSize={{ xs: "xs", md: "sm" }}
             borderRadius="full"
             variant={view === "out" ? "solid" : "ghost"}
             onClick={() => handleChangeView("out")}
-            color="black"
+            color={view === "out" ? "gray.700" : "gray.400"}
+            fontWeight={"bold"}
           >
-            <SendMessageIcon fontSize={"xl"} mr={1} />
+            <SendMessageIcon fontSize={"22px"} mr={1} />
             Outbound Welcome message
           </ActionButton>
           <ActionButton
-            fontSize={{ xs: "xs", md: "sm" }}
             borderRadius="full"
             variant={view === "in" ? "solid" : "ghost"}
-            color="black"
+            color={view === "in" ? "gray.700" : "gray.400"}
+            fontWeight={"bold"}
             onClick={() => handleChangeView("in")}
           >
             <AMessageIcon fontSize={"xl"} mr={1} />
@@ -54,7 +59,7 @@ const WelcomeMessage = () => {
         </Flex>
         {componentView}
       </Flex>
-    </Flex>
+    </Center>
   );
 };
 
