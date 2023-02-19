@@ -54,7 +54,8 @@ const FreeBirdLayOut = () => {
             return (
               <Flex
                 key={route.path}
-                p={4}
+                px={4}
+                py={2}
                 _hover={{
                   color: "primary",
                 }}
@@ -77,7 +78,7 @@ const FreeBirdLayOut = () => {
             );
           })}
         </Flex>
-        <Flex w="full" pt="4">
+        <Flex w="full" pt="8">
           <Outlet />
         </Flex>
       </Grid>

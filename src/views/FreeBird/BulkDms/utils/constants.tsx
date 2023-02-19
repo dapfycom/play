@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import FollowersOFAccount from "../commons/Audience/AudienceComponents/FollowersOFAccount/FollowersOFAccount";
+import Giveaway from "../commons/Audience/AudienceComponents/Giveaway/Giveaway";
 import ImportCsv from "../commons/Audience/AudienceComponents/ImportCsv/ImportCsv";
+import LatestFollowers from "../commons/Audience/AudienceComponents/LatestFollowers/LatestFollowers";
 import LeadsList from "../commons/Audience/AudienceComponents/LeadsList/LeadsList";
 import ManuallySelect from "../commons/Audience/AudienceComponents/ManuallySelect/ManuallySelect";
 import TweetLink from "../commons/Audience/AudienceComponents/TweetLink/TweetLink";
@@ -44,10 +46,12 @@ export const audienceList: {
   {
     title: "Your latest followers",
     id: "6",
+    component: <LatestFollowers />,
   },
   {
     title: "Giveaway",
     id: "7",
+    component: <Giveaway />,
   },
   {
     title: "Search by keyboard",

@@ -5,8 +5,8 @@ import Timeline from "./Timeline/Timeline";
 
 const CreateGiveaway = () => {
   return (
-    <Flex flexDir={"column"}>
-      <Heading fontSize={"lg"} fontWeight="700">
+    <Flex flexDir={"column"} maxW="700px">
+      <Heading fontSize={"xl"} fontWeight="700" color={"gray.600"}>
         Create Giveaway
       </Heading>
 

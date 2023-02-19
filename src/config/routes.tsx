@@ -16,6 +16,8 @@ import React from "react";
 import { Outlet, RouteObject } from "react-router-dom";
 import BulkDms from "views/FreeBird/BulkDms/BulkDms";
 import Giveaways from "views/FreeBird/Giveaways/Giveaways";
+import Leads from "views/FreeBird/Leads/Leads";
+import SmartRetweets from "views/FreeBird/SmartRetweets/SmartRetweets";
 import WelcomeMessage from "views/FreeBird/WelcomeMessage/WelcomeMessage";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
@@ -42,6 +44,7 @@ export const routeNames = {
   freebirdGiveaways: "/freebird/giveaways",
   freebirdFollow: "/freebird/follow",
   freebirdLeads: "/freebird/leads",
+  freebirdSmartRetweets: "/freebird/smart-retweets",
 };
 
 export const mainSiteRoutes = [
@@ -143,8 +146,15 @@ export const mainSiteRoutes = [
       },
       {
         path: routeNames.freebirdLeads,
-        element: <SwapLpTab />,
+        element: <Leads />,
         title: "Leads",
+        icon: HamburgerIcon,
+      },
+
+      {
+        path: routeNames.freebirdSmartRetweets,
+        element: <SmartRetweets />,
+        title: "Smart Retweets",
         icon: HamburgerIcon,
       },
     ],

@@ -49,27 +49,27 @@ const ImportCsv = () => {
         <CardBody>
           <Flex gap={2} alignItems="center" mb={2}>
             <TipsIcon fontSize={"2xl"} color="green.500" />
-            <Heading size="sm">
+            <Heading fontSize={"md"}>
               Insert into your CSV a list of Twitter handles:
             </Heading>
           </Flex>
           <Flex gap={8}>
             <Box></Box>
-            <List spacing={3} fontSize="xs">
+            <List spacing={3} fontSize="14px">
               <ListItem>
-                <ListIcon as={DotIcon} color="green.500" />
+                <ListIcon as={DotIcon} color="green.500" fontSize={"sm"} />
                 One user on each row
               </ListItem>
               <ListItem>
-                <ListIcon as={DotIcon} color="green.500" />
+                <ListIcon as={DotIcon} color="green.500" fontSize={"sm"} />
                 The first column must be the user @handle
               </ListItem>
               <ListItem>
-                <ListIcon as={DotIcon} color="green.500" />
+                <ListIcon as={DotIcon} color="green.500" fontSize={"sm"} />
                 The following columns define the custom variables
               </ListItem>
               <ListItem>
-                <ListIcon as={DotIcon} color="green.500" />
+                <ListIcon as={DotIcon} color="green.500" fontSize={"sm"} />
                 Variable names are case insensitive
               </ListItem>
             </List>
@@ -91,7 +91,7 @@ const ImportCsv = () => {
               <Icon as={FileIcon} fontSize="15px" mr={2} />
               <Text>File Preview</Text>
             </Flex>
-            <Table size="sm" overflow={"auto"}>
+            <Table overflow={"auto"}>
               <Thead>
                 <Tr>
                   {preview.headers.map((header) => (

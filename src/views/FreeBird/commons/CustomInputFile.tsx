@@ -68,7 +68,7 @@ const CustomInputFile: React.FC<IProps> = ({ onChangeFile, placeholder }) => {
         borderRadius={"base"}
         onClick={handleRemoveFile}
       >
-        <Icon as={CloseIcon} />
+        <Icon as={CloseIcon} fontSize="14px" />
       </Center>
 
       <input

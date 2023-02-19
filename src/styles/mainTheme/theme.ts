@@ -8,7 +8,7 @@ import { fontSizes } from "./fontSizes";
 export const mainTheme = extendTheme({
   components,
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     seSystemColorMode: false,
   },
   styles: {

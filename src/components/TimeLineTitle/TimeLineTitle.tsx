@@ -4,12 +4,17 @@ import { ReactNode } from "react";
 interface IProps {
   circleContent: ReactNode;
   title: string;
+  circleBgColor?: string;
 }
-const TimeLineTitle = ({ circleContent, title }: IProps) => {
+const TimeLineTitle = ({ circleContent, title, circleBgColor }: IProps) => {
   return (
     <Flex gap={3} alignItems="center">
       <Box boxSize={"40px"}>
-        <Center borderRadius={"full"} bg="dark.500" boxSize={"40px"}>
+        <Center
+          borderRadius={"full"}
+          bg={circleBgColor || "dark.500"}
+          boxSize={"40px"}
+        >
           {circleContent}
         </Center>
       </Box>

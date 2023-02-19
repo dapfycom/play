@@ -6,15 +6,13 @@ const TweetList = () => {
   return (
     <Flex flexDir={"column"} gap={4}>
       <FormControl>
-        <FormLabel htmlFor="user" fontSize={"sm"}>
+        <FormLabel htmlFor="user" color="gray.600">
           Twitter List Link
         </FormLabel>
         <InputField id="user" placeholder="Paste here..." />
       </FormControl>
 
-      <ActionButton maxW="150px" fontSize={"xs"}>
-        Get members
-      </ActionButton>
+      <ActionButton maxW="150px">Get members</ActionButton>
     </Flex>
   );
 };

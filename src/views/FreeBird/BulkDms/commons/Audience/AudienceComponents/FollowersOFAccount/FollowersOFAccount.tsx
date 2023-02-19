@@ -6,20 +6,18 @@ const FollowersOFAccount = () => {
   return (
     <Flex flexDir={"column"} gap={4}>
       <FormControl>
-        <FormLabel htmlFor="user" fontSize={"sm"}>
+        <FormLabel htmlFor="user" color="gray.600">
           Twitter Account
         </FormLabel>
         <InputField id="user" placeholder="@beskar" />
       </FormControl>
       <FormControl>
-        <FormLabel htmlFor="user" fontSize={"sm"}>
+        <FormLabel htmlFor="user" color="gray.600">
           Next cursor
         </FormLabel>
         <InputField id="user" placeholder="xxxxxxxxxxxxxx" />
       </FormControl>
-      <ActionButton maxW="150px" fontSize={"xs"}>
-        Get users
-      </ActionButton>
+      <ActionButton maxW="150px">Get users</ActionButton>
     </Flex>
   );
 };

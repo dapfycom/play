@@ -16,24 +16,21 @@ const Audience = () => {
     setAudience(e.target.value);
   };
   return (
-    <Flex flexDir={"column"}>
-      <Heading as="h3" fontSize={"md"} mb={2}>
+    <Flex flexDir={"column"} mt={4} mb={10}>
+      <Heading as="h3" fontSize={"md"} mb={2} color="gray.600">
         Audience
       </Heading>
-      <Text color="blackT.500" fontSize={"10px"} mb={3}>
-        Define your target users
-      </Text>
+      <Text mb={3}>Define your target users</Text>
       <RadioGroup defaultValue={"0"} mb={10}>
         <Stack ml={3} spacing={3}>
           {audienceList.map((audience, i) => {
             return (
               <Radio
                 key={i}
-                size="lg"
                 value={audience.id}
                 onChange={handleChangeAudience}
               >
-                <Text fontSize={"12px"}> {audience.title}</Text>
+                <Text> {audience.title}</Text>
               </Radio>
             );
           })}

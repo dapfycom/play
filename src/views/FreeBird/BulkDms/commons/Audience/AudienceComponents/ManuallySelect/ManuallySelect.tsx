@@ -5,7 +5,7 @@ const ManuallySelect = () => {
   return (
     <Flex flexDir={"column"} gap={4}>
       <FormControl>
-        <FormLabel htmlFor="user" fontSize={"sm"}>
+        <FormLabel htmlFor="user" color="gray.600">
           Twitter users
         </FormLabel>
         <InputField id="user" placeholder="Name or @handle1 @handle2..." />

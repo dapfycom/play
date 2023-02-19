@@ -6,23 +6,21 @@ const TweetLink = () => {
   return (
     <Flex flexDir={"column"} gap={4}>
       <FormControl mb={3}>
-        <FormLabel htmlFor="tweet" fontSize={"sm"}>
+        <FormLabel htmlFor="tweet" color="gray.600">
           Tweet Link
         </FormLabel>
         <InputField id="tweet" placeholder="Paste here..." />
       </FormControl>
       <Flex gap={5} mb={5}>
         <Checkbox>
-          <Box fontSize={"sm"}>Replies</Box>
+          <Box>Replies</Box>
         </Checkbox>
         <Checkbox>
           {" "}
-          <Box fontSize={"sm"}>Likes</Box>
+          <Box>Likes</Box>
         </Checkbox>
       </Flex>
-      <ActionButton maxW="150px" fontSize={"xs"}>
-        Get users
-      </ActionButton>
+      <ActionButton maxW="150px">Get users</ActionButton>
     </Flex>
   );
 };
