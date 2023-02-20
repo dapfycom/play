@@ -5,10 +5,17 @@ import {
   formatBalance,
   formatBalanceDolar,
 } from "utils/functions/formatBalance";
-import { useGetFarmUserInfo } from "views/FarmView/utils/hooks";
+import {
+  useGetBskRewards,
+  useGetFarmUserInfo,
+} from "views/FarmView/utils/hooks";
 
 const FarmInfo = () => {
   const { data: userFarmInfo, isLoading } = useGetFarmUserInfo();
+
+  const { earnedBsk } = useGetBskRewards();
+  console.log("earnedBsk", earnedBsk);
+
   if (isLoading) {
     return (
       <Flex flex={1} justifyContent="center">
@@ -17,6 +24,7 @@ const FarmInfo = () => {
     );
   }
   if (!userFarmInfo) return null;
+
   return (
     <Flex gap={7} fontSize="lsm" flexDir={{ xs: "column", lg: "row" }}>
       <FarmDetail
@@ -27,7 +35,7 @@ const FarmInfo = () => {
       />
       <FarmDetail
         title="Earned Bsk"
-        value={userFarmInfo.userTokens[0].reward}
+        value={earnedBsk}
         decimals={16}
         tokenI={selectedNetwork.tokensID.bsk}
       />

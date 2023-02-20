@@ -6,10 +6,15 @@ import {
   formatBalance,
   formatBalanceDolar,
 } from "utils/functions/formatBalance";
-import { useGetFarmUserInfo } from "views/FarmView/utils/hooks";
+import {
+  useGetBskRewards,
+  useGetFarmsInfo,
+  useGetFarmUserInfo,
+} from "views/FarmView/utils/hooks";
 const StakedDetails = () => {
   const { data: userFarmInfo, isLoading } = useGetFarmUserInfo();
-
+  const { data: farmInfo } = useGetFarmsInfo();
+  const { earnedBsk } = useGetBskRewards();
   if (isLoading)
     return (
       <Flex w="full" justifyContent="center">
@@ -17,7 +22,7 @@ const StakedDetails = () => {
       </Flex>
     );
 
-  if (!userFarmInfo) return null;
+  if (!userFarmInfo || !farmInfo) return null;
 
   return (
     <Flex
@@ -34,7 +39,7 @@ const StakedDetails = () => {
       />
       <StakedDetail
         title="BSK Earned"
-        value={userFarmInfo.userTokens[0].reward}
+        value={earnedBsk}
         decimals={16}
         tokenI={selectedNetwork.tokensID.bsk}
       />
@@ -53,6 +58,11 @@ interface IStakedDetail {
 
 const StakedDetail = ({ title, value, tokenI, decimals }: IStakedDetail) => {
   const [price] = useGetTokenPrice(tokenI);
+  if (decimals === 16) {
+    console.log("value", value);
+    console.log("price", price);
+  }
+
   return (
     <Flex gap={3}>
       <TokenImage tokenI={tokenI} size={40} />{" "}
