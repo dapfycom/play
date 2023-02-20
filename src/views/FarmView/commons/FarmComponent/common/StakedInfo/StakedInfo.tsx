@@ -1,9 +1,18 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
-import { withdraw } from "views/FarmView/utils/services";
+import HarvestModal from "../Modals/WithdrawModal";
 import StakedDetails from "./StakedDetails/StakedDetails";
 
 const StakedInfo = () => {
+  const {
+    isOpen: isOpenHarvest,
+    onClose: onCloseHarvest,
+    onOpen: onOpenHarvest,
+  } = useDisclosure();
+  const handleHarvest = (e) => {
+    e.stopPropagation();
+    onOpenHarvest();
+  };
   return (
     <Flex
       w="full"
@@ -21,12 +30,16 @@ const StakedInfo = () => {
           bg="dark.100"
           fontSize={"xs"}
           w={{ xs: "full", tablet: "auto" }}
-          onClick={withdraw}
+          onClick={handleHarvest}
         >
           {" "}
           wiithdraw
         </ActionButton>
       </Flex>
+
+      {isOpenHarvest && (
+        <HarvestModal isOpen={isOpenHarvest} onClose={onCloseHarvest} />
+      )}
     </Flex>
   );
 };

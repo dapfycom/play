@@ -28,7 +28,7 @@ export const stakeLP = (amount: number | string, lpToken: IElrondToken) => {
     token: lpToken,
   });
 };
-export const harvest = (lpAmount: string | number, nonces: number[]) => {
+export const stop = (lpAmount: string | number, nonces: number[]) => {
   const noncesArgs = nonces.map((nonce) => {
     return new U64Value(new BigNumber(nonce));
   });

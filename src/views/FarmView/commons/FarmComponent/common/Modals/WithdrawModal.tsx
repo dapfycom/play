@@ -18,14 +18,14 @@ import { useFormik } from "formik";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { formatBalance } from "utils/functions/formatBalance";
 import { useGetFarmUserInfo } from "views/FarmView/utils/hooks";
-import { harvest } from "views/FarmView/utils/services";
+import { stop } from "views/FarmView/utils/services";
 import * as yup from "yup";
 interface IProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const HarvestModal = ({ isOpen, onClose }: IProps) => {
+const WithdrawModal = ({ isOpen, onClose }: IProps) => {
   const { data: userFarmInfo } = useGetFarmUserInfo();
 
   const { elrondToken: stakedToken, isLoading } = useGetElrondToken(
@@ -52,7 +52,7 @@ const HarvestModal = ({ isOpen, onClose }: IProps) => {
       amount: "",
     },
     onSubmit: (values) => {
-      harvest(values.amount, [0]);
+      stop(values.amount, [0]);
     },
     validationSchema: stakeSchema,
   });
@@ -74,7 +74,7 @@ const HarvestModal = ({ isOpen, onClose }: IProps) => {
           <ModalHeader>
             <Flex alignItems={"center"} gap={3}>
               <LpTokenImageV2 lpToken={stakedToken} size={35} />
-              <Heading fontSize={"lg"}>Harvest in BSK-EGLD farm</Heading>
+              <Heading fontSize={"lg"}>Withdraw in BSK-EGLD farm</Heading>
             </Flex>
           </ModalHeader>
           <ModalBody>
@@ -117,7 +117,7 @@ const HarvestModal = ({ isOpen, onClose }: IProps) => {
                 Cancel
               </ActionButton>
               <ActionButton flex={1} type="submit">
-                Harvest
+                Withdraw
               </ActionButton>
             </Flex>
           </ModalFooter>
@@ -127,4 +127,4 @@ const HarvestModal = ({ isOpen, onClose }: IProps) => {
   );
 };
 
-export default HarvestModal;
+export default WithdrawModal;
