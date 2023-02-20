@@ -16,11 +16,12 @@ const FarmInfo = () => {
       </Flex>
     );
   }
+  if (!userFarmInfo) return null;
   return (
     <Flex gap={7} fontSize="lsm" flexDir={{ xs: "column", lg: "row" }}>
       <FarmDetail
         title={"Staked LP"}
-        value={userFarmInfo.lpActive}
+        value={userFarmInfo?.lpActive}
         decimals={18}
         tokenI={selectedNetwork.tokensID.bskwegld}
       />

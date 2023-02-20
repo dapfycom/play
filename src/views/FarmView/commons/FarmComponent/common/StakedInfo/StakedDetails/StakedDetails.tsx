@@ -17,6 +17,8 @@ const StakedDetails = () => {
       </Flex>
     );
 
+  if (!userFarmInfo) return null;
+
   return (
     <Flex
       w="full"
@@ -26,7 +28,7 @@ const StakedDetails = () => {
     >
       <StakedDetail
         title="BSK-EGLD"
-        value={userFarmInfo.lpActive}
+        value={userFarmInfo?.lpActive}
         decimals={18}
         tokenI={selectedNetwork.tokensID.bskwegld}
       />

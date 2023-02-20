@@ -39,7 +39,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
       .min(0, "Negative number")
       .max(
         formatBalance(
-          { balance: userFarmInfo.lpActive, decimals: stakedToken.decimals },
+          { balance: userFarmInfo?.lpActive, decimals: stakedToken.decimals },
           true,
           18
         ) as number,
@@ -58,7 +58,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
   });
   const handleMax = () => {
     const value = formatBalance(
-      { balance: userFarmInfo.lpActive, decimals: stakedToken.decimals },
+      { balance: userFarmInfo?.lpActive, decimals: stakedToken.decimals },
       true,
       18
     );
@@ -104,7 +104,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
               <Text onClick={handleMax} cursor="pointer">
                 Balance:{" "}
                 {formatBalance({
-                  balance: userFarmInfo.lpActive,
+                  balance: userFarmInfo?.lpActive,
                   decimals: stakedToken.decimals,
                 })}
               </Text>
