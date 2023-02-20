@@ -13,6 +13,7 @@ import { ESDTTransfer, scCall } from "services/sc/calls";
 import { scQueryByFieldsDefinitions } from "services/sc/queries";
 import { IElrondToken } from "types/elrond.interface";
 import { IFarmInfo, IUserFarmInfo } from "types/farm.interface";
+import { setElrondBalance } from "utils/functions/formatBalance";
 import { getFarmNftIdentifier } from "./functions";
 
 //calls
@@ -37,7 +38,7 @@ export const stop = (lpAmount: string | number, nonces: number[]) => {
     "bskFarmWsp",
     "stop",
     [
-      new BigUIntValue(new BigNumber(lpAmount)),
+      new BigUIntValue(new BigNumber(setElrondBalance(Number(lpAmount), 18))),
       new List(new ListType(new U64Type()), noncesArgs),
     ],
     50000000
