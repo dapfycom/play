@@ -15,7 +15,6 @@ import { LpTokenImageV2 } from "components/LpTokenImage/LpTokenImage";
 import MyModal from "components/Modal/Modal";
 import { selectedNetwork } from "config/network";
 import { useFormik } from "formik";
-import useGetAccountToken from "hooks/useGetAccountToken";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { formatBalance } from "utils/functions/formatBalance";
 import { useGetFarmUserInfo } from "views/FarmView/utils/hooks";
@@ -32,9 +31,7 @@ const HarvestModal = ({ isOpen, onClose }: IProps) => {
   const { elrondToken: stakedToken, isLoading } = useGetElrondToken(
     selectedNetwork.tokensID.bskwegld
   );
-  const { accountToken: userStakedToken } = useGetAccountToken(
-    selectedNetwork.tokensID.bskwegld
-  );
+
   const stakeSchema = yup.object({
     amount: yup
       .number()

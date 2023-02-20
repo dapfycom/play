@@ -4,10 +4,8 @@ import {
   CenterProps,
   Flex,
   Heading,
-  Image as ChkImage,
   Text,
 } from "@chakra-ui/react";
-import beskarLogo from "assets/images/logo/beskar.svg";
 import MyContainer from "components/Container/Container";
 import {
   DiscordIcon,
@@ -38,12 +36,12 @@ const Footer = () => {
             mb={{ xs: "70px", md: "0" }}
             justifyContent="center"
           >
-            <ChkImage
+            {/* <ChkImage
               src={beskarLogo}
               alt="logo"
               width={{ xs: "50px", "2xl": "80px" }}
               mr="15px"
-            />
+            /> */}
             <Heading
               as="h6"
               fontSize={{ xs: "25px", "2xl": "40px" }}
