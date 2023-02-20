@@ -23,20 +23,25 @@ export const stakeLP = (amount: number | string, lpToken: IElrondToken) => {
   ESDTTransfer({
     contractAddr: selectedNetwork.scAddress.farm,
     funcName: "deposit",
-    gasL: 700000000,
+    gasL: 70000000,
     val: amount,
     token: lpToken,
   });
 };
-export const harvest = (lpAmount: number, nonces: number[]) => {
+export const harvest = (lpAmount: string | number, nonces: number[]) => {
   const noncesArgs = nonces.map((nonce) => {
     return new U64Value(new BigNumber(nonce));
   });
 
-  scCall("bskFarmWsp", "stop", [
-    new BigUIntValue(new BigNumber(lpAmount)),
-    new List(new ListType(new U64Type()), noncesArgs),
-  ]);
+  scCall(
+    "bskFarmWsp",
+    "stop",
+    [
+      new BigUIntValue(new BigNumber(lpAmount)),
+      new List(new ListType(new U64Type()), noncesArgs),
+    ],
+    50000000
+  );
 };
 export const withdraw = () => {
   scCall("bskFarmWsp", "withdraw", [], 50000000);

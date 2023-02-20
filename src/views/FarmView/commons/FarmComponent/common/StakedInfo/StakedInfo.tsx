@@ -18,7 +18,7 @@ const StakedInfo = () => {
       </Flex>
       <Flex h="full" alignItems={"center"} height="auto">
         <ActionButton
-          bg="dark.200"
+          bg="dark.100"
           fontSize={"xs"}
           w={{ xs: "full", tablet: "auto" }}
           onClick={withdraw}
