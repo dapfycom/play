@@ -33,7 +33,7 @@ const StakedInfo = () => {
           onClick={handleHarvest}
         >
           {" "}
-          wiithdraw
+          withdraw
         </ActionButton>
       </Flex>
 

@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AlertIcon,
+  Divider,
   Flex,
   Heading,
   Input,
@@ -52,7 +55,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
       amount: "",
     },
     onSubmit: (values) => {
-      stop(values.amount, [0]);
+      stop(values.amount, []);
     },
     validationSchema: stakeSchema,
   });
@@ -64,6 +67,8 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
     );
     formik.setFieldValue("amount", value);
   };
+  const date = new Date(userFarmInfo.lock * 100);
+  console.log("date", date.toLocaleString());
 
   return (
     <MyModal isOpen={isOpen} onClose={onClose} size="2xl" py={6}>
@@ -78,6 +83,11 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
             </Flex>
           </ModalHeader>
           <ModalBody>
+            <Alert status="warning" borderRadius={"md"} mb={4} fontSize="14px">
+              <AlertIcon />
+              Please note that your LP tokens will be available to claim in 48
+              hours after unstaking.
+            </Alert>
             <InputGroup size={"lg"}>
               <Input
                 name="amount"
@@ -109,15 +119,35 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
                 })}
               </Text>
             </Flex>
+            <Flex w="full" gap={4} mt={6} mb={8}>
+              <ActionButton flex={1} type="submit">
+                Unstake
+              </ActionButton>
+            </Flex>
+
+            <Divider />
+
+            <Flex mt={4} flexDir="column">
+              <Text fontSize={"sm"} color="white">
+                Available to claim :{" "}
+                {formatBalance({
+                  balance: userFarmInfo.lpStopped,
+                  decimals: stakedToken.decimals,
+                })}{" "}
+                LP
+              </Text>
+              <Flex w="full" gap={4} mt={3} mb={8}>
+                <ActionButton flex={1} type="submit">
+                  Claim
+                </ActionButton>
+              </Flex>
+            </Flex>
           </ModalBody>
 
           <ModalFooter>
             <Flex w="full" gap={4}>
               <ActionButton flex={1} bg="dark.500" onClick={onClose}>
                 Cancel
-              </ActionButton>
-              <ActionButton flex={1} type="submit">
-                Withdraw
               </ActionButton>
             </Flex>
           </ModalFooter>
