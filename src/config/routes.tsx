@@ -15,6 +15,7 @@ import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { Outlet, RouteObject } from "react-router-dom";
 import BulkDms from "views/FreeBird/BulkDms/BulkDms";
+import Follow from "views/FreeBird/Follow/Follow";
 import Giveaways from "views/FreeBird/Giveaways/Giveaways";
 import Leads from "views/FreeBird/Leads/Leads";
 import SmartRetweets from "views/FreeBird/SmartRetweets/SmartRetweets";
@@ -141,7 +142,7 @@ export const mainSiteRoutes = [
       },
       {
         path: routeNames.freebirdFollow,
-        element: <SwapLpTab />,
+        element: <Follow />,
         title: "Follow / Unfollow",
         icon: RepeatClockIcon,
       },
