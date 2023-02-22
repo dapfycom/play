@@ -19,6 +19,7 @@ import Giveaways from "views/FreeBird/Giveaways/Giveaways";
 import Leads from "views/FreeBird/Leads/Leads";
 import SmartRetweets from "views/FreeBird/SmartRetweets/SmartRetweets";
 import WelcomeMessage from "views/FreeBird/WelcomeMessage/WelcomeMessage";
+import WriteSchedule from "views/FreeBird/WriteSchedule/WriteSchedule";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 const PlayView = React.lazy(() => import("views/PlayView"));
@@ -128,7 +129,7 @@ export const mainSiteRoutes = [
       },
       {
         path: routeNames.freebirdSchedule,
-        element: <SwapLpTab />,
+        element: <WriteSchedule />,
         title: "Write / Schedule",
         icon: CalendarIcon,
       },

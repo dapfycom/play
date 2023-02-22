@@ -21,7 +21,7 @@ const PasteTheTweetUrl = () => {
         py={2}
       >
         <Flex p={3} flexDir="column">
-          <Input placeholder="Tweet url..." size={"sm"} mb={2} py={5} />
+          <Input placeholder="Tweet url..." mb={2} />
         </Flex>
       </Box>
     </Flex>
