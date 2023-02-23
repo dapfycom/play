@@ -26,6 +26,25 @@ const FreeBirdLayOut = () => {
         "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol"
       }
       paddingTop={"0px !important"}
+      sx={{
+        "*": {
+          "&::-webkit-scrollbar": {
+            width: 1.5,
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "light.100",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "dark.500",
+            borderRadius: 1.5,
+          },
+          "*::placeholder": {
+            color: "#747A84",
+          },
+          scrollbarWidth: "auto",
+          scrollbarColor: "light.baseLight dark.baseDark",
+        },
+      }}
     >
       <Grid w="full" templateColumns={{ xs: "1fr", xl: "220px auto" }}>
         <Flex
@@ -78,7 +97,7 @@ const FreeBirdLayOut = () => {
             );
           })}
         </Flex>
-        <Flex w="full" pt="8">
+        <Flex w="full" pt="8" overflow={"auto"}>
           <Outlet />
         </Flex>
       </Grid>
