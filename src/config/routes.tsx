@@ -106,13 +106,13 @@ export const mainSiteRoutes = [
   {
     path: routeNames.forge,
     element: <TheForgeView />,
-    title: "The forge",
+    title: "Forge",
     icon: <FireIcon fontSize={"20px"} />,
   },
   {
     path: routeNames.freebird,
     element: <FreeBirdLayOut />,
-    title: "Free Bird App",
+    title: "Bird App",
     icon: <TwitterIcon fontSize={"25px"} />,
 
     children: [

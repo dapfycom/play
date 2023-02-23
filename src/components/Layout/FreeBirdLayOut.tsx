@@ -97,7 +97,7 @@ const FreeBirdLayOut = () => {
             );
           })}
         </Flex>
-        <Flex w="full" pt="8" overflow={"auto"}>
+        <Flex w="full" pt="8" overflow={"auto"} mb={"50px"}>
           <Outlet />
         </Flex>
       </Grid>
