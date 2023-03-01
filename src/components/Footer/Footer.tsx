@@ -4,14 +4,11 @@ import {
   CenterProps,
   Flex,
   Heading,
+  Link,
   Text,
 } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
-import {
-  DiscordIcon,
-  TelegramIcon,
-  TwitterIcon,
-} from "components/icons/ui-icons";
+import { TelegramIcon, TwitterIcon } from "components/icons/ui-icons";
 import SocialButton from "components/SocialButton/SocialButton";
 import Disclaimer1, {
   Disclaimer2,
@@ -68,14 +65,22 @@ const Footer = () => {
               <SocialButton
                 ariaLabel="twitter"
                 icon={<TwitterIcon fontSize={"24px"} />}
+                as={Link}
+                /* @ts-ignore */
+                isExternal
+                href="https://twitter.com/beskarplay"
               />
-              <SocialButton
+              {/* <SocialButton
                 ariaLabel="discord"
                 icon={<DiscordIcon fontSize={"24px"} />}
-              />
+              /> */}
               <SocialButton
                 ariaLabel="telegram"
                 icon={<TelegramIcon fontSize={"24px"} />}
+                as={Link}
+                /* @ts-ignore */
+                isExternal
+                href="https://twitter.com/BeskarDAO"
               />
             </Flex>
           </Flex>

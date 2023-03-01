@@ -1,5 +1,5 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import { Center } from "@chakra-ui/react";
+import { Center, Link } from "@chakra-ui/react";
 import starsImage from "assets/images/banners/stars.png";
 import ActionButton from "components/ActionButton/ActionButton";
 const JoinTelegram = () => {
@@ -17,16 +17,22 @@ const JoinTelegram = () => {
       px={2}
       py={"64px"}
     >
-      <ActionButton
-        borderRadius={"full"}
-        py={{ xs: "20px", lg: "30px" }}
-        h="auto"
-        w="full"
-        maxW={"520px"}
-        fontSize={{ xs: "sm", md: "lsm", lg: "lg" }}
-      >
-        Join Telegram group <ArrowForwardIcon ml="21px" fontSize={"25px"} />
-      </ActionButton>
+      <Link href={"https://twitter.com/BeskarDAO"} isExternal textStyle={""}>
+        <ActionButton
+          borderRadius={"full"}
+          py={{ xs: "20px", lg: "30px" }}
+          h="auto"
+          w="full"
+          maxW={"520px"}
+          fontSize={{ xs: "sm", md: "lsm", lg: "lg" }}
+          bg="primary"
+          _hover={{
+            bg: "primary",
+          }}
+        >
+          Join Telegram group <ArrowForwardIcon ml="21px" fontSize={"25px"} />
+        </ActionButton>
+      </Link>
     </Center>
   );
 };

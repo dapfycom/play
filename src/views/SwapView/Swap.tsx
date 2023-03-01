@@ -38,10 +38,21 @@ const Swap = () => {
           ]}
         />
       </Center>
-      <Center mt={12}>
+      <Center mt={12} flexDir="column">
+        <Link isExternal href="http://xport.al/referral/v3pqh6iqco">
+          <Text
+            align={"center"}
+            fontSize="sm"
+            color={"gray.500"}
+            mb={4}
+            textDecor="underline"
+          >
+            New to MultiversX? Create your FREE wallet in seconds
+          </Text>
+        </Link>
         <Link isExternal href="https://buy.multiversx.com/gb">
           <Text align={"center"} fontSize="2xl" color={"secondary"}>
-            Buy EGLD
+            + Buy EGLD
           </Text>
         </Link>
       </Center>

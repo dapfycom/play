@@ -1,5 +1,6 @@
-import { Flex, useDisclosure } from "@chakra-ui/react";
+import { Center, Flex, useDisclosure } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
+import useAuthentication from "hooks/useAuthentication";
 import HarvestModal from "../Modals/WithdrawModal";
 import StakedDetails from "./StakedDetails/StakedDetails";
 
@@ -9,6 +10,8 @@ const StakedInfo = () => {
     onClose: onCloseHarvest,
     onOpen: onOpenHarvest,
   } = useDisclosure();
+  const { isLoggedIn } = useAuthentication();
+
   const handleHarvest = (e) => {
     e.stopPropagation();
     onOpenHarvest();
@@ -22,23 +25,31 @@ const StakedInfo = () => {
       gap={10}
       flexDir={{ xs: "column", tablet: "row" }}
     >
-      <Flex flex={1}>
-        <StakedDetails />
-      </Flex>
-      <Flex h="full" alignItems={"center"} height="auto">
-        <ActionButton
-          bg="dark.100"
-          fontSize={"xs"}
-          w={{ xs: "full", tablet: "auto" }}
-          onClick={handleHarvest}
-        >
-          {" "}
-          withdraw
-        </ActionButton>
-      </Flex>
+      {isLoggedIn ? (
+        <>
+          <Flex flex={1}>
+            <StakedDetails />
+          </Flex>
+          <Flex h="full" alignItems={"center"} height="auto">
+            <ActionButton
+              bg="dark.100"
+              fontSize={"xs"}
+              w={{ xs: "full", tablet: "auto" }}
+              onClick={handleHarvest}
+            >
+              {" "}
+              withdraw
+            </ActionButton>
+          </Flex>
 
-      {isOpenHarvest && (
-        <HarvestModal isOpen={isOpenHarvest} onClose={onCloseHarvest} />
+          {isOpenHarvest && (
+            <HarvestModal isOpen={isOpenHarvest} onClose={onCloseHarvest} />
+          )}
+        </>
+      ) : (
+        <Center w="full" fontSize={"sm"}>
+          Please connect your wallet first
+        </Center>
       )}
     </Flex>
   );

@@ -2,7 +2,6 @@ import { CalendarIcon, HamburgerIcon, RepeatClockIcon } from "@chakra-ui/icons";
 import {
   CoinsIcon,
   FarmIcon,
-  FireIcon,
   GiveawaysIcon,
   MultipleMessageIcon,
   PlayIcon,
@@ -103,12 +102,12 @@ export const mainSiteRoutes = [
     ],
   },
 
-  {
+  /*   {
     path: routeNames.forge,
     element: <TheForgeView />,
     title: "Forge",
     icon: <FireIcon fontSize={"20px"} />,
-  },
+  }, */
   {
     path: routeNames.freebird,
     element: <FreeBirdLayOut />,

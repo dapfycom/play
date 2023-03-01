@@ -2,6 +2,7 @@ import { Text } from "@chakra-ui/react";
 import { useTrackTransactionStatus } from "@elrondnetwork/dapp-core/hooks";
 import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account/useGetLoginInfo";
 import ActionButton from "components/ActionButton/ActionButton";
+import Realistic from "components/Conffeti/Realistic";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import React from "react";
@@ -20,11 +21,13 @@ const SubmitButton = () => {
   const slippage = useAppSelector(selectSlippage);
   const { data: swapRoutes } = useSwapLpRate();
   const [sessionId, setSessionId] = React.useState("");
+  const [txSuccess, setTxSuccess] = React.useState(false);
+
   const { elrondToken: fromElrondToken } = useGetElrondToken(
     fromField.selectedToken
   );
   const onSuccess = React.useCallback(() => {
-    window.location.reload();
+    setTxSuccess(true);
   }, []);
 
   useTrackTransactionStatus({
@@ -41,12 +44,15 @@ const SubmitButton = () => {
     if (!isLoggedIn) {
       dispatch(openLogin(true));
     } else {
+      setTxSuccess(false);
+
       const res = await lpSwap(
         swapRoutes,
         fromField,
         slippage,
         fromElrondToken
       );
+      console.log("res", res);
 
       setSessionId(res.sessionId);
     }
@@ -57,24 +63,30 @@ const SubmitButton = () => {
       ? "confirm"
       : "Enter an amount"
     : "Connect wallet";
+
+  console.log("txSuccess", txSuccess);
+
   return (
-    <ActionButton
-      width={"full"}
-      h="auto"
-      py={"29px"}
-      bgColor="rgba(216, 185,25, 0.3)"
-      _disabled={{
-        "& p": {
-          color: "dark.100 !important",
-        },
-        bg: "dark.400",
-      }}
-      onClick={handleSwap}
-    >
-      <Text color="primary" opacity={1} fontSize={"md"}>
-        {buttonText}
-      </Text>
-    </ActionButton>
+    <>
+      {txSuccess && <Realistic />}
+      <ActionButton
+        width={"full"}
+        h="auto"
+        py={"29px"}
+        bgColor="rgba(216, 185,25, 0.3)"
+        _disabled={{
+          "& p": {
+            color: "dark.100 !important",
+          },
+          bg: "dark.400",
+        }}
+        onClick={handleSwap}
+      >
+        <Text color="primary" opacity={1} fontSize={"md"}>
+          {buttonText}
+        </Text>
+      </ActionButton>
+    </>
   );
 };
 
