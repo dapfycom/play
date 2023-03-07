@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react";
-import { useTrackTransactionStatus } from "@elrondnetwork/dapp-core/hooks";
-import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account/useGetLoginInfo";
+import { useTrackTransactionStatus } from "@multiversx/sdk-dapp/hooks";
+import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account/useGetLoginInfo";
 import ActionButton from "components/ActionButton/ActionButton";
 import Realistic from "components/Conffeti/Realistic";
 import useGetElrondToken from "hooks/useGetElrondToken";

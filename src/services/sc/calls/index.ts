@@ -1,6 +1,5 @@
-import { sendTransactions } from "@elrondnetwork/dapp-core/services";
+import { sendTransactions } from "@multiversx/sdk-dapp/services";
 
-import { refreshAccount } from "@elrondnetwork/dapp-core/utils";
 import {
   Address,
   AddressValue,
@@ -9,7 +8,8 @@ import {
   ContractFunction,
   Transaction,
   TransactionPayload,
-} from "@elrondnetwork/erdjs/out";
+} from "@multiversx/sdk-core/out";
+import { refreshAccount } from "@multiversx/sdk-dapp/utils";
 import BigNumber from "bignumber.js";
 import { selectedNetwork } from "config/network";
 import store from "redux/store";

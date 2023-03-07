@@ -2,11 +2,11 @@ import {
   NotificationModal,
   SignTransactionsModals,
   TransactionsToastList,
-} from "@elrondnetwork/dapp-core/UI";
+} from "@multiversx/sdk-dapp/UI";
 import {
   AxiosInterceptorContext,
   DappProvider,
-} from "@elrondnetwork/dapp-core/wrappers";
+} from "@multiversx/sdk-dapp/wrappers";
 import LoadingPage from "components/LoadingPage";
 import { ENVIROMENT } from "config/network";
 import { routes } from "config/routes";
@@ -15,7 +15,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "styles/globals.css";
 
 const router = createBrowserRouter(routes);
-export const walletConnectV2ProjectId = "9b1a9564f91cb659ffe21b73d5c4e2d8";
+export const walletConnectV2ProjectId = "a5e4dd12d896af078bd26e68295a8c94";
 
 function App() {
   return (

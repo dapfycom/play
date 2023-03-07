@@ -7,8 +7,8 @@ import {
   Text,
   useOutsideClick,
 } from "@chakra-ui/react";
-import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account";
-import { logout } from "@elrondnetwork/dapp-core/utils";
+import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account";
+import { logout } from "@multiversx/sdk-dapp/utils";
 import {
   BookIcon,
   ChatIcon,

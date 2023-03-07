@@ -22,10 +22,10 @@ import { useDispatch } from "react-redux";
 import { openLogin } from "redux/dapp/dapp-slice";
 import MyModal from "../Modal/Modal";
 
-import { ExtensionLoginButton } from "@elrondnetwork/dapp-core/UI/extension/ExtensionLoginButton";
-import { LedgerLoginButton } from "@elrondnetwork/dapp-core/UI/ledger/LedgerLoginButton";
-import { WalletConnectLoginButton } from "@elrondnetwork/dapp-core/UI/walletConnect/WalletConnectLoginButton";
-import { WebWalletLoginButton } from "@elrondnetwork/dapp-core/UI/webWallet/WebWalletLoginButton";
+import { ExtensionLoginButton } from "@multiversx/sdk-dapp/UI/extension/ExtensionLoginButton";
+import { LedgerLoginButton } from "@multiversx/sdk-dapp/UI/ledger/LedgerLoginButton";
+import { WalletConnectLoginButton } from "@multiversx/sdk-dapp/UI/walletConnect/WalletConnectLoginButton";
+import { WebWalletLoginButton } from "@multiversx/sdk-dapp/UI/webWallet/WebWalletLoginButton";
 
 import { walletConnectV2ProjectId } from "App";
 import { routeNames } from "config/routes";

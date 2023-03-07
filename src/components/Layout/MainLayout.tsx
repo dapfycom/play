@@ -1,6 +1,6 @@
 import { Box, ChakraProvider } from "@chakra-ui/react";
-import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks/account";
-import { useGetAccountInfo } from "@elrondnetwork/dapp-core/hooks/account/useGetAccountInfo";
+import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account";
+import { useGetAccountInfo } from "@multiversx/sdk-dapp/hooks/account/useGetAccountInfo";
 import Footer from "components/Footer";
 import Login from "components/Login/Login";
 import { routeNames } from "config/routes";

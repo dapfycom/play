@@ -9,7 +9,7 @@ import {
   SmartContractAbi,
   TypeExpressionParser,
   TypeMapper,
-} from "@elrondnetwork/erdjs/out";
+} from "@multiversx/sdk-core/out";
 import { getInterface, provider, WspTypes } from "../index";
 
 export const scQuery = async (
@@ -75,9 +75,11 @@ export const scQueryByFieldsDefinitions = async (
   args = [],
   dataFields?: any
 ) => {
-  const { address: scAddress, abiUrl, implementsInterfaces } = getInterface(
-    workspace
-  );
+  const {
+    address: scAddress,
+    abiUrl,
+    implementsInterfaces,
+  } = getInterface(workspace);
   const abiRegistry = await AbiRegistry.create(abiUrl);
   const abi = new SmartContractAbi(abiRegistry, [implementsInterfaces]);
   const contract = new SmartContract({

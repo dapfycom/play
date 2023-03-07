@@ -1,5 +1,5 @@
-import { ProxyNetworkProvider } from "@elrondnetwork/erdjs-network-providers/out";
-import { Address } from "@elrondnetwork/erdjs/out";
+import { Address } from "@multiversx/sdk-core/out";
+import { ProxyNetworkProvider } from "@multiversx/sdk-network-providers";
 import bskFarmAbiUrl from "assets/abis/beskar-dao.abi.json";
 import { selectedNetwork } from "config/network";
 

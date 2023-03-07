@@ -1,5 +1,5 @@
-import { useGetLoginInfo } from "@elrondnetwork/dapp-core/hooks";
-import { logout } from "@elrondnetwork/dapp-core/utils";
+import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks";
+import { logout } from "@multiversx/sdk-dapp/utils";
 import { openLogin } from "redux/dapp/dapp-slice";
 import { useAppDispatch } from "./useRedux";
 

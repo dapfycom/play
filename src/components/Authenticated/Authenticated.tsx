@@ -4,7 +4,7 @@ import { FC, PropsWithChildren, ReactElement } from "react";
 import {
   useGetAccountInfo,
   useGetLoginInfo,
-} from "@elrondnetwork/dapp-core/hooks/account";
+} from "@multiversx/sdk-dapp/hooks/account";
 
 interface AuthenticatedProps {
   fallback?: ReactElement;
