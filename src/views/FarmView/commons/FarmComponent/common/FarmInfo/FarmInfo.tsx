@@ -14,7 +14,6 @@ const FarmInfo = () => {
   const { data: userFarmInfo, isLoading } = useGetFarmUserInfo();
 
   const { earnedBsk } = useGetBskRewards();
-  console.log("earnedBsk", earnedBsk);
 
   if (isLoading) {
     return (

@@ -4,11 +4,11 @@ import React from "react";
 import { RouteObject } from "react-router-dom";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
-const PlayView = React.lazy(() => import("views/PlayView"));
-const TheForgeView = React.lazy(() => import("views/TheForgeView"));
+// const PlayView = React.lazy(() => import("views/PlayView"));
+// const TheForgeView = React.lazy(() => import("views/TheForgeView"));
 const SwapLpTab = React.lazy(() => import("views/SwapView/commons/SwapLpTab"));
 const FarmView = React.lazy(() => import("views/FarmView"));
-const CoinFlipView = React.lazy(() => import("views/CoinFlipView"));
+// const CoinFlipView = React.lazy(() => import("views/CoinFlipView"));
 const SwapTab = React.lazy(() => import("views/SwapView/commons/SwapCard"));
 
 export const routeNames = {

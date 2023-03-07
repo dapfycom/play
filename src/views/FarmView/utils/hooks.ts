@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import { useAppSelector } from "hooks/useRedux";
 import { selectUserAddress } from "redux/dapp/dapp-slice";
 import useSwr from "swr";
@@ -54,5 +55,22 @@ export const useGetBskRewards = () => {
 
   return {
     earnedBsk: !userFarmInfo || !farmInfo ? "0" : earnedBsk,
+  };
+};
+
+export const useLpStoped = () => {
+  const { data: userFarmInfo } = useGetFarmUserInfo();
+  const { data: farmInfo } = useGetFarmsInfo();
+
+  const bnLpStoped = new BigNumber(userFarmInfo.lpStopped);
+  const bnUserBlock = new BigNumber(userFarmInfo.lock);
+  const bnCurrentBlock = new BigNumber(farmInfo.block);
+  const isLpStoped = !(
+    bnLpStoped.isGreaterThan(0) &&
+    bnUserBlock.isLessThanOrEqualTo(bnCurrentBlock)
+  );
+
+  return {
+    isLpStoped: isLpStoped,
   };
 };

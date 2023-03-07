@@ -20,8 +20,8 @@ import { selectedNetwork } from "config/network";
 import { useFormik } from "formik";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { formatBalance } from "utils/functions/formatBalance";
-import { useGetFarmUserInfo } from "views/FarmView/utils/hooks";
-import { stop } from "views/FarmView/utils/services";
+import { useGetFarmUserInfo, useLpStoped } from "views/FarmView/utils/hooks";
+import { stop, withdraw } from "views/FarmView/utils/services";
 import * as yup from "yup";
 interface IProps {
   isOpen: boolean;
@@ -38,7 +38,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
   const stakeSchema = yup.object({
     amount: yup
       .number()
-      .required("This field is required")
+
       .min(0, "Negative number")
       .max(
         formatBalance(
@@ -67,8 +67,12 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
     );
     formik.setFieldValue("amount", value);
   };
+
+  const { isLpStoped } = useLpStoped();
   const date = new Date(userFarmInfo.lock * 100);
   console.log("date", date.toLocaleString());
+
+  console.log("userFarmInfo", userFarmInfo);
 
   return (
     <MyModal isOpen={isOpen} onClose={onClose} size="2xl" py={6}>
@@ -129,7 +133,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
 
             <Flex mt={4} flexDir="column">
               <Text fontSize={"sm"} color="white">
-                Available to claim :{" "}
+                {isLpStoped ? "Lp locked " : "Available to claim"}:{" "}
                 {formatBalance({
                   balance: userFarmInfo.lpStopped,
                   decimals: stakedToken.decimals,
@@ -137,7 +141,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
                 LP
               </Text>
               <Flex w="full" gap={4} mt={3} mb={8}>
-                <ActionButton flex={1} type="submit">
+                <ActionButton flex={1} onClick={withdraw} disabled={isLpStoped}>
                   Claim
                 </ActionButton>
               </Flex>

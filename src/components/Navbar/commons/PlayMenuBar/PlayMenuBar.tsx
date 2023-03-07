@@ -1,12 +1,11 @@
 import { Flex } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
 
 interface IProps {
   noBorder?: boolean;
 }
 
 const PlayMenuBar = ({ noBorder }: IProps) => {
-  let location = useLocation();
+  // let location = useLocation();
 
   return (
     <Flex as="nav" gap={{ xs: "28px", md: "50px" }}>
