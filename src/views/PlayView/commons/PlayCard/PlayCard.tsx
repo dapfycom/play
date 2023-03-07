@@ -1,7 +1,6 @@
 import { Center, Heading, Text } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 import { ChainIcon, RightArrowLargeIcon } from "components/icons/ui-icons";
-import { routeNames } from "config/routes";
 import { Link } from "react-router-dom";
 
 interface IProps {
@@ -15,7 +14,7 @@ const PlayCard = ({
   icon = <ChainIcon mb="33px" fontSize={"58px"} />,
   description = "Utmost security and provably fair on chain games.",
   title = "On chain",
-  gamesPath = routeNames.coinFlip,
+  gamesPath /* = routeNames.coinFlip */,
 }: IProps) => {
   return (
     <Center

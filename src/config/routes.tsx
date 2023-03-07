@@ -1,25 +1,7 @@
-import { CalendarIcon, HamburgerIcon, RepeatClockIcon } from "@chakra-ui/icons";
-import {
-  CoinsIcon,
-  FarmIcon,
-  GiveawaysIcon,
-  MultipleMessageIcon,
-  PlayIcon,
-  SendMessageIcon,
-  SwapIcon,
-  TwitterIcon,
-} from "components/icons/ui-icons";
-import FreeBirdLayOut from "components/Layout/FreeBirdLayOut";
+import { FarmIcon, SwapIcon } from "components/icons/ui-icons";
 import Layout from "components/Layout/MainLayout";
 import React from "react";
-import { Outlet, RouteObject } from "react-router-dom";
-import BulkDms from "views/FreeBird/BulkDms/BulkDms";
-import Follow from "views/FreeBird/Follow/Follow";
-import Giveaways from "views/FreeBird/Giveaways/Giveaways";
-import Leads from "views/FreeBird/Leads/Leads";
-import SmartRetweets from "views/FreeBird/SmartRetweets/SmartRetweets";
-import WelcomeMessage from "views/FreeBird/WelcomeMessage/WelcomeMessage";
-import WriteSchedule from "views/FreeBird/WriteSchedule/WriteSchedule";
+import { RouteObject } from "react-router-dom";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 const PlayView = React.lazy(() => import("views/PlayView"));
@@ -33,19 +15,11 @@ export const routeNames = {
   swap: "/",
   swapLp: "/swapLp",
 
-  play: "/play",
-  coinFlip: "/play/coin-flip",
-  forge: "/the-forge",
+  // play: "/play",
+  // coinFlip: "/play/coin-flip",
+  // forge: "/the-forge",
   farm: "/farm",
   stake: "/stake",
-  freebird: "/freebird",
-  freebirdWelcomeMessage: "/freebird/welcome",
-  freebirdBulkDms: "/freebird/bulk-dms",
-  freebirdSchedule: "/freebird/schedule",
-  freebirdGiveaways: "/freebird/giveaways",
-  freebirdFollow: "/freebird/follow",
-  freebirdLeads: "/freebird/leads",
-  freebirdSmartRetweets: "/freebird/smart-retweets",
 };
 
 export const mainSiteRoutes = [
@@ -71,36 +45,36 @@ export const mainSiteRoutes = [
     title: "Farm",
     icon: <FarmIcon fontSize={"25px"} />,
   },
-  {
-    path: routeNames.play,
-    element: <Outlet />,
-    title: "Play",
-    icon: <PlayIcon fontSize={"25px"} />,
-    children: [
-      {
-        path: routeNames.play + "/",
-        element: <PlayView />,
-      },
-      {
-        path: routeNames.coinFlip,
-        element: <CoinFlipView />,
-        title: "Coin flip",
-        icon: <CoinsIcon fontSize={"23px"} />,
-      },
-      {
-        path: "/play/game2",
-        element: <SwapLpTab />,
-        title: "Game 2",
-        icon: <CoinsIcon fontSize={"23px"} />,
-      },
-      {
-        path: "/play/game3",
-        element: <SwapLpTab />,
-        title: "Game 3",
-        icon: <CoinsIcon fontSize={"23px"} />,
-      },
-    ],
-  },
+  // {
+  //   path: routeNames.play,
+  //   element: <Outlet />,
+  //   title: "Play",
+  //   icon: <PlayIcon fontSize={"25px"} />,
+  //   children: [
+  //     {
+  //       path: routeNames.play + "/",
+  //       element: <PlayView />,
+  //     },
+  //     {
+  //       path: routeNames.coinFlip,
+  //       element: <CoinFlipView />,
+  //       title: "Coin flip",
+  //       icon: <CoinsIcon fontSize={"23px"} />,
+  //     },
+  //     {
+  //       path: "/play/game2",
+  //       element: <SwapLpTab />,
+  //       title: "Game 2",
+  //       icon: <CoinsIcon fontSize={"23px"} />,
+  //     },
+  //     {
+  //       path: "/play/game3",
+  //       element: <SwapLpTab />,
+  //       title: "Game 3",
+  //       icon: <CoinsIcon fontSize={"23px"} />,
+  //     },
+  //   ],
+  // },
 
   /*   {
     path: routeNames.forge,
@@ -108,58 +82,6 @@ export const mainSiteRoutes = [
     title: "Forge",
     icon: <FireIcon fontSize={"20px"} />,
   }, */
-  {
-    path: routeNames.freebird,
-    element: <FreeBirdLayOut />,
-    title: "Bird App",
-    icon: <TwitterIcon fontSize={"25px"} />,
-
-    children: [
-      {
-        path: routeNames.freebirdWelcomeMessage,
-        title: "Welcome message",
-        element: <WelcomeMessage />,
-        icon: SendMessageIcon,
-      },
-      {
-        path: routeNames.freebirdBulkDms,
-        element: <BulkDms />,
-        title: "Bulk DMs",
-        icon: MultipleMessageIcon,
-      },
-      {
-        path: routeNames.freebirdSchedule,
-        element: <WriteSchedule />,
-        title: "Write / Schedule",
-        icon: CalendarIcon,
-      },
-      {
-        path: routeNames.freebirdGiveaways,
-        element: <Giveaways />,
-        title: "Giveaways",
-        icon: GiveawaysIcon,
-      },
-      {
-        path: routeNames.freebirdFollow,
-        element: <Follow />,
-        title: "Follow / Unfollow",
-        icon: RepeatClockIcon,
-      },
-      {
-        path: routeNames.freebirdLeads,
-        element: <Leads />,
-        title: "Leads",
-        icon: HamburgerIcon,
-      },
-
-      {
-        path: routeNames.freebirdSmartRetweets,
-        element: <SmartRetweets />,
-        title: "Smart Retweets",
-        icon: HamburgerIcon,
-      },
-    ],
-  },
 ];
 
 export const routes: RouteObject[] = [

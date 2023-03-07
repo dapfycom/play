@@ -1,7 +1,5 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { mainSiteRoutes } from "config/routes";
-import { Link, useLocation } from "react-router-dom";
-import { isActiveRoute } from "utils/functions/urls";
+import { Flex } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 
 interface IProps {
   noBorder?: boolean;
@@ -12,7 +10,7 @@ const PlayMenuBar = ({ noBorder }: IProps) => {
 
   return (
     <Flex as="nav" gap={{ xs: "28px", md: "50px" }}>
-      {mainSiteRoutes
+      {/* {mainSiteRoutes
         .find((route) => route.path === "/play")
         .children.map((route) => {
           let isActive = isActiveRoute(route.path, location.pathname);
@@ -51,7 +49,7 @@ const PlayMenuBar = ({ noBorder }: IProps) => {
               </Flex>
             </Link>
           );
-        })}
+        })} */}
     </Flex>
   );
 };
