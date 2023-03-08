@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Tooltip } from "@chakra-ui/react";
 import { mainSiteRoutes } from "config/routes";
 import { Link, useLocation } from "react-router-dom";
 import { isActiveRoute } from "utils/functions/urls";
@@ -13,8 +13,34 @@ const Menu = ({ noBorder }: IProps) => {
   return (
     <Flex as="nav" gap={{ xs: "28px", md: "50px" }}>
       {mainSiteRoutes.map((route) => {
-        let isActive = isActiveRoute(route.path, location.pathname);
+        if (route.soon) {
+          return (
+            <Tooltip label="Coming soon" placement="right">
+              <Flex
+                gap="10px"
+                borderBottom={"1px solid"}
+                borderColor={"transparent"}
+                height="full"
+                pt={{ xs: "22.5px", md: "31px" }}
+                fontSize={{ xs: "lsm", "2xl": "md" }}
+                _hover={{
+                  "& p": {
+                    color: "white",
+                  },
+                  "& div": {
+                    color: "white",
+                  },
+                }}
+                whiteSpace="nowrap"
+              >
+                <Box color={"grayText"}>{route.icon}</Box>
+                <Text color={"grayText"}>{route.title}</Text>
+              </Flex>
+            </Tooltip>
+          );
+        }
 
+        let isActive = isActiveRoute(route.path, location.pathname);
         return (
           <Link to={route.path} key={route.path}>
             <Flex

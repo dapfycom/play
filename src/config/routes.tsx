@@ -1,7 +1,7 @@
-import { FarmIcon, SwapIcon } from "components/icons/ui-icons";
+import { FarmIcon, PlayIcon, SwapIcon } from "components/icons/ui-icons";
 import Layout from "components/Layout/MainLayout";
 import React from "react";
-import { RouteObject } from "react-router-dom";
+import { Outlet, RouteObject } from "react-router-dom";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 // const PlayView = React.lazy(() => import("views/PlayView"));
@@ -20,6 +20,7 @@ export const routeNames = {
   // forge: "/the-forge",
   farm: "/farm",
   stake: "/stake",
+  play: "/play",
 };
 
 export const mainSiteRoutes = [
@@ -45,36 +46,37 @@ export const mainSiteRoutes = [
     title: "Farm",
     icon: <FarmIcon fontSize={"25px"} />,
   },
-  // {
-  //   path: routeNames.play,
-  //   element: <Outlet />,
-  //   title: "Play",
-  //   icon: <PlayIcon fontSize={"25px"} />,
-  //   children: [
-  //     {
-  //       path: routeNames.play + "/",
-  //       element: <PlayView />,
-  //     },
-  //     {
-  //       path: routeNames.coinFlip,
-  //       element: <CoinFlipView />,
-  //       title: "Coin flip",
-  //       icon: <CoinsIcon fontSize={"23px"} />,
-  //     },
-  //     {
-  //       path: "/play/game2",
-  //       element: <SwapLpTab />,
-  //       title: "Game 2",
-  //       icon: <CoinsIcon fontSize={"23px"} />,
-  //     },
-  //     {
-  //       path: "/play/game3",
-  //       element: <SwapLpTab />,
-  //       title: "Game 3",
-  //       icon: <CoinsIcon fontSize={"23px"} />,
-  //     },
-  //   ],
-  // },
+  {
+    path: routeNames.play,
+    element: <Outlet />,
+    title: "Play",
+    icon: <PlayIcon fontSize={"25px"} />,
+    soon: true,
+    // children: [
+    //   {
+    //     path: routeNames.play + "/",
+    //     element: <PlayView />,
+    //   },
+    //   {
+    //     path: routeNames.coinFlip,
+    //     element: <CoinFlipView />,
+    //     title: "Coin flip",
+    //     icon: <CoinsIcon fontSize={"23px"} />,
+    //   },
+    //   {
+    //     path: "/play/game2",
+    //     element: <SwapLpTab />,
+    //     title: "Game 2",
+    //     icon: <CoinsIcon fontSize={"23px"} />,
+    //   },
+    //   {
+    //     path: "/play/game3",
+    //     element: <SwapLpTab />,
+    //     title: "Game 3",
+    //     icon: <CoinsIcon fontSize={"23px"} />,
+    //   },
+    // ],
+  },
 
   /*   {
     path: routeNames.forge,
