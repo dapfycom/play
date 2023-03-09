@@ -38,12 +38,14 @@ export const submitSwap = async (
   const dataToSend = swapInfo.flatMap((item) => {
     const amountWithSlipage = new BigNumber(item.token2AmountDecimals)
       .multipliedBy(slipapge)
-      .dividedBy(100)
-      .toNumber();
+      .dividedBy(100);
 
     const finalAmount = new BigNumber(item.token2AmountDecimals)
       .minus(amountWithSlipage)
       .toFixed(0);
+    console.log("item.token2", item.token2);
+
+    console.log("finalAmount", finalAmount);
 
     return [
       new AddressValue(new Address(item.sc)),

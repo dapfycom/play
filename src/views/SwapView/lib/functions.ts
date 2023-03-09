@@ -195,6 +195,7 @@ export const smartSwapRoutes = async ([
       })
       .join(",")}`
   );
+
   const routes: IRoute[] = [];
   for (let index = 0; index < pairs.length; index++) {
     const pair = pairs[index];
@@ -206,11 +207,9 @@ export const smartSwapRoutes = async ([
       //wegld route
       t1 = pair.baseId;
       t2 = pair.quoteId;
-      console.log("first if");
 
       rate = new BigNumber(pair.basePrice).div(pair.quotePrice).toNumber();
     } else {
-      console.log("third if");
       //usdc route
       t1 = pair.quoteId;
       t2 = pair.baseId;
@@ -225,9 +224,11 @@ export const smartSwapRoutes = async ([
     ) || { decimals: 18 };
     const finalAmount1 = amount1Before;
 
-    const finalAmount2 = new BigNumber(finalAmount1)
+    const bigNtoken1 = getRealBalance(finalAmount1, token1Decimals, true);
+    const finalAmount2 = new BigNumber(bigNtoken1)
       .multipliedBy(rate)
-      .toString();
+      .multipliedBy(Math.pow(10, token2Decimals))
+      .toFixed(0);
     const data: IRoute = {
       token1: t1,
       token2: t2,
