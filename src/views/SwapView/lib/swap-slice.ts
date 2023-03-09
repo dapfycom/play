@@ -27,7 +27,7 @@ const initialState: SwapState = {
     selectedToken: selectedNetwork.tokensID.bsk,
   },
   rate: 0,
-  slipage: 1,
+  slipage: 3,
 };
 
 export const swap = createSlice({
