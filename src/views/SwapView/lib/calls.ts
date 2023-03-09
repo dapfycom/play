@@ -34,7 +34,6 @@ export const submitSwap = async (
   fromElrondToken: IElrondToken
 ) => {
   let swapToken = fromToken.token;
-  console.log("swapInfo", swapInfo);
 
   const dataToSend = swapInfo.flatMap((item) => {
     const amountWithSlipage = new BigNumber(item.token2AmountDecimals)

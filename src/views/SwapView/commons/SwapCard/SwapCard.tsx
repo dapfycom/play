@@ -1,12 +1,13 @@
 import { Box, Center, Flex, Heading } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { IElrondAccountToken } from "types/elrond.interface";
-import { formatBalance } from "utils/functions/formatBalance";
+import { formatBalance, setElrondBalance } from "utils/functions/formatBalance";
 import { useGetSwapRate } from "views/SwapView/lib/hooks";
 import {
   changeFromFieldToken,
   changeToFieldToken,
   onChageFromFieldValue,
+  onChageFromFieldValueDecimals,
   onChangeToField,
   selectFromField,
   selectToField,
@@ -19,8 +20,17 @@ const SwapCard = () => {
   const toField = useAppSelector(selectToField);
   const { isLoading: loadingRoutes } = useGetSwapRate();
   const dispatch = useAppDispatch();
-  const handleChangeFromField = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeFromField = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    token: IElrondAccountToken
+  ) => {
     dispatch(onChageFromFieldValue(e.target.value));
+
+    const valueDecimals = setElrondBalance(
+      Number(e.target.value),
+      token.decimals
+    );
+    dispatch(onChageFromFieldValueDecimals(valueDecimals.toString()));
   };
   const handleChangeToField = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(onChangeToField(e.target.value));
@@ -33,8 +43,9 @@ const SwapCard = () => {
     dispatch(changeToFieldToken(token));
   };
   const handleMax = (accountToken: IElrondAccountToken) => {
-    const userAmount = formatBalance(accountToken, true, 18);
+    const userAmount = formatBalance(accountToken, true);
     dispatch(onChageFromFieldValue(userAmount.toString()));
+    dispatch(onChageFromFieldValueDecimals(accountToken.balance));
   };
 
   return (

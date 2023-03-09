@@ -2,7 +2,7 @@ import BigNumber from "bignumber.js";
 import { selectedNetwork } from "config/network";
 import { fetchElrondData } from "services/rest/elrond";
 import { IRoute } from "types/swap.interface";
-import { setElrondBalance } from "utils/functions/formatBalance";
+import { getRealBalance } from "utils/functions/formatBalance";
 import { IMexPair } from "../../../types/elrond.interface";
 
 export const handleSwap = (value: string, rate: number) => {
@@ -165,7 +165,7 @@ export const smartSwapRoutes = async ([
   tokenParam2,
   token1Amount,
   mexPairs,
-]: [string, string, number, IMexPair[]]): Promise<IRoute[]> => {
+]: [string, string, string, IMexPair[]]): Promise<IRoute[]> => {
   let token1 = tokenParam1;
   let token2 = tokenParam2;
   if (token1 === selectedNetwork.tokensID.egld) {
@@ -176,7 +176,6 @@ export const smartSwapRoutes = async ([
   }
 
   const pairs = await getSwapPairs(token1, token2, mexPairs);
-  console.log("\n\npairs", pairs);
 
   let token1Before = token1;
   let amount1Before = token1Amount;
@@ -225,20 +224,17 @@ export const smartSwapRoutes = async ([
       (t) => t.identifier === t2
     ) || { decimals: 18 };
     const finalAmount1 = amount1Before;
-    console.log("tokensDeciamals", tokensDeciamals);
-    console.log("t2", t2);
-    console.log("token2Decimals", token2Decimals);
 
     const finalAmount2 = new BigNumber(finalAmount1)
       .multipliedBy(rate)
-      .toNumber();
+      .toString();
     const data: IRoute = {
       token1: t1,
       token2: t2,
-      token1Amount: finalAmount1,
-      token2Amount: finalAmount2,
-      token1AmountDecimals: setElrondBalance(finalAmount1, token1Decimals),
-      token2AmountDecimals: setElrondBalance(finalAmount2, token2Decimals),
+      token1Amount: getRealBalance(finalAmount1, token1Decimals) as number,
+      token2Amount: getRealBalance(finalAmount2, token2Decimals) as number,
+      token1AmountDecimals: finalAmount1,
+      token2AmountDecimals: finalAmount2,
       sc: pair.address,
     };
 

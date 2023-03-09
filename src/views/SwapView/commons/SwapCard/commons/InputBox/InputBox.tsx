@@ -11,7 +11,10 @@ const SelectTokenModal = lazy(() => import("../SelectTokenModal"));
 interface IProps {
   selectedTokenI: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    token?: IElrondAccountToken
+  ) => void;
   onChangeToken: (t: string) => void;
   isLoadingInput?: boolean;
   disabeledTokenSelection?: boolean;
@@ -61,7 +64,7 @@ const InputBox = ({
               placeholder="0.0"
               fontSize={{ xs: "2xl", lg: "4xl" }}
               value={value}
-              onChange={(e) => onChange(e)}
+              onChange={(e) => onChange(e, accountToken as IElrondAccountToken)}
               color="white"
             />
           )}

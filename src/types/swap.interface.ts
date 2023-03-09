@@ -3,7 +3,7 @@ export interface IRoute {
   token2: string;
   token1Amount: number;
   token2Amount: number;
-  token1AmountDecimals: number;
-  token2AmountDecimals: number;
+  token1AmountDecimals: string;
+  token2AmountDecimals: string;
   sc: string;
 }

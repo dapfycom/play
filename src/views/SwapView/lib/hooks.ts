@@ -10,7 +10,7 @@ import { smartSwapRoutes } from "./functions";
 import {
   onChangeToField,
   selectFromFieldSelectedToken,
-  selectFromFieldValue,
+  selectFromFieldValueDecimals,
   selectToFieldSelectedToken,
 } from "./swap-slice";
 import {
@@ -21,7 +21,7 @@ import {
 export const useGetSwapRate = () => {
   const token1 = useAppSelector(selectFromFieldSelectedToken);
   const token2 = useAppSelector(selectToFieldSelectedToken);
-  const token1Value = useAppSelector(selectFromFieldValue);
+  const token1Value = useAppSelector(selectFromFieldValueDecimals);
   const dispatch = useAppDispatch();
   const { pairs } = useGetMaiarPairs();
   const { data, isLoading, error } = useSWR(
@@ -53,10 +53,8 @@ export const useSearchToken = (tokens: IElrondToken[], searchKey: string) => {
   } else {
     filteredTokens = tokens.filter((token) => {
       return (
-        token.ticker
-          .toString()
-          .toLowerCase()
-          .indexOf(searchKey.toLowerCase()) > -1
+        token.ticker.toString().toLowerCase().indexOf(searchKey.toLowerCase()) >
+        -1
       );
     });
   }
