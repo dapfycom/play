@@ -41,7 +41,7 @@ const webWalletLoginComponent = (
     h="full"
   >
     {" "}
-    <WebWalletIcon mr="14px" fontSize={"21px"} /> Elrond Web Wallet{" "}
+    <WebWalletIcon mr="14px" fontSize={"21px"} /> MultiversX Web Wallet{" "}
   </Flex>
 );
 const legerLoginComponent = (
@@ -69,7 +69,7 @@ const mobileLoginComponent = (
     h="full"
   >
     {" "}
-    <MaiarAppIcon mr="14px" fontSize={"21px"} /> Maiar App{" "}
+    <MaiarAppIcon mr="14px" fontSize={"21px"} /> xPortal App{" "}
   </Flex>
 );
 const desktopLoginComponent = (
@@ -82,7 +82,8 @@ const desktopLoginComponent = (
     gap={2}
   >
     {" "}
-    <MaiarDefiWalletIcon mr="11.5px" fontSize={"23.5px"} /> Maiar DeFi Wallet{" "}
+    <MaiarDefiWalletIcon mr="11.5px" fontSize={"23.5px"} /> MultiversX DeFi
+    Wallet{" "}
   </Flex>
 );
 
