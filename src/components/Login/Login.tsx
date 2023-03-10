@@ -173,7 +173,11 @@ const Login = ({ isLoginOpen }: IProps) => {
           <Text color={"blackT.400"} mb="15px">
             New to MultiversX?
           </Text>
-          <ChakraLink isExternal href="" textDecor="underline">
+          <ChakraLink
+            isExternal
+            href="https://xport.al/referral/v3pqh6iqco"
+            textDecor="underline"
+          >
             Learn How <br /> to setup a wallet
           </ChakraLink>
         </Center>
