@@ -43,7 +43,7 @@ const Swap = () => {
           <Text
             align={"center"}
             fontSize="sm"
-            color={"gray.500"}
+            color={"primary"}
             mb={4}
             textDecor="underline"
           >
