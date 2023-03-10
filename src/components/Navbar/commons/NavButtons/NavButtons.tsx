@@ -35,7 +35,7 @@ const NavButtons = () => {
           alignItems={"center"}
           fontSize={{ xs: "xs", "2xl": "md" }}
         >
-          <EgldIcon fontSize={{ xs: "15px", "2xl": "24px" }} />{" "}
+          <EgldIcon fontSize={{ xs: "30px", "2xl": "35px" }} />{" "}
           <DotIcon fontSize={"5px"} color="green2" /> MultiversX
         </Flex>
       </ActionButton>
