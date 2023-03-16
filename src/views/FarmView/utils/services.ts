@@ -33,7 +33,6 @@ export const stop = (lpAmount: string | number, nonces: number[]) => {
   const noncesArgs = nonces.map((nonce) => {
     return new U64Value(new BigNumber(nonce));
   });
-  console.log("lpAmount", lpAmount);
 
   scCall(
     "bskFarmWsp",

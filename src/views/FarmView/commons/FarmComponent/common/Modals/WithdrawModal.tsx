@@ -69,10 +69,6 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
   };
 
   const { isLpStoped } = useLpStoped();
-  const date = new Date(userFarmInfo.lock * 100);
-  console.log("date", date.toLocaleString());
-
-  console.log("userFarmInfo", userFarmInfo);
 
   return (
     <MyModal isOpen={isOpen} onClose={onClose} size="2xl" py={6}>
@@ -89,8 +85,8 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
           <ModalBody>
             <Alert status="warning" borderRadius={"md"} mb={4} fontSize="14px">
               <AlertIcon />
-              Please note that your LP tokens will be available to claim in 48
-              hours after unstaking.
+              Please note that your LP tokens or nfts will be available to claim
+              in 48 hours after unstaking.
             </Alert>
             <InputGroup size={"lg"}>
               <Input
@@ -132,13 +128,36 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
             <Divider />
 
             <Flex mt={4} flexDir="column">
+              <Flex w="full" gap={4} mt={3} mb={8}>
+                <ActionButton
+                  flex={1}
+                  onClick={() => {
+                    stop(
+                      "0",
+                      userFarmInfo.nftActive.map((nft) => {
+                        const nonce = nft.split("-")[1];
+                        return parseInt(nonce, 16);
+                      })
+                    );
+                  }}
+                  disabled={isLpStoped}
+                >
+                  Unstake NFTs
+                </ActionButton>
+              </Flex>
+            </Flex>
+            <Divider />
+
+            <Flex mt={4} flexDir="column">
               <Text fontSize={"sm"} color="white">
                 {isLpStoped ? "Lp locked " : "Available to claim"}:{" "}
                 {formatBalance({
                   balance: userFarmInfo.lpStopped,
                   decimals: stakedToken.decimals,
                 })}{" "}
-                LP
+                LP{" "}
+                {userFarmInfo.nftStopped.length > 0 &&
+                  `and ${userFarmInfo.nftStopped.length} NFTs`}
               </Text>
               <Flex w="full" gap={4} mt={3} mb={8}>
                 <ActionButton flex={1} onClick={withdraw} disabled={isLpStoped}>
