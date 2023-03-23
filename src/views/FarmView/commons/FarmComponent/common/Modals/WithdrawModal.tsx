@@ -143,7 +143,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
                     stop(
                       "0",
                       userFarmInfo.nftActive.map((nft) => {
-                        const nonce = nft.split("-")[1];
+                        const nonce = nft.split("-")[2];
                         return parseInt(nonce, 16);
                       })
                     );
