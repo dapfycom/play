@@ -154,14 +154,12 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
 
             <Flex mt={4} flexDir="column">
               <Text fontSize={"sm"} color="white">
-                {isLpStoped ? "Lp locked " : "Available to claim"}:{" "}
+                {isLpStoped ? "Locked " : "Available to claim"}:{" "}
                 {formatBalance({
                   balance: userFarmInfo.lpStopped,
                   decimals: stakedToken.decimals,
                 })}{" "}
-                LP{" "}
-                {userFarmInfo.nftStopped.length > 0 &&
-                  `and ${userFarmInfo.nftStopped.length} NFTs`}
+                LP {`and ${userFarmInfo.nftStopped.length} NFTs`}
               </Text>
               <Flex w="full" gap={4} mt={3} mb={8}>
                 <ActionButton
