@@ -133,6 +133,9 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
             <Divider />
 
             <Flex mt={4} flexDir="column">
+              <Text fontSize={"sm"} color="white">
+                Avilable to usnstake : {userFarmInfo.nftActive.length} NFTs
+              </Text>
               <Flex w="full" gap={4} mt={3} mb={8}>
                 <ActionButton
                   flex={1}
