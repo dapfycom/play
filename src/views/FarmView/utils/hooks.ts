@@ -74,3 +74,19 @@ export const useLpStoped = () => {
     isLpStoped: isLpStoped,
   };
 };
+export const useNFTsStoped = () => {
+  const { data: userFarmInfo } = useGetFarmUserInfo();
+  const { data: farmInfo } = useGetFarmsInfo();
+
+  const bnLpStoped = new BigNumber(userFarmInfo.nftStopped.length);
+  const bnUserBlock = new BigNumber(userFarmInfo.lock);
+  const bnCurrentBlock = new BigNumber(farmInfo.block);
+  const isNFTsStoped = !(
+    bnLpStoped.isGreaterThan(0) &&
+    bnUserBlock.isLessThanOrEqualTo(bnCurrentBlock)
+  );
+
+  return {
+    isNFTsStoped: isNFTsStoped,
+  };
+};

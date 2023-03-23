@@ -20,7 +20,11 @@ import { selectedNetwork } from "config/network";
 import { useFormik } from "formik";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { formatBalance } from "utils/functions/formatBalance";
-import { useGetFarmUserInfo, useLpStoped } from "views/FarmView/utils/hooks";
+import {
+  useGetFarmUserInfo,
+  useLpStoped,
+  useNFTsStoped,
+} from "views/FarmView/utils/hooks";
 import { stop, withdraw } from "views/FarmView/utils/services";
 import * as yup from "yup";
 interface IProps {
@@ -69,6 +73,7 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
   };
 
   const { isLpStoped } = useLpStoped();
+  const { isNFTsStoped } = useNFTsStoped();
 
   return (
     <MyModal isOpen={isOpen} onClose={onClose} size="2xl" py={6}>
@@ -140,7 +145,6 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
                       })
                     );
                   }}
-                  disabled={isLpStoped}
                 >
                   Unstake NFTs
                 </ActionButton>
@@ -160,7 +164,11 @@ const WithdrawModal = ({ isOpen, onClose }: IProps) => {
                   `and ${userFarmInfo.nftStopped.length} NFTs`}
               </Text>
               <Flex w="full" gap={4} mt={3} mb={8}>
-                <ActionButton flex={1} onClick={withdraw} disabled={isLpStoped}>
+                <ActionButton
+                  flex={1}
+                  onClick={withdraw}
+                  disabled={isLpStoped && isNFTsStoped}
+                >
                   Claim
                 </ActionButton>
               </Flex>
