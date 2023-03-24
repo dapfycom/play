@@ -17,7 +17,7 @@ const useGetTokenPrice = (tokenIdentifier) => {
   if (isLpPrice) {
     const price = lpPrices?.find((item) => item.token === tokenIdentifier);
     if (price) {
-      tokenPrice = Number(price.price);
+      tokenPrice = Number(price.price) * 2;
     }
   }
 
