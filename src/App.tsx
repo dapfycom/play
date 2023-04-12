@@ -11,7 +11,7 @@ import LoadingPage from "components/LoadingPage";
 import { ENVIROMENT } from "config/network";
 import { routes } from "config/routes";
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "styles/globals.css";
 
 const router = createBrowserRouter(routes);
