@@ -23,8 +23,6 @@ const FarmComponent = () => {
   const { data: farmInfo } = useGetFarmsInfo();
   const [price] = useGetTokenPrice(selectedNetwork.tokensID.bskwegld);
 
-  console.log("farmInfo", farmInfo);
-
   return (
     <Center my={20} flexDir="column">
       <Box maxW="1300px" w="full" borderRadius="md" overflow={"hidden"}>
