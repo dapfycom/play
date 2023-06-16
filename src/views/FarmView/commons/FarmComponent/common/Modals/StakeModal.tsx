@@ -10,6 +10,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
+import BigNumber from "bignumber.js";
 import ActionButton from "components/ActionButton/ActionButton";
 import { LpTokenImageV2 } from "components/LpTokenImage/LpTokenImage";
 import MyModal from "components/Modal/Modal";
@@ -48,6 +49,12 @@ const StakeModal = ({ isOpen, onClose }: IProps) => {
       amount: "",
     },
     onSubmit: (values) => {
+      let amount = values.amount;
+      if (amount === formatBalance(userStakedToken, true, 18)) {
+        amount = new BigNumber(userStakedToken.balance)
+          .div(Math.pow(10, 18))
+          .toString();
+      }
       stakeLP(values.amount, stakedToken);
     },
     validationSchema: stakeSchema,

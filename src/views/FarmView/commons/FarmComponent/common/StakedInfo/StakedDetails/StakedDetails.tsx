@@ -8,8 +8,8 @@ import {
 } from "utils/functions/formatBalance";
 import {
   useGetBskRewards,
-  useGetFarmsInfo,
   useGetFarmUserInfo,
+  useGetFarmsInfo,
 } from "views/FarmView/utils/hooks";
 const StakedDetails = () => {
   const { data: userFarmInfo, isLoading } = useGetFarmUserInfo();
@@ -58,10 +58,6 @@ interface IStakedDetail {
 
 const StakedDetail = ({ title, value, tokenI, decimals }: IStakedDetail) => {
   const [price] = useGetTokenPrice(tokenI);
-  if (decimals === 16) {
-    console.log("value", value);
-    console.log("price", price);
-  }
 
   return (
     <Flex gap={3}>

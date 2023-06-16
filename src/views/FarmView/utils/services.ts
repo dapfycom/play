@@ -18,9 +18,6 @@ import { getFarmNftIdentifier } from "./functions";
 
 //calls
 export const stakeLP = (amount: number | string, lpToken: IElrondToken) => {
-  console.log("amount", amount);
-  console.log("lpToken", lpToken);
-
   ESDTTransfer({
     contractAddr: selectedNetwork.scAddress.farm,
     funcName: "deposit",
@@ -97,8 +94,6 @@ export const fetchUserFarmInfo = async ([key, address]: [string, string]) => {
     ),
     lock: (scdata.lock as BigNumber)?.toNumber(),
   };
-  console.log("newData", newData);
-
   return newData;
 };
 export const fetchFarmInfo = async () => {
