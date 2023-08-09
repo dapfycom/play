@@ -3,22 +3,17 @@ import {
   AddressValue,
   BigUIntValue,
   BytesValue,
-  ContractFunction,
   Transaction,
-  TransactionPayload,
 } from "@multiversx/sdk-core/out";
 import BigNumber from "bignumber.js";
 import { selectedNetwork } from "config/network";
 import store from "redux/store";
-import {
-  EGLDPaymentOnlyTx,
-  ESDTTransferOnlyTx,
-  sendMultipleTransactions,
-} from "services/sc/calls";
+import { getSmartContractInteraction } from "services/sc";
+import { SmartContractInteraction } from "services/sc/calls/transaction";
 import { IElrondToken } from "types/elrond.interface";
 import { IRoute } from "types/swap.interface";
 import { setElrondBalance } from "utils/functions/formatBalance";
-import { getScOfWrapedEgld, getWspOfWrapedEgld } from "utils/functions/sc";
+import { getWspOfWrapedEgld } from "utils/functions/sc";
 
 export const submitSwap = async (
   swapInfo: IRoute[],
@@ -62,22 +57,39 @@ export const submitSwap = async (
     const shard = store.getState().dapp.shard;
     const wrapedWsp = getWspOfWrapedEgld(shard);
 
-    const t0 = await EGLDPaymentOnlyTx(wrapedWsp, "wrapEgld", fromToken.value);
+    // const t0 = await EGLDPaymentOnlyTx(wrapedWsp, "wrapEgld", fromToken.value);
+    const t0 = getSmartContractInteraction(wrapedWsp).EGLDPaymentOnlyTx({
+      functionName: "wrapEgld",
+      value: fromToken.value,
+    });
     transactions.push(t0);
   }
 
   // is user is going to swap 2 tokens
-  const t1 = await ESDTTransferOnlyTx({
-    funcName: "multiPairSwap",
-    contractAddr: selectedNetwork.scAddress.maiarRouter,
-    realValue: swapInfo[0].token1AmountDecimals,
-    token: { identifier: swapToken, decimals: fromElrondToken.decimals },
-    args: dataToSend,
+  const t1 = getSmartContractInteraction("maiarRouterWsp").ESDTTransferOnlyTx({
+    functionName: "multiPairSwap",
+    token: {
+      collection: swapToken,
+      decimals: fromElrondToken.decimals,
+    },
+    arg: dataToSend,
+
     gasL: 120000000,
+    realValue: swapInfo[0].token1AmountDecimals,
   });
+  // const t1 = await ESDTTransferOnlyTx({
+  //   funcName: "multiPairSwap",
+  //   contractAddr: selectedNetwork.scAddress.maiarRouter,
+  //   realValue: swapInfo[0].token1AmountDecimals,
+  //   token: { identifier: swapToken, decimals: fromElrondToken.decimals },
+  //   args: dataToSend,
+  //   gasL: 120000000,
+  // });
   transactions.push(t1);
 
-  return await sendMultipleTransactions({ txs: transactions });
+  return await SmartContractInteraction.sendMultipleTransactions({
+    txs: transactions,
+  });
 };
 
 export const lpSwap = async (
@@ -106,20 +118,29 @@ export const lpSwap = async (
       token1 = selectedNetwork.tokensID.wegld;
       //wrap egld
       const shard = store.getState().dapp.shard;
-      const wrapContractBasedOnShard = getScOfWrapedEgld(shard);
-      const payload = TransactionPayload.contractCall()
-        .setFunction(new ContractFunction("wrapEgld"))
-        .setArgs([])
-        .build();
+      const wspWrapEgld = getWspOfWrapedEgld(shard);
 
-      const wrapTx = new Transaction({
-        sender: new Address(sender),
-        value: value,
-        receiver: new Address(wrapContractBasedOnShard),
-        data: payload,
-        gasLimit: 30000000,
-        chainID: ChainId,
-      });
+      const wrapTx = getSmartContractInteraction(wspWrapEgld).EGLDPaymentOnlyTx(
+        {
+          functionName: "wrapEgld",
+          value,
+          gasL: 30000000,
+        }
+      );
+
+      // const payload = TransactionPayload.contractCall()
+      //   .setFunction(new ContractFunction("wrapEgld"))
+      //   .setArgs([])
+      //   .build();
+
+      // const wrapTx = new Transaction({
+      //   sender: new Address(sender),
+      //   value: value,
+      //   receiver: new Address(wrapContractBasedOnShard),
+      //   data: payload,
+      //   gasLimit: 30000000,
+      //   chainID: ChainId,
+      // });
 
       transactions.push(wrapTx);
     }
@@ -132,28 +153,44 @@ export const lpSwap = async (
     const finalAmount = new BigNumber(swapInfo.token2AmountDecimals)
       .minus(amountWithSlipage)
       .toFixed(0);
+    console.log("swapInfo", swapInfo);
 
-    const payload2 = TransactionPayload.contractCall()
-      .setFunction(new ContractFunction("ESDTTransfer"))
-      .setArgs([
-        BytesValue.fromUTF8(token1),
-        new BigUIntValue(new BigNumber(swapInfo.token1AmountDecimals)),
-        BytesValue.fromUTF8("swapTokensFixedInput"),
-
-        //swap info
+    const splitTx: Transaction = getSmartContractInteraction(
+      swapInfo.sc
+    ).ESDTTransferOnlyTx({
+      functionName: "swapTokensFixedInput",
+      token: {
+        collection: token1,
+        decimals: 0,
+      },
+      arg: [
         BytesValue.fromUTF8(swapInfo.token2),
         new BigUIntValue(new BigNumber(finalAmount)),
-      ])
-      .build();
-
-    const splitTx = new Transaction({
-      sender: new Address(sender),
-      value: 0,
-      receiver: new Address(swapInfo.sc),
-      data: payload2,
-      gasLimit: 100000000,
-      chainID: ChainId,
+      ],
+      gasL: 100000000,
+      realValue: swapInfo.token1AmountDecimals,
     });
+    // const payload2 = TransactionPayload.contractCall()
+    //   .setFunction(new ContractFunction("ESDTTransfer"))
+    //   .setArgs([
+    //     BytesValue.fromUTF8(token1),
+    //     new BigUIntValue(new BigNumber(swapInfo.token1AmountDecimals)),
+    //     BytesValue.fromUTF8("swapTokensFixedInput"),
+
+    //     //swap info
+    //     BytesValue.fromUTF8(swapInfo.token2),
+    //     new BigUIntValue(new BigNumber(finalAmount)),
+    //   ])
+    //   .build();
+
+    // const splitTx = new Transaction({
+    //   sender: new Address(sender),
+    //   value: 0,
+    //   receiver: new Address(swapInfo.sc),
+    //   data: payload2,
+    //   gasLimit: 100000000,
+    //   chainID: ChainId,
+    // });
 
     transactions.push(splitTx);
 
@@ -204,31 +241,47 @@ export const lpSwap = async (
       new BigUIntValue(new BigNumber(finalToken1Amount)),
     ];
 
-    const payload = TransactionPayload.contractCall()
-      .setFunction(new ContractFunction("MultiESDTNFTTransfer"))
-      .setArgs([
-        new AddressValue(new Address(swapInfo.sc)), // <receiver bytes in hexadecimal encoding>
-        new BigUIntValue(new BigNumber(tokens.length)), //<number of tokens to transfer in hexadecimal encoding>
-        ...data,
-        BytesValue.fromUTF8("addLiquidity"),
-
-        // args
-        ...lpSwapArg,
-      ])
-      .build();
-
-    const lpTx = new Transaction({
-      sender: new Address(sender),
-      value: 0,
-      receiver: new Address(sender),
-      data: payload,
-      gasLimit: 120000000,
-      chainID: ChainId,
+    const lpTx: Transaction = getSmartContractInteraction(
+      swapInfo.sc
+    ).MultiESDTNFTTransferOnlyTx({
+      functionName: "addLiquidity",
+      tokens: tokens.map((t) => {
+        return {
+          collection: t.collection,
+          nonce: t.nonce,
+          value: Number(t.value),
+        };
+      }),
+      arg: lpSwapArg,
+      gasL: 120000000,
     });
+    // const payload = TransactionPayload.contractCall()
+    //   .setFunction(new ContractFunction("MultiESDTNFTTransfer"))
+    //   .setArgs([
+    //     new AddressValue(new Address(swapInfo.sc)), // <receiver bytes in hexadecimal encoding>
+    //     new BigUIntValue(new BigNumber(tokens.length)), //<number of tokens to transfer in hexadecimal encoding>
+    //     ...data,
+    //     BytesValue.fromUTF8("addLiquidity"),
+
+    //     // args
+    //     ...lpSwapArg,
+    //   ])
+    //   .build();
+
+    // const lpTx = new Transaction({
+    //   sender: new Address(sender),
+    //   value: 0,
+    //   receiver: new Address(sender),
+    //   data: payload,
+    //   gasLimit: 120000000,
+    //   chainID: ChainId,
+    // });
 
     transactions.push(lpTx);
 
-    return await sendMultipleTransactions({ txs: transactions });
+    return await SmartContractInteraction.sendMultipleTransactions({
+      txs: transactions,
+    });
   }
 };
 // export const lpSwap = async (

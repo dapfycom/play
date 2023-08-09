@@ -1,9 +1,14 @@
+import { Center } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
+import { ChainIcon, ServersIcon } from "components/icons/ui-icons";
+import { routeNames } from "config/routes";
+import { Outlet } from "react-router-dom";
+import PlayCard from "./commons/PlayCard/PlayCard";
 
 const PlayView = () => {
   return (
     <MyContainer>
-      {/* <Center
+      <Center
         mt="30px"
         gap="29px"
         mb="81px"
@@ -23,7 +28,7 @@ const PlayView = () => {
           gamesPath={routeNames.coinFlip}
         />
       </Center>
-      <Outlet /> */}
+      <Outlet />
     </MyContainer>
   );
 };

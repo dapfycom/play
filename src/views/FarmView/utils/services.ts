@@ -8,8 +8,7 @@ import {
   U64Value,
 } from "@multiversx/sdk-core/out";
 import BigNumber from "bignumber.js";
-import { selectedNetwork } from "config/network";
-import { ESDTTransfer, scCall } from "services/sc/calls";
+import { getSmartContractInteraction } from "services/sc";
 import { scQueryByFieldsDefinitions } from "services/sc/queries";
 import { IElrondToken } from "types/elrond.interface";
 import { IFarmInfo, IUserFarmInfo } from "types/farm.interface";
@@ -18,31 +17,49 @@ import { getFarmNftIdentifier } from "./functions";
 
 //calls
 export const stakeLP = (amount: number | string, lpToken: IElrondToken) => {
-  ESDTTransfer({
-    contractAddr: selectedNetwork.scAddress.farm,
-    funcName: "deposit",
+  getSmartContractInteraction("bskFarmWsp").ESDTTransfer({
+    functionName: "deposit",
+    token: { ...lpToken, collection: lpToken.identifier },
     gasL: 70000000,
-    val: amount,
-    token: lpToken,
+    value: Number(amount),
   });
+  // ESDTTransfer({
+  //   contractAddr: selectedNetwork.scAddress.farm,
+  //   funcName: "deposit",
+  //   gasL: 70000000,
+  //   val: amount,
+  //   token: lpToken,
+  // });
 };
 export const stop = (lpAmount: string | number, nonces: number[]) => {
   const noncesArgs = nonces.map((nonce) => {
     return new U64Value(new BigNumber(nonce));
   });
 
-  scCall(
-    "bskFarmWsp",
-    "stop",
-    [
+  getSmartContractInteraction("bskFarmWsp").scCall({
+    functionName: "stop",
+    arg: [
       new BigUIntValue(new BigNumber(setElrondBalance(Number(lpAmount), 18))),
       new List(new ListType(new U64Type()), noncesArgs),
     ],
-    50000000
-  );
+    gasL: 50000000,
+  });
+  // scCall(
+  //   "bskFarmWsp",
+  //   "stop",
+  //   [
+  //     new BigUIntValue(new BigNumber(setElrondBalance(Number(lpAmount), 18))),
+  //     new List(new ListType(new U64Type()), noncesArgs),
+  //   ],
+  //   50000000
+  // );
 };
 export const withdraw = () => {
-  scCall("bskFarmWsp", "withdraw", [], 50000000);
+  getSmartContractInteraction("bskFarmWsp").scCall({
+    functionName: "withdraw",
+    gasL: 50000000,
+  });
+  // scCall("bskFarmWsp", "withdraw", [], 50000000);
 };
 
 //queries

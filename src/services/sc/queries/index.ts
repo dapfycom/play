@@ -6,12 +6,40 @@ import {
   EndpointParameterDefinition,
   ResultsParser,
   SmartContract,
-  SmartContractAbi,
   TypeExpressionParser,
   TypeMapper,
 } from "@multiversx/sdk-core/out";
-import { getInterface, provider, WspTypes } from "../index";
+import { WspTypes, getInterface, provider } from "../index";
 
+// export const scQuery = async (
+//   workspace: WspTypes,
+//   funcName = "",
+//   args = [],
+//   endpointDef?: string
+// ) => {
+//   try {
+//     const { address, abiUrl, implementsInterfaces } = getInterface(workspace);
+//     const abiRegistry = await AbiRegistry.create(abiUrl);
+//     const abi = new SmartContractAbi(abiRegistry, [implementsInterfaces]);
+//     const contract = new SmartContract({
+//       address: address,
+//       abi: abi,
+//     });
+
+//     const query = contract.createQuery({
+//       func: new ContractFunction(funcName),
+//       args: args,
+//     });
+//     const queryResponse = await provider.queryContract(query);
+//     const endpointDefinition = contract.getEndpoint(endpointDef || funcName);
+//     const parser = new ResultsParser();
+//     const data = parser.parseQueryResponse(queryResponse, endpointDefinition);
+
+//     return data;
+//   } catch (error) {
+//     console.log(`query error for ${funcName}  : `, error);
+//   }
+// };
 export const scQuery = async (
   workspace: WspTypes,
   funcName = "",
@@ -21,20 +49,18 @@ export const scQuery = async (
   try {
     const { address, abiUrl, implementsInterfaces } = getInterface(workspace);
     const abiRegistry = await AbiRegistry.create(abiUrl);
-    const abi = new SmartContractAbi(abiRegistry, [implementsInterfaces]);
     const contract = new SmartContract({
       address: address,
-      abi: abi,
+      abi: abiRegistry,
     });
 
-    const query = contract.createQuery({
-      func: new ContractFunction(funcName),
-      args: args,
-    });
+    let interaction = contract.methods[funcName](args);
+    const query = interaction.check().buildQuery();
     const queryResponse = await provider.queryContract(query);
-    const endpointDefinition = contract.getEndpoint(endpointDef || funcName);
-    const parser = new ResultsParser();
-    const data = parser.parseQueryResponse(queryResponse, endpointDefinition);
+    const data = new ResultsParser().parseQueryResponse(
+      queryResponse,
+      interaction.getEndpoint()
+    );
 
     return data;
   } catch (error) {
@@ -81,10 +107,9 @@ export const scQueryByFieldsDefinitions = async (
     implementsInterfaces,
   } = getInterface(workspace);
   const abiRegistry = await AbiRegistry.create(abiUrl);
-  const abi = new SmartContractAbi(abiRegistry, [implementsInterfaces]);
   const contract = new SmartContract({
     address: scAddress,
-    abi: abi,
+    abi: abiRegistry,
   });
 
   const query = contract.createQuery({

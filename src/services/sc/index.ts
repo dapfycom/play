@@ -2,6 +2,7 @@ import { Address } from "@multiversx/sdk-core/out";
 import { ProxyNetworkProvider } from "@multiversx/sdk-network-providers";
 import bskFarmAbiUrl from "assets/abis/beskar-dao.abi.json";
 import { selectedNetwork } from "config/network";
+import { SmartContractInteraction } from "./calls/transaction";
 
 export const provider = new ProxyNetworkProvider(
   selectedNetwork.network.gatewayAddress,
@@ -19,6 +20,7 @@ export type WspTypes =
   | "wrapEgldpWspShard2"
   | "maiarRouterWsp"
   | "bskFarmWsp";
+
 export const getInterface = (workspace: WspTypes) => {
   let address = null;
   let abiUrl: any = null;
@@ -61,4 +63,42 @@ export const getInterface = (workspace: WspTypes) => {
   }
 
   return { address, abiUrl, implementsInterfaces, simpleAddress };
+};
+
+export const getSmartContractInteraction = (
+  key: WspTypes | string
+): SmartContractInteraction => {
+  const smartsContractsInteractions: {
+    [key: string]: SmartContractInteraction;
+  } = {
+    bskFarmWsp: new SmartContractInteraction(
+      getInterface("bskFarmWsp").simpleAddress
+    ),
+    maiarRouterWsp: new SmartContractInteraction(
+      getInterface("maiarRouterWsp").simpleAddress
+    ),
+    wrapEgldpWspShard2: new SmartContractInteraction(
+      getInterface("wrapEgldpWspShard2").simpleAddress
+    ),
+    wrapEgldpWspShard1: new SmartContractInteraction(
+      getInterface("wrapEgldpWspShard1").simpleAddress
+    ),
+    wrapEgldpWsp: new SmartContractInteraction(
+      getInterface("wrapEgldpWsp").simpleAddress
+    ),
+    maiarBskExchangeWsp: new SmartContractInteraction(
+      getInterface("maiarBskExchangeWsp").simpleAddress
+    ),
+  };
+
+  if (smartsContractsInteractions[key]) {
+    return smartsContractsInteractions[key];
+  } else {
+    try {
+      new Address(key);
+    } catch (error) {
+      throw new Error("Invalid address");
+    }
+    return new SmartContractInteraction(key);
+  }
 };
