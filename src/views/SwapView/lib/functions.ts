@@ -229,6 +229,7 @@ export const smartSwapRoutes = async ([
       .multipliedBy(rate)
       .multipliedBy(Math.pow(10, token2Decimals))
       .toFixed(0);
+
     const data: IRoute = {
       token1: t1,
       token2: t2,

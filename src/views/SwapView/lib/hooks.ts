@@ -75,12 +75,13 @@ export const useSwapLpRate = () => {
       ? [
           token1,
           token2,
-          new BigNumber(fromField.value).div(2).toNumber(),
+          new BigNumber(fromField.valueDecimals).div(2).toNumber(),
           pairs,
         ]
       : null,
     smartSwapRoutes
   );
+  console.log("data", data);
 
   const pair = pairs?.find((p) => p.id === toField.selectedToken);
 

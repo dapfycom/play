@@ -120,7 +120,7 @@ export const lpSwap = async (
       const wrapTx = getSmartContractInteraction(wspWrapEgld).EGLDPaymentOnlyTx(
         {
           functionName: "wrapEgld",
-          value,
+          value: Number(fromToken.value),
           gasL: 30000000,
         }
       );
@@ -150,7 +150,6 @@ export const lpSwap = async (
     const finalAmount = new BigNumber(swapInfo.token2AmountDecimals)
       .minus(amountWithSlipage)
       .toFixed(0);
-    console.log("swapInfo", swapInfo);
 
     const splitTx: Transaction = getSmartContractInteraction(
       swapInfo.sc

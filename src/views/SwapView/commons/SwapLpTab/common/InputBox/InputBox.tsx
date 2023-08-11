@@ -11,6 +11,7 @@ import LpTokenImage from "components/LpTokenImage/LpTokenImage";
 import useGetAccountToken from "hooks/useGetAccountToken";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import useGetTokenPrice from "hooks/useGetTokenPrice";
+import { IElrondToken } from "types/elrond.interface";
 import {
   formatBalance,
   formatBalanceDolar,
@@ -21,7 +22,7 @@ import { formatTokenI } from "utils/functions/tokens";
 interface IProps extends InputProps {
   type: "from" | "to";
   tokenI: string;
-  handleChange: (value: string) => void;
+  handleChange: (value: string, token: IElrondToken) => void;
   inputValue: string;
 }
 
@@ -31,7 +32,7 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
   const [tokenPrice] = useGetTokenPrice(tokenI);
 
   const handleMax = () => {
-    handleChange(formatBalance(accountToken, true, 18) as any);
+    handleChange(formatBalance(accountToken, true, 18) as any, elrondToken);
   };
   return (
     <Flex w="full" flexDir={"column"} bg="dark.100" p={4} borderRadius="md">
@@ -64,7 +65,7 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
             fontSize="lg"
             color="white"
             value={inputValue}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={(e) => handleChange(e.target.value, elrondToken)}
           />
           {type === "from" && elrondToken && tokenPrice && (
             <Text>

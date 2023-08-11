@@ -5,6 +5,7 @@ import { AppState } from "redux/store";
 export interface SwapLpState {
   fromField: {
     value: string;
+    valueDecimals: string;
     selectedToken: string;
   };
   toField: {
@@ -17,6 +18,7 @@ export interface SwapLpState {
 const initialState: SwapLpState = {
   fromField: {
     value: "",
+    valueDecimals: "",
     selectedToken: selectedNetwork.tokensID.egld,
   },
   toField: {
@@ -38,6 +40,9 @@ export const swapLp = createSlice({
     },
     onChageFromFieldValue: (state, action: PayloadAction<string>) => {
       state.fromField.value = action.payload;
+    },
+    onChageFromFieldValueDecimals: (state, action: PayloadAction<string>) => {
+      state.fromField.valueDecimals = action.payload;
     },
     onChangeToField: (state, action: PayloadAction<string>) => {
       state.toField.value = action.payload;
@@ -63,5 +68,6 @@ export const {
   onChangeToField,
   changeFromFieldToken,
   changeToFieldToken,
+  onChageFromFieldValueDecimals,
 } = swapLp.actions;
 export default swapLp.reducer;
