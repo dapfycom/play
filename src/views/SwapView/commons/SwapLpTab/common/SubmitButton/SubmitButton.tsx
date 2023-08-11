@@ -52,7 +52,6 @@ const SubmitButton = () => {
         slippage,
         fromElrondToken
       );
-      console.log("res", res);
 
       setSessionId(res.sessionId);
     }
@@ -63,8 +62,6 @@ const SubmitButton = () => {
       ? "confirm"
       : "Enter an amount"
     : "Connect wallet";
-
-  console.log("txSuccess", txSuccess);
 
   return (
     <>

@@ -243,7 +243,6 @@ export const smartSwapRoutes = async ([
     amount1Before = finalAmount2;
     routes.push(data);
   }
-  console.log("routes", routes);
 
   return routes;
 };

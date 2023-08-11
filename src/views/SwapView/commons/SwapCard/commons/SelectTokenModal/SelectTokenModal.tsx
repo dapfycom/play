@@ -37,7 +37,6 @@ const SelectTokenModal = ({ isOpen, onClose, selectToken }: IProps) => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
-  console.log("render");
   return (
     <MyModal
       isOpen={isOpen}

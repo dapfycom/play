@@ -38,9 +38,6 @@ export const submitSwap = async (
     const finalAmount = new BigNumber(item.token2AmountDecimals)
       .minus(amountWithSlipage)
       .toFixed(0);
-    console.log("item.token2", item.token2);
-
-    console.log("finalAmount", finalAmount);
 
     return [
       new AddressValue(new Address(item.sc)),
@@ -207,8 +204,6 @@ export const lpSwap = async (
         value: swapInfo.token1AmountDecimals,
       },
     ];
-
-    console.log("tokens", tokens);
 
     const data = tokens.flatMap((nft) => {
       const nftData = [
