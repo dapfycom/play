@@ -28,6 +28,9 @@ const SubmitButton = () => {
   );
   const onSuccess = React.useCallback(() => {
     setTxSuccess(true);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1200);
   }, []);
 
   useTrackTransactionStatus({
