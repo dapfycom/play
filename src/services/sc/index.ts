@@ -19,7 +19,8 @@ export type WspTypes =
   | "wrapEgldpWspShard1"
   | "wrapEgldpWspShard2"
   | "maiarRouterWsp"
-  | "bskFarmWsp";
+  | "bskFarmWsp"
+  | "flipWsp";
 
 export const getInterface = (workspace: WspTypes) => {
   let address = null;
@@ -58,6 +59,12 @@ export const getInterface = (workspace: WspTypes) => {
       abiUrl = bskFarmAbiUrl;
       implementsInterfaces = "Esdtrewards";
       break;
+    case "flipWsp":
+      simpleAddress = selectedNetwork.scAddress.flip;
+      address = new Address(simpleAddress);
+      abiUrl = bskFarmAbiUrl;
+      implementsInterfaces = "FlipContract";
+      break;
     default:
       break;
   }
@@ -88,6 +95,9 @@ export const getSmartContractInteraction = (
     ),
     maiarBskExchangeWsp: new SmartContractInteraction(
       getInterface("maiarBskExchangeWsp").simpleAddress
+    ),
+    flipWsp: new SmartContractInteraction(
+      getInterface("flipWsp").simpleAddress
     ),
   };
 

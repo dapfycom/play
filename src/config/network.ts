@@ -60,13 +60,22 @@ const networkConfig = {
     tokensID: {
       egld: "EGLD",
       wegld: "WEGLD-d7c6bb",
-      bsk: "USDC-8d4068", // this is wrong, because we don't have a BSK token on devnet
+      bsk: "", // this is wrong, because we don't have a BSK token on devnet
+
+      ride: "",
+      hodl: "",
+      usdc: "",
+      rare: "",
+      bskwegld: "",
     },
     scAddress: {
-      maiarBskSwap:
-        "erd1qqqqqqqqqqqqqpgqzmjm474k89alpve4gp7x4gz25wfj4xzv2jpsy2my02",
-      wrapEgld:
-        "erd1qqqqqqqqqqqqqpgqmuk0q2saj0mgutxm4teywre6dl8wqf58xamqdrukln",
+      maiarRouter: "",
+      maiarBskSwap: "",
+      wrapEgld: "",
+      wrapEgldShar1: "",
+      wrapEgldShar2: "",
+      farm: "",
+      flip: "erd1qqqqqqqqqqqqqpgqnmedh8x6flxzee8vqcmr72qdlctktz4zd8ssghu2h8",
     },
   },
   testnet: {
@@ -89,6 +98,6 @@ const networkConfig = {
     scAddress: {},
   },
 };
-export const ENVIROMENT: ENVIROMENTTYPE = "mainnet";
+export const ENVIROMENT: ENVIROMENTTYPE = "devnet";
 
 export const selectedNetwork = networkConfig[ENVIROMENT];
