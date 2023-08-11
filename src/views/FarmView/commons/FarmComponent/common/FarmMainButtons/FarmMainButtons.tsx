@@ -17,8 +17,15 @@ const FarmMainButtons = ({ isOpen }: IProps) => {
   } = useDisclosure();
   const { isLoggedIn, handleConnect } = useAuthentication();
   const handleStakeLp = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     onOpenStake();
+  };
+
+  const handleHarvest = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    withdraw();
   };
 
   return (
@@ -27,7 +34,7 @@ const FarmMainButtons = ({ isOpen }: IProps) => {
         <>
           <ActionButton
             fontSize={"xs"}
-            onClick={withdraw}
+            onClick={handleHarvest}
             w={{ xs: "full", lg: "auto" }}
           >
             Harvest
