@@ -12,7 +12,6 @@ import { getSmartContractInteraction } from "services/sc";
 import { SmartContractInteraction } from "services/sc/calls/transaction";
 import { IElrondToken } from "types/elrond.interface";
 import { IRoute } from "types/swap.interface";
-import { setElrondBalance } from "utils/functions/formatBalance";
 import { getWspOfWrapedEgld } from "utils/functions/sc";
 
 export const submitSwap = async (
@@ -22,10 +21,7 @@ export const submitSwap = async (
     token: string;
     value: number;
   },
-  toToken: {
-    token: string;
-    value: number;
-  },
+
   fromElrondToken: IElrondToken
 ) => {
   let swapToken = fromToken.token;
@@ -74,14 +70,7 @@ export const submitSwap = async (
     gasL: 120000000,
     realValue: swapInfo[0].token1AmountDecimals,
   });
-  // const t1 = await ESDTTransferOnlyTx({
-  //   funcName: "multiPairSwap",
-  //   contractAddr: selectedNetwork.scAddress.maiarRouter,
-  //   realValue: swapInfo[0].token1AmountDecimals,
-  //   token: { identifier: swapToken, decimals: fromElrondToken.decimals },
-  //   args: dataToSend,
-  //   gasL: 120000000,
-  // });
+
   transactions.push(t1);
 
   return await SmartContractInteraction.sendMultipleTransactions({
@@ -95,21 +84,13 @@ export const lpSwap = async (
     value: string;
     selectedToken: string;
   },
-  slipapge = 1,
-  fromElrondToken
+  slipapge = 1
 ) => {
   const swapInfo = routes[0];
   if (swapInfo) {
     let token1 = fromToken.selectedToken;
 
     const transactions = [];
-
-    const sender = store.getState().dapp.userAddress;
-    const value = setElrondBalance(
-      Number(fromToken.value),
-      fromElrondToken.decimals
-    );
-    const ChainId = selectedNetwork.ChainID;
 
     if (fromToken.selectedToken === selectedNetwork.tokensID.egld) {
       token1 = selectedNetwork.tokensID.wegld;
@@ -124,20 +105,6 @@ export const lpSwap = async (
           gasL: 30000000,
         }
       );
-
-      // const payload = TransactionPayload.contractCall()
-      //   .setFunction(new ContractFunction("wrapEgld"))
-      //   .setArgs([])
-      //   .build();
-
-      // const wrapTx = new Transaction({
-      //   sender: new Address(sender),
-      //   value: value,
-      //   receiver: new Address(wrapContractBasedOnShard),
-      //   data: payload,
-      //   gasLimit: 30000000,
-      //   chainID: ChainId,
-      // });
 
       transactions.push(wrapTx);
     }
@@ -166,31 +133,10 @@ export const lpSwap = async (
       gasL: 100000000,
       realValue: swapInfo.token1AmountDecimals,
     });
-    // const payload2 = TransactionPayload.contractCall()
-    //   .setFunction(new ContractFunction("ESDTTransfer"))
-    //   .setArgs([
-    //     BytesValue.fromUTF8(token1),
-    //     new BigUIntValue(new BigNumber(swapInfo.token1AmountDecimals)),
-    //     BytesValue.fromUTF8("swapTokensFixedInput"),
-
-    //     //swap info
-    //     BytesValue.fromUTF8(swapInfo.token2),
-    //     new BigUIntValue(new BigNumber(finalAmount)),
-    //   ])
-    //   .build();
-
-    // const splitTx = new Transaction({
-    //   sender: new Address(sender),
-    //   value: 0,
-    //   receiver: new Address(swapInfo.sc),
-    //   data: payload2,
-    //   gasLimit: 100000000,
-    //   chainID: ChainId,
-    // });
 
     transactions.push(splitTx);
 
-    // farm lp tx
+    // addLiquidity tx
     const tokens = [
       {
         collection: swapInfo.token2,
@@ -203,15 +149,6 @@ export const lpSwap = async (
         value: swapInfo.token1AmountDecimals,
       },
     ];
-
-    const data = tokens.flatMap((nft) => {
-      const nftData = [
-        BytesValue.fromUTF8(nft.collection), // <token identifier in hexadecimal encoding>
-        new BigUIntValue(new BigNumber(nft.nonce)), // <token nonce in hexadecimal encoding>
-        new BigUIntValue(new BigNumber(nft.value)), //<token quantity to transfer in hexadecimal encoding>
-      ];
-      return nftData;
-    });
 
     const token1SlippagePercent = new BigNumber(swapInfo.token1AmountDecimals)
       .multipliedBy(slipapge)
@@ -249,27 +186,6 @@ export const lpSwap = async (
       arg: lpSwapArg,
       gasL: 120000000,
     });
-    // const payload = TransactionPayload.contractCall()
-    //   .setFunction(new ContractFunction("MultiESDTNFTTransfer"))
-    //   .setArgs([
-    //     new AddressValue(new Address(swapInfo.sc)), // <receiver bytes in hexadecimal encoding>
-    //     new BigUIntValue(new BigNumber(tokens.length)), //<number of tokens to transfer in hexadecimal encoding>
-    //     ...data,
-    //     BytesValue.fromUTF8("addLiquidity"),
-
-    //     // args
-    //     ...lpSwapArg,
-    //   ])
-    //   .build();
-
-    // const lpTx = new Transaction({
-    //   sender: new Address(sender),
-    //   value: 0,
-    //   receiver: new Address(sender),
-    //   data: payload,
-    //   gasLimit: 120000000,
-    //   chainID: ChainId,
-    // });
 
     transactions.push(lpTx);
 
@@ -278,55 +194,3 @@ export const lpSwap = async (
     });
   }
 };
-// export const lpSwap = async (
-//   routes: IRoute[],
-//   fromToken: {
-//     value: string;
-//     selectedToken: string;
-//   }
-// ) => {
-//   const slipapge = 1;
-
-//   const amount1 = setElrondBalance(102985, 16);
-//   const amount2 = setElrondBalance(0.01);
-//   const token1SlippagePercent = new BigNumber(amount1)
-//     .multipliedBy(slipapge)
-//     .dividedBy(100)
-//     .toNumber();
-//   const finalToken1Amount = new BigNumber(amount1)
-//     .minus(token1SlippagePercent)
-//     .toFixed(0);
-
-//   //token2_amount_min
-//   const token2SlippagePercent = new BigNumber(amount2)
-//     .multipliedBy(slipapge)
-//     .dividedBy(100)
-//     .toNumber();
-//   const finalToken2Amount = new BigNumber(amount2)
-//     .minus(token2SlippagePercent)
-//     .toFixed(0);
-
-//   const lpSwapArg = [
-//     new BigUIntValue(new BigNumber(finalToken1Amount)),
-//     new BigUIntValue(new BigNumber(finalToken2Amount)),
-//   ];
-
-//   MultiESDTNFTTransfer(
-//     "maiarBskExchangeWsp",
-//     "addLiquidity",
-//     [
-//       {
-//         collection: selectedNetwork.tokensID.bsk,
-//         nonce: 0,
-//         value: amount1,
-//       },
-//       {
-//         collection: selectedNetwork.tokensID.wegld,
-//         nonce: 0,
-//         value: amount2,
-//       },
-//     ],
-//     lpSwapArg,
-//     100000000
-//   );
-// };

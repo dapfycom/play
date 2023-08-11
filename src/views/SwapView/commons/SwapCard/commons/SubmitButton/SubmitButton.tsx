@@ -9,16 +9,11 @@ import React, { useState } from "react";
 import { openLogin } from "redux/dapp/dapp-slice";
 import { submitSwap } from "views/SwapView/lib/calls";
 import { useGetSwapRate } from "views/SwapView/lib/hooks";
-import {
-  selectFromField,
-  selectSlippage,
-  selectToField,
-} from "views/SwapView/lib/swap-slice";
+import { selectFromField, selectSlippage } from "views/SwapView/lib/swap-slice";
 const SubmitButton = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
   const fromField = useAppSelector(selectFromField);
-  const toField = useAppSelector(selectToField);
   const slippage = useAppSelector(selectSlippage);
   const { data: swapRoutes } = useGetSwapRate();
   const [sessionId, setSessionId] = React.useState("");
@@ -56,10 +51,7 @@ const SubmitButton = () => {
           token: fromField.selectedToken,
           value: Number(fromField.value),
         },
-        {
-          token: toField.selectedToken,
-          value: Number(toField.value),
-        },
+
         fromElrondToken
       );
 

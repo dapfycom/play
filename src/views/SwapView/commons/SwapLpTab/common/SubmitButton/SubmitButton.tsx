@@ -3,7 +3,6 @@ import { useTrackTransactionStatus } from "@multiversx/sdk-dapp/hooks";
 import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account/useGetLoginInfo";
 import ActionButton from "components/ActionButton/ActionButton";
 import Realistic from "components/Conffeti/Realistic";
-import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import React from "react";
 import { openLogin } from "redux/dapp/dapp-slice";
@@ -23,9 +22,6 @@ const SubmitButton = () => {
   const [sessionId, setSessionId] = React.useState("");
   const [txSuccess, setTxSuccess] = React.useState(false);
 
-  const { elrondToken: fromElrondToken } = useGetElrondToken(
-    fromField.selectedToken
-  );
   const onSuccess = React.useCallback(() => {
     setTxSuccess(true);
     setTimeout(() => {
@@ -49,12 +45,7 @@ const SubmitButton = () => {
     } else {
       setTxSuccess(false);
 
-      const res = await lpSwap(
-        swapRoutes,
-        fromField,
-        slippage,
-        fromElrondToken
-      );
+      const res = await lpSwap(swapRoutes, fromField, slippage);
 
       setSessionId(res.sessionId);
     }
