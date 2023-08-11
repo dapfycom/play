@@ -1,5 +1,4 @@
 import {
-  CoinsIcon,
   FarmIcon,
   FireIcon,
   PlayIcon,
@@ -7,7 +6,7 @@ import {
 } from "components/icons/ui-icons";
 import Layout from "components/Layout/MainLayout";
 import React from "react";
-import { Outlet, RouteObject } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 const PlayView = React.lazy(() => import("views/PlayView"));
@@ -54,34 +53,34 @@ export const mainSiteRoutes = [
   },
   {
     path: routeNames.play,
-    element: <Outlet />,
+    element: <CoinFlipView />,
     title: "Play",
     icon: <PlayIcon fontSize={"25px"} />,
     soon: false,
-    children: [
-      {
-        path: routeNames.play + "/",
-        element: <PlayView />,
-      },
-      {
-        path: routeNames.coinFlip,
-        element: <CoinFlipView />,
-        title: "Coin flip",
-        icon: <CoinsIcon fontSize={"23px"} />,
-      },
-      {
-        path: "/play/game2",
-        element: <SwapLpTab />,
-        title: "Game 2",
-        icon: <CoinsIcon fontSize={"23px"} />,
-      },
-      {
-        path: "/play/game3",
-        element: <SwapLpTab />,
-        title: "Game 3",
-        icon: <CoinsIcon fontSize={"23px"} />,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: routeNames.play + "/",
+    //     element: <PlayView />,
+    //   },
+    //   {
+    //     path: routeNames.coinFlip,
+    //     element: <CoinFlipView />,
+    //     title: "Coin flip",
+    //     icon: <CoinsIcon fontSize={"23px"} />,
+    //   },
+    //   {
+    //     path: "/play/game2",
+    //     element: <SwapLpTab />,
+    //     title: "Game 2",
+    //     icon: <CoinsIcon fontSize={"23px"} />,
+    //   },
+    //   {
+    //     path: "/play/game3",
+    //     element: <SwapLpTab />,
+    //     title: "Game 3",
+    //     icon: <CoinsIcon fontSize={"23px"} />,
+    //   },
+    // ],
   },
 
   {
