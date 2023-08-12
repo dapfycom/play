@@ -1,16 +1,19 @@
 import { useAppSelector } from "hooks/useRedux";
+import { useSelector } from "react-redux";
 import { selectUserAddress } from "redux/dapp/dapp-slice";
 import useSwr from "swr";
 import {
   fetchAllBets,
   fetchAllTimeBets,
   fetchUserBets,
+  fetchUserBetsCount,
   fetchVolume,
 } from "./services";
 export const useGetTotalUserBets = () => {
   const userAddress = useAppSelector(selectUserAddress);
-  const { data, isLoading, error } = useSwr("flipWsp:getMyBetsCount:", () =>
-    fetchUserBets(userAddress)
+  const { data, isLoading, error } = useSwr(
+    "flipWsp:getMyBetsCount:" + userAddress,
+    () => fetchUserBetsCount(userAddress)
   );
 
   return {
@@ -43,14 +46,33 @@ export const useGetVolume = () => {
     error,
   };
 };
-export const useGetAllBets = () => {
+export const useGetAllBets = (
+  elementsPerPage: number = 10,
+  page: number = 0
+) => {
   const { data, isLoading, error } = useSwr(
     "flipWsp:getAllPaginatedUserBets",
-    fetchAllBets
+    () => fetchAllBets(elementsPerPage, page)
   );
 
   return {
-    volume: data || 0,
+    bets: data || [],
+    isLoading,
+    error,
+  };
+};
+export const useGetUserBets = (
+  elementsPerPage: number = 10,
+  page: number = 0
+) => {
+  const address = useSelector(selectUserAddress);
+  const { data, isLoading, error } = useSwr(
+    "flipWsp:getPaginatedUserBetsByUser:" + address,
+    () => fetchUserBets(elementsPerPage, page, address)
+  );
+
+  return {
+    bets: data || [],
     isLoading,
     error,
   };
