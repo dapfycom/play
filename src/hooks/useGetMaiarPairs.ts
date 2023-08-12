@@ -9,16 +9,17 @@ const useGetMaiarPairs = () => {
   const { data: dataPrice } = useSwr<{
     price: number;
   }>(`/tokens/${selectedNetwork.tokensID.rare}?fields=price`, fetchElrondData);
-  const { data: apiPairs, isLoading, error } = useSwr<IMexPair[]>(
-    "/maiar-pairs",
-    fetchMaiarPairs
-  );
+  const {
+    data: apiPairs,
+    isLoading,
+    error,
+  } = useSwr<IMexPair[]>("/maiar-pairs", fetchMaiarPairs);
 
-  let pairs: IMexPair[] = [];
+  let pairs: IMexPair[] = apiPairs;
   const rarePrice = dataPrice?.price;
   if (apiPairs && rarePrice) {
     pairs = [
-      ...apiPairs,
+      ...pairs,
       {
         address:
           "erd1qqqqqqqqqqqqqpgqjz5k2a7ed2xtd0d92zt0j8e7aap70y7g2jpsjz5z4r",

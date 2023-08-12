@@ -39,6 +39,7 @@ const networkConfig = {
       wrapEgldShar2:
         "erd1qqqqqqqqqqqqqpgqmuk0q2saj0mgutxm4teywre6dl8wqf58xamqdrukln",
       farm: "erd1qqqqqqqqqqqqqpgqhj8um6tv2ul6u2epd2ca4c6z5v4xt9v5pwkq9cdazl",
+      flip: "",
     },
   },
   devnet: {
@@ -60,9 +61,9 @@ const networkConfig = {
     tokensID: {
       egld: "EGLD",
       wegld: "WEGLD-d7c6bb",
-      bsk: "", // this is wrong, because we don't have a BSK token on devnet
+      bsk: "BSK-207198", // this is wrong, because we don't have a BSK token on devnet
 
-      ride: "",
+      ride: "RIDE-6e4c49",
       hodl: "",
       usdc: "",
       rare: "",

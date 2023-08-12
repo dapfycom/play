@@ -1,6 +1,7 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import dappReducer from "redux/dapp/dapp-slice";
+import coinFlipReducer from "views/CoinFlipView/lib/con-flip-slice";
 import swapReducer from "views/SwapView/lib/swap-slice";
 import swapLpReducer from "views/SwapView/lib/swapLp-slice";
 export function makeStore() {
@@ -9,6 +10,7 @@ export function makeStore() {
       dapp: dappReducer,
       swap: swapReducer,
       swapLp: swapLpReducer,
+      coinFlip: coinFlipReducer,
     },
   });
 }

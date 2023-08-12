@@ -43,11 +43,10 @@ import { WspTypes, getInterface, provider } from "../index";
 export const scQuery = async (
   workspace: WspTypes,
   funcName = "",
-  args = [],
-  endpointDef?: string
+  args = []
 ) => {
   try {
-    const { address, abiUrl, implementsInterfaces } = getInterface(workspace);
+    const { address, abiUrl } = getInterface(workspace);
     const abiRegistry = await AbiRegistry.create(abiUrl);
     const contract = new SmartContract({
       address: address,
