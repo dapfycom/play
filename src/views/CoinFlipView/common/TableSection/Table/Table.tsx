@@ -1,5 +1,6 @@
 import {
   Divider,
+  Link,
   Table,
   TableContainer,
   Tbody,
@@ -8,6 +9,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { selectedNetwork } from "config/network";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppSelector } from "hooks/useRedux";
 import { IFlipBet } from "types/flip.inteface";
@@ -25,6 +27,7 @@ interface IProps {
 const BetsTable = ({ data }: IProps) => {
   const flipCoinTokenStr = useAppSelector(selectCoinFlipTokenStr);
   const { elrondToken } = useGetElrondToken(flipCoinTokenStr);
+
   return (
     <div>
       {" "}
@@ -36,9 +39,9 @@ const BetsTable = ({ data }: IProps) => {
               <Th px={"10px"} py={"12px"}>
                 Players
               </Th>
-              {/* <Th px={"10px"} py={"12px"}>
+              <Th px={"10px"} py={"12px"}>
                 Txn
-              </Th> */}
+              </Th>
               <Th px={"10px"} py={"12px"}>
                 Amount
               </Th>
@@ -60,7 +63,14 @@ const BetsTable = ({ data }: IProps) => {
                   <Td px={"10px"} color="primary">
                     {formatAddress(rowData.address)}
                   </Td>
-                  {/* <Td px={"10px"}>0xfab4g...</Td> */}
+                  <Td px={"10px"}>
+                    <Link
+                      href={`${selectedNetwork.network.explorerAddress}/transactions/${rowData.txHash}`}
+                      isExternal
+                    >
+                      {rowData.txHash.substring(0, 10) + "..."}
+                    </Link>{" "}
+                  </Td>
                   <Td px={"10px"}>
                     {formatBalance({
                       balance: rowData.betAmount,

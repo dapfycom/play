@@ -1,7 +1,12 @@
-import { Address, AddressValue, U32Value } from "@multiversx/sdk-core";
-import BigNumber from "bignumber.js";
+import { Address, AddressValue } from "@multiversx/sdk-core";
+import { selectedNetwork } from "config/network";
+import {
+  IFetchTransactionParams,
+  fetchTransactions,
+} from "services/rest/elrond/transactions";
 import { scQuery } from "services/sc/queries";
 import { IFlipBet } from "types/flip.inteface";
+import { betAdapter } from "./functions";
 export const fetchUserBetsCount = async (address: string): Promise<number> => {
   const res = await scQuery("flipWsp", "getMyBetsCount", [
     new AddressValue(new Address(address)),
@@ -26,58 +31,39 @@ export const fetchVolume = async (): Promise<number> => {
   return data?.toNumber() || 0;
 };
 export const fetchUserBets = async (
-  limit: number,
-  offset: number,
-  address: string
+  address: string,
+  size: number
 ): Promise<IFlipBet[]> => {
-  const res = await scQuery("flipWsp", "getPaginatedUserBetsByUser", [
-    new AddressValue(new Address(address)),
-    new U32Value(new BigNumber(limit)),
-    new U32Value(new BigNumber(offset)),
-  ]);
+  const params: IFetchTransactionParams = {
+    function: "flip",
+    receiver: selectedNetwork.scAddress.flip,
+    status: "success",
+    order: "desc",
+    withScResults: true,
+    fields: "sender,txHash,action,timestamp,results",
+    sender: address,
+    size: size,
+  };
 
-  const { firstValue } = res;
-  const data = firstValue?.valueOf();
-  let bets: IFlipBet[] = [];
-  if (Array.isArray(data)) {
-    bets = data.map((bet) => {
-      const newBet: IFlipBet = {
-        address: bet.user_address.bech32(),
-        betAmount: bet.bsk_amount.toString(),
-        result: bet.result,
-        creationDate: new Date(bet.creation_date.toNumber() * 1000),
-        id: bet.user_bet_id.toNumber(),
-        isHeadBet: bet.user_bet,
-      };
-      return newBet;
-    });
-  }
-  return bets;
+  const txs = await fetchTransactions(params);
+
+  const finalData = betAdapter(txs);
+  return finalData;
 };
-export const fetchAllBets = async (
-  limit: number,
-  offset: number
-): Promise<IFlipBet[]> => {
-  const res = await scQuery("flipWsp", "getAllPaginatedUserBets", [
-    new U32Value(new BigNumber(limit)),
-    new U32Value(new BigNumber(offset)),
-  ]);
+export const fetchAllBets = async (size?: number): Promise<IFlipBet[]> => {
+  const params: IFetchTransactionParams = {
+    function: "flip",
+    receiver: selectedNetwork.scAddress.flip,
+    status: "success",
+    order: "desc",
+    withScResults: true,
+    fields: "sender,txHash,action,timestamp,results",
+    size: size,
+  };
 
-  const { firstValue } = res;
-  const data = firstValue?.valueOf();
-  let bets: IFlipBet[] = [];
-  if (Array.isArray(data)) {
-    bets = data.map((bet) => {
-      const newBet: IFlipBet = {
-        address: bet.user_address.bech32(),
-        betAmount: bet.bsk_amount.toString(),
-        result: bet.result,
-        creationDate: new Date(bet.creation_date.toNumber() * 1000),
-        id: bet.user_bet_id.toNumber(),
-        isHeadBet: bet.user_bet,
-      };
-      return newBet;
-    });
-  }
-  return bets;
+  const txs = await fetchTransactions(params);
+
+  const finalData = betAdapter(txs);
+
+  return finalData;
 };

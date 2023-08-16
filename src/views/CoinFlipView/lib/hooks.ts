@@ -46,13 +46,9 @@ export const useGetVolume = () => {
     error,
   };
 };
-export const useGetAllBets = (
-  elementsPerPage: number = 10,
-  page: number = 0
-) => {
-  const { data, isLoading, error } = useSwr(
-    "flipWsp:getAllPaginatedUserBets",
-    () => fetchAllBets(elementsPerPage, page)
+export const useGetAllBets = (size: number = 10) => {
+  const { data, isLoading, error } = useSwr(`/fetchAllBets` + size, () =>
+    fetchAllBets(size)
   );
 
   return {
@@ -61,14 +57,12 @@ export const useGetAllBets = (
     error,
   };
 };
-export const useGetUserBets = (
-  elementsPerPage: number = 10,
-  page: number = 0
-) => {
+export const useGetUserBets = (size: number = 10) => {
   const address = useSelector(selectUserAddress);
+
   const { data, isLoading, error } = useSwr(
-    "flipWsp:getPaginatedUserBetsByUser:" + address,
-    () => fetchUserBets(elementsPerPage, page, address)
+    `/fetchUserBets` + size + address,
+    address ? () => fetchUserBets(address, size) : null
   );
 
   return {

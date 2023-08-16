@@ -1,16 +1,11 @@
 import { Flex, Text } from "@chakra-ui/react";
 import Card from "components/Card/Card";
 import MyTabs2 from "components/MyTabs/MyTabs2";
-import { useGetAllBets } from "views/CoinFlipView/lib/hooks";
-import AllBets from "./AllBets/AllBets";
-import UserBets from "./UserBets/UserBets";
+import React from "react";
 
+const AllBets = React.lazy(() => import("./AllBets/AllBets"));
+const UserBets = React.lazy(() => import("./UserBets/UserBets"));
 const TableSection = () => {
-  const { bets, error } = useGetAllBets(10, 0);
-
-  console.log("error", error);
-  console.log("bets", bets);
-
   return (
     <Card
       w="full"
@@ -22,20 +17,22 @@ const TableSection = () => {
     >
       <Flex
         justify={"space-between"}
-        mb={5}
         flexDir={{ xs: "column", md: "row" }}
         gap={3}
-        position={"absolute"}
+        position={{ xs: "static", md: "absolute" }}
         top={10}
         left={"30px"}
+        px={{ xs: "30px", md: "0" }}
+        mb={{ xs: "30px", md: "5" }}
       >
         <Text
           fontSize={"sm"}
           color="white"
           display="flex"
           alignItems={"center"}
+          justifyContent={{ xs: "center", md: "normal" }}
         >
-          Last 100 games
+          Last 50 games
         </Text>
       </Flex>
       <MyTabs2

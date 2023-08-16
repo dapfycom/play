@@ -286,3 +286,60 @@ export interface IElrondUserAccount {
     info: string;
   };
 }
+
+export type ITransactionStatuts = "success" | "pending" | "invalid" | "fail";
+export type ISortOrder = "desc" | "asc";
+
+export interface ITransacation {
+  txHash: string;
+  gasLimit?: number;
+  gasPrice?: number;
+  gasUsed?: number;
+  miniBlockHash?: string;
+  nonce?: number;
+  receiver: string;
+  receiverShard: number;
+  round?: number;
+  sender: string;
+  senderShard: number;
+  signature: string;
+  status: ITransactionStatuts;
+  value: string;
+  fee?: string;
+  timestamp: number;
+  data?: string;
+  function?: string;
+  action: {
+    category: string;
+    name: string;
+    description: string;
+    arguments: {
+      transfers: {
+        type: string;
+        name: string;
+        ticker: string;
+        token: string;
+        decimals: number;
+        value: string;
+      }[];
+      receiver: string;
+      functionName: string;
+      functionArgs: string[];
+    };
+  };
+  results?: {
+    hash: string;
+    timestamp: number;
+    nonce: number;
+    gasLimit: number;
+    gasPrice: number;
+    value: string;
+    sender: string;
+    receiver: string;
+    data: string;
+    prevTxHash: string;
+    originalTxHash: string;
+    callType: string;
+    miniBlockHash: string;
+  }[];
+}

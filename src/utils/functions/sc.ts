@@ -27,3 +27,33 @@ export const getWspOfWrapedEgld = (shard: number): WspTypes => {
       return "wrapEgldpWspShard1";
   }
 };
+
+export const Base64toString = (base64String): string => {
+  const decodedString = Buffer.from(base64String, "base64").toString("utf-8");
+  return decodedString;
+};
+
+export const extractStringsBetweenAts = (input: string): string[] => {
+  let baseString = input;
+  if (baseString.startsWith("@")) {
+    baseString = baseString.slice(1);
+  }
+
+  const parts = baseString.split("@");
+  return parts.map((part) => {
+    if (part === "") {
+      return "0";
+    }
+    return part;
+  });
+};
+
+export const convertToBoolean = (input: string | number): boolean => {
+  if (input === "00" || input === "0" || input === "" || input === 0) {
+    return false;
+  } else if (input === "01" || input === "1" || input === 1) {
+    return true;
+  } else {
+    throw new Error(`Input "${JSON.stringify(input)}" value not recognized`);
+  }
+};
