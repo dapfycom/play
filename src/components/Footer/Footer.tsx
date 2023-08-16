@@ -8,8 +8,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
-import { TelegramIcon, TwitterIcon } from "components/icons/ui-icons";
 import SocialButton from "components/SocialButton/SocialButton";
+import { TelegramIcon, TwitterIcon } from "components/icons/ui-icons";
 import Disclaimer1, {
   Disclaimer2,
   JoinedDisclaimer,
@@ -68,7 +68,7 @@ const Footer = () => {
                 as={Link}
                 /* @ts-ignore */
                 isExternal
-                href="https://twitter.com/beskarplay"
+                href="https://x.com/BeskarDAO"
               />
               {/* <SocialButton
                 ariaLabel="discord"
@@ -80,7 +80,7 @@ const Footer = () => {
                 as={Link}
                 /* @ts-ignore */
                 isExternal
-                href="https://twitter.com/BeskarDAO"
+                href="https://t.me/BeskarDAO"
               />
             </Flex>
           </Flex>
