@@ -17,9 +17,8 @@ import { formatAddress } from "utils/functions/formatAddress";
 import { formatBalance } from "utils/functions/formatBalance";
 import { formatTokenI } from "utils/functions/tokens";
 import { selectCoinFlipTokenStr } from "views/CoinFlipView/lib/con-flip-slice";
-const selectChoise = (choise: boolean) => {
-  return choise ? "HEAD" : "TAILS";
-};
+import { selectChoise } from "views/CoinFlipView/lib/functions";
+
 interface IProps {
   data: IFlipBet[];
 }

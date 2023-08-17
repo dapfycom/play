@@ -44,3 +44,7 @@ export const betAdapter = (transactions: ITransacation[]): IFlipBet[] => {
 
   return bets.filter((el) => el !== null);
 };
+
+export const selectChoise = (choise: boolean) => {
+  return choise ? "HEAD" : "TAILS";
+};
