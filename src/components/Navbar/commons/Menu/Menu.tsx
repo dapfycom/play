@@ -15,7 +15,7 @@ const Menu = ({ noBorder }: IProps) => {
       {mainSiteRoutes.map((route) => {
         if (route?.soon) {
           return (
-            <Tooltip label="Coming soon" placement="right">
+            <Tooltip label="Coming soon" placement="right" key={route.title}>
               <Flex
                 gap="10px"
                 borderBottom={"1px solid"}

@@ -30,6 +30,9 @@ function App() {
             apiTimeout: 10000,
             walletConnectV2ProjectId,
           }}
+          dappConfig={{
+            shouldUseWebViewProvider: true,
+          }}
         >
           <>
             <AxiosInterceptorContext.Listener />
