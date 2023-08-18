@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { checkNestedRoute } from "utils/functions/urls";
 import MyContainer from "../Container/Container";
 import Menu from "./commons/Menu/Menu";
-import { MoreOptionsV2 } from "./commons/NavButtons/commons/MoreOptions/MoreOptions";
 import NavButtons from "./commons/NavButtons/NavButtons";
+import { MoreOptionsV2 } from "./commons/NavButtons/commons/MoreOptions/MoreOptions";
 import PlayMenuBar from "./commons/PlayMenuBar/PlayMenuBar";
 const Navbar = () => {
   return (
@@ -50,9 +50,9 @@ const Navbar = () => {
               borderColor="dark.300"
               maxH={"45px"}
               mt="10px !important"
-              display={{ xs: "none", "1.5xl": "block" }}
+              display={{ xs: "none", "2xl": "block" }}
             />
-            <Flex h={"full"} display={{ xs: "none", "1.5xl": "flex" }}>
+            <Flex h={"full"} display={{ xs: "none", "2xl": "flex" }}>
               <Menu />
             </Flex>
           </Flex>
@@ -64,7 +64,7 @@ const Navbar = () => {
         <MyContainer
           borderBottom="1px"
           borderColor={"dark.300"}
-          display={{ xs: "none", "1.5xl": "block" }}
+          display={{ xs: "none", "2xl": "block" }}
         >
           <Flex alignItems="center" height={{ xs: "65px", md: "85px" }}>
             <NoScroll h={"full"} overflowX="auto">
@@ -76,7 +76,7 @@ const Navbar = () => {
       <MyContainer
         borderBottom="1px"
         borderColor={"dark.300"}
-        display={{ xs: "block", "1.5xl": "none" }}
+        display={{ xs: "block", "2xl": "none" }}
       >
         <Flex alignItems="center" height={{ xs: "65px", md: "85px" }}>
           <NoScroll h={"full"} overflowX="auto">
