@@ -76,7 +76,7 @@ const networkConfig = {
       wrapEgldShar1: "",
       wrapEgldShar2: "",
       farm: "",
-      flip: "erd1qqqqqqqqqqqqqpgqnmedh8x6flxzee8vqcmr72qdlctktz4zd8ssghu2h8",
+      flip: "erd1qqqqqqqqqqqqqpgqfg6t4tr5vj70359kws6nltkw7qfv8rv8d8ssj43k4j",
     },
   },
   testnet: {

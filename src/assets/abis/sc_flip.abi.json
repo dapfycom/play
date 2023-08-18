@@ -35,23 +35,21 @@
                 "type": "TokenIdentifier"
             },
             {
-                "name": "amounts",
-                "type": "variadic<BigUint>",
-                "multi_arg": true
+                "name": "max_allowed_amount",
+                "type": "BigUint"
             }
         ],
         "outputs": []
     },
     "endpoints": [
         {
-            "name": "changeAmounts",
+            "name": "changeMaxAllowedAmount",
             "onlyOwner": true,
             "mutability": "mutable",
             "inputs": [
                 {
-                    "name": "amounts",
-                    "type": "variadic<BigUint>",
-                    "multi_arg": true
+                    "name": "max_allowed_amount",
+                    "type": "BigUint"
                 }
             ],
             "outputs": []
@@ -71,13 +69,12 @@
             "outputs": []
         },
         {
-            "name": "getAllowedAmounts",
+            "name": "getMaxAmountAllowed",
             "mutability": "readonly",
             "inputs": [],
             "outputs": [
                 {
-                    "type": "variadic<BigUint>",
-                    "multi_result": true
+                    "type": "BigUint"
                 }
             ]
         },
@@ -88,6 +85,27 @@
             "outputs": [
                 {
                     "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getTotalHouseWinVolume",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getAllUsers",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<Address>",
+                    "multi_result": true
                 }
             ]
         },
@@ -157,6 +175,36 @@
             "outputs": [
                 {
                     "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getAllUsersCount",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getAllPaginatedUserVolume",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "limit",
+                    "type": "u32"
+                },
+                {
+                    "name": "offset",
+                    "type": "u32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<multi<Address,BigUint>>",
+                    "multi_result": true
                 }
             ]
         }
