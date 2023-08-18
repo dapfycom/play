@@ -51,13 +51,13 @@ export const selectChoise = (choise: boolean) => {
 };
 
 export const getTopVolume = (
-  usersVolume: { address: string; volume: string }[],
+  usersVolume: { address: string; amount: string }[],
   countToReturn: number = 10
-): { address: string; volume: string }[] => {
+): { address: string; amount: string }[] => {
   // Ordenar los usuarios según el volumen en orden descendente
   const sortedUsers = usersVolume.sort((a, b) => {
-    const volumeA = new BigNumber(a.volume);
-    const volumeB = new BigNumber(b.volume);
+    const volumeA = new BigNumber(a.amount);
+    const volumeB = new BigNumber(b.amount);
     return volumeB.minus(volumeA).toNumber();
   });
 

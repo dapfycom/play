@@ -49,7 +49,12 @@ export const fetchPlayersCount = async (): Promise<number> => {
 export const fetchAllPlayersVolume = async (
   totalUsers: number,
   pageSize: number = 50
-): Promise<any[]> => {
+): Promise<
+  {
+    address: string;
+    amount: string;
+  }[]
+> => {
   const totalPages = Math.ceil(totalUsers / pageSize);
   const allUsers = [];
 

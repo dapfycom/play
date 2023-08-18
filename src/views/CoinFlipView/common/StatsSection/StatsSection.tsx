@@ -30,6 +30,7 @@ const StatsSection = () => {
   const { playersCount } = useGetPlayersCount();
   const { playersVolume } = useGetAllPlayersVolume(playersCount);
   const topPlayers = getTopVolume(playersVolume);
+  console.log("topPlayers", topPlayers);
 
   return (
     <Flex flexDir={"column"} w="full" justifyContent="space-between" gap="20px">
