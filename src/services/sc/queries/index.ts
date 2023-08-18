@@ -100,11 +100,7 @@ export const scQueryByFieldsDefinitions = async (
   args = [],
   dataFields?: any
 ) => {
-  const {
-    address: scAddress,
-    abiUrl,
-    implementsInterfaces,
-  } = getInterface(workspace);
+  const { address: scAddress, abiUrl } = getInterface(workspace);
   const abiRegistry = await AbiRegistry.create(abiUrl);
   const contract = new SmartContract({
     address: scAddress,
