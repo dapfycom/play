@@ -1,3 +1,4 @@
+import BigNumber from "bignumber.js";
 import { ITransacation } from "types/elrond.interface";
 import { IFlipBet } from "types/flip.inteface";
 import {
@@ -47,4 +48,21 @@ export const betAdapter = (transactions: ITransacation[]): IFlipBet[] => {
 
 export const selectChoise = (choise: boolean) => {
   return choise ? "HEAD" : "TAILS";
+};
+
+export const getTopVolume = (
+  usersVolume: { address: string; volume: string }[],
+  countToReturn: number = 10
+): { address: string; volume: string }[] => {
+  // Ordenar los usuarios según el volumen en orden descendente
+  const sortedUsers = usersVolume.sort((a, b) => {
+    const volumeA = new BigNumber(a.volume);
+    const volumeB = new BigNumber(b.volume);
+    return volumeB.minus(volumeA).toNumber();
+  });
+
+  // Obtener el top de usuarios según countToReturn
+  const topUsers = sortedUsers.slice(0, countToReturn);
+
+  return topUsers;
 };

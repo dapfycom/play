@@ -2,19 +2,34 @@ import { Flex, Text } from "@chakra-ui/react";
 import Card from "components/Card/Card";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppSelector } from "hooks/useRedux";
-import { formatBalance, formatNumber } from "utils/functions/formatBalance";
+import { formatAddress } from "utils/functions/formatAddress";
+import {
+  formatBalance,
+  formatBalanceDolar,
+  formatNumber,
+} from "utils/functions/formatBalance";
 import { formatTokenI } from "utils/functions/tokens";
 import { selectCoinFlipTokenStr } from "views/CoinFlipView/lib/con-flip-slice";
+import { getTopVolume } from "views/CoinFlipView/lib/functions";
 import {
+  useGetAllPlayersVolume,
+  useGetHouseWinVolume,
+  useGetPlayersCount,
   useGetTotalAllTimeBets,
   useGetVolume,
 } from "views/CoinFlipView/lib/hooks";
 
 const StatsSection = () => {
   const { allTimeBetsCount } = useGetTotalAllTimeBets();
+  const { volume: houseVolume } = useGetHouseWinVolume();
   const { volume } = useGetVolume();
   const tokenI = useAppSelector(selectCoinFlipTokenStr);
   const { elrondToken } = useGetElrondToken(tokenI);
+
+  const { playersCount } = useGetPlayersCount();
+  const { playersVolume } = useGetAllPlayersVolume(playersCount);
+  const topPlayers = getTopVolume(playersVolume);
+
   return (
     <Flex flexDir={"column"} w="full" justifyContent="space-between" gap="20px">
       <Card p="30px">
@@ -35,26 +50,54 @@ const StatsSection = () => {
           })}{" "}
           {formatTokenI(tokenI)}
         </Text>
+        <Text fontSize={"sm"} mt={1}>
+          {" "}
+          ${" "}
+          {formatBalanceDolar(
+            {
+              balance: houseVolume,
+              decimals: elrondToken?.decimals,
+            },
+            elrondToken?.price
+          )}{" "}
+        </Text>
       </Card>
-
-      {/* <Card px="30px" py={"20px"} textAlign="center" justifyContent="center">
-        <Text color="white" mb="20px">
-          Winnings
+      <Card p="30px">
+        <Text fontSize={"xs"} color="primary" mb="20px">
+          All time house win BSK Volume
         </Text>
-        <Text mb="38px" fontSize={"sm"}>
-          Claim your winnings here, toggle the tokens to clain your rewards
-        </Text>
-        <Text color="white" mb="39px" fontSize={"xl"} fontWeight="bold">
+        <Text color="white">
+          {" "}
           {formatBalance({
-            balance: volume,
-            decimals: elrondToken.decimals,
+            balance: houseVolume,
+            decimals: elrondToken?.decimals,
           })}{" "}
           {formatTokenI(tokenI)}
         </Text>
-        <ActionButton py="15px" h="auto">
-          Claim
-        </ActionButton>
-      </Card> */}
+        <Text fontSize={"sm"} mt={1}>
+          {" "}
+          ${" "}
+          {formatBalanceDolar(
+            {
+              balance: houseVolume,
+              decimals: elrondToken?.decimals,
+            },
+            elrondToken?.price
+          )}{" "}
+        </Text>
+      </Card>
+      <Card p="30px">
+        <Text fontSize={"xs"} color="primary" mb="20px">
+          Top 10 players
+        </Text>
+        {topPlayers.map((player) => {
+          return (
+            <Flex color={"white"}>
+              <Text fontSize={"sm"}>{formatAddress(player.address)}</Text>
+            </Flex>
+          );
+        })}
+      </Card>
     </Flex>
   );
 };

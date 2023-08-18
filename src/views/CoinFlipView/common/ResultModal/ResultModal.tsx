@@ -13,11 +13,13 @@ import Realistic from "components/Conffeti/Realistic";
 import MyModal from "components/Modal/Modal";
 import useGetTransactionByHash from "hooks/useGetTransactionByHash";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Base64toString,
   convertToBoolean,
   extractStringsBetweenAts,
 } from "utils/functions/sc";
+import { setHouseSelectionSide } from "views/CoinFlipView/lib/con-flip-slice";
 import { selectChoise } from "views/CoinFlipView/lib/functions";
 
 interface IProps {
@@ -31,6 +33,7 @@ const ResultModal = ({ isOpen, onClose, txHash }: IProps) => {
   const [userSelection, setUserSelection] = useState(false);
   const [coinSelection, setCoinSelection] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (transaction) {
@@ -49,11 +52,11 @@ const ResultModal = ({ isOpen, onClose, txHash }: IProps) => {
 
         setUserSelection(convertToBoolean(userChoiseStr));
         setCoinSelection(convertToBoolean(systemChoiseStr));
-
+        dispatch(setHouseSelectionSide(convertToBoolean(systemChoiseStr)));
         setIsReady(true);
       }
     }
-  }, [transaction]);
+  }, [dispatch, transaction]);
 
   const handleClose = () => {
     setIsReady(false);

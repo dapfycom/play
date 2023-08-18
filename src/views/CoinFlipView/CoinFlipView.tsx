@@ -1,4 +1,4 @@
-import { Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Box, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
 import ChooseBetSection from "./common/ChooseBetSection/ChooseBetSection";
 import GameSection from "./common/GameSection/GameSection";
@@ -14,8 +14,12 @@ const CoinFlipView = () => {
         rowGap={"40px"}
       >
         <SimpleGrid columns={{ xs: 1, md: 2 }} gap="20px">
-          <GameSection />
-          <ChooseBetSection />
+          <Box order={{ xs: 1, md: 0 }}>
+            <GameSection />
+          </Box>
+          <Box>
+            <ChooseBetSection />
+          </Box>
         </SimpleGrid>
         <Grid templateColumns={{ xs: "1fr", lg: "1fr 2fr" }} gap="20px">
           <GridItem>

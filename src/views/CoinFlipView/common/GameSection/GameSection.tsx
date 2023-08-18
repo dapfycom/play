@@ -3,7 +3,7 @@ import Coin from "./common/Coin";
 import GameActions from "./common/GameActions";
 const GameSection = () => {
   return (
-    <VStack spacing={"7"} w="full">
+    <VStack gap={7} w="full" flexDir={{ xs: "column-reverse", md: "column" }}>
       <Coin />
       <GameActions />
     </VStack>

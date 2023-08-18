@@ -73,7 +73,7 @@ const BetsTable = ({ data }: IProps) => {
                   <Td px={"10px"}>
                     {formatBalance({
                       balance: rowData.betAmount,
-                      decimals: elrondToken.decimals,
+                      decimals: elrondToken?.decimals,
                     })}{" "}
                     {formatTokenI(flipCoinTokenStr)}
                   </Td>

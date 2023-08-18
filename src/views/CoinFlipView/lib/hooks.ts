@@ -4,7 +4,10 @@ import { selectUserAddress } from "redux/dapp/dapp-slice";
 import useSwr from "swr";
 import {
   fetchAllBets,
+  fetchAllPlayersVolume,
   fetchAllTimeBets,
+  fetchHouseWinVolume,
+  fetchPlayersCount,
   fetchUserBets,
   fetchUserBetsCount,
   fetchVolume,
@@ -46,6 +49,44 @@ export const useGetVolume = () => {
     error,
   };
 };
+export const useGetHouseWinVolume = () => {
+  const { data, isLoading, error } = useSwr(
+    "flipWsp:getTotalHouseWinVolume",
+    fetchHouseWinVolume
+  );
+
+  return {
+    volume: data || 0,
+    isLoading,
+    error,
+  };
+};
+
+export const useGetPlayersCount = () => {
+  const { data, isLoading, error } = useSwr(
+    "flipWsp:getAllUsersCount",
+    fetchPlayersCount
+  );
+
+  return {
+    playersCount: data || 0,
+    isLoading,
+    error,
+  };
+};
+export const useGetAllPlayersVolume = (totalUsers: number) => {
+  const { data, isLoading, error } = useSwr(
+    totalUsers ? "flipWsp:getAllPaginatedUserVolume" : null,
+    () => fetchAllPlayersVolume(totalUsers, 50)
+  );
+
+  return {
+    playersVolume: data || [],
+    isLoading,
+    error,
+  };
+};
+
 export const useGetAllBets = (size: number = 10) => {
   const { data, isLoading, error } = useSwr(`/fetchAllBets` + size, () =>
     fetchAllBets(size)
