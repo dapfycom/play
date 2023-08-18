@@ -4,6 +4,7 @@ import CoinImg from "assets/images/logo/beskar.svg";
 import { useAppSelector } from "hooks/useRedux";
 import { useEffect, useRef, useState } from "react";
 import { selectLastHouseSelection } from "views/CoinFlipView/lib/con-flip-slice";
+import { selectChoise } from "views/CoinFlipView/lib/functions";
 const Coin = () => {
   const backRef = useRef<HTMLDivElement>(null);
   const [backHeight, setBackHeight] = useState(0);
@@ -60,6 +61,11 @@ const Coin = () => {
           </Box>
         </Center>
       </Box>
+      {houseSelection !== null && (
+        <Center textAlign={"center"}>
+          LAST TOSS WAS {selectChoise(houseSelection)}
+        </Center>
+      )}
     </CoinS>
   );
 };
