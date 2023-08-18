@@ -1,4 +1,10 @@
-import { FarmIcon, PlayIcon, SwapIcon } from "components/icons/ui-icons";
+import {
+  FarmIcon,
+  FireIcon,
+  PileIcon,
+  PlayIcon,
+  SwapIcon,
+} from "components/icons/ui-icons";
 import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { RouteObject } from "react-router-dom";
@@ -46,12 +52,20 @@ export const mainSiteRoutes = [
     title: "Farm",
     icon: <FarmIcon fontSize={"25px"} />,
   },
+
+  {
+    title: "Stake",
+    icon: <PileIcon fontSize={"20px"} />,
+    isExternal: true,
+    path: "https://staking.beskarplay.com",
+  },
   {
     path: routeNames.play,
     element: <CoinFlipView />,
     title: "Play",
     icon: <PlayIcon fontSize={"25px"} />,
     soon: false,
+
     // children: [
     //   {
     //     path: routeNames.play + "/",
@@ -78,12 +92,13 @@ export const mainSiteRoutes = [
     // ],
   },
 
-  // {
-  //   path: routeNames.forge,
-  //   element: <TheForgeView />,
-  //   title: "Forge",
-  //   icon: <FireIcon fontSize={"20px"} />,
-  // },
+  {
+    // path: routeNames.forge,
+    // element: <TheForgeView />,
+    title: "Forge",
+    icon: <FireIcon fontSize={"20px"} />,
+    soon: true,
+  },
 ];
 
 export const routes: RouteObject[] = [

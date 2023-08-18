@@ -21,6 +21,7 @@ const MoreOptions = () => {
         px="10px"
         h={{ xs: "40px", md: "46px" }}
         onClick={handleOpenMoreOptionsModal}
+        disabled
       >
         <ThreeDotsIcon fontSize={"25px"} />
       </ActionButton>
