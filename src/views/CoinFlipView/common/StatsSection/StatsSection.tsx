@@ -1,5 +1,6 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Link, Text } from "@chakra-ui/react";
 import Card from "components/Card/Card";
+import { selectedNetwork } from "config/network";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppSelector } from "hooks/useRedux";
 import { formatAddress } from "utils/functions/formatAddress";
@@ -64,7 +65,7 @@ const StatsSection = () => {
       </Card>
       <Card p="30px">
         <Text fontSize={"xs"} color="primary" mb="20px">
-          All time house win BSK Volume
+          ALL TIME BSK BURNED 🔥
         </Text>
         <Text color="white">
           {" "}
@@ -93,7 +94,12 @@ const StatsSection = () => {
         {topPlayers.map((player) => {
           return (
             <Flex color={"white"}>
-              <Text fontSize={"sm"}>{formatAddress(player.address)}</Text>
+              <Link
+                isExternal
+                href={`${selectedNetwork.network.explorerAddress}/accounts/${player.address}`}
+              >
+                <Text fontSize={"sm"}>{formatAddress(player.address)}</Text>
+              </Link>
             </Flex>
           );
         })}
