@@ -4,6 +4,9 @@ import ActionButton from "components/ActionButton/ActionButton";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserAddress } from "redux/dapp/dapp-slice";
+import { mutate } from "swr";
 import { flipCoin } from "views/CoinFlipView/lib/calls";
 import {
   changeUserCoinSide,
@@ -15,6 +18,7 @@ import ResultModal from "../../ResultModal/ResultModal";
 
 const GameActions = () => {
   const dispatch = useAppDispatch();
+  const userAddress = useSelector(selectUserAddress);
   const selectedSide = useAppSelector(selectCoinFlipSide);
   const tokenStr = useAppSelector(selectCoinFlipTokenStr);
   const betAmount = useAppSelector(selectCoinFlipBetAmount);
@@ -24,6 +28,7 @@ const GameActions = () => {
 
   const onSuccess = () => {
     setTxData(transactions.length > 0 ? transactions[0]?.hash || "" : "");
+    mutate([tokenStr, userAddress]);
   };
 
   const { transactions } = useTrackTransactionStatus({
