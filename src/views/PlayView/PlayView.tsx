@@ -19,13 +19,13 @@ const PlayView = () => {
           description="Utmost security and provably fair on chain games."
           title="ON CHAIN"
           icon={<ChainIcon mb="33px" fontSize={"58px"} />}
-          gamesPath={routeNames.coinFlip}
+          gamesPath={routeNames.play}
         />
         <PlayCard
           description="5 user friendly games accompanied by great music."
           title="OFF CHAIN"
           icon={<ServersIcon mb="33px" fontSize={"58px"} />}
-          gamesPath={routeNames.coinFlip}
+          gamesPath={routeNames.play}
         />
       </Center>
       <Outlet />

@@ -1,16 +1,11 @@
-import {
-  FarmIcon,
-  FireIcon,
-  PlayIcon,
-  SwapIcon,
-} from "components/icons/ui-icons";
+import { FarmIcon, PlayIcon, SwapIcon } from "components/icons/ui-icons";
 import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { RouteObject } from "react-router-dom";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 // const PlayView = React.lazy(() => import("views/PlayView"));
-const TheForgeView = React.lazy(() => import("views/TheForgeView"));
+// const TheForgeView = React.lazy(() => import("views/TheForgeView"));
 const SwapLpTab = React.lazy(() => import("views/SwapView/commons/SwapLpTab"));
 const FarmView = React.lazy(() => import("views/FarmView"));
 const CoinFlipView = React.lazy(() => import("views/CoinFlipView"));
@@ -21,8 +16,8 @@ export const routeNames = {
   swapLp: "/swapLp",
 
   // play: "/play",
-  coinFlip: "/play/coin-flip",
-  forge: "/the-forge",
+  // coinFlip: "/play/coin-flip",
+  // forge: "/the-forge",
   farm: "/farm",
   stake: "/stake",
   play: "/play",
@@ -83,12 +78,12 @@ export const mainSiteRoutes = [
     // ],
   },
 
-  {
-    path: routeNames.forge,
-    element: <TheForgeView />,
-    title: "Forge",
-    icon: <FireIcon fontSize={"20px"} />,
-  },
+  // {
+  //   path: routeNames.forge,
+  //   element: <TheForgeView />,
+  //   title: "Forge",
+  //   icon: <FireIcon fontSize={"20px"} />,
+  // },
 ];
 
 export const routes: RouteObject[] = [

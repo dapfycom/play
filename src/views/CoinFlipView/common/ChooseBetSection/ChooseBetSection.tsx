@@ -76,7 +76,7 @@ const ChooseBetSection = () => {
 
       <Grid templateColumns={"repeat(2, 1fr)"} rowGap={"12px"} columnGap="15px">
         {betOptionsInEgld.map((bet, i) => {
-          const value = new BigNumber(bet).multipliedBy(200000).toFixed(2);
+          const value = new BigNumber(bet).multipliedBy(rate).toFixed(2);
           return (
             <GridItem
               key={bet}

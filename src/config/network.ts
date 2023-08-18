@@ -39,7 +39,7 @@ const networkConfig = {
       wrapEgldShar2:
         "erd1qqqqqqqqqqqqqpgqmuk0q2saj0mgutxm4teywre6dl8wqf58xamqdrukln",
       farm: "erd1qqqqqqqqqqqqqpgqhj8um6tv2ul6u2epd2ca4c6z5v4xt9v5pwkq9cdazl",
-      flip: "",
+      flip: "erd1qqqqqqqqqqqqqpgqcg2ay4qhs9g5p9sc550hau5hn9tcul9my26szpd2jn",
     },
   },
   devnet: {
@@ -99,6 +99,6 @@ const networkConfig = {
     scAddress: {},
   },
 };
-export const ENVIROMENT: ENVIROMENTTYPE = "devnet";
+export const ENVIROMENT: ENVIROMENTTYPE = "mainnet";
 
 export const selectedNetwork = networkConfig[ENVIROMENT];
