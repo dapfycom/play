@@ -53,12 +53,12 @@ export const mainSiteRoutes = [
     icon: <FarmIcon fontSize={"25px"} />,
   },
 
-  {
-    title: "Stake",
-    icon: <PileIcon fontSize={"20px"} />,
-    isExternal: true,
-    path: "https://staking.beskarplay.com",
-  },
+  // {
+  //   title: "Stake",
+  //   icon: <PileIcon fontSize={"20px"} />,
+  //   isExternal: true,
+  //   path: "https://staking.beskarplay.com",
+  // },
   {
     path: routeNames.play,
     element: <CoinFlipView />,
@@ -95,7 +95,7 @@ export const mainSiteRoutes = [
   {
     // path: routeNames.forge,
     // element: <TheForgeView />,
-    title: "Forge",
+    title: "The Forge",
     icon: <FireIcon fontSize={"20px"} />,
     soon: true,
   },
