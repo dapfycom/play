@@ -1,4 +1,4 @@
-import { Box, Link as ChLink, Flex, Text, Tooltip } from "@chakra-ui/react";
+import { Box, Flex, Text, Tooltip } from "@chakra-ui/react";
 import { mainSiteRoutes } from "config/routes";
 import { Link, useLocation } from "react-router-dom";
 import { isActiveRoute } from "utils/functions/urls";
@@ -39,32 +39,32 @@ const Menu = ({ noBorder }: IProps) => {
             </Tooltip>
           );
         }
-        if (route?.isExternal) {
-          return (
-            <ChLink href={route.path} key={route.path} isExternal>
-              <Flex
-                gap="10px"
-                borderBottom={"1px solid"}
-                borderColor={"transparent"}
-                height="full"
-                pt={{ xs: "22.5px", md: "31px" }}
-                fontSize={{ xs: "lsm", "2xl": "md" }}
-                _hover={{
-                  "& p": {
-                    color: "white",
-                  },
-                  "& div": {
-                    color: "white",
-                  },
-                }}
-                whiteSpace="nowrap"
-              >
-                <Box color={"grayText"}>{route.icon}</Box>
-                <Text color={"grayText"}>{route.title}</Text>
-              </Flex>
-            </ChLink>
-          );
-        }
+        // if (route?.isExternal) {
+        //   return (
+        //     <ChLink href={route.path} key={route.path} isExternal>
+        //       <Flex
+        //         gap="10px"
+        //         borderBottom={"1px solid"}
+        //         borderColor={"transparent"}
+        //         height="full"
+        //         pt={{ xs: "22.5px", md: "31px" }}
+        //         fontSize={{ xs: "lsm", "2xl": "md" }}
+        //         _hover={{
+        //           "& p": {
+        //             color: "white",
+        //           },
+        //           "& div": {
+        //             color: "white",
+        //           },
+        //         }}
+        //         whiteSpace="nowrap"
+        //       >
+        //         <Box color={"grayText"}>{route.icon}</Box>
+        //         <Text color={"grayText"}>{route.title}</Text>
+        //       </Flex>
+        //     </ChLink>
+        //   );
+        // }
 
         let isActive = isActiveRoute(route.path, location.pathname);
         return (
