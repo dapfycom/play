@@ -1,7 +1,6 @@
 import {
   FarmIcon,
   FireIcon,
-  PileIcon,
   PlayIcon,
   SwapIcon,
 } from "components/icons/ui-icons";
