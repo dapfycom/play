@@ -77,6 +77,7 @@ const networkConfig = {
       wrapEgldShar2: "",
       farm: "",
       flip: "erd1qqqqqqqqqqqqqpgqfg6t4tr5vj70359kws6nltkw7qfv8rv8d8ssj43k4j",
+      dust: "erd1qqqqqqqqqqqqqpgqfg6t4tr5vj70359kws6nltkw7qfv8rv8d8ssj43k4j",
     },
   },
   testnet: {
@@ -99,6 +100,6 @@ const networkConfig = {
     scAddress: {},
   },
 };
-export const ENVIROMENT: ENVIROMENTTYPE = "mainnet";
+export const ENVIROMENT: ENVIROMENTTYPE = "devnet";
 
 export const selectedNetwork = networkConfig[ENVIROMENT];
