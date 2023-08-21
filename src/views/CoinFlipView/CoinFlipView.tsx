@@ -1,7 +1,8 @@
 import { Box, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
 import ChooseBetSection from "./common/ChooseBetSection/ChooseBetSection";
-import GameSection from "./common/GameSection/GameSection";
+import Coin from "./common/GameSection/common/Coin";
+import GameActions from "./common/GameSection/common/GameActions";
 import StatsSection from "./common/StatsSection/StatsSection";
 import TableSection from "./common/TableSection/TableSection";
 
@@ -15,10 +16,13 @@ const CoinFlipView = () => {
       >
         <SimpleGrid columns={{ xs: 1, md: 2 }} gap="20px">
           <Box>
-            <GameSection />
+            <Coin />
           </Box>
           <Box>
             <ChooseBetSection />
+          </Box>
+          <Box>
+            <GameActions />
           </Box>
         </SimpleGrid>
         <Grid templateColumns={{ xs: "1fr", lg: "1fr 2fr" }} gap="20px">
