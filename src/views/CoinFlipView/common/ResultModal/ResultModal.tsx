@@ -36,27 +36,35 @@ const ResultModal = ({ isOpen, onClose, txHash }: IProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (transaction) {
-      const tx = transaction;
+    if (transaction?.status !== "pending") {
+      if (transaction?.results) {
+        const flipResult = transaction.results.find((result) =>
+          Base64toString(result.data).startsWith("@00")
+        )?.data;
+        if (
+          flipResult &&
+          transaction.action.arguments.functionArgs.length === 1
+        ) {
+          const gameReultsStr = Base64toString(flipResult);
 
-      const flipResult = tx.results.find((result) =>
-        Base64toString(result.data).startsWith("@00")
-      )?.data;
-      if (flipResult && tx.action.arguments.functionArgs.length === 1) {
-        const gameReultsStr = Base64toString(flipResult);
+          const gameReultsArr = extractStringsBetweenAts(gameReultsStr);
 
-        const gameReultsArr = extractStringsBetweenAts(gameReultsStr);
+          const userChoiseStr = transaction.action.arguments.functionArgs[0];
+          const systemChoiseStr = gameReultsArr[1];
 
-        const userChoiseStr = tx.action.arguments.functionArgs[0];
-        const systemChoiseStr = gameReultsArr[1];
-
-        setUserSelection(convertToBoolean(userChoiseStr));
-        setCoinSelection(convertToBoolean(systemChoiseStr));
-        dispatch(setHouseSelectionSide(convertToBoolean(systemChoiseStr)));
-        setIsReady(true);
+          setUserSelection(convertToBoolean(userChoiseStr));
+          setCoinSelection(convertToBoolean(systemChoiseStr));
+          dispatch(setHouseSelectionSide(convertToBoolean(systemChoiseStr)));
+          setIsReady(true);
+        }
       }
     }
-  }, [dispatch, transaction]);
+  }, [
+    dispatch,
+    transaction?.action.arguments.functionArgs,
+    transaction?.results,
+    transaction?.status,
+  ]);
 
   const handleClose = () => {
     setIsReady(false);
