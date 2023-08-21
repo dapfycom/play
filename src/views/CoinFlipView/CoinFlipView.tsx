@@ -14,7 +14,7 @@ const CoinFlipView = () => {
         rowGap={"40px"}
       >
         <SimpleGrid columns={{ xs: 1, md: 2 }} gap="20px">
-          <Box order={{ xs: 1, md: 0 }}>
+          <Box>
             <GameSection />
           </Box>
           <Box>
