@@ -41,6 +41,12 @@ const StatsSection = () => {
       </Card>
       <Card p="30px">
         <Text fontSize={"xs"} color="primary" mb="20px">
+          Total Players
+        </Text>
+        <Text color="white">{playersCount}</Text>
+      </Card>
+      <Card p="30px">
+        <Text fontSize={"xs"} color="primary" mb="20px">
           All Time BSK Volume
         </Text>
         <Text color="white">
