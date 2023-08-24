@@ -28,3 +28,9 @@ export const getFromAllTokens = async ([
     },
   });
 };
+
+export const getTokens = async (address: string, size?: number) => {
+  return await axiosElrond.get(
+    `/accounts/${address}/tokens?size=${size || 200}`
+  );
+};

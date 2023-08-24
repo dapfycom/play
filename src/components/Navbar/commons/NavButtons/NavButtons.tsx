@@ -3,10 +3,11 @@ import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account";
 import { logout } from "@multiversx/sdk-dapp/utils";
 import ActionButton from "components/ActionButton/ActionButton";
 import { EgldIcon } from "components/icons/coin-icons";
-import { DotIcon, ZapIcon } from "components/icons/ui-icons";
+import { DotIcon, DustIcon, ZapIcon } from "components/icons/ui-icons";
+import { routeNames } from "config/routes";
 import { useAppDispatch } from "hooks/useRedux";
+import { Link } from "react-router-dom";
 import { openLogin } from "redux/dapp/dapp-slice";
-import MoreOptions from "./commons/MoreOptions/MoreOptions";
 const NavButtons = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
@@ -67,7 +68,19 @@ const NavButtons = () => {
           </ActionButton>
         )}
       </Box>
-      <MoreOptions />
+      <Link to={routeNames.dust}>
+        <ActionButton
+          variant={"secondary"}
+          h={{ xs: "40px", md: "46px" }}
+          aria-label="Dust"
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <DustIcon fontSize={"25px"} />
+        </ActionButton>
+      </Link>
+      {/* <MoreOptions /> */}
     </Flex>
   );
 };

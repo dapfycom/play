@@ -33,7 +33,7 @@ export interface IMultiESDTNFTTransferProps extends IScCallProps {
   tokens: {
     collection: string;
     nonce: number;
-    value: number;
+    value: number | string;
     decimals?: number;
   }[];
 }
