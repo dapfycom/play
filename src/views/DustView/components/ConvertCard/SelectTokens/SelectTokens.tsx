@@ -26,22 +26,27 @@ const SelectTokens = () => {
           <Spinner />
         </Center>
       ) : (
-        <CheckboxGroup
-          colorScheme="green"
-          value={selectedTokens.map((item) => item.identifier)}
-        >
-          {finalTokens.map((token) => {
-            return <RowToken key={token.identifier} token={token} />;
-          })}
+        <Flex flexDir={"column"}>
+          <Text fontSize={"sm"} mb={6} mt={4} color="white">
+            Your dust
+          </Text>
+          <CheckboxGroup
+            colorScheme="green"
+            value={selectedTokens.map((item) => item.identifier)}
+          >
+            {finalTokens.map((token) => {
+              return <RowToken key={token.identifier} token={token} />;
+            })}
 
-          {finalTokens.length === 0 && (
-            <Center w="full" minH="200px">
-              <Text fontSize={"lg"} textAlign={"center"}>
-                No tokens found
-              </Text>
-            </Center>
-          )}
-        </CheckboxGroup>
+            {finalTokens.length === 0 && (
+              <Center w="full" minH="200px">
+                <Text fontSize={"lg"} textAlign={"center"}>
+                  No tokens found
+                </Text>
+              </Center>
+            )}
+          </CheckboxGroup>
+        </Flex>
       )}
     </Card>
   );

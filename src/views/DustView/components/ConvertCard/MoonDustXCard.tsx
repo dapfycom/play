@@ -1,4 +1,4 @@
-import { Flex, Image } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import ActionButton from "components/ActionButton/ActionButton";
 
 import useGetMultipleElrondTokens from "hooks/useGetMultipleElrondTokens";
@@ -28,35 +28,49 @@ const MoonDustXCard = () => {
       borderRadius={{ xs: "xl", md: "4xl" }}
     >
       <Flex
-        w="full"
-        justifyContent={"flex-end"}
+        justify={"space-between"}
+        align={"center"}
         mb={4}
-        gap={4}
-        flexWrap={"wrap"}
+        flexDir={{ xs: "column", md: "row" }}
       >
-        {toTokensToConvert.map((tokenI) => {
-          const elrondToken = tokens?.find((t) => t.identifier === tokenI);
-          return (
-            <ActionButton
-              key={tokenI}
-              variant={selectedToToken === tokenI ? "solid" : "outline"}
-              onClick={() => dispatch(selectToToken(tokenI))}
-              fontSize={"14px"}
-            >
-              <Flex alignItems={"center"} gap={3}>
-                {elrondToken?.assets?.svgUrl && (
-                  <Image
-                    src={elrondToken.assets.svgUrl}
-                    alt=""
-                    width={26}
-                    height={26}
-                  />
-                )}
-                {formatTokenI(tokenI)}
-              </Flex>
-            </ActionButton>
-          );
-        })}
+        <Text
+          fontSize={"sm"}
+          flex={1}
+          mr={2}
+          color={"white"}
+          mb={{ xs: "4", md: "0" }}
+        >
+          Convert into
+        </Text>
+        <Flex
+          justifyContent={{ xs: "center", md: "flex-end" }}
+          gap={4}
+          flexWrap={"wrap"}
+        >
+          {toTokensToConvert.map((tokenI) => {
+            const elrondToken = tokens?.find((t) => t.identifier === tokenI);
+            return (
+              <ActionButton
+                key={tokenI}
+                variant={selectedToToken === tokenI ? "solid" : "outline"}
+                onClick={() => dispatch(selectToToken(tokenI))}
+                fontSize={"14px"}
+              >
+                <Flex alignItems={"center"} gap={3}>
+                  {elrondToken?.assets?.svgUrl && (
+                    <Image
+                      src={elrondToken.assets.svgUrl}
+                      alt=""
+                      width={26}
+                      height={26}
+                    />
+                  )}
+                  {formatTokenI(tokenI)}
+                </Flex>
+              </ActionButton>
+            );
+          })}
+        </Flex>
       </Flex>
       <SelectTokens />
       <Flex w="full" mt={4}>
