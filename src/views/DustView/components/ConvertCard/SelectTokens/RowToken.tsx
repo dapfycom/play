@@ -4,12 +4,11 @@ import { IElrondAccountToken } from "types/elrond.interface";
 import {
   formatBalance,
   formatBalanceDolar,
-  formatNumber,
 } from "utils/functions/formatBalance";
 import { formatTokenI } from "utils/functions/tokens";
 import {
+  selectConvertInfo,
   selectOutputToken,
-  selectToTokenDust,
 } from "views/DustView/lib/dust-slice";
 
 interface IProps {
@@ -17,18 +16,22 @@ interface IProps {
 }
 const RowToken = ({ token }: IProps) => {
   const dispatch = useAppDispatch();
-  const selectedToToken = useAppSelector(selectToTokenDust);
-  const data = null;
+  const selectedTokens = useAppSelector(selectConvertInfo);
 
   const handleSelect = (isCheked: boolean) => {
-    dispatch(
-      selectOutputToken({
-        data: token,
-        isCheked: isCheked,
-      })
-    );
+    if (selectedTokens.length <= 10) {
+      dispatch(
+        selectOutputToken({
+          data: token,
+          isCheked: isCheked,
+        })
+      );
+    }
   };
 
+  const disbleTokenSelection =
+    selectedTokens.length >= 10 &&
+    !Boolean(selectedTokens.find((t) => t.identifier === token.identifier));
   return (
     <Box>
       <Checkbox
@@ -40,10 +43,10 @@ const RowToken = ({ token }: IProps) => {
           },
         }}
         _hover={{
-          opacity: "0.6",
+          opacity: "0.8",
         }}
         onChange={(e) => handleSelect(e.target.checked)}
-        disabled={data === undefined}
+        disabled={disbleTokenSelection}
       >
         <Flex gap={3} alignItems="center" w="full">
           {token?.assets && (
@@ -59,22 +62,6 @@ const RowToken = ({ token }: IProps) => {
             <Flex fontSize={"sm"} color="GrayText">
               ≈ ${formatBalanceDolar(token, token.price)}
             </Flex>
-          </Flex>
-          <Flex>
-            {data && (
-              <Flex
-                color="GrayText"
-                columnGap={2}
-                flexDir={{ xs: "column", md: "row" }}
-                alignItems="flex-end"
-                fontSize={{ xs: "sm", md: "md" }}
-              >
-                <Text>
-                  ≈ {formatNumber((data[data.length - 1] as any).amountReceiv)}
-                </Text>
-                <Text>{formatTokenI(selectedToToken)}</Text>
-              </Flex>
-            )}
           </Flex>
         </Flex>
       </Checkbox>

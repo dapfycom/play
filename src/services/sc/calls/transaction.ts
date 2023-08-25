@@ -353,7 +353,7 @@ export class SmartContractInteraction {
 
     interaction.withMultiESDTNFTTransfer(tokensToTransfer);
 
-    this.sendTransaction({
+    return this.sendTransaction({
       interaction,
       options: {
         gasL,

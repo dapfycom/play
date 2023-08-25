@@ -15,6 +15,7 @@ const useGetUserTokens = (
   const {
     data: userTokens,
     isLoading,
+    mutate,
     error,
   } = useSwr<IElrondAccountToken[]>(
     address ? `/accounts/${address}/tokens?size=${size}` : null,
@@ -52,6 +53,7 @@ const useGetUserTokens = (
     userTokens: tokens || [],
     userToken: token,
     isLoading,
+    mutate,
     error,
   };
 };

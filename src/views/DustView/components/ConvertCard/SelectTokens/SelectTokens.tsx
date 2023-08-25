@@ -36,7 +36,9 @@ const SelectTokens = () => {
 
           {finalTokens.length === 0 && (
             <Center w="full" minH="200px">
-              <Text fontSize={"xl"}>No tokens found</Text>
+              <Text fontSize={"lg"} textAlign={"center"}>
+                No tokens found
+              </Text>
             </Center>
           )}
         </CheckboxGroup>

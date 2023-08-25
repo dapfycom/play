@@ -29,10 +29,17 @@ const ConvertInfo = () => {
         <Flex
           justifyContent={"space-between"}
           mb={4}
-          fontSize={{ xs: "14px", md: "md" }}
+          fontSize={{ xs: "12px", md: "14px" }}
+          flexDir={{ xs: "column", md: "row" }}
+          textAlign={{ xs: "center", md: "initial" }}
         >
-          <Text>Minimum {formatTokenI(toTokenToConvert)} to receive</Text>
-          <Flex flexDir={"column"} alignItems="flex-end">
+          <Text mb={5}>
+            Minimum {formatTokenI(toTokenToConvert)} to receive
+          </Text>
+          <Flex
+            flexDir={"column"}
+            alignItems={{ xs: "center", md: "flex-end" }}
+          >
             <Text fontWeight="600">
               {formatBalance({
                 balance: receiveData?.amountOut,

@@ -11,6 +11,9 @@ const Nav = () => {
 
       <Flex flexDir={"column"} gap="20px">
         {mainSiteRoutes.map((route) => {
+          if (route.soon) {
+            return null;
+          }
           return (
             <Link to={route.path} key={route.path}>
               <Text

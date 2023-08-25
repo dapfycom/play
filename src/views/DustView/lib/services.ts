@@ -7,6 +7,7 @@ import {
   VariadicType,
   VariadicValue,
 } from "@multiversx/sdk-core/out";
+import { SendTransactionReturnType } from "@multiversx/sdk-dapp/types";
 import BigNumber from "bignumber.js";
 import { getSmartContractInteraction } from "services/sc";
 import { scQuery, scQueryByFieldsDefinitions } from "services/sc/queries";
@@ -83,11 +84,7 @@ export const converTokens = async (
     value: string | number;
     decimals?: number;
   }[]
-) => {
-  console.log("tokenToReceive", tokenToReceive);
-  console.log("minAmountToReceive", minAmountToReceive);
-  console.log("tokensToSend", tokensToSend);
-
+): Promise<SendTransactionReturnType> => {
   const res = await getSmartContractInteraction("dustWsp").MultiESDTNFTTransfer(
     {
       functionName: "swipe",
@@ -96,6 +93,9 @@ export const converTokens = async (
         new TokenIdentifierValue(tokenToReceive),
         new BigUIntValue(new BigNumber(minAmountToReceive)),
       ],
+      gasL: tokensToSend.length * 20000000,
     }
   );
+
+  return res;
 };

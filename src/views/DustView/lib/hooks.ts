@@ -50,7 +50,6 @@ export const useGetAmountOut = (
 export const useSelectableDustTokens = () => {
   const { inputTokens } = useGetAllowedInputTokens();
   const toTokenToConvert = useAppSelector(selectToTokenDust);
-  console.log("inputTokens", inputTokens);
 
   const { userTokens, isLoading } = useGetUserTokens();
 
