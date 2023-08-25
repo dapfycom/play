@@ -1,4 +1,4 @@
-import { Center, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Center, Flex, Spinner, Stack, Text } from "@chakra-ui/react";
 import Card from "components/Card/Card";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppSelector } from "hooks/useRedux";
@@ -26,39 +26,58 @@ const ConvertInfo = () => {
           <Spinner />
         </Center>
       ) : (
-        <Flex
-          justifyContent={"space-between"}
-          mb={4}
-          fontSize={{ xs: "12px", md: "14px" }}
-          flexDir={{ xs: "column", md: "row" }}
-          textAlign={{ xs: "center", md: "initial" }}
-        >
-          <Text mb={5}>
-            Minimum {formatTokenI(toTokenToConvert)} to receive
-          </Text>
+        <Stack>
           <Flex
-            flexDir={"column"}
-            alignItems={{ xs: "center", md: "flex-end" }}
+            justifyContent={"space-between"}
+            mb={4}
+            fontSize={{ xs: "12px", md: "14px" }}
+            flexDir={{ xs: "column", md: "row" }}
+            textAlign={{ xs: "center", md: "initial" }}
           >
-            <Text fontWeight="600">
-              {formatBalance({
-                balance: receiveData?.amountOut,
-                decimals: token?.decimals,
-              })}{" "}
-              {formatTokenI(toTokenToConvert)}
+            <Text mb={5}>
+              Minimum {formatTokenI(toTokenToConvert)} to receive
             </Text>
-            <Text color={"GrayText"} fontSize="sm" fontWeight="600">
-              ≈ $
-              {formatBalanceDolar(
-                {
+            <Flex
+              flexDir={"column"}
+              alignItems={{ xs: "center", md: "flex-end" }}
+            >
+              <Text fontWeight="600">
+                {formatBalance({
                   balance: receiveData?.amountOut,
                   decimals: token?.decimals,
-                },
-                token?.ticker === "USDC" ? 1 : token?.price
-              )}
-            </Text>
+                })}{" "}
+                {formatTokenI(toTokenToConvert)}
+              </Text>
+              <Text color={"GrayText"} fontSize="sm" fontWeight="600">
+                ≈ $
+                {formatBalanceDolar(
+                  {
+                    balance: receiveData?.amountOut,
+                    decimals: token?.decimals,
+                  },
+                  token?.ticker === "USDC" ? 1 : token?.price
+                )}
+              </Text>
+            </Flex>
           </Flex>
-        </Flex>
+          <Flex
+            justifyContent={"space-between"}
+            mb={4}
+            fontSize={{ xs: "12px", md: "14px" }}
+            flexDir={{ xs: "column", md: "row" }}
+            textAlign={{ xs: "center", md: "initial" }}
+          >
+            <Text mb={5}>Basic protocol fee:</Text>
+            <Flex
+              flexDir={"column"}
+              alignItems={{ xs: "center", md: "flex-end" }}
+            >
+              <Text fontWeight="600">
+                {formatTokenI(toTokenToConvert) === "BSK" ? "0%" : "3.5%"}{" "}
+              </Text>
+            </Flex>
+          </Flex>
+        </Stack>
       )}
     </Card>
   );

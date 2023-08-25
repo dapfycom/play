@@ -76,6 +76,9 @@ const MoonDustXCard = () => {
       <Flex w="full" mt={4}>
         <SelectAllTokens />
       </Flex>
+      <Text mt={8} color="gray.300" fontSize={{ xs: "sm", md: "md" }}>
+        0% fees when converting into BSK 🥳️
+      </Text>
       <ConvertInfo />
       <ConvertButton />
     </Flex>
