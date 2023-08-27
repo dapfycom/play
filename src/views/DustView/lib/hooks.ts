@@ -38,7 +38,9 @@ export const useGetAmountOut = (
 ) => {
   const selectedToToken = useAppSelector(selectToTokenDust);
   const { data, isLoading, error } = useSwr(
-    tokensOut.length > 0 ? ["dustWsp:getAmountOut:", tokensOut] : null,
+    tokensOut.length > 0
+      ? ["dustWsp:getAmountOut:", selectedToToken, ...tokensOut]
+      : null,
     () => fetchAmountOut(selectedToToken, tokensOut)
   );
 
