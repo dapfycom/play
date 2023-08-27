@@ -59,7 +59,7 @@ export const useSelectableDustTokens = () => {
     if (
       inputTokens.includes(userToken.identifier) &&
       userToken.identifier !== "EGLD" &&
-      (formatBalanceDolar(userToken, userToken.price) as number) >
+      (formatBalanceDolar(userToken, userToken.price) as number) <=
         limitDollarAmount &&
       userToken.identifier !== toTokenToConvert
     ) {
