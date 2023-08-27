@@ -24,7 +24,7 @@ export const dust = createSlice({
     selectToToken: (state, action: PayloadAction<string>) => {
       if (state.toToken === action.payload) return;
       state.toToken = action.payload;
-      state.convertInfo = [];
+      // state.convertInfo = [];
     },
 
     selectOutputToken: (
