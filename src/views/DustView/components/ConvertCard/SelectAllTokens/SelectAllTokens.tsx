@@ -12,7 +12,10 @@ const SelectAllTokens = () => {
   const selectedTokens = useAppSelector(selectConvertInfo);
 
   const handleSelectAll = () => {
-    if (selectedTokens.length >= 10) {
+    if (
+      selectedTokens.length >= 10 ||
+      finalTokens.length === selectedTokens.length
+    ) {
       dispatch(
         selectOutputToken({
           data: finalTokens,
