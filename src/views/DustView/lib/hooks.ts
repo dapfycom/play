@@ -52,10 +52,10 @@ export const useGetAmountOut = (
 };
 
 export const useSelectableDustTokens = () => {
-  const { inputTokens } = useGetAllowedInputTokens();
+  const { inputTokens, isLoading: isLoading1 } = useGetAllowedInputTokens();
   const toTokenToConvert = useAppSelector(selectToTokenDust);
 
-  const { userTokens, isLoading } = useGetUserTokens();
+  const { userTokens, isLoading: isLoading2 } = useGetUserTokens();
 
   const finalTokens = userTokens.filter((userToken) => {
     if (
@@ -73,6 +73,6 @@ export const useSelectableDustTokens = () => {
 
   return {
     finalTokens,
-    isLoading,
+    isLoading: isLoading1 || isLoading2,
   };
 };
