@@ -1,15 +1,17 @@
 import { Center, Flex, Spinner, Stack, Text } from "@chakra-ui/react";
 import Card from "components/Card/Card";
 import useGetElrondToken from "hooks/useGetElrondToken";
-import { useAppSelector } from "hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import {
   formatBalance,
   formatBalanceDolar,
 } from "utils/functions/formatBalance";
-import { formatTokenI } from "utils/functions/tokens";
+import { calculateSlipageAmount, formatTokenI } from "utils/functions/tokens";
 import {
   selectConvertInfo,
+  selectDustSlippage,
   selectToTokenDust,
+  setSlipage,
 } from "views/DustView/lib/dust-slice";
 import { useGetAmountOut } from "views/DustView/lib/hooks";
 
@@ -17,8 +19,13 @@ const ConvertInfo = () => {
   const toTokenToConvert = useAppSelector(selectToTokenDust);
   const { elrondToken: token } = useGetElrondToken(toTokenToConvert);
   const selectedTokens = useAppSelector(selectConvertInfo);
-  const { data: receiveData, isLoading } = useGetAmountOut(selectedTokens);
+  const { data, isLoading } = useGetAmountOut(selectedTokens);
+  const slipage = useAppSelector(selectDustSlippage);
 
+  const receiveAmount = calculateSlipageAmount(
+    slipage,
+    data?.amountOut || 0
+  ).toString();
   return (
     <Card as={Flex} p={8} rounded="xl" w="full" flexDir={"column"} mt={8}>
       {isLoading ? (
@@ -43,7 +50,7 @@ const ConvertInfo = () => {
             >
               <Text fontWeight="600">
                 {formatBalance({
-                  balance: receiveData?.amountOut,
+                  balance: receiveAmount,
                   decimals: token?.decimals,
                 })}{" "}
                 {formatTokenI(toTokenToConvert)}
@@ -52,7 +59,7 @@ const ConvertInfo = () => {
                 ≈ $
                 {formatBalanceDolar(
                   {
-                    balance: receiveData?.amountOut,
+                    balance: receiveAmount,
                     decimals: token?.decimals,
                   },
                   token?.ticker === "USDC" ? 1 : token?.price
@@ -77,6 +84,16 @@ const ConvertInfo = () => {
               </Text>
             </Flex>
           </Flex>
+
+          <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Text> Slipage</Text>
+            <Flex gap={"2"}>
+              <SlipageBox percent={1} selected={slipage === 1} />
+              <SlipageBox percent={2} selected={slipage === 2} />
+              <SlipageBox percent={3} selected={slipage === 3} />
+              <SlipageBox percent={5} selected={slipage === 5} />
+            </Flex>
+          </Flex>
         </Stack>
       )}
     </Card>
@@ -84,3 +101,29 @@ const ConvertInfo = () => {
 };
 
 export default ConvertInfo;
+
+interface SlipageBoxProps {
+  percent: number;
+  selected: boolean;
+}
+const SlipageBox = ({ percent, selected }: SlipageBoxProps) => {
+  const selectedProps = {
+    bg: "primary",
+    color: "white",
+  };
+  const dispatch = useAppDispatch();
+  const handleChangeSlipage = () => {
+    dispatch(setSlipage(percent));
+  };
+  return (
+    <Center
+      boxSize={"44px"}
+      rounded={"md"}
+      {...(selected ? selectedProps : {})}
+      onClick={handleChangeSlipage}
+      cursor={"pointer"}
+    >
+      {percent}%
+    </Center>
+  );
+};

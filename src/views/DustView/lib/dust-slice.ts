@@ -10,11 +10,13 @@ interface IdustState {
     identifier: string;
     balance: string;
   }[];
+  slipage: number;
 }
 
 const initialState: IdustState = {
   toToken: selectedNetwork.tokensID.wegld, // token that user wants to receive
   convertInfo: [],
+  slipage: 3,
 };
 
 export const dust = createSlice({
@@ -80,13 +82,19 @@ export const dust = createSlice({
         }
       }
     },
+
+    setSlipage: (state, action: PayloadAction<number>) => {
+      state.slipage = action.payload;
+    },
   },
 });
 
 export const selectConvertInfo = (state: AppState) => state.dust.convertInfo;
 
 export const selectToTokenDust = (state: AppState) => state.dust.toToken;
+export const selectDustSlippage = (state: AppState) => state.dust.slipage;
+
 // Action creators are generated for each case reducer function
-export const { selectOutputToken, selectToToken } = dust.actions;
+export const { selectOutputToken, selectToToken, setSlipage } = dust.actions;
 
 export default dust.reducer;

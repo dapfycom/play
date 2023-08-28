@@ -13,6 +13,7 @@ import { SmartContractInteraction } from "services/sc/calls/transaction";
 import { IElrondToken } from "types/elrond.interface";
 import { IRoute } from "types/swap.interface";
 import { getWspOfWrapedEgld } from "utils/functions/sc";
+import { calculateSlipageAmount } from "utils/functions/tokens";
 
 export const submitSwap = async (
   swapInfo: IRoute[],
@@ -27,13 +28,10 @@ export const submitSwap = async (
   let swapToken = fromToken.token;
 
   const dataToSend = swapInfo.flatMap((item) => {
-    const amountWithSlipage = new BigNumber(item.token2AmountDecimals)
-      .multipliedBy(slipapge)
-      .dividedBy(100);
-
-    const finalAmount = new BigNumber(item.token2AmountDecimals)
-      .minus(amountWithSlipage)
-      .toFixed(0);
+    const finalAmount = calculateSlipageAmount(
+      slipapge,
+      item.token2AmountDecimals
+    ).toFixed(0);
 
     return [
       new AddressValue(new Address(item.sc)),
