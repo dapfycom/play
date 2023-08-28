@@ -123,6 +123,7 @@ const SlipageBox = ({ percent, selected }: SlipageBoxProps) => {
     <Center
       boxSize={"44px"}
       rounded={"md"}
+      fontSize={{ xs: "sm", md: "md" }}
       {...(selected ? selectedProps : {})}
       onClick={handleChangeSlipage}
       cursor={"pointer"}
