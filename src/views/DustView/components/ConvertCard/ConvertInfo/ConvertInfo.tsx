@@ -85,8 +85,12 @@ const ConvertInfo = () => {
             </Flex>
           </Flex>
 
-          <Flex justifyContent={"space-between"} alignItems={"center"}>
-            <Text> Slipage</Text>
+          <Flex
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            flexDir={{ xs: "column", md: "row" }}
+          >
+            <Text mb={{ xs: "2", md: 0 }}> Slipage</Text>
             <Flex gap={"2"}>
               <SlipageBox percent={1} selected={slipage === 1} />
               <SlipageBox percent={2} selected={slipage === 2} />
