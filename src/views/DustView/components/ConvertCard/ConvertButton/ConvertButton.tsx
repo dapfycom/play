@@ -1,20 +1,32 @@
 import { useTrackTransactionStatus } from "@multiversx/sdk-dapp/hooks";
 import BigNumber from "bignumber.js";
 import ActionButton from "components/ActionButton/ActionButton";
+import Realistic from "components/Conffeti/Realistic";
+import { selectedNetwork } from "config/network";
 import useGetUserTokens from "hooks/useGetUserTokens";
 import { useAppSelector } from "hooks/useRedux";
 import { useState } from "react";
-import { selectConvertInfo } from "views/DustView/lib/dust-slice";
+import {
+  selectConvertInfo,
+  selectToTokenDust,
+} from "views/DustView/lib/dust-slice";
 import { useGetAmountOut } from "views/DustView/lib/hooks";
 import { converTokens } from "views/DustView/lib/services";
 
 const ConvertButton = () => {
   const selectedTokens = useAppSelector(selectConvertInfo);
+  const toToken = useAppSelector(selectToTokenDust);
   const { data } = useGetAmountOut(selectedTokens);
   const [sessionId, setSessionId] = useState("");
+  const [conffeti, setconffeti] = useState(false);
+
   const { mutate } = useGetUserTokens();
+
   const onSuccess = () => {
     mutate();
+    if (toToken === selectedNetwork.tokensID.bsk) {
+      setconffeti(true);
+    }
   };
   useTrackTransactionStatus({
     transactionId: sessionId,
@@ -44,15 +56,19 @@ const ConvertButton = () => {
   };
 
   return (
-    <ActionButton
-      onClick={handleSubmit}
-      mt={16}
-      // disabled={swapInfo.length === 0}
-      fontWeight="600"
-      fontSize={"14px"}
-    >
-      Convert tokens
-    </ActionButton>
+    <>
+      {conffeti && <Realistic />}
+
+      <ActionButton
+        onClick={handleSubmit}
+        mt={16}
+        // disabled={swapInfo.length === 0}
+        fontWeight="600"
+        fontSize={"14px"}
+      >
+        Convert tokens
+      </ActionButton>
+    </>
   );
 };
 
