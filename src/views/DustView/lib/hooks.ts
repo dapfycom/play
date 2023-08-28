@@ -2,7 +2,7 @@ import useGetUserTokens from "hooks/useGetUserTokens";
 import { useAppSelector } from "hooks/useRedux";
 import useSwr from "swr";
 import { formatBalanceDolar } from "utils/functions/formatBalance";
-import { limitDollarAmount } from "./contants";
+import { limitDollarAmount, limitDollarAmountMin } from "./contants";
 import { selectToTokenDust } from "./dust-slice";
 import {
   fetchAllowedInputTokens,
@@ -63,6 +63,8 @@ export const useSelectableDustTokens = () => {
       userToken.identifier !== "EGLD" &&
       (formatBalanceDolar(userToken, userToken.price) as number) <=
         limitDollarAmount &&
+      (formatBalanceDolar(userToken, userToken.price) as number) >=
+        limitDollarAmountMin &&
       userToken.identifier !== toTokenToConvert
     ) {
       return true;
