@@ -16,7 +16,7 @@ interface IdustState {
 const initialState: IdustState = {
   toToken: selectedNetwork.tokensID.wegld, // token that user wants to receive
   convertInfo: [],
-  slipage: 3,
+  slipage: 2,
 };
 
 export const dust = createSlice({
