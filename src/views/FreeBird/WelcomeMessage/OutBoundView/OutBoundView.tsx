@@ -70,8 +70,6 @@ const OutBoundView = () => {
       (t) => t.id === Number(e.target.value)
     );
     if (template) {
-      console.log("template", template);
-
       setSelectedTempalte(template);
     }
   };

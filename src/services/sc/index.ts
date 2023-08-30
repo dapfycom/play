@@ -1,6 +1,7 @@
 import { Address } from "@multiversx/sdk-core/out";
 import { ProxyNetworkProvider } from "@multiversx/sdk-network-providers";
 import bskFarmAbiUrl from "assets/abis/beskar-dao.abi.json";
+import dustAbiUrl from "assets/abis/dust_sc.abi.json";
 import flipAbiUrl from "assets/abis/sc_flip.abi.json";
 import { selectedNetwork } from "config/network";
 import { SmartContractInteraction } from "./calls/transaction";
@@ -21,7 +22,8 @@ export type WspTypes =
   | "wrapEgldpWspShard2"
   | "maiarRouterWsp"
   | "bskFarmWsp"
-  | "flipWsp";
+  | "flipWsp"
+  | "dustWsp";
 
 export const getInterface = (workspace: WspTypes) => {
   let address = null;
@@ -66,6 +68,12 @@ export const getInterface = (workspace: WspTypes) => {
       abiUrl = flipAbiUrl;
       implementsInterfaces = "FlipContract";
       break;
+    case "dustWsp":
+      simpleAddress = selectedNetwork.scAddress.dust;
+      address = new Address(simpleAddress);
+      abiUrl = dustAbiUrl;
+      implementsInterfaces = "DustContract";
+      break;
     default:
       break;
   }
@@ -99,6 +107,9 @@ export const getSmartContractInteraction = (
     ),
     flipWsp: new SmartContractInteraction(
       getInterface("flipWsp").simpleAddress
+    ),
+    dustWsp: new SmartContractInteraction(
+      getInterface("dustWsp").simpleAddress
     ),
   };
 

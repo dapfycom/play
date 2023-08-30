@@ -329,11 +329,18 @@ export class SmartContractInteraction {
     const tokensToTransfer = tokens.map((token) => {
       let tokenTransfer: TokenTransfer;
       if (!token.nonce || token.nonce === 0) {
-        tokenTransfer = TokenTransfer.fungibleFromAmount(
-          token.collection,
-          token.value,
-          token?.decimals || 0
-        );
+        if (token?.decimals) {
+          tokenTransfer = TokenTransfer.fungibleFromAmount(
+            token.collection,
+            token.value,
+            token.decimals
+          );
+        } else {
+          tokenTransfer = TokenTransfer.fungibleFromBigInteger(
+            token.collection,
+            token.value
+          );
+        }
       } else {
         tokenTransfer = TokenTransfer.nonFungible(
           token.collection,
@@ -346,7 +353,7 @@ export class SmartContractInteraction {
 
     interaction.withMultiESDTNFTTransfer(tokensToTransfer);
 
-    this.sendTransaction({
+    return this.sendTransaction({
       interaction,
       options: {
         gasL,

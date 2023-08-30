@@ -1,4 +1,5 @@
 import {
+  DustIcon,
   FarmIcon,
   FireIcon,
   PlayIcon,
@@ -7,6 +8,7 @@ import {
 import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { RouteObject } from "react-router-dom";
+import DustView from "views/DustView/DustView";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 // const PlayView = React.lazy(() => import("views/PlayView"));
@@ -26,6 +28,7 @@ export const routeNames = {
   farm: "/farm",
   stake: "/stake",
   play: "/play",
+  dust: "/dust",
 };
 
 export const mainSiteRoutes = [
@@ -97,6 +100,13 @@ export const mainSiteRoutes = [
     title: "The Forge",
     icon: <FireIcon fontSize={"20px"} />,
     soon: true,
+  },
+  {
+    path: routeNames.dust,
+    element: <DustView />,
+    title: "Dust",
+    icon: <DustIcon fontSize={"20px"} />,
+    hide: true,
   },
 ];
 

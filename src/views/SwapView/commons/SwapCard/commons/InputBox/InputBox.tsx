@@ -91,7 +91,7 @@ const InputBox = ({
                   mr={2}
                 >
                   <Image
-                    src={elrondToken?.assets.svgUrl}
+                    src={elrondToken?.assets?.svgUrl}
                     alt={elrondToken?.ticker}
                     w={{ xs: "18px", lg: "40px" }}
                   />

@@ -13,6 +13,9 @@ const Menu = ({ noBorder }: IProps) => {
   return (
     <Flex as="nav" gap={{ xs: "28px", md: "50px" }}>
       {mainSiteRoutes.map((route) => {
+        if (route?.hide) {
+          return null;
+        }
         if (route?.soon) {
           return (
             <Tooltip label="Coming soon" placement="right" key={route.title}>

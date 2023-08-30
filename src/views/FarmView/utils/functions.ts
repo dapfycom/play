@@ -16,16 +16,6 @@ export const calculateFarmReward = (
   rewardPerShareNFT,
   debtNFT
 ) => {
-  // console.log("\n\n-----inputs---");
-  // console.log("reward", reward);
-  // console.log("activeLP", activeLP);
-  // console.log("rewardPerShareLP", rewardPerShareLP);
-  // console.log("debtLP", debtLP);
-  // console.log("activeNFT", activeNFT);
-  // console.log("rewardPerShareNFT", rewardPerShareNFT);
-  // console.log("debtNFT", debtNFT);
-  // console.log("\n\n");
-
   const lpRewards = new BigNumber(activeLP * rewardPerShareLP)
     .dividedBy(10 ** 9)
     .minus(debtLP)

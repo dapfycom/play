@@ -216,20 +216,20 @@ export interface IElrondToken {
   circulatingSupply: string | number;
 }
 export interface IElrondAccountToken {
-  type: ElrondType;
+  type?: ElrondType;
   identifier: string;
   name: string;
   ticker: string;
-  owner: string;
+  owner?: string;
   decimals: number;
-  isPaused: boolean;
+  isPaused?: boolean;
   assets: {
-    website: string;
-    description: string;
-    status: string;
-    pngUrl: string;
+    website?: string;
+    description?: string;
+    status?: string;
+    pngUrl?: string;
     svgUrl: string;
-    social: {
+    social?: {
       email: string;
       twitter: string;
       whitepaper: string;
@@ -238,28 +238,28 @@ export interface IElrondAccountToken {
       telegram: string;
     };
   };
-  transactions: number;
-  accounts: number;
-  canUpgrade: boolean;
-  canMint: boolean;
-  canBurn: boolean;
-  canChangeOwner: boolean;
-  canPause: boolean;
-  canFreeze: boolean;
-  canWipe: boolean;
-  price: number;
-  marketCap: number;
-  supply: string;
-  circulatingSupply: string;
+  transactions?: number;
+  accounts?: number;
+  canUpgrade?: boolean;
+  canMint?: boolean;
+  canBurn?: boolean;
+  canChangeOwner?: boolean;
+  canPause?: boolean;
+  canFreeze?: boolean;
+  canWipe?: boolean;
+  price?: number;
+  marketCap?: number;
+  supply?: string;
+  circulatingSupply?: string;
 
-  minted: string;
-  burnt: string;
-  initialMinted: string;
+  minted?: string;
+  burnt?: string;
+  initialMinted?: string;
 
-  timestamp: number;
+  timestamp?: number;
   balance: string;
-  valueUsd: number;
-  attributes: string;
+  valueUsd?: number;
+  attributes?: string;
 }
 
 export interface IElrondUserAccount {

@@ -45,7 +45,6 @@ const GameActions = () => {
     if (betAmount) {
       const res = await flipCoin(selectedSide, elrondToken, betAmount);
       setSessionId(res?.sessionId);
-      console.log("res", res);
     }
   };
   const handleChangeCoinSide = () => {

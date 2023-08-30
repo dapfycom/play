@@ -33,7 +33,6 @@ export const useGetSwapRate = () => {
 
   useEffect(() => {
     if (data) {
-      // console.log("data", data);
       dispatch(onChangeToField(data[data.length - 1].token2Amount.toString()));
     }
   }, [data, dispatch]);
@@ -81,7 +80,6 @@ export const useSwapLpRate = () => {
       : null,
     smartSwapRoutes
   );
-  console.log("data", data);
 
   const pair = pairs?.find((p) => p.id === toField.selectedToken);
 
