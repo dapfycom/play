@@ -93,7 +93,7 @@ export const converTokens = async (
         new TokenIdentifierValue(tokenToReceive),
         new BigUIntValue(new BigNumber(minAmountToReceive)),
       ],
-      gasL: tokensToSend.length * 50000000,
+      gasL: tokensToSend.length * 15000000,
     }
   );
 
