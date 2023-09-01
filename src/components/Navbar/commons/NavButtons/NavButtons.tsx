@@ -3,7 +3,7 @@ import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account";
 import { logout } from "@multiversx/sdk-dapp/utils";
 import ActionButton from "components/ActionButton/ActionButton";
 import { EgldIcon } from "components/icons/coin-icons";
-import { DotIcon, DustIcon, ZapIcon } from "components/icons/ui-icons";
+import { DotIcon, ZapIcon } from "components/icons/ui-icons";
 import { routeNames } from "config/routes";
 import { useAppDispatch } from "hooks/useRedux";
 import { Link } from "react-router-dom";
@@ -76,8 +76,9 @@ const NavButtons = () => {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
+          fontSize={"20px"}
         >
-          <DustIcon fontSize={"25px"} />
+          💨
         </ActionButton>
       </Link>
       {/* <MoreOptions /> */}
