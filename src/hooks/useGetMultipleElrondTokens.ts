@@ -35,7 +35,7 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
 
   let finalData: IElrondToken[] = data?.data ? [...data?.data] : [];
   if (isEgldonTokens) {
-    if (egldData && finalData) {
+    if (egldData && finalData.length > 0) {
       if (finalData.findIndex((item) => item.identifier === "EGLD") === -1) {
         finalData.unshift({
           type: "FungibleESDT",
@@ -61,7 +61,7 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
   );
 
   console.log("tokensIdentifiers", tokensIdentifiers);
-  if (isBskIncluded && finalData) {
+  if (isBskIncluded && finalData.length > 0) {
     console.log("isBskIncluded", isBskIncluded);
     console.log("finalData", finalData);
     const bskToken = finalData.find(
@@ -70,6 +70,7 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
     finalData = finalData.filter(
       (t) => t.identifier !== selectedNetwork.tokensID.bsk
     );
+
     finalData = [
       ...finalData,
       {

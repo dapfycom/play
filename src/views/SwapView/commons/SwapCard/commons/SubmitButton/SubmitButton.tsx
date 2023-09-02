@@ -71,7 +71,7 @@ const SubmitButton = () => {
         width={"full"}
         h="auto"
         py={{ xs: "29px", lg: "36px" }}
-        bgColor="rgba(216, 185,25, 0.3)"
+        bgColor="rgba(40, 67, 190, 0.3)"
         _disabled={{
           "& p": {
             color: "dark.100 !important",
