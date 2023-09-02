@@ -1,7 +1,7 @@
 import { Button, Flex, Grid, GridItem, Text } from "@chakra-ui/react";
 import BigNumber from "bignumber.js";
 import Card from "components/Card/Card";
-import { selectedNetwork } from "config/network";
+import { ENVIROMENT, selectedNetwork } from "config/network";
 import useGetAccountToken from "hooks/useGetAccountToken";
 import useGetMaiarPairs from "hooks/useGetMaiarPairs";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
@@ -76,7 +76,9 @@ const ChooseBetSection = () => {
 
       <Grid templateColumns={"repeat(2, 1fr)"} rowGap={"12px"} columnGap="15px">
         {betOptionsInEgld.map((bet, i) => {
-          const value = new BigNumber(bet).multipliedBy(rate).toFixed(2);
+          const value = new BigNumber(bet)
+            .multipliedBy(ENVIROMENT === "mainnet" ? rate : 200000)
+            .toFixed(2);
           return (
             <GridItem
               key={bet}

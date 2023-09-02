@@ -14,6 +14,6 @@ export const flipCoin = async (
     },
     arg: [new BooleanValue(isHeads)],
     value: Number(amount),
-    gasL: 15000000,
+    gasL: 50000000,
   });
 };

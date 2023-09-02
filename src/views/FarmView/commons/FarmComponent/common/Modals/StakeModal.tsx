@@ -10,7 +10,6 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import BigNumber from "bignumber.js";
 import ActionButton from "components/ActionButton/ActionButton";
 import { LpTokenImageV2 } from "components/LpTokenImage/LpTokenImage";
 import MyModal from "components/Modal/Modal";
@@ -18,7 +17,7 @@ import { selectedNetwork } from "config/network";
 import { useFormik } from "formik";
 import useGetAccountToken from "hooks/useGetAccountToken";
 import useGetElrondToken from "hooks/useGetElrondToken";
-import { formatBalance } from "utils/functions/formatBalance";
+import { formatBalance, getRealBalance } from "utils/functions/formatBalance";
 import { stakeLP } from "views/FarmView/utils/services";
 import * as yup from "yup";
 interface IProps {
@@ -50,18 +49,17 @@ const StakeModal = ({ isOpen, onClose }: IProps) => {
     },
     onSubmit: (values) => {
       let amount = values.amount;
-      if (amount === formatBalance(userStakedToken, true, 18)) {
-        amount = new BigNumber(userStakedToken.balance)
-          .div(Math.pow(10, 18))
-          .toString();
-      }
-      stakeLP(values.amount, stakedToken);
+      stakeLP(amount, stakedToken);
     },
     validationSchema: stakeSchema,
   });
   const handleMax = () => {
-    const value = formatBalance(userStakedToken, true, 18);
-    formik.setFieldValue("amount", value);
+    const value = getRealBalance(
+      userStakedToken.balance,
+      userStakedToken.decimals,
+      true
+    );
+    formik.setFieldValue("amount", value.toString());
   };
 
   return (

@@ -10,12 +10,6 @@ import {
 import MyContainer from "components/Container/Container";
 import SocialButton from "components/SocialButton/SocialButton";
 import { TelegramIcon, TwitterIcon } from "components/icons/ui-icons";
-import Disclaimer1, {
-  Disclaimer2,
-  JoinedDisclaimer,
-} from "./commons/Disclaimer/Disclaimer";
-import JoinTelegram from "./commons/JoinTelegram";
-import Nav from "./commons/Nav";
 
 const Footer = () => {
   return (
@@ -80,15 +74,15 @@ const Footer = () => {
                 as={Link}
                 /* @ts-ignore */
                 isExternal
-                href="https://t.me/BeskarDAO"
+                href="https://t.me/BeskarX"
               />
             </Flex>
           </Flex>
         </Flex>
 
-        <Line mb={"57px"} />
+        {/* <Line mb={"57px"} /> */}
 
-        <Flex mb="20px" flexDir={{ xs: "column", "2xl": "row" }}>
+        {/* <Flex mb="20px" flexDir={{ xs: "column", "2xl": "row" }}>
           <Flex flexDir={{ xs: "column", lg: "row" }}>
             <Box
               mr={{ xs: "0", lg: "50px" }}
@@ -124,7 +118,7 @@ const Footer = () => {
           <Box flex={1} display={{ xs: "none", lg: "block" }}>
             <JoinTelegram />
           </Box>
-        </Flex>
+        </Flex> */}
 
         <Center mb="30px">
           <Text fontSize={"lsm"} textAlign="center" maxW="463.5px">
@@ -133,7 +127,7 @@ const Footer = () => {
         </Center>
 
         <Line mb="30px" />
-        <Text align={"center"}>Build @1</Text>
+        <Text align={"center"}>Build 0xA </Text>
       </MyContainer>
     </Box>
   );

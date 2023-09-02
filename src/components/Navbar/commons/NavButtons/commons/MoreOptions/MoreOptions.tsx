@@ -49,7 +49,7 @@ export const MoreOptionsV2 = ({
     setOpenMoreOptionsModal(false);
   };
   return (
-    <Box position={"relative"} display={{ xs: "block", md: "none" }}>
+    <Box position={"relative"} display={{ xs: "block", lsm: "none" }}>
       <ActionButton
         w="auto"
         px="0"
