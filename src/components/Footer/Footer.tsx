@@ -62,7 +62,7 @@ const Footer = () => {
                 as={Link}
                 /* @ts-ignore */
                 isExternal
-                href="https://x.com/BeskarDAO"
+                href="https://x.com/xBeskar"
               />
               {/* <SocialButton
                 ariaLabel="discord"
@@ -122,7 +122,7 @@ const Footer = () => {
 
         <Center mb="30px">
           <Text fontSize={"lsm"} textAlign="center" maxW="463.5px">
-            BeskarDAO © {new Date().getFullYear()}. All rights reserved.
+            xBeskar © {new Date().getFullYear()}. All rights reserved.
           </Text>
         </Center>
 

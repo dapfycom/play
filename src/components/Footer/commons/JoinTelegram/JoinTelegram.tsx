@@ -17,7 +17,7 @@ const JoinTelegram = () => {
       px={2}
       py={"64px"}
     >
-      <Link href={"https://twitter.com/BeskarDAO"} isExternal textStyle={""}>
+      <Link href={"https://twitter.com/xBeskar"} isExternal textStyle={""}>
         <ActionButton
           borderRadius={"full"}
           py={{ xs: "20px", lg: "30px" }}
