@@ -1,3 +1,4 @@
+import { selectedNetwork } from "config/network";
 import { fetchElrondEconomics } from "services/rest/elrond/network";
 import { fetchTokenById } from "services/rest/elrond/tokens";
 import useSWR from "swr";
@@ -32,7 +33,16 @@ const useGetElrondToken = (tokenI: string) => {
   if (tokenI === "EGLD") {
     finalData = { ...egldStaticData, ...economics };
   } else {
-    finalData = elrondToken;
+    if (elrondToken?.identifier === selectedNetwork.tokensID.bsk) {
+      finalData = {
+        ...elrondToken,
+        assets: {
+          svgUrl: "/images/bsk-logo.svg",
+        },
+      };
+    } else {
+      finalData = elrondToken;
+    }
   }
 
   return {
