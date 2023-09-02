@@ -1,20 +1,20 @@
-@font-face {
+/* @font-face {
   font-family: 'Rexton';
-  src: url('../assets/fonts/rexton/Light.otf');
+  src: url('../assets/fonts/inter/Inter-Light.woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap
 }
 @font-face {
   font-family: 'Rexton';
-  src: url('../assets/fonts/rexton/Regular.otf');
+  src: url('../assets/fonts/inter/Inter-Regular.woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap
 }
 @font-face {
   font-family: 'Rexton';
-  src: url('../assets/fonts/rexton//Medium.otf');
+  src: url('../assets/fonts/inter/Inter-Medium.woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap
@@ -23,7 +23,7 @@
 
 @font-face {
   font-family: 'Rexton';
-  src: url('../assets/fonts/rexton//Bold.otf');
+  src: url('../assets/fonts/inter/Inter-Bold.woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap
@@ -36,20 +36,20 @@
 }
 @font-face {
   font-family: 'Rexton';
-  src: url('../assets/fonts/rexton//Black.otf');
+  src: url('../assets/fonts/inter/Inter-Black.woff2');
   font-weight: 900;
   font-style: normal;
-}
+} */
 
 
 /* Inter font family */
-/* @font-face {
+@font-face {
   font-family: 'Inter Variable';
   src: url('../assets/fonts/inter/Inter.var.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-} */
+}
 
 body{
   -webkit-font-smoothing: antialiased;
