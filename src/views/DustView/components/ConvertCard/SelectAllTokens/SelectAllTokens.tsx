@@ -1,5 +1,6 @@
 import ActionButton from "components/ActionButton/ActionButton";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
+import { maxAllowedTokensCount } from "views/DustView/lib/contants";
 import {
   selectConvertInfo,
   selectOutputToken,
@@ -13,7 +14,7 @@ const SelectAllTokens = () => {
 
   const handleSelectAll = () => {
     if (
-      selectedTokens.length >= 10 ||
+      selectedTokens.length >= maxAllowedTokensCount ||
       finalTokens.length === selectedTokens.length
     ) {
       dispatch(
@@ -23,7 +24,7 @@ const SelectAllTokens = () => {
         })
       );
     } else {
-      const allSelctedTpkens = finalTokens.slice(0, 10);
+      const allSelctedTpkens = finalTokens.slice(0, maxAllowedTokensCount);
 
       dispatch(
         selectOutputToken({

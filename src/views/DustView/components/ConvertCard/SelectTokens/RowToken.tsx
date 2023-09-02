@@ -6,6 +6,7 @@ import {
   formatBalanceDolar,
 } from "utils/functions/formatBalance";
 import { formatTokenI } from "utils/functions/tokens";
+import { maxAllowedTokensCount } from "views/DustView/lib/contants";
 import {
   selectConvertInfo,
   selectOutputToken,
@@ -19,7 +20,7 @@ const RowToken = ({ token }: IProps) => {
   const selectedTokens = useAppSelector(selectConvertInfo);
 
   const handleSelect = (isCheked: boolean) => {
-    if (selectedTokens.length <= 10) {
+    if (selectedTokens.length <= maxAllowedTokensCount) {
       dispatch(
         selectOutputToken({
           data: token,
@@ -30,7 +31,7 @@ const RowToken = ({ token }: IProps) => {
   };
 
   const disbleTokenSelection =
-    selectedTokens.length >= 10 &&
+    selectedTokens.length >= maxAllowedTokensCount &&
     !Boolean(selectedTokens.find((t) => t.identifier === token.identifier));
   return (
     <Box>
