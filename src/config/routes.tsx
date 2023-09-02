@@ -8,7 +8,6 @@ import {
 import Layout from "components/Layout/MainLayout";
 import React from "react";
 import { RouteObject } from "react-router-dom";
-import DustView from "views/DustView/DustView";
 
 const SwapView = React.lazy(() => import("views/SwapView"));
 // const PlayView = React.lazy(() => import("views/PlayView"));
@@ -17,6 +16,7 @@ const SwapLpTab = React.lazy(() => import("views/SwapView/commons/SwapLpTab"));
 const FarmView = React.lazy(() => import("views/FarmView"));
 const CoinFlipView = React.lazy(() => import("views/CoinFlipView"));
 const SwapTab = React.lazy(() => import("views/SwapView/commons/SwapCard"));
+const DustView = React.lazy(() => import("views/DustView/DustView"));
 
 export const routeNames = {
   swap: "/",

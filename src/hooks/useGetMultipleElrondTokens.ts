@@ -60,10 +60,7 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
     selectedNetwork.tokensID.bsk
   );
 
-  console.log("tokensIdentifiers", tokensIdentifiers);
   if (isBskIncluded && finalData.length > 0) {
-    console.log("isBskIncluded", isBskIncluded);
-    console.log("finalData", finalData);
     const bskToken = finalData.find(
       (token) => token.identifier === selectedNetwork.tokensID.bsk
     );

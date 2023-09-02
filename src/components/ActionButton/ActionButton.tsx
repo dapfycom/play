@@ -1,6 +1,7 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
-import Ripple from "components/Ripple/Ripple";
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
+
+const Ripple = React.lazy(() => import("components/Ripple/Ripple"));
 
 interface IProps extends PropsWithChildren<ButtonProps> {
   noRipple?: boolean;
