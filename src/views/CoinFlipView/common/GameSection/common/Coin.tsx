@@ -32,17 +32,17 @@ const Coin = () => {
   return (
     <CoinS
       w={"full"}
-      h={"full"}
-      p="35px"
+      px="35px"
+      pb={houseSelection && "30px"}
       bg="dark.600"
       border="1px"
       borderColor="dark.300"
       borderRadius={"lg"}
-      minH={"320px"}
+      minH={"300px"}
       isBack={isBack}
     >
-      <Box className="flip-card-inner" h="full" minH={"320px"}>
-        <Center className="flip-card-front" h="full" minH={"320px"}>
+      <Box className="flip-card-inner" h="full" minH={"300px"}>
+        <Center className="flip-card-front" h="full" minH={"300px"}>
           <Image src={"images/bsk-logo.svg"} w="265px" h="265px" />
         </Center>
         <Center className="flip-card-back">
