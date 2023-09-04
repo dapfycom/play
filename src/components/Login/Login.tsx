@@ -3,9 +3,9 @@ import {
   Box,
   BoxProps,
   Center,
+  Link as ChakraLink,
   Flex,
   Heading,
-  Link as ChakraLink,
   ModalBody,
   ModalCloseButton,
   Text,
@@ -164,10 +164,10 @@ const Login = ({ isLoginOpen }: IProps) => {
           textAlign="center"
         >
           <Text color={"blackT.400"} mb="15px">
-            If you’re on desktop, try Maiar DeFi Wallet
+            If you’re on desktop, try MultiversX DeFi Wallet
           </Text>
           <Text color={"blackT.400"} mb={6}>
-            If you’re on mobile, try Maiar App
+            If you’re on mobile, try xPortal App
           </Text>
 
           <Text color={"blackT.400"} mb="15px">
