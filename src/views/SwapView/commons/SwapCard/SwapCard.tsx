@@ -1,4 +1,5 @@
 import { Box, Center, Flex, Heading } from "@chakra-ui/react";
+import { MetaHead } from "components/MetaHead/MetaHead";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import { IElrondAccountToken } from "types/elrond.interface";
 import { formatBalance, setElrondBalance } from "utils/functions/formatBalance";
@@ -49,39 +50,42 @@ const SwapCard = () => {
   };
 
   return (
-    <Center w="full">
-      <Box
-        borderRadius={"2xl"}
-        bg="dark.500"
-        maxW={"850px"}
-        w="full"
-        p={"30px"}
-        border="1px"
-        borderColor={"primary"}
-      >
-        <Flex
+    <>
+      <MetaHead metaTitle="Swap" />
+
+      <Center w="full">
+        <Box
+          borderRadius={"2xl"}
+          bg="dark.500"
+          maxW={"850px"}
           w="full"
-          justifyContent="space-between"
-          alignItems={"center"}
-          mb={{ xs: "10px", lg: "20px" }}
+          p={"30px"}
+          border="1px"
+          borderColor={"primary"}
         >
-          <Heading
-            as="h2"
-            fontSize={{ xs: "2xl", lg: "3xl" }}
-            fontWeight={700}
-            color="white"
+          <Flex
+            w="full"
+            justifyContent="space-between"
+            alignItems={"center"}
+            mb={{ xs: "10px", lg: "20px" }}
           >
-            Swap
-          </Heading>
-          <Settings />
-        </Flex>
-        <Flex
-          position={"relative"}
-          flexDir="column"
-          gap={{ xs: "5px", lg: "10px" }}
-          mb="30px"
-        >
-          {/* <Box
+            <Heading
+              as="h2"
+              fontSize={{ xs: "2xl", lg: "3xl" }}
+              fontWeight={700}
+              color="white"
+            >
+              Swap
+            </Heading>
+            <Settings />
+          </Flex>
+          <Flex
+            position={"relative"}
+            flexDir="column"
+            gap={{ xs: "5px", lg: "10px" }}
+            mb="30px"
+          >
+            {/* <Box
             position={"absolute"}
             top={{ xs: "44%", lg: "43%" }}
             left={{ xs: "44%", lg: "45%" }}
@@ -98,25 +102,26 @@ const SwapCard = () => {
               <ArrowDownIcon fontSize={{ xs: "11px", lg: "22px" }} />
             </Center>
           </Box> */}
-          <InputBox
-            selectedTokenI={fromField.selectedToken}
-            value={fromField.value}
-            onChange={handleChangeFromField}
-            onChangeToken={handleChangeFromToken}
-            onMax={handleMax}
-          />
-          <InputBox
-            selectedTokenI={toField.selectedToken}
-            value={toField.value}
-            onChange={handleChangeToField}
-            onChangeToken={handleChangeToToken}
-            isLoadingInput={loadingRoutes}
-            disabeledTokenSelection
-          />
-        </Flex>
-        <SubmitButton />
-      </Box>
-    </Center>
+            <InputBox
+              selectedTokenI={fromField.selectedToken}
+              value={fromField.value}
+              onChange={handleChangeFromField}
+              onChangeToken={handleChangeFromToken}
+              onMax={handleMax}
+            />
+            <InputBox
+              selectedTokenI={toField.selectedToken}
+              value={toField.value}
+              onChange={handleChangeToField}
+              onChangeToken={handleChangeToToken}
+              isLoadingInput={loadingRoutes}
+              disabeledTokenSelection
+            />
+          </Flex>
+          <SubmitButton />
+        </Box>
+      </Center>
+    </>
   );
 };
 
