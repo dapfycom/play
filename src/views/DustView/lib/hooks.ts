@@ -1,3 +1,4 @@
+import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks";
 import useGetUserTokens from "hooks/useGetUserTokens";
 import { useAppSelector } from "hooks/useRedux";
 import useSwr from "swr";
@@ -52,6 +53,8 @@ export const useGetAmountOut = (
 };
 
 export const useSelectableDustTokens = () => {
+  const { isLoggedIn } = useGetLoginInfo();
+
   const { inputTokens, isLoading: isLoading1 } = useGetAllowedInputTokens();
   const toTokenToConvert = useAppSelector(selectToTokenDust);
 
@@ -74,7 +77,7 @@ export const useSelectableDustTokens = () => {
   });
 
   return {
-    finalTokens,
+    finalTokens: isLoggedIn ? finalTokens : [],
     isLoading: isLoading1 || isLoading2,
   };
 };
