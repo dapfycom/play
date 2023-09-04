@@ -99,7 +99,7 @@ const StatsSection = () => {
         </Text>
         {topPlayers.map((player) => {
           return (
-            <Flex color={"white"}>
+            <Flex color={"white"} key={player.address}>
               <Link
                 isExternal
                 href={`${selectedNetwork.network.explorerAddress}/accounts/${player.address}`}
