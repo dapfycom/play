@@ -21,10 +21,10 @@ const Menu = ({ noBorder }: IProps) => {
             <Tooltip label="Coming soon" placement="right" key={route.title}>
               <Flex
                 gap="10px"
-                borderBottom={"1px solid"}
+                borderBottom={"2px solid"}
                 borderColor={"transparent"}
                 height="full"
-                pt={{ xs: "22.5px", md: "31px" }}
+                pt={"20px"}
                 fontWeight={"bold"}
                 _hover={{
                   "& p": {
@@ -47,7 +47,7 @@ const Menu = ({ noBorder }: IProps) => {
         //     <ChLink href={route.path} key={route.path} isExternal>
         //       <Flex
         //         gap="10px"
-        //         borderBottom={"1px solid"}
+        //         borderBottom={"2px solid"}
         //         borderColor={"transparent"}
         //         height="full"
         //         pt={{ xs: "22.5px", md: "31px" }}
@@ -74,13 +74,13 @@ const Menu = ({ noBorder }: IProps) => {
           <Link to={route.path} key={route.path}>
             <Flex
               gap="10px"
-              borderBottom={"1px solid"}
+              borderBottom={"2px solid"}
               borderColor={
                 noBorder ? "transparent" : isActive ? "primary" : "transparent"
               }
               height="full"
               fontWeight={"bold"}
-              pt={{ xs: "22.5px", md: "31px" }}
+              pt={"20px"}
               _hover={{
                 "& p": {
                   color: "white",

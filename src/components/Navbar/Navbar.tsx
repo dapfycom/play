@@ -15,7 +15,7 @@ const Navbar = () => {
           <Flex
             gap="30px"
             alignItems="center"
-            height={{ xs: "70px", md: "85px" }}
+            height={{ xs: "70px", md: "60px" }}
           >
             <Flex gap="3px">
               <Box>
@@ -26,8 +26,8 @@ const Navbar = () => {
                   <Image
                     src={"/images/bsk-logo.svg"}
                     alt="logo"
-                    width={{ xs: "38px", md: "65px" }}
-                    mr="15px"
+                    width={{ xs: "38px", md: "50px" }}
+                    mr="10px"
                   />
 
                   {/* <Heading
