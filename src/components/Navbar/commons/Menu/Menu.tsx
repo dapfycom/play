@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Tooltip } from "@chakra-ui/react";
+import { Flex, Text, Tooltip } from "@chakra-ui/react";
 import { mainSiteRoutes } from "config/routes";
 import { Link, useLocation } from "react-router-dom";
 import { isActiveRoute } from "utils/functions/urls";
@@ -25,7 +25,7 @@ const Menu = ({ noBorder }: IProps) => {
                 borderColor={"transparent"}
                 height="full"
                 pt={{ xs: "22.5px", md: "31px" }}
-                fontSize={{ xs: "md", md: "22px" }}
+                fontWeight={"bold"}
                 _hover={{
                   "& p": {
                     color: "white",
@@ -36,7 +36,7 @@ const Menu = ({ noBorder }: IProps) => {
                 }}
                 whiteSpace="nowrap"
               >
-                <Box color={"grayText"}>{route.icon}</Box>
+                {/* <Box color={"grayText"}>{route.icon}</Box> */}
                 <Text color={"grayText"}>{route.title}</Text>
               </Flex>
             </Tooltip>
@@ -79,8 +79,8 @@ const Menu = ({ noBorder }: IProps) => {
                 noBorder ? "transparent" : isActive ? "primary" : "transparent"
               }
               height="full"
+              fontWeight={"bold"}
               pt={{ xs: "22.5px", md: "31px" }}
-              fontSize={{ xs: "md", md: "22px" }}
               _hover={{
                 "& p": {
                   color: "white",
@@ -91,7 +91,7 @@ const Menu = ({ noBorder }: IProps) => {
               }}
               whiteSpace="nowrap"
             >
-              <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box>
+              {/* <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box> */}
               <Text color={isActive ? "secondary" : "grayText"}>
                 {route.title}
               </Text>
