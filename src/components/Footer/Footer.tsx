@@ -35,13 +35,10 @@ const Footer = () => {
             /> */}
             <Heading
               as="h6"
-              fontSize={{ xs: "25px", "2xl": "40px" }}
+              fontSize={{ xs: "32px", lg: "40px" }}
               color="primary"
             >
-              Beskar{" "}
-              <Box as="span" color="secondary">
-                play
-              </Box>{" "}
+              xBeskar{" "}
             </Heading>
           </Flex>
 
@@ -49,7 +46,7 @@ const Footer = () => {
             <Heading
               as="h6"
               mb="30px"
-              fontSize={{ xs: "lsm", lg: "md" }}
+              fontSize={{ xs: "md", lg: "lg" }}
               color="white"
               textAlign="center"
             >
@@ -121,7 +118,7 @@ const Footer = () => {
         </Flex> */}
 
         <Center mb="30px">
-          <Text fontSize={"lsm"} textAlign="center" maxW="463.5px">
+          <Text textAlign="center" maxW="463.5px">
             xBeskar © {new Date().getFullYear()}. All rights reserved.
           </Text>
         </Center>

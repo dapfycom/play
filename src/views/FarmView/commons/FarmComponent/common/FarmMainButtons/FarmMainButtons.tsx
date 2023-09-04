@@ -33,7 +33,7 @@ const FarmMainButtons = ({ isOpen }: IProps) => {
       {isLoggedIn ? (
         <>
           <ActionButton
-            fontSize={"xs"}
+            fontSize={"lsm"}
             onClick={handleHarvest}
             w={{ xs: "full", lg: "auto" }}
           >
@@ -41,7 +41,7 @@ const FarmMainButtons = ({ isOpen }: IProps) => {
           </ActionButton>
           <ActionButton
             bg={"dark.300"}
-            fontSize={"xs"}
+            fontSize={"lsm"}
             onClick={handleStakeLp}
             w={{ xs: "full", lg: "auto" }}
           >

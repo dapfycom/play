@@ -30,6 +30,7 @@ const StakedDetails = () => {
       gap={7}
       justifyContent="space-between"
       flexDir={{ xs: "column", lg: "row" }}
+      alignItems={"center"}
     >
       <StakedDetail
         title="BSK-EGLD"

@@ -33,8 +33,8 @@ const StakedInfo = () => {
           <Flex h="full" alignItems={"center"} height="auto">
             <ActionButton
               bg="dark.100"
-              fontSize={"xs"}
               w={{ xs: "full", tablet: "auto" }}
+              fontSize={"lsm"}
               onClick={handleHarvest}
             >
               {" "}
@@ -47,9 +47,7 @@ const StakedInfo = () => {
           )}
         </>
       ) : (
-        <Center w="full" fontSize={"sm"}>
-          Please connect your wallet first
-        </Center>
+        <Center w="full">Please connect your wallet first</Center>
       )}
     </Flex>
   );
