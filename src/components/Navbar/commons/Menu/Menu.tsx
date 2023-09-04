@@ -25,7 +25,7 @@ const Menu = ({ noBorder }: IProps) => {
                 borderColor={"transparent"}
                 height="full"
                 pt={{ xs: "22.5px", md: "31px" }}
-                fontSize={{ xs: "lsm", "2xl": "md" }}
+                fontSize={{ xs: "md", md: "22px" }}
                 _hover={{
                   "& p": {
                     color: "white",
@@ -80,7 +80,7 @@ const Menu = ({ noBorder }: IProps) => {
               }
               height="full"
               pt={{ xs: "22.5px", md: "31px" }}
-              fontSize={{ xs: "lsm", "2xl": "md" }}
+              fontSize={{ xs: "md", md: "22px" }}
               _hover={{
                 "& p": {
                   color: "white",

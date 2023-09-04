@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Heading } from "@chakra-ui/react";
+import { Box, Divider, Flex, Image } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { checkNestedRoute } from "utils/functions/urls";
@@ -23,14 +23,14 @@ const Navbar = () => {
               </Box>
               <Link to="/">
                 <Flex alignItems={"center"}>
-                  {/* <ChkImage
-                    src={beskarLogo}
+                  <Image
+                    src={"/images/bsk-logo.svg"}
                     alt="logo"
                     width={{ xs: "38px", md: "65px" }}
                     mr="15px"
-                  /> */}
+                  />
 
-                  <Heading
+                  {/* <Heading
                     as="h3"
                     textTransform={"uppercase"}
                     color="primary"
@@ -41,7 +41,7 @@ const Navbar = () => {
                     <Box as="span" color="secondary">
                       play
                     </Box>
-                  </Heading>
+                  </Heading> */}
                 </Flex>
               </Link>
             </Flex>
