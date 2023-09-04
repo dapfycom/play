@@ -32,14 +32,14 @@ const SettingsModal = ({ onClose }: IProps) => {
       px="20px"
       ref={ref}
     >
-      <Heading fontSize={"lsm"} mb="10px" fontWeight={500} color="white">
+      <Heading fontSize={"md"} mb="10px" fontWeight={500} color="white">
         Transaction Settings
       </Heading>
-      <Text fontSize={"sm"} mb="20px">
+      <Text fontSize={"lsm"} mb="20px">
         Slippage tolerance
       </Text>
       <Flex alignItems={"center"} gap="9px">
-        <ActionButton borderRadius={"full"} fontSize="sm">
+        <ActionButton borderRadius={"full"} fontSize="lsm">
           Auto
         </ActionButton>
         <Box>

@@ -19,8 +19,18 @@ const LpTokenImage = ({ lpToken }: IProps) => {
 
   return (
     <Flex>
-      <Image src={tokens[0].assets.svgUrl} alt="" width={27} height={27} />
-      <Image src={tokens[1].assets.svgUrl} alt="" width={27} height={27} />
+      <Image
+        src={tokens[0].assets.svgUrl}
+        alt=""
+        width={"28px"}
+        height={"28px"}
+      />
+      <Image
+        src={tokens[1].assets.svgUrl}
+        alt=""
+        width={"28px"}
+        height={"28px"}
+      />
     </Flex>
   );
 };

@@ -24,7 +24,7 @@ const Swap = () => {
           }}
           tabData={[
             {
-              tabText: "SWAP TOKENS",
+              tabText: "Swap Tokens",
               routerLink: {
                 path: routeNames.swap,
               },
@@ -42,7 +42,7 @@ const Swap = () => {
         <Link isExternal href="http://xport.al/referral/v3pqh6iqco">
           <Text
             align={"center"}
-            fontSize="sm"
+            fontSize="md"
             color={"primary"}
             mb={4}
             textDecor="underline"
@@ -51,7 +51,12 @@ const Swap = () => {
           </Text>
         </Link>
         <Link isExternal href="https://buy.multiversx.com/gb">
-          <Text align={"center"} fontSize="2xl" color={"secondary"}>
+          <Text
+            align={"center"}
+            fontWeight={"600"}
+            fontSize="2xl"
+            color={"secondary"}
+          >
             + Buy EGLD
           </Text>
         </Link>

@@ -82,7 +82,7 @@ const SubmitButton = () => {
         }}
         onClick={handleSwap}
       >
-        <Text color="primary" opacity={1} fontSize={{ xs: "lsm", lg: "26px" }}>
+        <Text color="primary" opacity={1} fontSize={{ xs: "md", lg: "32px" }}>
           {buttonText}
         </Text>
       </ActionButton>
