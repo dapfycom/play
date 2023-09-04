@@ -56,11 +56,11 @@ const RowToken = ({ token }: IProps) => {
             </Box>
           )}
           <Flex flexDir={"column"} gap={1} flex={1}>
-            <Flex fontSize={"14px"} fontWeight="600" gap={2}>
+            <Flex fontWeight="600" gap={2}>
               <Text>{formatBalance(token)}</Text>
               <Text>{formatTokenI(token.identifier)}</Text>
             </Flex>
-            <Flex fontSize={"sm"} color="GrayText">
+            <Flex fontSize={"lsm"} color="GrayText">
               ≈ ${formatBalanceDolar(token, token.price)}
             </Flex>
           </Flex>

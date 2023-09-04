@@ -37,7 +37,7 @@ const ConvertInfo = () => {
           <Flex
             justifyContent={"space-between"}
             mb={4}
-            fontSize={{ xs: "12px", md: "14px" }}
+            fontSize={{ xs: "14px", md: "md" }}
             flexDir={{ xs: "column", md: "row" }}
             textAlign={{ xs: "center", md: "initial" }}
           >
@@ -55,7 +55,7 @@ const ConvertInfo = () => {
                 })}{" "}
                 {formatTokenI(toTokenToConvert)}
               </Text>
-              <Text color={"GrayText"} fontSize="sm" fontWeight="600">
+              <Text color={"GrayText"} fontWeight="600">
                 ≈ $
                 {formatBalanceDolar(
                   {
@@ -70,7 +70,7 @@ const ConvertInfo = () => {
           <Flex
             justifyContent={"space-between"}
             mb={4}
-            fontSize={{ xs: "12px", md: "14px" }}
+            fontSize={{ xs: "14px", md: "md" }}
             flexDir={{ xs: "column", md: "row" }}
             textAlign={{ xs: "center", md: "initial" }}
           >

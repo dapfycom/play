@@ -35,7 +35,7 @@ const SelectAllTokens = () => {
     }
   };
   return (
-    <ActionButton onClick={handleSelectAll} fontSize={"14px"}>
+    <ActionButton onClick={handleSelectAll} fontSize={"lsm"}>
       Select All
     </ActionButton>
   );

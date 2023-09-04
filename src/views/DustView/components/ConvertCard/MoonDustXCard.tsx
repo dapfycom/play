@@ -33,13 +33,7 @@ const MoonDustXCard = () => {
         mb={4}
         flexDir={{ xs: "column", md: "row" }}
       >
-        <Text
-          fontSize={"sm"}
-          flex={1}
-          mr={2}
-          color={"white"}
-          mb={{ xs: "4", md: "0" }}
-        >
+        <Text flex={1} mr={2} color={"white"} mb={{ xs: "4", md: "0" }}>
           Convert into
         </Text>
         <Flex
@@ -52,7 +46,14 @@ const MoonDustXCard = () => {
             return (
               <ActionButton
                 key={tokenI}
-                variant={selectedToToken === tokenI ? "solid" : "outline"}
+                // variant={selectedToToken === tokenI ? "solid" : "outline"}
+                border={selectedToToken !== tokenI && "1px solid"}
+                borderColor={"primary"}
+                bgColor={selectedToToken === tokenI ? "white" : "transparent"}
+                color={"primary"}
+                _hover={{
+                  color: "primary",
+                }}
                 onClick={() => dispatch(selectToToken(tokenI))}
                 fontSize={"14px"}
               >
@@ -76,7 +77,7 @@ const MoonDustXCard = () => {
       <Flex w="full" mt={4}>
         <SelectAllTokens />
       </Flex>
-      <Text mt={8} color="gray.300" fontSize={{ xs: "sm", md: "md" }}>
+      <Text mt={8} color="gray.300" fontSize={{ xs: "lsm", md: "md" }}>
         0% fees when converting into BSK 🥳️
       </Text>
       <ConvertInfo />

@@ -1,4 +1,12 @@
-import { Center, CheckboxGroup, Flex, Spinner, Text } from "@chakra-ui/react";
+import {
+  Center,
+  CheckboxGroup,
+  Divider,
+  Flex,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import Card from "components/Card/Card";
 
 import { useAppSelector } from "hooks/useRedux";
@@ -27,20 +35,23 @@ const SelectTokens = () => {
         </Center>
       ) : (
         <Flex flexDir={"column"}>
-          <Text fontSize={"sm"} mb={6} mt={4} color="white">
+          <Text mb={3} mt={4} color="white">
             Your dust
           </Text>
+          <Divider mb={3} borderColor={"rgba(f,f,f,0.1)"} />
           <CheckboxGroup
             colorScheme="green"
             value={selectedTokens.map((item) => item.identifier)}
           >
-            {finalTokens.map((token) => {
-              return <RowToken key={token.identifier} token={token} />;
-            })}
+            <Stack>
+              {finalTokens.map((token) => {
+                return <RowToken key={token.identifier} token={token} />;
+              })}
+            </Stack>
 
             {finalTokens.length === 0 && (
               <Center w="full" minH="200px">
-                <Text fontSize={"lg"} textAlign={"center"}>
+                <Text fontSize={"xl"} textAlign={"center"}>
                   No tokens found
                 </Text>
               </Center>
