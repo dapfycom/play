@@ -24,7 +24,7 @@ const FishingWarn = ({ close }: IProps) => {
         maxW={"900px"}
       >
         <Text textAlign={"center"} fontSize={"lsm"}>
-          <Box as="span" color="multiversx">
+          <Box as="span" color="#86d72f">
             PHISHING WARNING:
           </Box>{" "}
           please make sure you are visiting{" "}
