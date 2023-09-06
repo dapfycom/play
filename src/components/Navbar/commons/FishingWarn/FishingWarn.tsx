@@ -10,7 +10,7 @@ const FishingWarn = ({ close }: IProps) => {
       w="full"
       justifyContent={"center"}
       py={2}
-      bg="linear-gradient(180deg, rgba(155,59,223,1) 0%, rgba(86,40,150,1) 51%)"
+      bg="linear-gradient(180deg, #100638 0%, #190c2c 51%)"
       px={6}
       position={"relative"}
       display={{ xs: "none", md: "flex" }}

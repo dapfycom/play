@@ -2,15 +2,23 @@ import { Box, Center, Link, Text, Tooltip } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
 import MyHeading from "components/MyHeading/MyHeading";
 import MyTabs from "components/MyTabs/MyTabs";
-import { routeNames } from "config/routes";
+import { mainSiteRoutes, routeNames } from "config/routes";
+import { useRoutes } from "react-router-dom";
 
 const Swap = () => {
+  const route = useRoutes(mainSiteRoutes);
+
+  const swaptitle =
+    route.props.location.pathname === routeNames.swap
+      ? "Swap any tokens on MultiversX"
+      : "Buy Liquidity for any token on MultiversX";
+
   return (
     <MyContainer mb={10}>
       <Center flexDir={"column"}>
         <Tooltip label="Enjoy the smallest fees on MultiversX 🔥">
           <Box mb={10}>
-            <MyHeading>Swap any tokens on MultiversX</MyHeading>
+            <MyHeading>{swaptitle}</MyHeading>
           </Box>
         </Tooltip>
         <MyTabs
