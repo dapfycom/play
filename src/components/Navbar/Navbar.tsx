@@ -1,6 +1,5 @@
-import { Box, Divider, Flex, Image } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, Tooltip } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 import { checkNestedRoute } from "utils/functions/urls";
 import MyContainer from "../Container/Container";
 import Menu from "./commons/Menu/Menu";
@@ -21,15 +20,19 @@ const Navbar = () => {
               <Box>
                 <MoreOptionsV2 />
               </Box>
-              <Link to="/">
+              <Tooltip label="Coming soon">
+                {/* <Link to="/"> */}
                 <Flex alignItems={"center"}>
-                  <Image
+                  {/* <Image
                     src={"/images/bsk-logo.svg"}
                     alt="logo"
                     width={{ xs: "38px", md: "50px" }}
                     mr="10px"
-                  />
+                  /> */}
 
+                  <Heading fontSize={"3xl"} cursor={"pointer"}>
+                    🔋
+                  </Heading>
                   {/* <Heading
                     as="h3"
                     textTransform={"uppercase"}
@@ -43,7 +46,8 @@ const Navbar = () => {
                     </Box>
                   </Heading> */}
                 </Flex>
-              </Link>
+                {/* </Link> */}
+              </Tooltip>
             </Flex>
             <Divider
               orientation="vertical"
