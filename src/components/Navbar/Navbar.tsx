@@ -24,7 +24,7 @@ const Navbar = () => {
         <MyContainer borderBottom="1px" borderColor={"dark.300"}>
           <Flex>
             <Flex
-              gap="30px"
+              gap="15px"
               alignItems="center"
               height={{ xs: "70px", md: "60px" }}
             >
@@ -42,7 +42,7 @@ const Navbar = () => {
                     mr="10px"
                   /> */}
 
-                    <Heading fontSize={"3xl"} cursor={"pointer"}>
+                    <Heading fontSize={"3xl"} cursor={"pointer"} ml={"-10px"}>
                       🔋
                     </Heading>
                     {/* <Heading
