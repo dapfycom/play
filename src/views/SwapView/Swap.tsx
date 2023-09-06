@@ -1,12 +1,18 @@
-import { Center, Link, Text } from "@chakra-ui/react";
+import { Box, Center, Link, Text, Tooltip } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
+import MyHeading from "components/MyHeading/MyHeading";
 import MyTabs from "components/MyTabs/MyTabs";
 import { routeNames } from "config/routes";
 
 const Swap = () => {
   return (
     <MyContainer mb={10}>
-      <Center>
+      <Center flexDir={"column"}>
+        <Tooltip label="Enjoy the smallest fees on MultiversX 🔥">
+          <Box mb={10}>
+            <MyHeading>Swap any tokens on MultiversX</MyHeading>
+          </Box>
+        </Tooltip>
         <MyTabs
           isForRouter
           tabsProps={{
