@@ -7,7 +7,7 @@ const LoadingPage = () => {
       <Progress
         size="xs"
         isIndeterminate
-        background={"transparent"}
+        // background={"transparent"}
         width="60%"
       />
     </Center>

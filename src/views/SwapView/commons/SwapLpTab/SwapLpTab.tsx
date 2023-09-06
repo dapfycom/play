@@ -1,11 +1,16 @@
 import { Center } from "@chakra-ui/react";
+import { MetaHead } from "components/MetaHead/MetaHead";
 import SwapLpCard from "./common/SwapLpCard/SwapLpCard";
 
 const SwapLpTab = () => {
   return (
-    <Center w="full">
-      <SwapLpCard />
-    </Center>
+    <>
+      <MetaHead metaTitle="Swap LP" />
+
+      <Center w="full">
+        <SwapLpCard />
+      </Center>
+    </>
   );
 };
 

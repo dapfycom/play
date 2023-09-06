@@ -1,6 +1,5 @@
 import { Box, Center, Image } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import CoinImg from "assets/images/logo/beskar.svg";
 import { useAppSelector } from "hooks/useRedux";
 import { useEffect, useRef, useState } from "react";
 import { selectLastHouseSelection } from "views/CoinFlipView/lib/con-flip-slice";
@@ -33,18 +32,18 @@ const Coin = () => {
   return (
     <CoinS
       w={"full"}
-      h={"full"}
-      p="35px"
+      px="35px"
+      pb={houseSelection && "30px"}
       bg="dark.600"
       border="1px"
       borderColor="dark.300"
       borderRadius={"lg"}
-      minH={"320px"}
+      minH={"300px"}
       isBack={isBack}
     >
-      <Box className="flip-card-inner" h="full" minH={"320px"}>
-        <Center className="flip-card-front" h="full" minH={"320px"}>
-          <Image src={CoinImg} w="265px" h="265px" />
+      <Box className="flip-card-inner" h="full" minH={"300px"}>
+        <Center className="flip-card-front" h="full" minH={"300px"}>
+          <Image src={"images/bsk-logo.svg"} w="265px" h="265px" />
         </Center>
         <Center className="flip-card-back">
           <Box
@@ -52,7 +51,7 @@ const Coin = () => {
             maxH="265px"
             w={"100%"}
             h={backHeight + "px"}
-            bg="#005da5"
+            bg="primary"
             borderRadius={"full"}
             ref={backRef}
           >

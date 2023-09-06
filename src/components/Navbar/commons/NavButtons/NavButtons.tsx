@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Tooltip } from "@chakra-ui/react";
 import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account";
 import { logout } from "@multiversx/sdk-dapp/utils";
 import ActionButton from "components/ActionButton/ActionButton";
@@ -31,11 +31,7 @@ const NavButtons = () => {
         h={{ xs: "36px", md: "46px" }}
         px={{ xs: "8px", md: "20px" }}
       >
-        <Flex
-          gap={{ xs: "5px", md: "10px" }}
-          alignItems={"center"}
-          fontSize={{ xs: "xs", "2xl": "md" }}
-        >
+        <Flex gap={{ xs: "5px", md: "10px" }} alignItems={"center"}>
           <EgldIcon fontSize={{ xs: "30px", "2xl": "35px" }} />{" "}
           <DotIcon fontSize={"5px"} color="green2" /> MultiversX
         </Flex>
@@ -44,7 +40,6 @@ const NavButtons = () => {
       <Box display={{ xs: "none", lsm: "block" }}>
         {isLoggedIn ? (
           <ActionButton
-            fontSize={{ xs: "xs", "2xl": "lsm" }}
             h={{ xs: "36px", md: "46px" }}
             px={{ xs: "8px", md: "42px" }}
             onClick={handleDisconnect}
@@ -56,7 +51,6 @@ const NavButtons = () => {
           </ActionButton>
         ) : (
           <ActionButton
-            fontSize={{ xs: "xs", "2xl": "lsm" }}
             h={{ xs: "36px", md: "46px" }}
             px={{ xs: "8px", md: "42px" }}
             onClick={handleConnect}
@@ -68,19 +62,21 @@ const NavButtons = () => {
           </ActionButton>
         )}
       </Box>
-      <Link to={routeNames.dust}>
-        <ActionButton
-          variant={"secondary"}
-          h={{ xs: "40px", md: "46px" }}
-          aria-label="Dust"
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          fontSize={"20px"}
-        >
-          💨
-        </ActionButton>
-      </Link>
+      <Tooltip label="Dust Converter 🔥">
+        <Link to={routeNames.dust}>
+          <ActionButton
+            variant={"secondary"}
+            h={{ xs: "40px", md: "46px" }}
+            aria-label="Dust"
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            fontSize={"20px"}
+          >
+            💨
+          </ActionButton>
+        </Link>
+      </Tooltip>
       {/* <MoreOptions /> */}
     </Flex>
   );

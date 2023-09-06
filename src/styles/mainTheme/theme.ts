@@ -20,7 +20,7 @@ export const mainTheme = extendTheme({
         bgSize: "700px",
         color: "grayText",
         fontSize: "md",
-        fontFamily: "Rexton",
+        fontFamily: "Circular",
       },
       "*": {
         "&::-webkit-scrollbar": {

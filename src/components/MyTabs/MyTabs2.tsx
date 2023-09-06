@@ -21,7 +21,7 @@ const MyTabs2 = ({ tabs, alingRight = true }: IProps) => {
     <Tabs variant="soft-rounded" colorScheme="green">
       <Flex justify={alingRight ? "flex-end" : "normal"} pr="15px">
         <TabList
-          fontSize={"10px"}
+          fontSize={"12px"}
           borderRadius={"full"}
           overflow="hidden"
           color="white"
@@ -38,6 +38,7 @@ const MyTabs2 = ({ tabs, alingRight = true }: IProps) => {
                 _selected={{
                   bg: "primary",
                 }}
+                color="white"
               >
                 {tabEl.label}
               </Tab>

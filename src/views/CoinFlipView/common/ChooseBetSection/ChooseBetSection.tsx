@@ -53,16 +53,13 @@ const ChooseBetSection = () => {
   };
 
   return (
-    <Card px="15px" py="30px" w="full">
+    <Card px="15px" py="30px" w="full" h={"full"}>
       <Flex mb={3}>
-        <Text fontSize={"sm"} color="white">
-          1. Choose your bet
-        </Text>
+        <Text color="white">1. Choose your bet</Text>
       </Flex>
       <Card
         flexDir={"row"}
         justify="space-between"
-        fontSize={"xs"}
         px={"15px"}
         py="12px"
         borderRadius={"md"}
@@ -90,7 +87,6 @@ const ChooseBetSection = () => {
                 py="15px"
                 align="center"
                 color="white"
-                fontSize={"sm"}
                 borderRadius={"md"}
                 as={Button}
                 h={"auto"}

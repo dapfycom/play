@@ -11,7 +11,7 @@ const TableSection = () => {
       w="full"
       py="30px"
       px="0px"
-      h={"592px"}
+      maxH={{ xs: "592px", md: "800px" }}
       overflowX={"auto"}
       position={"relative"}
     >
@@ -26,7 +26,7 @@ const TableSection = () => {
         mb={{ xs: "30px", md: "5" }}
       >
         <Text
-          fontSize={"sm"}
+          fontSize={"lg"}
           color="white"
           display="flex"
           alignItems={"center"}

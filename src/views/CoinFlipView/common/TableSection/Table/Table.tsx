@@ -31,7 +31,7 @@ const BetsTable = ({ data }: IProps) => {
     <div>
       {" "}
       <Divider borderColor="dark.300" />
-      <TableContainer fontSize={"xs"} overflowY="auto" overflowX={"auto"}>
+      <TableContainer overflowY="auto" overflowX={"auto"}>
         <Table variant="simple" overflowX={"auto"}>
           <Thead>
             <Tr>

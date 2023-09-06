@@ -64,7 +64,6 @@ const ConvertButton = () => {
         mt={16}
         // disabled={swapInfo.length === 0}
         fontWeight="600"
-        fontSize={"14px"}
       >
         Convert tokens
       </ActionButton>

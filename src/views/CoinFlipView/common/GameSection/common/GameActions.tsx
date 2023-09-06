@@ -72,7 +72,7 @@ const GameActions = () => {
         gap="22px"
         flex={1}
       >
-        <Flex alignItems={"flex-start"} gap={"15px"} fontSize="sm">
+        <Flex alignItems={"flex-start"} gap={"15px"}>
           <Text color="white">2.</Text>
           <Flex flexDir={"column"} flex={1}>
             <Text mb={"12px"} color="white">
@@ -82,7 +82,6 @@ const GameActions = () => {
               <Button
                 variant={selectedSide ? "solid" : "outline"}
                 flex={1}
-                fontSize="xs"
                 onClick={handleChangeCoinSide}
               >
                 Heads
@@ -90,7 +89,6 @@ const GameActions = () => {
               <Button
                 variant={selectedSide ? "outline" : "solid"}
                 flex={1}
-                fontSize="xs"
                 onClick={handleChangeCoinSide}
               >
                 Tail
@@ -98,9 +96,9 @@ const GameActions = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex gap="15px" fontSize="sm">
+        <Flex gap="15px">
           <Text color="white">3.</Text>
-          <ActionButton fontSize={"xs"} flex={1} onClick={handleFilp}>
+          <ActionButton flex={1} onClick={handleFilp}>
             Place bet and flip coin{" "}
           </ActionButton>
         </Flex>

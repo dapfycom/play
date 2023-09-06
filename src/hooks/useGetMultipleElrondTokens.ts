@@ -1,3 +1,4 @@
+import { selectedNetwork } from "config/network";
 import { fetchElrondEconomics } from "services/rest/elrond/network";
 import { getFromAllTokens } from "services/rest/elrond/tokens";
 import useSWR from "swr";
@@ -5,7 +6,11 @@ import { IElrondToken } from "types/elrond.interface";
 
 const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
   const isEgldonTokens = tokensIdentifiers.includes("EGLD");
-  const { data, error, isLoading: esdtLoading } = useSWR(
+  const {
+    data,
+    error,
+    isLoading: esdtLoading,
+  } = useSWR(
     tokensIdentifiers.length !== 0
       ? [
           "tokens",
@@ -17,7 +22,11 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
     getFromAllTokens
   );
 
-  const { data: egldData, error: egldError, isLoading: egldLoading } = useSWR(
+  const {
+    data: egldData,
+    error: egldError,
+    isLoading: egldLoading,
+  } = useSWR(
     {
       identifier: isEgldonTokens ? "/economics" : null,
     },
@@ -26,7 +35,7 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
 
   let finalData: IElrondToken[] = data?.data ? [...data?.data] : [];
   if (isEgldonTokens) {
-    if (egldData && finalData) {
+    if (egldData && finalData.length > 0) {
       if (finalData.findIndex((item) => item.identifier === "EGLD") === -1) {
         finalData.unshift({
           type: "FungibleESDT",
@@ -45,6 +54,31 @@ const useGetMultipleElrondTokens = (tokensIdentifiers: string[]) => {
         });
       }
     }
+  }
+
+  const isBskIncluded = tokensIdentifiers.includes(
+    selectedNetwork.tokensID.bsk
+  );
+
+  if (isBskIncluded && finalData.length > 0) {
+    const bskToken = finalData.find(
+      (token) => token.identifier === selectedNetwork.tokensID.bsk
+    );
+    finalData = finalData.filter(
+      (t) => t.identifier !== selectedNetwork.tokensID.bsk
+    );
+
+    finalData = [
+      ...finalData,
+      {
+        ...bskToken,
+        assets: {
+          svgUrl: "/images/bsk-logo.svg",
+        },
+      },
+    ];
+
+    console.log("finalData", finalData);
   }
 
   return {

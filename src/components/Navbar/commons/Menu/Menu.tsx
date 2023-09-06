@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Tooltip } from "@chakra-ui/react";
+import { Flex, Text, Tooltip } from "@chakra-ui/react";
 import { mainSiteRoutes } from "config/routes";
 import { Link, useLocation } from "react-router-dom";
 import { isActiveRoute } from "utils/functions/urls";
@@ -21,11 +21,11 @@ const Menu = ({ noBorder }: IProps) => {
             <Tooltip label="Coming soon" placement="right" key={route.title}>
               <Flex
                 gap="10px"
-                borderBottom={"1px solid"}
+                borderBottom={"2px solid"}
                 borderColor={"transparent"}
                 height="full"
-                pt={{ xs: "22.5px", md: "31px" }}
-                fontSize={{ xs: "lsm", "2xl": "md" }}
+                pt={"20px"}
+                fontWeight={"bold"}
                 _hover={{
                   "& p": {
                     color: "white",
@@ -36,7 +36,7 @@ const Menu = ({ noBorder }: IProps) => {
                 }}
                 whiteSpace="nowrap"
               >
-                <Box color={"grayText"}>{route.icon}</Box>
+                {/* <Box color={"grayText"}>{route.icon}</Box> */}
                 <Text color={"grayText"}>{route.title}</Text>
               </Flex>
             </Tooltip>
@@ -47,7 +47,7 @@ const Menu = ({ noBorder }: IProps) => {
         //     <ChLink href={route.path} key={route.path} isExternal>
         //       <Flex
         //         gap="10px"
-        //         borderBottom={"1px solid"}
+        //         borderBottom={"2px solid"}
         //         borderColor={"transparent"}
         //         height="full"
         //         pt={{ xs: "22.5px", md: "31px" }}
@@ -74,13 +74,13 @@ const Menu = ({ noBorder }: IProps) => {
           <Link to={route.path} key={route.path}>
             <Flex
               gap="10px"
-              borderBottom={"1px solid"}
+              borderBottom={"2px solid"}
               borderColor={
                 noBorder ? "transparent" : isActive ? "primary" : "transparent"
               }
               height="full"
-              pt={{ xs: "22.5px", md: "31px" }}
-              fontSize={{ xs: "lsm", "2xl": "md" }}
+              fontWeight={"bold"}
+              pt={"20px"}
               _hover={{
                 "& p": {
                   color: "white",
@@ -91,7 +91,7 @@ const Menu = ({ noBorder }: IProps) => {
               }}
               whiteSpace="nowrap"
             >
-              <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box>
+              {/* <Box color={isActive ? "primary" : "grayText"}>{route.icon}</Box> */}
               <Text color={isActive ? "secondary" : "grayText"}>
                 {route.title}
               </Text>

@@ -100,7 +100,7 @@ export const pol = 1;
 
 //     return await sendTransaction(transactionData);
 //   } catch (error) {
-//     console.log("error", error);
+//     console.error("error", error);
 //   }
 // };
 // export const ESDTTransfer = async ({
@@ -208,7 +208,7 @@ export const pol = 1;
 //   const sender = store.getState().dapp.userAddress;
 //   const senderAddress = new Address(sender);
 //   const receiverAddress = new Address(contractAddr);
-//   console.log("receiverAddress", receiverAddress);
+//   console.error("receiverAddress", receiverAddress);
 
 //   const tokenIdentifier = token.identifier;
 //   const multiplyier = Math.pow(10, token.decimals || 18);
@@ -393,6 +393,6 @@ export const pol = 1;
 
 //     return await sendTransaction(transactionData);
 //   } catch (error) {
-//     console.log("error", error);
+//     console.error("error", error);
 //   }
 // };

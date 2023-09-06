@@ -5,7 +5,7 @@ const FarmHeading = () => {
   return (
     <Center textAlign={"center"} flexDir="column">
       <MyHeading mb={6}>Farm</MyHeading>
-      <Text>Stake tokens to earn more rewards</Text>
+      <Text fontSize={"lg"}>Stake tokens to earn more rewards</Text>
     </Center>
   );
 };

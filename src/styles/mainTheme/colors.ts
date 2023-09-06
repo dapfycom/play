@@ -1,7 +1,7 @@
 export const colors = {
   white: "#FFFFFF",
   black: "#000000",
-  primary: "#D8B919",
+  primary: "#3464F6",
   secondary: "#0D6FF0",
   success: "#A5F8D0",
   green2: " #83CF48",
@@ -44,4 +44,5 @@ export const colors = {
     800: "rgba(0, 0, 0, 0.8)",
     900: "rgba(0, 0, 0, 0.9)",
   },
+  multiversx: "#23f7dd",
 };

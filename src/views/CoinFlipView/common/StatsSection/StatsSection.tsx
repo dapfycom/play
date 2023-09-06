@@ -34,19 +34,19 @@ const StatsSection = () => {
   return (
     <Flex flexDir={"column"} w="full" justifyContent="space-between" gap="20px">
       <Card p="30px">
-        <Text fontSize={"xs"} color="primary" mb="20px">
+        <Text color="primary" fontSize={"lg"} mb="10px">
           Total BSK Bets
         </Text>
         <Text color="white">{formatNumber(allTimeBetsCount)}</Text>
       </Card>
       <Card p="30px">
-        <Text fontSize={"xs"} color="primary" mb="20px">
+        <Text color="primary" fontSize={"lg"} mb="10px">
           Total Players
         </Text>
         <Text color="white">{playersCount}</Text>
       </Card>
       <Card p="30px">
-        <Text fontSize={"xs"} color="primary" mb="20px">
+        <Text color="primary" fontSize={"lg"} mb="10px">
           All Time BSK Volume
         </Text>
         <Text color="white">
@@ -70,7 +70,7 @@ const StatsSection = () => {
         </Text>
       </Card>
       <Card p="30px">
-        <Text fontSize={"xs"} color="primary" mb="20px">
+        <Text color="primary" fontSize={"lg"} mb="10px">
           ALL TIME BSK BURNED 🔥
         </Text>
         <Text color="white">
@@ -94,17 +94,17 @@ const StatsSection = () => {
         </Text>
       </Card>
       <Card p="30px">
-        <Text fontSize={"xs"} color="primary" mb="20px">
+        <Text color="primary" fontSize={"lg"} mb="10px">
           Top 10 players
         </Text>
         {topPlayers.map((player) => {
           return (
-            <Flex color={"white"}>
+            <Flex color={"white"} key={player.address}>
               <Link
                 isExternal
                 href={`${selectedNetwork.network.explorerAddress}/accounts/${player.address}`}
               >
-                <Text fontSize={"sm"}>{formatAddress(player.address)}</Text>
+                <Text>{formatAddress(player.address)}</Text>
               </Link>
             </Flex>
           );

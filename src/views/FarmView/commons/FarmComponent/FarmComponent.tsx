@@ -24,7 +24,7 @@ const FarmComponent = () => {
   const [price] = useGetTokenPrice(selectedNetwork.tokensID.bskwegld);
 
   return (
-    <Center my={20} flexDir="column">
+    <Center mb={20} mt={12} flexDir="column">
       <Box maxW="1300px" w="full" borderRadius="md" overflow={"hidden"}>
         <Flex
           gap={10}
@@ -42,10 +42,10 @@ const FarmComponent = () => {
             {elrondToken && <LpTokenImageV2 lpToken={elrondToken} size={40} />}
             {farmInfo && (
               <Flex flexDir={"column"}>
-                <Text color="white" mb={2} fontSize="lsm" whiteSpace={"nowrap"}>
+                <Text color="white" mb={2} fontSize="md" whiteSpace={"nowrap"}>
                   BSK-EGLD
                 </Text>
-                <Text fontSize={"sm"}>
+                <Text fontSize={"lsm"}>
                   $
                   {formatBalanceDolar(
                     { balance: farmInfo.stakedLp, decimals: 18 },

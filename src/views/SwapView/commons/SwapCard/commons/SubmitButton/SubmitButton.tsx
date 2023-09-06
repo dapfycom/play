@@ -2,14 +2,15 @@ import { Text } from "@chakra-ui/react";
 import { useTrackTransactionStatus } from "@multiversx/sdk-dapp/hooks";
 import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account/useGetLoginInfo";
 import ActionButton from "components/ActionButton/ActionButton";
-import Realistic from "components/Conffeti/Realistic";
 import useGetElrondToken from "hooks/useGetElrondToken";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
 import React, { useState } from "react";
 import { openLogin } from "redux/dapp/dapp-slice";
-import { submitSwap } from "views/SwapView/lib/calls";
 import { useGetSwapRate } from "views/SwapView/lib/hooks";
 import { selectFromField, selectSlippage } from "views/SwapView/lib/swap-slice";
+
+const Realistic = React.lazy(() => import("components/Conffeti/Realistic"));
+
 const SubmitButton = () => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useGetLoginInfo();
@@ -33,8 +34,8 @@ const SubmitButton = () => {
     onSuccess,
 
     onFail: (transactionId: string, errorMessage?: string) => {
-      console.log("transactionId", transactionId);
-      console.log("errorMessage", errorMessage);
+      console.error("transactionId", transactionId);
+      console.error("errorMessage", errorMessage);
     },
   });
 
@@ -43,19 +44,20 @@ const SubmitButton = () => {
       dispatch(openLogin(true));
     } else {
       setTxSuccess(false);
+      import("views/SwapView/lib/calls").then(async (calls) => {
+        const res = await calls.submitSwap(
+          swapRoutes,
+          slippage,
+          {
+            token: fromField.selectedToken,
+            value: Number(fromField.value),
+          },
 
-      const res = await submitSwap(
-        swapRoutes,
-        slippage,
-        {
-          token: fromField.selectedToken,
-          value: Number(fromField.value),
-        },
+          fromElrondToken
+        );
 
-        fromElrondToken
-      );
-
-      setSessionId(res?.sessionId);
+        setSessionId(res?.sessionId);
+      });
     }
   };
 
@@ -70,8 +72,8 @@ const SubmitButton = () => {
       <ActionButton
         width={"full"}
         h="auto"
-        py={{ xs: "29px", lg: "36px" }}
-        bgColor="rgba(216, 185,25, 0.3)"
+        py={"20px"}
+        bgColor="rgba(40, 67, 190, 0.3)"
         _disabled={{
           "& p": {
             color: "dark.100 !important",
@@ -80,7 +82,7 @@ const SubmitButton = () => {
         }}
         onClick={handleSwap}
       >
-        <Text color="primary" opacity={1} fontSize={{ xs: "lsm", lg: "26px" }}>
+        <Text color="primary" opacity={1} fontSize={{ xs: "md", lg: "25px" }}>
           {buttonText}
         </Text>
       </ActionButton>

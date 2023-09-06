@@ -45,10 +45,10 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
               <Image
                 src={elrondToken.assets.svgUrl}
                 alt="token logo"
-                boxSize={"30px"}
+                boxSize={"32px"}
               />
             )}
-            <Text fontSize={"lg"} color="white">
+            <Text fontSize={"xl"} color="white">
               {elrondToken.ticker}
             </Text>
           </>
@@ -62,7 +62,7 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
             variant={"unstyled"}
             placeholder={"0"}
             py={2}
-            fontSize="lg"
+            fontSize="xl"
             color="white"
             value={inputValue}
             onChange={(e) => handleChange(e.target.value, elrondToken)}
@@ -85,10 +85,10 @@ const InputBox = ({ type, tokenI, inputValue, handleChange }: IProps) => {
         </Flex>
         {type === "from" && Boolean(accountToken) && (
           <Flex flexDir={"column"} alignItems="flex-end" gap={2}>
-            <Text fontSize={"xs"}>Balance:{formatBalance(accountToken)}</Text>
+            <Text fontSize={"lsm"}>Balance:{formatBalance(accountToken)}</Text>
             <ActionButton
               w="fit-content"
-              fontSize={"xs"}
+              fontSize={"sm"}
               py={2}
               h="auto"
               onClick={handleMax}

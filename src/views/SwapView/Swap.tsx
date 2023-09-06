@@ -1,12 +1,26 @@
-import { Center, Link, Text } from "@chakra-ui/react";
+import { Box, Center, Link, Text, Tooltip } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
+import MyHeading from "components/MyHeading/MyHeading";
 import MyTabs from "components/MyTabs/MyTabs";
-import { routeNames } from "config/routes";
+import { mainSiteRoutes, routeNames } from "config/routes";
+import { useRoutes } from "react-router-dom";
 
 const Swap = () => {
+  const route = useRoutes(mainSiteRoutes);
+
+  const swaptitle =
+    route.props.location.pathname === routeNames.swap
+      ? "Swap any tokens on MultiversX"
+      : "Buy Liquidity for any token on MultiversX";
+
   return (
     <MyContainer mb={10}>
-      <Center>
+      <Center flexDir={"column"}>
+        <Tooltip label="Enjoy the smallest fees on MultiversX 🔥">
+          <Box mb={10} mt={"-40px"}>
+            <MyHeading>{swaptitle}</MyHeading>
+          </Box>
+        </Tooltip>
         <MyTabs
           isForRouter
           tabsProps={{
@@ -24,7 +38,7 @@ const Swap = () => {
           }}
           tabData={[
             {
-              tabText: "SWAP TOKENS",
+              tabText: "Swap Tokens",
               routerLink: {
                 path: routeNames.swap,
               },
@@ -42,7 +56,7 @@ const Swap = () => {
         <Link isExternal href="http://xport.al/referral/v3pqh6iqco">
           <Text
             align={"center"}
-            fontSize="sm"
+            fontSize="md"
             color={"primary"}
             mb={4}
             textDecor="underline"
@@ -51,7 +65,12 @@ const Swap = () => {
           </Text>
         </Link>
         <Link isExternal href="https://buy.multiversx.com/gb">
-          <Text align={"center"} fontSize="2xl" color={"secondary"}>
+          <Text
+            align={"center"}
+            fontWeight={"600"}
+            fontSize="2xl"
+            color={"secondary"}
+          >
             + Buy EGLD
           </Text>
         </Link>

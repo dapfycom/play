@@ -6,7 +6,7 @@ import store from "redux/store";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("beskar-play") as HTMLElement
+  document.getElementById("xBeskar") as HTMLElement
 );
 root.render(
   <Provider store={store}>

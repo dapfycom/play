@@ -33,7 +33,7 @@ const FarmInfo = () => {
         tokenI={selectedNetwork.tokensID.bskwegld}
       />
       <FarmDetail
-        title="Earned Bsk"
+        title="Earned BSK"
         value={earnedBsk}
         decimals={16}
         tokenI={selectedNetwork.tokensID.bsk}
@@ -59,7 +59,7 @@ const FarmDetail = ({ title, value, decimals, tokenI }: FarmDetailProps) => {
       <Text color="white" whiteSpace={"nowrap"} mb={2}>
         {title}
       </Text>
-      <Text fontSize={"sm"} whiteSpace={"nowrap"}>
+      <Text fontSize={"lsm"} whiteSpace={"nowrap"}>
         {formatBalance({ balance: value, decimals: decimals })} ≈ ${" "}
         {formatBalanceDolar(
           { balance: value, decimals: decimals },
