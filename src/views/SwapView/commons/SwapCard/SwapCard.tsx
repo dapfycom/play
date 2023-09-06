@@ -60,6 +60,7 @@ const SwapCard = () => {
           maxW={"750px"}
           w="full"
           p={"30px"}
+          pt={"20px"}
           border="1px"
           borderColor={"primary"}
         >
