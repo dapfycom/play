@@ -44,4 +44,5 @@ export const colors = {
     800: "rgba(0, 0, 0, 0.8)",
     900: "rgba(0, 0, 0, 0.9)",
   },
+  multiversx: "#23f7dd",
 };
