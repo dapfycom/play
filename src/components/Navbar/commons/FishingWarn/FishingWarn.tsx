@@ -18,8 +18,8 @@ const FishingWarn = ({ close }: IProps) => {
       <Box
         bg="rgba(0,0,0,0.5)"
         px="5"
-        py={"4"}
-        rounded={"xl"}
+        py={"2"}
+        rounded={"lg"}
         w="full"
         maxW={"900px"}
       >
