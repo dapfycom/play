@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import MyContainer from "components/Container/Container";
 import { MetaHead } from "components/MetaHead/MetaHead";
 import FarmComponent from "./commons/FarmComponent/FarmComponent";
@@ -7,8 +8,10 @@ const FarmView = () => {
   return (
     <>
       <MetaHead metaTitle="Farm" />
-      <MyContainer my={"100px"}>
-        <FarmHeading />
+      <MyContainer mb={"100px"}>
+        <Box mt={"-40px"}>
+          <FarmHeading />
+        </Box>
         <FarmComponent />
       </MyContainer>
     </>
