@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Tooltip } from "@chakra-ui/react";
 import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks/account";
 import { logout } from "@multiversx/sdk-dapp/utils";
 import ActionButton from "components/ActionButton/ActionButton";
@@ -62,19 +62,21 @@ const NavButtons = () => {
           </ActionButton>
         )}
       </Box>
-      <Link to={routeNames.dust}>
-        <ActionButton
-          variant={"secondary"}
-          h={{ xs: "40px", md: "46px" }}
-          aria-label="Dust"
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          fontSize={"20px"}
-        >
-          💨
-        </ActionButton>
-      </Link>
+      <Tooltip label="Dust Converter 🔥">
+        <Link to={routeNames.dust}>
+          <ActionButton
+            variant={"secondary"}
+            h={{ xs: "40px", md: "46px" }}
+            aria-label="Dust"
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            fontSize={"20px"}
+          >
+            💨
+          </ActionButton>
+        </Link>
+      </Tooltip>
       {/* <MoreOptions /> */}
     </Flex>
   );
