@@ -42,7 +42,7 @@ const Navbar = () => {
                     mr="10px"
                   /> */}
 
-                    <Heading fontSize={"3xl"} cursor={"pointer"} ml={"-10px"}>
+                    <Heading fontSize={"3xl"} cursor={"pointer"} ml={"-20px"}>
                       🔋
                     </Heading>
                     {/* <Heading
@@ -68,7 +68,11 @@ const Navbar = () => {
                 mt="10px !important"
                 display={{ xs: "none", "1.5xl": "block" }}
               />
-              <Flex h={"full"} display={{ xs: "none", "1.5xl": "flex" }}>
+              <Flex
+                h={"full"}
+                ml="15px"
+                display={{ xs: "none", "1.5xl": "flex" }}
+              >
                 <Menu />
               </Flex>
             </Flex>
