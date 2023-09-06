@@ -1,4 +1,4 @@
-import { Box, Center, Image, Tooltip } from "@chakra-ui/react";
+import { Box, Center, Image } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { useAppSelector } from "hooks/useRedux";
 import { useEffect, useRef, useState } from "react";
@@ -30,46 +30,42 @@ const Coin = () => {
 
   const isBack = houseSelection === null ? false : !houseSelection;
   return (
-    <Tooltip label="50-50 odds, 100% on chain transparency 🍀">
-      <Box>
-        <CoinS
-          w={"full"}
-          px="35px"
-          pb={houseSelection && "30px"}
-          bg="dark.600"
-          border="1px"
-          borderColor="dark.300"
-          borderRadius={"lg"}
-          minH={"300px"}
-          isBack={isBack}
-        >
-          <Box className="flip-card-inner" h="full" minH={"300px"}>
-            <Center className="flip-card-front" h="full" minH={"300px"}>
-              <Image src={"images/bsk-logo.svg"} w="265px" h="265px" />
-            </Center>
-            <Center className="flip-card-back">
-              <Box
-                maxW="265px"
-                maxH="265px"
-                w={"100%"}
-                h={backHeight + "px"}
-                bg="primary"
-                borderRadius={"full"}
-                ref={backRef}
-              >
-                {" "}
-                <Box></Box>
-              </Box>
-            </Center>
+    <CoinS
+      w={"full"}
+      px="35px"
+      pb={houseSelection && "30px"}
+      bg="dark.600"
+      border="1px"
+      borderColor="dark.300"
+      borderRadius={"lg"}
+      minH={"300px"}
+      isBack={isBack}
+    >
+      <Box className="flip-card-inner" h="full" minH={"300px"}>
+        <Center className="flip-card-front" h="full" minH={"300px"}>
+          <Image src={"images/bsk-logo.svg"} w="265px" h="265px" />
+        </Center>
+        <Center className="flip-card-back">
+          <Box
+            maxW="265px"
+            maxH="265px"
+            w={"100%"}
+            h={backHeight + "px"}
+            bg="primary"
+            borderRadius={"full"}
+            ref={backRef}
+          >
+            {" "}
+            <Box></Box>
           </Box>
-          {houseSelection !== null && (
-            <Center textAlign={"center"}>
-              LAST TOSS WAS {selectChoise(houseSelection)}
-            </Center>
-          )}
-        </CoinS>
+        </Center>
       </Box>
-    </Tooltip>
+      {houseSelection !== null && (
+        <Center textAlign={"center"}>
+          LAST TOSS WAS {selectChoise(houseSelection)}
+        </Center>
+      )}
+    </CoinS>
   );
 };
 
