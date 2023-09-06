@@ -17,7 +17,7 @@ const Swap = () => {
     <MyContainer mb={10}>
       <Center flexDir={"column"}>
         <Tooltip label="Enjoy the smallest fees on MultiversX 🔥">
-          <Box mb={10}>
+          <Box mb={10} mt={"-40px"}>
             <MyHeading>{swaptitle}</MyHeading>
           </Box>
         </Tooltip>
