@@ -69,8 +69,9 @@ const GameActions = () => {
         borderRadius={"lg"}
         px="20px"
         py="35px"
-        gap="22px"
+        gap="32px"
         flex={1}
+        h="full"
       >
         <Flex alignItems={"flex-start"} gap={"15px"}>
           <Text color="white">2.</Text>

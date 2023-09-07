@@ -37,10 +37,21 @@ const CoinFlipView = () => {
           <SimpleGrid columns={{ xs: 1, md: 2 }} gap="20px">
             <Stack gap={"20px"}>
               <Coin />
-              <GameActions />
+              <Box display={{ xs: "none", md: "block" }} h="full">
+                <GameActions />
+              </Box>
+
+              <Box display={{ xs: "block", md: "none" }}>
+                <ChooseBetSection />
+              </Box>
             </Stack>
             <Box>
-              <ChooseBetSection />
+              <Box display={{ xs: "block", md: "none" }}>
+                <GameActions />
+              </Box>
+              <Box display={{ xs: "none", md: "block" }}>
+                <ChooseBetSection />
+              </Box>
             </Box>
           </SimpleGrid>
           <Grid templateColumns={{ xs: "1fr", lg: "1fr 2fr" }} gap="20px">

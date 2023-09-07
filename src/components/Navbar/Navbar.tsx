@@ -42,7 +42,11 @@ const Navbar = () => {
                     mr="10px"
                   /> */}
 
-                    <Heading fontSize={"3xl"} cursor={"pointer"} ml={"-20px"}>
+                    <Heading
+                      fontSize={"3xl"}
+                      cursor={"pointer"}
+                      ml={{ xs: "0px", md: "-20px" }}
+                    >
                       🔋
                     </Heading>
                     {/* <Heading
