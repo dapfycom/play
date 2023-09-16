@@ -39,7 +39,13 @@ export class SmartContractInteraction {
     const tx = interaction
       .withSender(senderAddress)
       .withValue(TokenTransfer.egldFromAmount(options?.val || 0))
-      .withGasLimit(options?.gasL || 50000000)
+      .withGasLimit(
+        Boolean(options?.gasL)
+          ? options.gasL > 600000000
+            ? 600000000
+            : options.gasL
+          : 50000000
+      )
       .withChainID(selectedNetwork.ChainID)
       .buildTransaction();
 

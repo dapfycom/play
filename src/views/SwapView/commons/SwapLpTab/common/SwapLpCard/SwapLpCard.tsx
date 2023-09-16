@@ -33,6 +33,8 @@ const SwapLpCard = () => {
     }
   };
 
+  console.log("toField", toField);
+
   return (
     <Box
       borderRadius={"2xl"}
