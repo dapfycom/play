@@ -71,7 +71,7 @@ const Footer = () => {
                 as={Link}
                 /* @ts-ignore */
                 isExternal
-                href="https://t.me/BeskarX"
+                href="https://t.me/xBeskar"
               />
             </Flex>
           </Flex>
